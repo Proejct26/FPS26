@@ -1,18 +1,24 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : MonoBehaviour
+public class PlayerAttackState : IPlayerState
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerController controller;
+    public PlayerAttackState(PlayerController ctrl) => controller = ctrl;
+
+    public void Enter()
     {
-        
+        //애니메이션 출력
+        controller.HandleFire();                    // 무기 발사
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        //시간 경과 or 애니메이션 종료 시 다른 state로 이동?
+    }
+    public void Exit()
+    {
+        //만약 애니메이션이 작동 중이더라도 끊고 넘어가야 하나?
     }
 }

@@ -22,7 +22,7 @@ MonoBehaviour:
   recoilX: 1
   recoilY: 1
   recoilRecoverySpeed: 3
-  originBulletSpread: 0.1
-  bulletSpread: 1
-  maxSpread: 1
+  originBulletSpread: 0
+  bulletSpread: 5
+  maxSpread: 5
   _grenadeWeight: 1

@@ -10,7 +10,13 @@ public enum EPlayerInput
 	Fire,	//발사
 	Zoom,	//줌
 	Jump,		//점프
-	Info		//정보창
+	Info,		//정보창
+
+ 	MainWeapon,
+	SubWeapon,
+	KnifeWeapon,
+	Reload,
+	AimMode,
 }
 
 [System.Serializable]

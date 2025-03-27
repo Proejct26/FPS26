@@ -34,9 +34,12 @@ public class PlayerWeaponHandler : MonoBehaviour
     }
     private void BindInputAction()
     {
-        Managers.Input.MainWeapon.started += (InputAction.CallbackContext context) => SetActiveWeapon(0);
-        Managers.Input.SubWeapon.started += (InputAction.CallbackContext context) => SetActiveWeapon(1);
-        Managers.Input.KnifeWeapon.started += (InputAction.CallbackContext context) => SetActiveWeapon(2);
+        if (Managers.IsNull)
+            return; 
+
+        Managers.Input.GetInput(EPlayerInput.MainWeapon).started += (InputAction.CallbackContext context) => SetActiveWeapon(0);
+        Managers.Input.GetInput(EPlayerInput.SubWeapon).started += (InputAction.CallbackContext context) => SetActiveWeapon(1);
+        Managers.Input.GetInput(EPlayerInput.KnifeWeapon).started += (InputAction.CallbackContext context) => SetActiveWeapon(2);
     }
  
     public void SetActiveWeapon(int index)

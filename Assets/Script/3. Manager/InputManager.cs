@@ -5,9 +5,8 @@ using UnityEngine.InputSystem;
 
 public enum EPlayerInput
 {
-	move,
-	interaction,
-	LeftMouse
+	Fire,
+	Jump,
 }
 
 [System.Serializable]
@@ -19,13 +18,15 @@ public class InputManager : IManager
 	// Input Action Map  
 	private InputActionMap playerInputMap;
 	 
-
+	public InputAction Fire => playerInputs[EPlayerInput.Fire];
+	public InputAction Jump => playerInputs[EPlayerInput.Jump]; 
 	// === Input Actions ===
-	public InputAction GetInput(EPlayerInput type) => playerInputs[type];  
+	public InputAction GetInput(EPlayerInput type) => playerInputs[type];   
 
     public void Init()
     {
         BindAction(typeof(EPlayerInput));
+		inputActionAsset.Enable(); 
     }
 
 
@@ -53,8 +54,10 @@ public class InputManager : IManager
 			mapName = mapName.Substring(1);
 
 		playerInputMap = inputActionAsset.FindActionMap(mapName);
-		foreach (EPlayerInput t in Enum.GetValues(type))
-			playerInputs[t] = playerInputMap.FindAction(type.ToString());
+		foreach (EPlayerInput t in Enum.GetValues(type)){ 
+			string name = t.ToString(); 
+			playerInputs[t] = playerInputMap.FindAction(name);
+		}
 	} 
 
 

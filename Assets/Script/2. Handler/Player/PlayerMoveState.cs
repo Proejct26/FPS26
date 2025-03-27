@@ -1,10 +1,17 @@
-﻿public class PlayerMoveState : IPlayerState
+﻿/// <summary>
+/// 플레이어의 이동(Move) 상태
+/// </summary>
+public class PlayerMoveState : IPlayerState
 {
     private PlayerController controller;
 
     public PlayerMoveState(PlayerController ctrl) => controller = ctrl;
 
     public void Enter() { }
+
+    /// <summary>
+    /// 이동 및 중력 처리 후 상태 전환 조건 검사 (입력 없음/점프/낙하)
+    /// </summary>
     public void Update()
     {
         controller.HandleMovement();

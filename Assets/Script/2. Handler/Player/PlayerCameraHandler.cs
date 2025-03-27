@@ -18,7 +18,7 @@ public class PlayerCameraHandler : MonoBehaviour
 
     void Update()
     {
-        // ✅ 마우스 이동량 (InputSystem)
+        // 마우스 이동량 (InputSystem)
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
         float mouseX = mouseDelta.x * _sensitivity * Time.deltaTime;

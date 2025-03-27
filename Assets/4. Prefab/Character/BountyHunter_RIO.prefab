@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5177936846984756592}
   - component: {fileID: 7502753527584537894}
   - component: {fileID: 1904052473941567139}
+  - component: {fileID: 4070849911824775451}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -128,6 +129,14 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!81 &4070849911824775451
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459898378545975593}
+  m_Enabled: 1
 --- !u!1 &7100463753366759303
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,13 +194,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.9
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!136 &3541273073625746473
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -211,10 +220,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.2
+  m_Height: 1.9
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &3980898040085952048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +294,7 @@ Transform:
   m_GameObject: {fileID: 8374631804812935551}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

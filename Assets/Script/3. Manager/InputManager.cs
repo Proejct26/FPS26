@@ -1,13 +1,16 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public enum EPlayerInput
 {
-	move,
+	move,		//wasd
 	interaction,
-	LeftMouse
+	LeftMouse,	//발사
+	RightMouse,	//줌
+	Jump,		//점프
+	Info		//정보창
 }
 
 [System.Serializable]

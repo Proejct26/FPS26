@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7315788695540561106}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3318782933809680017}
   - component: {fileID: 4970986024221348166}
   - component: {fileID: 5047172628340758741}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_02_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 9042861137820145355}
   - component: {fileID: 7101395949839106259}
   - component: {fileID: 6875550237637381035}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_02_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 7356129076251509005}
   - component: {fileID: 4663068047352845086}
   - component: {fileID: 788831061150218577}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_02_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 2134649810967007344}
   - component: {fileID: 1228452965500704098}
   - component: {fileID: 4965358679916211988}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_02_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 7709182444280303465}
   - component: {fileID: 2619629040477256286}
   - component: {fileID: 3325700388951894600}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6587986703527288404}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ejectionPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 8731937525028270325}
   - component: {fileID: 5647397695783093532}
   - component: {fileID: 8300751920842839663}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_02_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 2992592678789002779}
   - component: {fileID: 1875416650870469709}
   - component: {fileID: 7490928560363010781}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_02_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6433548180215941763}
   - component: {fileID: 4820956099957237229}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

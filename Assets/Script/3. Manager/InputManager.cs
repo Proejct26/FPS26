@@ -7,6 +7,9 @@ public enum EPlayerInput
 {
 	Fire,
 	Jump,
+	MainWeapon,
+	SubWeapon, 
+	KnifeWeapon,
 }
 
 [System.Serializable]
@@ -20,8 +23,13 @@ public class InputManager : IManager
 	 
 	public InputAction Fire => playerInputs[EPlayerInput.Fire];
 	public InputAction Jump => playerInputs[EPlayerInput.Jump]; 
+	public InputAction MainWeapon => playerInputs[EPlayerInput.MainWeapon];
+	public InputAction SubWeapon => playerInputs[EPlayerInput.SubWeapon];
+	public InputAction KnifeWeapon => playerInputs[EPlayerInput.KnifeWeapon]; 
+
 	// === Input Actions ===
 	public InputAction GetInput(EPlayerInput type) => playerInputs[type];   
+
 
     public void Init()
     {

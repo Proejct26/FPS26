@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2434604058484927369}
   - component: {fileID: 885161069147724462}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 6890613774277024596}
   - component: {fileID: 6493737716838395231}
   - component: {fileID: 597961503073120311}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_01_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 683811473467903852}
   - component: {fileID: 8059736100741679191}
   - component: {fileID: 7354879670932714710}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_01_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 1284597617368497476}
   - component: {fileID: 4431455417285652749}
   - component: {fileID: 3342530195191996629}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 3542577808002702409}
   - component: {fileID: 5695241546792111099}
   - component: {fileID: 7303720588376097627}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon_01_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6968821664132489051}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ejectionPort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2960250144490955201}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

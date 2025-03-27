@@ -8,6 +8,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CharacterController _controller;
     [SerializeField] private PlayerStatHandler statHandler;
 
+
+    /*[Header("무기 관련")]
+    [SerializeField] private Transform weaponHolder;                      // 무기 부착 위치
+    [SerializeField] private GameObject startingWeaponPrefab;             // 초기 무기 프리팹 */
+    private WeaponBaseController _equippedWeapon;
+
+
     /// <summary>
     /// FSM 상태 머신 인스턴스
     /// </summary>
@@ -48,7 +55,7 @@ public class PlayerController : MonoBehaviour
     /// <returns>점프 키가 눌렸는지 여부</returns>
     public bool IsJumpInput()
     {
-        return Managers.Input.GetInput(EPlayerInput.Jump).WasPressedThisFrame();
+        return Managers.Input.GetInput(EPlayerInput.Jump).IsPressed();
     }
 
     /// <summary>
@@ -92,4 +99,32 @@ public class PlayerController : MonoBehaviour
     /// 현재 캐릭터가 땅 위에 있는지 여부
     /// </summary>
     public bool IsGrounded() => _controller.isGrounded;
+
+    /// <summary>
+    /// 무기를 장착하고 기존 무기는 제거
+    /// </summary>
+    public void EquipWeapon(GameObject weaponPrefab)
+    {
+        if (_equippedWeapon != null)
+            Destroy(_equippedWeapon.gameObject);
+
+        /*GameObject newWeapon = Instantiate(weaponPrefab, weaponHolder);
+        _equippedWeapon = newWeapon.GetComponent<WeaponBaseController>();*/
+
+        if (_equippedWeapon == null)
+            Debug.LogError("장착한 무기에 WeaponBaseController가 없습니다.");
+    }
+
+    /// <summary>
+    /// 발사 입력 시 호출
+    /// </summary>
+    public void HandleFire()
+    {
+        if (_equippedWeapon == null)
+        {
+            Debug.LogWarning("무기가 없습니다.");
+            return;
+        }
+        _equippedWeapon.Attack();
+    }
 }

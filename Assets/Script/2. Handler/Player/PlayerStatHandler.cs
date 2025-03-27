@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class PlayerStatHandler : MonoBehaviour
 {
+    //디버그용
+    [Header("디버그 초기값")]
+    [SerializeField] private float initialMaxHealth = 100f;
+    [SerializeField] private float initialMoveSpeed = 5f;
+    [SerializeField] private float initialJumpPower = 8f;
+    [SerializeField] private float initialAttackPower = 20f;
+    [SerializeField] private float initialDefensePower = 5f;
+    private void Awake()
+    {
+        Init(initialMaxHealth, initialMoveSpeed, initialJumpPower, initialAttackPower, initialDefensePower);
+    }
+
     public float MaxHealth { get; set; }
     public float MoveSpeed { get; set; }
     public float JumpPower { get; set; }
@@ -11,10 +23,18 @@ public class PlayerStatHandler : MonoBehaviour
     public float DefensePower { get; set; }
     public float CurrentHealth { get; set; }
 
-    private void Awake()
-    {
 
+    public void Init(float maxHealth, float moveSpeed, float jumpPower, float attackPower, float defensePower)
+    {
+        MaxHealth = maxHealth;
+        MoveSpeed = moveSpeed;
+        JumpPower = jumpPower;
+        AttackPower = attackPower;
+        DefensePower = defensePower;
+        CurrentHealth = MaxHealth;
     }
+
+
 
     /// <summary>
     /// 아이템 사용, 장비 시 스텟 변동을 위해 처리

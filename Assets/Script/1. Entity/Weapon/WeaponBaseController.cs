@@ -55,7 +55,7 @@ public abstract class WeaponBaseController : MonoBehaviour
     {
         while (true)
         {
-            if (Time.time - lastFireTime >= _weaponDataSO._attackDelay * 0.7f)
+            if (Time.time - lastFireTime >= _weaponDataSO.attackDelay * 0.7f)
             {
                 Fire();
                 lastFireTime = Time.time;
@@ -64,7 +64,7 @@ public abstract class WeaponBaseController : MonoBehaviour
             {
                 Debug.Log("FireDelay");
             }
-            yield return new WaitForSeconds(_weaponDataSO._attackDelay); 
+            yield return new WaitForSeconds(_weaponDataSO.attackDelay); 
         }
     }
 }

@@ -12,16 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d1457798ca1844d9999655b0c7bded, type: 3}
   m_Name: KnifeDataSO
   m_EditorClassIdentifier: 
-  _damage: 50
-  _attackDelay: 0.5
-  _bulletPrefab: {fileID: 0}
-  initializeAmmo: 0
-  maxLoadedAmmo: 0
-  reloadTime: 0
-  recoilX: 0
-  recoilY: 0
-  recoilRecoverySpeed: 0
-  originBulletSpread: 0
-  bulletSpread: 0
-  maxSpread: 0
-  _grenadeWeight: 0.1
+  damage: 0
+  attackDelay: 0
+  ammoSettings:
+    _bulletPrefab: {fileID: 0}
+    initializeAmmo: 0
+    ammoLimit: 0
+    reloadTime: 0
+  recoilSettings:
+    verticalRecoil: 1
+    horizontalRecoil: 0.5
+    recoilSpeed: 0
+    returnSpeed: 0.83
+    maxRecoilAngle: 10
+  spreadSettings:
+    originBulletSpread: 0
+    maxSpread: 1
+    spreadRecoverySpeed: 0.1
+    spreadIncrease: 0.1
+    aimingModeSpread: 0.5
+  grenadeWeight: 1

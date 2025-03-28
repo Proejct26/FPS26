@@ -18,16 +18,26 @@ public class GunController : WeaponBaseController
     [SerializeField] private float _spread = 0;
     private bool _isAimMode = false;
 
+    private AmmoSettings _ammoSettings;
+    private RecoilSettings _recoilSettings;
+    private SpreadSettings _spreadSettings;
+
     // Property
     public bool IsAimMode => _isAimMode;
+
+
     private Coroutine _changeSpreadCoroutine;
 
     private void Awake()
     {
+        _ammoSettings = _weaponDataSO.ammoSettings;
+        _recoilSettings = _weaponDataSO.recoilSettings;
+        _spreadSettings = _weaponDataSO.spreadSettings;
+    
         _gunAnimationHandler = gameObject.GetOrAddComponent<GunAnimationHandler>();  
-        _LoadedAmmo = _weaponDataSO.initializeAmmo;   
-        _RemainAmmo = _weaponDataSO.ammoLimit;
-        _spread = _weaponDataSO.originBulletSpread;
+        _LoadedAmmo = _ammoSettings.initializeAmmo;   
+        _RemainAmmo = _ammoSettings.ammoLimit;
+        _spread = _spreadSettings.originBulletSpread;
     }
  
 
@@ -65,13 +75,13 @@ public class GunController : WeaponBaseController
         _gunAnimationHandler.HasAmmo(_LoadedAmmo > 0);  
         _gunAnimationHandler.Reload(); 
 
-        Invoke(nameof(ReloadAmmo), _weaponDataSO.reloadTime);  
+        Invoke(nameof(ReloadAmmo), _ammoSettings.reloadTime);  
     }
  
     private void ReloadAmmo()
     {
-        _LoadedAmmo = Mathf.Min(_LoadedAmmo + _RemainAmmo, _weaponDataSO.initializeAmmo);
-        _RemainAmmo -= Mathf.Max(0, _LoadedAmmo - _weaponDataSO.initializeAmmo);   
+        _LoadedAmmo = Mathf.Min(_LoadedAmmo + _RemainAmmo, _ammoSettings.initializeAmmo);
+        _RemainAmmo -= Mathf.Max(0, _LoadedAmmo - _ammoSettings.initializeAmmo);   
     }
 
     private void InputAimMode(InputAction.CallbackContext context)
@@ -86,21 +96,26 @@ public class GunController : WeaponBaseController
         ResetSpread();
     }
 
-    protected override void Fire() 
+    protected override void Fire()  
     {  
         if (_LoadedAmmo <= 0)
             return; 
+            
+        _LoadedAmmo--;  
 
         SpawnEffect();
         Trigger();
+        SetRecoil();
+
         _gunAnimationHandler.Fire(); 
-        _spread *= 1f + _weaponDataSO.spreadIncrease; 
+    }  
+    private void SetRecoil()
+    {
+        _spread *= 1f + _spreadSettings.spreadIncrease; 
 
         ResetSpread();
-
-        _LoadedAmmo--;  
-    }  
-
+        Camera.main.GetComponent<CameraShaker>().SetRecoil(_recoilSettings.verticalRecoil, _recoilSettings.horizontalRecoil, _recoilSettings.recoilSpeed, _recoilSettings.returnSpeed);
+    }
     private void Trigger()
     {
         Vector3 startPos = Camera.main.transform.position;
@@ -120,7 +135,7 @@ public class GunController : WeaponBaseController
     private void SpawnEffect()
     {
         // 총알
-        GameObject bullet = Managers.Pool.Get(_weaponDataSO._bulletPrefab);
+        GameObject bullet = Managers.Pool.Get(_ammoSettings._bulletPrefab);
         bullet.transform.position = _ejectionPort.position;
         bullet.transform.rotation = _ejectionPort.rotation;
         Managers.Pool.Release(bullet, 3f);  
@@ -145,7 +160,7 @@ public class GunController : WeaponBaseController
         // 기본 발사 방향
         Vector3 baseDirection = Camera.main.transform.forward;
         
-        _spread = Mathf.Clamp(_spread, 0, _weaponDataSO.maxSpread); 
+        _spread = Mathf.Clamp(_spread, 0, _spreadSettings.maxSpread); 
         // 카메라의 시야각을 고려한 퍼짐 계산
         float spreadAngle = _spread; 
         
@@ -162,7 +177,7 @@ public class GunController : WeaponBaseController
     {
         if (_changeSpreadCoroutine != null)
             StopCoroutine(_changeSpreadCoroutine);
-        _changeSpreadCoroutine =  StartCoroutine(ChangeSpreadValue(_isAimMode ? _weaponDataSO.aimingModeSpread : _weaponDataSO.originBulletSpread, _weaponDataSO.spreadRecoverySpeed));
+        _changeSpreadCoroutine =  StartCoroutine(ChangeSpreadValue(_isAimMode ? _spreadSettings.aimingModeSpread : _spreadSettings.originBulletSpread, _spreadSettings.spreadRecoverySpeed));
     }
 
     private IEnumerator ChangeSpreadValue(float target, float time)
@@ -175,7 +190,7 @@ public class GunController : WeaponBaseController
             currentTime += Time.deltaTime;
             float t = currentTime / time;
             _spread = Mathf.Lerp(currentSpread, target, t);
-            _spread = Mathf.Clamp(_spread, 0, _weaponDataSO.maxSpread);
+            _spread = Mathf.Clamp(_spread, 0, _spreadSettings.maxSpread);
             yield return null;
         }
         _spread = target;

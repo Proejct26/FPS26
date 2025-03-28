@@ -9,12 +9,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerStatHandler _statHandler;
     private PlayerInputHandler _input;
 
+    [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private float groundCheckDistance = 0.3f;
+    [SerializeField] private Vector3 groundCheckOffset = new Vector3(0, 0.1f, 0);
+
 
     /*[Header("무기 관련")]
     [SerializeField] private Transform weaponHolder;                      // 무기 부착 위치
     [SerializeField] private GameObject startingWeaponPrefab;             // 초기 무기 프리팹 */
     private WeaponBaseController _equippedWeapon;
-
+    public Animator Animator { get; private set; }
 
     /// <summary>
     /// FSM 상태 머신 인스턴스
@@ -28,6 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<PlayerInputHandler>();
+        Animator = GetComponentInChildren<Animator>();
         StateMachine = new PlayerStateMachine();
     }
 
@@ -99,6 +104,7 @@ public class PlayerController : MonoBehaviour
     /// 현재 캐릭터가 땅 위에 있는지 여부
     /// </summary>
     public bool IsGrounded() => _controller.isGrounded;
+
 
     /// <summary>
     /// 무기를 장착하고 기존 무기는 제거

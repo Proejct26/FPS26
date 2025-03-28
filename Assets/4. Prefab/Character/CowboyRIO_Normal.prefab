@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6538470513469422582}
   - component: {fileID: 6198272866859364636}
   - component: {fileID: 1339550499820222970}
+  - component: {fileID: 6679313497953191578}
+  - component: {fileID: 5890217226203651792}
   m_Layer: 0
   m_Name: CowboyRIO_Normal
   m_TagString: Player
@@ -63,7 +65,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 1.025, z: 0}
 --- !u!136 &3029419058504639482
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -99,8 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc34a3b0e2bf7114b963eb805e5e473c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
-  statHandler: {fileID: 6198272866859364636}
+  _controller: {fileID: 1513432870568483632}
+  _statHandler: {fileID: 6198272866859364636}
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  groundCheckDistance: 0.3
+  groundCheckOffset: {x: 0, y: 0.1, z: 0}
 --- !u!114 &6198272866859364636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +138,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraHolder: {fileID: 3355354538518889965}
+  headBone: {fileID: 8260362774243736455}
   _sensitivity: 2
+  cameraOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &6679313497953191578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316170647309749497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64dc4ba20a4dc7b4a9e20d1446e9605d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &5890217226203651792
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316170647309749497}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
+  m_Controller: {fileID: 9100000, guid: b8e5940c10c2f1d43997bf9e69f0a2fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7426054495592642580
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,8 +198,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7426054495592642580}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.65, z: 0}
+  m_LocalRotation: {x: -0, y: -8.722175e-10, z: -1.60788e-13, w: 1}
+  m_LocalPosition: {x: 0, y: 1.6500006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -378,6 +420,12 @@ PrefabInstance:
 --- !u!4 &6015769636393677927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3ba5df55de38cf04d86504dab0da7464,
+    type: 3}
+  m_PrefabInstance: {fileID: 6122353293448319884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8260362774243736455 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2761907016946837515, guid: 3ba5df55de38cf04d86504dab0da7464,
     type: 3}
   m_PrefabInstance: {fileID: 6122353293448319884}
   m_PrefabAsset: {fileID: 0}

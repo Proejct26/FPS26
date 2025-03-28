@@ -14,6 +14,7 @@ public class PlayerJumpState : IPlayerState
     public void Enter()
     {
         _controller.StartJump();
+        _controller.Animator.Play("jump forward");
     }
     /// <summary>
     /// 이동 및 중력 처리 후, 수직 속도 감소 시 낙하 상태로 전환

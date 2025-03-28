@@ -17,6 +17,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool IsJumping { get; private set; }
     public bool IsFiring { get; private set; }
 
+    public bool IsZooming { get; private set; }
+
     private void Update()
     {
         UpdateInput();

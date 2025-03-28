@@ -7,7 +7,7 @@ public class PlayerIdleState : IPlayerState
 
     public PlayerIdleState(PlayerController ctrl) => _controller = ctrl;
 
-    public void Enter() { /* 애니메이션 등 */ }
+    public void Enter() { _controller.Animator.Play("firing rifle"); }
     public void Update()
     {
         /// <summary>

@@ -14,8 +14,6 @@ public class PlayerStateData
     public float rotationX;
     public float rotationY;     //마우스 회전 값
 
-    
-
     public bool isJumping;      //점프 중인지
     public bool isFiring;       //공격 중인지
     public bool hitSuccess;     //공격에 성공 했는지

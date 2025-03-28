@@ -1268,6 +1268,7 @@ MonoBehaviour:
   _weaponDataSO: {fileID: 11400000, guid: 5fda0b13c71c6234da6191e6e2994a73, type: 2}
   _muzzle: {fileID: 2659306179767823782}
   _ejectionPort: {fileID: 7790126077982969481}
+  spreadScale: 0.1
 --- !u!4 &8387114431850677839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 794980428616714270, guid: 4e98271e1c60ef549b3240179519b7bf,

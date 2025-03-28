@@ -17,11 +17,14 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 5341742223406746680, guid: 488479b8d9368d7428e1df38ed4c48fc,
     type: 3}
   initializeAmmo: 30
-  maxLoadedAmmo: 100
+  ammoLimit: 0
   reloadTime: 3
-  recoilX: 1
-  recoilY: 1
-  recoilRecoverySpeed: 3
+  _recoilSettings:
+    verticalRecoil: 1
+    horizontalRecoil: 0.5
+    recoilSpeed: 10
+    returnSpeed: 5
+    maxRecoilAngle: 10
   originBulletSpread: 0
   bulletSpread: 5
   maxSpread: 5

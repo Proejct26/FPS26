@@ -74,7 +74,8 @@ public class GunController : WeaponBaseController
 
         _gunAnimationHandler.HasAmmo(_LoadedAmmo > 0);  
         _gunAnimationHandler.Reload(); 
-
+        Managers.Sound.Play("Sound/Weapon/reloadSound");
+        
         Invoke(nameof(ReloadAmmo), _ammoSettings.reloadTime);  
     }
  
@@ -145,13 +146,14 @@ public class GunController : WeaponBaseController
         Rigidbody rigidbody = bullet.GetOrAddComponent<Rigidbody>();
         rigidbody.velocity = Vector3.zero; 
         rigidbody.AddForce(dir, ForceMode.Impulse);  
-
+ 
         // 머즐 효가
-        GameObject muzzleFlash = Managers.Pool.Get($"Weapon/muzzelFlash 0{Random.Range(1, 6)}"); 
+        GameObject muzzleFlash = Managers.Pool.Get($"Sprite/Weapon/muzzelFlash 0{Random.Range(1, 6)}"); 
         muzzleFlash.transform.position = _muzzle.position;
         muzzleFlash.transform.rotation = _muzzle.rotation; 
         Managers.Pool.Release(muzzleFlash, 0.05f);
 
+        Managers.Sound.Play("Sound/Weapon/shotSound");
         
     }
 

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GunAnimationHandler : MonoBehaviour
 {
-    private readonly int _FireHash = Animator.StringToHash("Fire");
-    private readonly int _ReloadHash = Animator.StringToHash("Reload");
-    private readonly int _RunHash = Animator.StringToHash("Run");
-    private readonly int _AimModeHash = Animator.StringToHash("AimMode");
-    private readonly int _HasAmmoHash = Animator.StringToHash("HasAmmo");
+    private readonly static int _FireHash = Animator.StringToHash("Fire");
+    private readonly static int _ReloadHash = Animator.StringToHash("Reload");
+    private readonly static int _RunHash = Animator.StringToHash("Run");
+    private readonly static int _AimModeHash = Animator.StringToHash("AimMode");
+    private readonly static int _HasAmmoHash = Animator.StringToHash("HasAmmo"); 
 
     private Animator _animator;
 

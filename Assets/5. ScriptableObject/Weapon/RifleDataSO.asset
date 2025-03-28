@@ -12,17 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d1457798ca1844d9999655b0c7bded, type: 3}
   m_Name: RifleDataSO
   m_EditorClassIdentifier: 
-  _damage: 12
-  _attackDelay: 0.1
-  _bulletPrefab: {fileID: 5341742223406746680, guid: 488479b8d9368d7428e1df38ed4c48fc,
-    type: 3}
-  initializeAmmo: 30
-  maxLoadedAmmo: 100
-  reloadTime: 3
-  recoilX: 1
-  recoilY: 1
-  recoilRecoverySpeed: 3
-  originBulletSpread: 0
-  bulletSpread: 5
-  maxSpread: 5
-  _grenadeWeight: 1
+  damage: 0
+  attackDelay: 0
+  ammoSettings:
+    _bulletPrefab: {fileID: 0}
+    initializeAmmo: 0
+    ammoLimit: 0
+    reloadTime: 0
+  recoilSettings:
+    verticalRecoil: 1
+    horizontalRecoil: 0.5
+    recoilSpeed: 10
+    returnSpeed: 5
+    maxRecoilAngle: 10
+  spreadSettings:
+    originBulletSpread: 0
+    maxSpread: 1
+    spreadRecoverySpeed: 0.1
+    spreadIncrease: 0.1
+    aimingModeSpread: 0.5
+  grenadeWeight: 1

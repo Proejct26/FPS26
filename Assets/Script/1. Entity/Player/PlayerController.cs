@@ -5,6 +5,7 @@
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Transform head;
     [SerializeField] private CharacterController _controller;
     [SerializeField] private PlayerStatHandler _statHandler;
     private PlayerInputHandler _input;
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
     public void HandleMovement()
     {
         Vector3 input = _input.MoveInput;
-        Vector3 move = transform.right * input.x + transform.forward * input.z;
+        Vector3 move = head.right * input.x + head.forward * input.z;
         _controller.Move(move * _statHandler.MoveSpeed * Time.deltaTime);
     }
 

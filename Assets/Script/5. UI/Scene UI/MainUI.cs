@@ -32,7 +32,7 @@ public class MainUI : UI_Scene
 
     void UpdatePlayerData()
     {
-
+        //플레이어의 잔탄수등 세부 스텟을 실시간으로 업데이트 하기
     }
 
     /// <summary>

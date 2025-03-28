@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 985c7fa0d06db7e498ac09450f115438
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mainWeapon: {fileID: 8709877616022075703, guid: 7ce03b40b12da2b44a1dbd0e1b5d5528,
+      type: 3}
+  - subWeapon: {fileID: 698045668534957941, guid: 355ca6334ae355f4086be67782a206e0,
+      type: 3}
+  - knife: {fileID: 9195720516349570756, guid: 1124d75693aaf124a9a4381bbdb2f33c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

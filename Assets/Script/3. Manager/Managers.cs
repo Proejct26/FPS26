@@ -29,14 +29,15 @@ public class Managers : Singleton<Managers>
     public static PoolManager Pool => Instance.pool; 
 
     public static GameObject Player {get; private set;}
+
+
     protected override void Awake()
     {
         base.Awake();
- 
-      //Player = FindFirstObjectByType<PlayerController>().gameObject;
+  
+       //Player = FindFirstObjectByType<PlayerController>().gameObject;
         data = new DataManager();
         Init();
-        
     }
     private void Start() 
     {

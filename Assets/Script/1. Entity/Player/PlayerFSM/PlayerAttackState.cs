@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerAttackState : IPlayerState
 {
-    private PlayerController controller;
-    public PlayerAttackState(PlayerController ctrl) => controller = ctrl;
+    private readonly PlayerControllerBase _controller;
+    public PlayerAttackState(PlayerControllerBase ctrl) => _controller = ctrl;
 
     public void Enter()
     {
-        //애니메이션 출력
-        controller.HandleFire();                    // 무기 발사
+        _controller.PlayFireAnim();
+
+        if (_controller is LocalPlayerController local)
+        {
+            local.HandleFire();
+        }
     }
 
     public void Update()

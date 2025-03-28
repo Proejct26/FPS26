@@ -4,28 +4,34 @@
 /// </summary>
 public class PlayerJumpState : IPlayerState
 {
-    private PlayerController _controller;
+    private readonly PlayerControllerBase _controller;
 
-    public PlayerJumpState(PlayerController ctrl) => _controller = ctrl;
+    public PlayerJumpState(PlayerControllerBase ctrl) => _controller = ctrl;
 
     /// <summary>
     /// 점프 시작 시 수직 속도 초기화
     /// </summary>
     public void Enter()
     {
-        _controller.StartJump();
-        _controller.Animator.Play("jump forward");
+        if (_controller is LocalPlayerController local)
+        {
+            local.StartJump();
+        }
+        _controller.animator.Play("jump forward");
     }
     /// <summary>
     /// 이동 및 중력 처리 후, 수직 속도 감소 시 낙하 상태로 전환
     /// </summary>
     public void Update()
     {
-        _controller.HandleMovement();
-        _controller.ApplyGravity();
+        if (_controller is LocalPlayerController local)
+        {
+            local.HandleMovement();
+            local.ApplyGravity();
 
-        if (_controller.GetVerticalVelocity() <= 0)
-            _controller.StateMachine.ChangeState(new PlayerFallState(_controller));
+            if (local.GetVerticalVelocity() <= 0)
+                _controller.StateMachine.ChangeState(new PlayerFallState(_controller));
+        }
     }
 
     public void Exit() { }

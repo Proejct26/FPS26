@@ -4,9 +4,9 @@
 /// </summary>
 public class PlayerFallState : IPlayerState
 {
-    private PlayerController _controller;
+    private readonly PlayerControllerBase _controller;
 
-    public PlayerFallState(PlayerController ctrl) => _controller = ctrl;
+    public PlayerFallState(PlayerControllerBase ctrl) => _controller = ctrl;
 
 
     public void Enter() { /* 애니메이션 등 */ }
@@ -16,11 +16,14 @@ public class PlayerFallState : IPlayerState
     /// </summary>
     public void Update()
     {
-        _controller.HandleMovement();
-        _controller.ApplyGravity();
+        if (_controller is LocalPlayerController local)
+        {
+            local.HandleMovement();
+            local.ApplyGravity();
 
-        if (_controller.IsGrounded())
-            _controller.StateMachine.ChangeState(new PlayerIdleState(_controller));
+            if (local.IsGrounded())
+                _controller.StateMachine.ChangeState(new PlayerIdleState(_controller));
+        }
     }
 
     public void Exit() { }

@@ -3,11 +3,11 @@
 /// </summary>
 public class PlayerIdleState : IPlayerState
 {
-    private PlayerController _controller;
+    private readonly PlayerControllerBase _controller;
 
-    public PlayerIdleState(PlayerController ctrl) => _controller = ctrl;
+    public PlayerIdleState(PlayerControllerBase controller) => _controller = controller;
 
-    public void Enter() { _controller.Animator.Play("firing rifle"); }
+    public void Enter() { _controller.animator.Play("firing rifle"); }
     public void Update()
     {
         /// <summary>

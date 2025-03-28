@@ -15,12 +15,14 @@ public class PlayerCameraHandler : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("마우스 시작");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     void Update()
     {
+
         // 마우스 이동량 (InputSystem)
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 

@@ -3,9 +3,8 @@
 /// <summary>
 /// 플레이어의 이동, 점프, 중력 및 상태 FSM을 관리하는 컨트롤러
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class LocalPlayerController : PlayerControllerBase
 {
-    [SerializeField] private Transform head;
     [SerializeField] private CharacterController _controller;
     [SerializeField] private PlayerStatHandler _statHandler;
     private PlayerInputHandler _input;
@@ -19,22 +18,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform weaponHolder;                      // 무기 부착 위치
     [SerializeField] private GameObject startingWeaponPrefab;             // 초기 무기 프리팹 */
     private WeaponBaseController _equippedWeapon;
-    public Animator Animator { get; private set; }
-
+    
     /// <summary>
     /// FSM 상태 머신 인스턴스
     /// </summary>
-    public PlayerStateMachine StateMachine { get; private set; }
-
     private float _verticalVelocity;
     private float _gravity = -9.81f;
 
+    public string playerId;
+    private bool _hitSuccess;
+    private string _hitTargetId;
+
     private void Awake()
     {
+        base.Awake();
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<PlayerInputHandler>();
-        Animator = GetComponentInChildren<Animator>();
-        StateMachine = new PlayerStateMachine();
     }
 
     private void Start()
@@ -42,26 +41,32 @@ public class PlayerController : MonoBehaviour
         StateMachine.ChangeState(new PlayerIdleState(this));
     }
 
-    private void Update()
+    protected override void Update()
     {
-        StateMachine.Update();
+        base.Update();
+
+        // 서버 전송
+        var stateData = ToPlayerStateData();
+        SendStateToServer(stateData);
     }
 
+    private void SendStateToServer(PlayerStateData data)
+    {
+        //전송용 코드
+    }
     /// <summary>
     /// 플레이어 이동 입력이 있는지 확인
     /// </summary>
     /// <returns>이동 입력 여부</returns>
-    public bool HasMoveInput()
-    {
-        Vector3 input = _input.MoveInput;
-        return input.sqrMagnitude > 0.01f;
-    }
+    public override bool HasMoveInput() => _input.MoveInput.sqrMagnitude > 0.01f;
+
 
     /// <summary>
     /// 점프 입력이 눌렸는지 확인
     /// </summary>
     /// <returns>점프 키가 눌렸는지 여부</returns>
-    public bool IsJumpInput() => _input.IsJumping;
+    public override bool IsJumpInput() => _input.IsJumping;
+
 
 
     /// <summary>
@@ -104,7 +109,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 현재 캐릭터가 땅 위에 있는지 여부
     /// </summary>
-    public bool IsGrounded() => _controller.isGrounded;
+    public override bool IsGrounded() => _controller.isGrounded;
 
 
     /// <summary>
@@ -133,5 +138,14 @@ public class PlayerController : MonoBehaviour
             return;
         }
         _equippedWeapon.Attack();
+    }
+
+    public override PlayerStateData ToPlayerStateData()
+    {
+        return null;       //데이터 전달하면 되지 않을까?
+    }
+    public override void ApplyNetworkState(PlayerStateData data)
+    {
+        
     }
 }

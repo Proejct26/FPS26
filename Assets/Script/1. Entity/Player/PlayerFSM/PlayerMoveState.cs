@@ -6,9 +6,9 @@ using UnityEngine.InputSystem.XR;
 /// </summary>
 public class PlayerMoveState : IPlayerState
 {
-    private PlayerController _controller;
+    private readonly PlayerControllerBase _controller;
 
-    public PlayerMoveState(PlayerController ctrl) => _controller = ctrl;
+    public PlayerMoveState(PlayerControllerBase ctrl) => _controller = ctrl;
 
     public void Enter()
     {
@@ -20,32 +20,27 @@ public class PlayerMoveState : IPlayerState
     /// </summary>
     public void Update()
     {
-        _controller.HandleMovement();
-        _controller.ApplyGravity();
-
-        if (_controller.HasMoveInput())
+        if (_controller is LocalPlayerController local)
         {
-            PlayWalkingIfNotAlready();
+            local.HandleMovement();
+            local.ApplyGravity();
+
+            if (!local.HasMoveInput())
+                _controller.StateMachine.ChangeState(new PlayerIdleState(_controller));
+            else if (!local.IsGrounded())
+                _controller.StateMachine.ChangeState(new PlayerFallState(_controller));
+            else if (local.IsJumpInput())
+                _controller.StateMachine.ChangeState(new PlayerJumpState(_controller));
         }
-
-
-        if (!_controller.HasMoveInput())
-            _controller.StateMachine.ChangeState(new PlayerIdleState(_controller));
-
-        if (!_controller.IsGrounded())
-            _controller.StateMachine.ChangeState(new PlayerFallState(_controller));
-
-        if (_controller.IsJumpInput())
-            _controller.StateMachine.ChangeState(new PlayerJumpState(_controller));
     }
     public void Exit() { }
 
     private void PlayWalkingIfNotAlready()
     {
-        AnimatorStateInfo state = _controller.Animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo state = _controller.animator.GetCurrentAnimatorStateInfo(0);
         if (!state.IsName("walking"))
         {
-            _controller.Animator.Play("walking");
+            _controller.animator.Play("walking");
         }
     }
 }

@@ -1,6 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+[Serializable]
+public class RecoilSettings
+{
+    [SerializeField, Range(0, 10f)] public float verticalRecoil = 1f;    // 수직 반동 강도
+    [SerializeField, Range(0, 10f)] public float horizontalRecoil = 0.5f; // 수평 반동 강도
+    [SerializeField, Range(0, 10f)] public float recoilSpeed = 10f;      // 반동 적용 속도
+    [SerializeField, Range(0, 10f)] public float returnSpeed = 5f;       // 원위치 복귀 속도
+    [SerializeField, Range(0, 10f)] public float maxRecoilAngle = 30f;   // 최대 반동 각도
+} 
 
 
 [CreateAssetMenu(fileName = "WeaponData", menuName = "ScriptableObject/WeaponData")]
@@ -17,9 +28,7 @@ public class WeaponDataSO : ScriptableObject
     [SerializeField, Range(0f, 5f)] public float reloadTime;
 
     [Header("Recoil")]
-    [SerializeField, Range(0, 10f)] public float recoilX; // 좌우 반동 크기
-    [SerializeField, Range(0, 10f)] public float recoilY; // 상하 반동 크기
-    [SerializeField, Range(0, 10f)] public float recoilRecoverySpeed; // 반동 회복 속도
+    [SerializeField] public RecoilSettings _recoilSettings; 
 
     [Header("Bullet Spread")]
     [SerializeField, Range(0, 5f)] public float originBulletSpread;  // 원래 탄퍼짐

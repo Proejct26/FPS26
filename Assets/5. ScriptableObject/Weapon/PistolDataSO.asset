@@ -19,10 +19,13 @@ MonoBehaviour:
   initializeAmmo: 12
   maxLoadedAmmo: 100
   reloadTime: 3
-  recoilX: 2
-  recoilY: 2
-  recoilRecoverySpeed: 3
-  originBulletSpread: 0.1
-  bulletSpread: 1
-  maxSpread: 2
-  _grenadeWeight: 1
+  _recoilSettings:
+    verticalRecoil: 1
+    horizontalRecoil: 0.5
+    recoilSpeed: 10
+    returnSpeed: 5
+    maxRecoilAngle: 10
+  originBulletSpread: 0.11
+  bulletSpread: 0.48
+  maxSpread: 0.48
+  _grenadeWeight: 1.51

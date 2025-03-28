@@ -11,7 +11,13 @@ public enum EPlayerInput
 	Zoom,	//줌
 	Jump,		//점프
 	Info,		//정보창
-	Look
+
+ 	MainWeapon,
+	SubWeapon,
+	KnifeWeapon,
+	Reload,
+	AimMode,
+	Look,
 }
 
 [System.Serializable]
@@ -20,13 +26,18 @@ public class InputManager : IManager
 	[SerializeField] private InputActionAsset inputActionAsset; 
 	private Dictionary<EPlayerInput, InputAction> playerInputs = new Dictionary<EPlayerInput, InputAction>();
 
-	// Input Action Map  
+	// Input Action Map   
 	private InputActionMap playerInputMap;
 	 
 	public InputAction Fire => playerInputs[EPlayerInput.Fire];
 	public InputAction Jump => playerInputs[EPlayerInput.Jump]; 
+	public InputAction MainWeapon => playerInputs[EPlayerInput.MainWeapon];
+	public InputAction SubWeapon => playerInputs[EPlayerInput.SubWeapon];
+	public InputAction KnifeWeapon => playerInputs[EPlayerInput.KnifeWeapon];   
+
 	// === Input Actions ===
 	public InputAction GetInput(EPlayerInput type) => playerInputs[type];   
+
 
     public void Init()
     {

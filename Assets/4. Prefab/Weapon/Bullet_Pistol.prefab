@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4603650724454726173}
   - component: {fileID: 6988364918651726719}
   - component: {fileID: 1443262914589065040}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BulletLite_01_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5301320226799411071}
   - component: {fileID: 1458599376233093412}
   - component: {fileID: 1126770915774088132}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BulletLite_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4239277815306136001}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bullet_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}

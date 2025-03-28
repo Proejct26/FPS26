@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 /// <summary>
 /// 플레이어의 이동, 점프, 중력 및 상태 FSM을 관리하는 컨트롤러
@@ -8,11 +8,6 @@ public class LocalPlayerController : PlayerControllerBase
     [SerializeField] private CharacterController _controller;
     [SerializeField] private PlayerStatHandler _statHandler;
     private PlayerInputHandler _input;
-
-    [SerializeField] private LayerMask groundLayerMask;
-    [SerializeField] private float groundCheckDistance = 0.3f;
-    [SerializeField] private Vector3 groundCheckOffset = new Vector3(0, 0.1f, 0);
-
 
     /*[Header("무기 관련")]
     [SerializeField] private Transform weaponHolder;                      // 무기 부착 위치
@@ -29,7 +24,7 @@ public class LocalPlayerController : PlayerControllerBase
     private bool _hitSuccess;
     private string _hitTargetId;
 
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
         _controller = GetComponent<CharacterController>();
@@ -67,6 +62,19 @@ public class LocalPlayerController : PlayerControllerBase
     /// <returns>점프 키가 눌렸는지 여부</returns>
     public override bool IsJumpInput() => _input.IsJumping;
 
+    public override bool IsFiring() => _input.IsFiring;
+
+
+    /// <summary>
+    /// 현재 캐릭터가 땅 위에 있는지 여부
+    /// </summary>
+    public override bool IsGrounded() => _controller.isGrounded;
+
+    /// <summary>
+    /// 캐릭터의 수직 속도 값 반환 (점프, 낙하 판정용)
+    /// </summary>
+    public float GetVerticalVelocity() => _verticalVelocity;
+
 
 
     /// <summary>
@@ -75,8 +83,15 @@ public class LocalPlayerController : PlayerControllerBase
     public void HandleMovement()
     {
         Vector3 input = _input.MoveInput;
-        Vector3 move = head.right * input.x + head.forward * input.z;
-        _controller.Move(move * _statHandler.MoveSpeed * Time.deltaTime);
+        /*Vector3 move = head.right * input.x + head.forward * input.z;
+        _controller.Move(move * _statHandler.MoveSpeed * Time.deltaTime);*/
+
+        Vector3 forward = transform.forward;
+        Vector3 right = transform.right;
+
+        Vector3 move = right * input.x + forward * input.z;
+        move.y = 0f; // 수직 방향 제거
+        _controller.Move(move.normalized * _statHandler.MoveSpeed * Time.deltaTime);
     }
 
     /// <summary>
@@ -101,15 +116,6 @@ public class LocalPlayerController : PlayerControllerBase
         _verticalVelocity = Mathf.Sqrt(_statHandler.JumpPower * -2f * _gravity);
     }
 
-    /// <summary>
-    /// 캐릭터의 수직 속도 값 반환 (점프, 낙하 판정용)
-    /// </summary>
-    public float GetVerticalVelocity() => _verticalVelocity;
-
-    /// <summary>
-    /// 현재 캐릭터가 땅 위에 있는지 여부
-    /// </summary>
-    public override bool IsGrounded() => _controller.isGrounded;
 
 
     /// <summary>
@@ -130,14 +136,14 @@ public class LocalPlayerController : PlayerControllerBase
     /// <summary>
     /// 발사 입력 시 호출
     /// </summary>
-    public void HandleFire()
+    public void HandleFire(bool started)
     {
-        if (_equippedWeapon == null)
+        /*if (_equippedWeapon == null)
         {
             Debug.LogWarning("무기가 없습니다.");
             return;
         }
-        _equippedWeapon.Attack();
+        _equippedWeapon.Attack(started);*/
     }
 
     public override PlayerStateData ToPlayerStateData()

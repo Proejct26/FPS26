@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// 플레이어의 정지(Idle) 상태
 /// </summary>
 public class PlayerIdleState : IPlayerState
@@ -21,6 +21,9 @@ public class PlayerIdleState : IPlayerState
 
         if (_controller.IsJumpInput())
             _controller.StateMachine.ChangeState(new PlayerJumpState(_controller));
+
+        if (_controller.IsFiring())
+            _controller.StateMachine.ChangeState(new PlayerAttackState(_controller));
     }
     public void Exit() { }
 }

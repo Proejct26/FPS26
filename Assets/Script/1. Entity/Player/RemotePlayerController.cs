@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 public class RemotePlayerController : PlayerControllerBase
@@ -41,7 +41,7 @@ public class RemotePlayerController : PlayerControllerBase
         return null; // 서버로 보낼 필요 없음
     }
 
-    private bool IsGrounded()
+    public override bool IsGrounded()
     {
         return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.2f, LayerMask.GetMask("Ground"));
     }

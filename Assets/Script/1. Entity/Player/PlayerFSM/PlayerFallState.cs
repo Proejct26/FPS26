@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// 플레이어의 낙하(Fall) 상태
 /// 공중에 있을 때 진입하며, 땅에 닿으면 Idle 상태로 전환
 /// </summary>
@@ -20,6 +20,9 @@ public class PlayerFallState : IPlayerState
         {
             local.HandleMovement();
             local.ApplyGravity();
+
+            if(local.IsFiring())
+                _controller.StateMachine.ChangeState(new PlayerAttackState(_controller));
 
             if (local.IsGrounded())
                 _controller.StateMachine.ChangeState(new PlayerIdleState(_controller));

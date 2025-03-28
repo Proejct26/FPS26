@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +27,10 @@ public abstract class PlayerControllerBase : MonoBehaviour
     public virtual void PlayFireAnim() => animator?.SetTrigger("Fire");
 
     public virtual bool HasMoveInput() => false;
+
     public virtual bool IsGrounded() => true;
+
     public virtual bool IsJumpInput() => false;
+
+    public virtual bool IsFiring() => false;
 }

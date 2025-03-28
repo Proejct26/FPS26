@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
 /// <summary>
@@ -27,10 +27,12 @@ public class PlayerMoveState : IPlayerState
 
             if (!local.HasMoveInput())
                 _controller.StateMachine.ChangeState(new PlayerIdleState(_controller));
-            else if (!local.IsGrounded())
+            if (!local.IsGrounded())
                 _controller.StateMachine.ChangeState(new PlayerFallState(_controller));
-            else if (local.IsJumpInput())
+            if (local.IsJumpInput())
                 _controller.StateMachine.ChangeState(new PlayerJumpState(_controller));
+            if(local.IsFiring())
+                _controller.StateMachine.ChangeState(new PlayerAttackState(_controller));
         }
     }
     public void Exit() { }

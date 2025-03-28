@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,7 +15,6 @@ public class PlayerCameraHandler : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("마우스 시작");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

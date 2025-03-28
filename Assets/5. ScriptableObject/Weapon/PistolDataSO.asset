@@ -23,8 +23,8 @@ MonoBehaviour:
   recoilSettings:
     verticalRecoil: 14.4
     horizontalRecoil: 0
-    recoilSpeed: 0.069
-    returnSpeed: 0.483
+    recoilSpeed: 0.103
+    returnSpeed: 1
     maxRecoilAngle: 10
   spreadSettings:
     originBulletSpread: 0.3

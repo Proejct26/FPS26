@@ -10,8 +10,8 @@ public class PlayerCameraHandler : MonoBehaviour
     [SerializeField] private float _sensitivity = 2f;
     [SerializeField] private Vector3 cameraOffset = new Vector3(0f, 0f, 0f); // 본 위치에서 얼마나 앞뒤로 뺄지
 
-
     private float xRotation = 0f;
+    private float yRotation = 0f;
 
     void Start()
     {
@@ -21,8 +21,7 @@ public class PlayerCameraHandler : MonoBehaviour
 
     void Update()
     {
-
-        // 마우스 이동량 (InputSystem)
+        //마우스 이동량 (InputSystem)
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
         float mouseX = mouseDelta.x * _sensitivity * Time.deltaTime;
@@ -34,7 +33,11 @@ public class PlayerCameraHandler : MonoBehaviour
         // 상하 회전 (카메라 홀더)
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -80f, 80f);
-        cameraHolder.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+         
+        // 현재 카메라 홀더의 회전값을 기준으로 상대적 회전 적용
+        Vector3 currentRotation = cameraHolder.localRotation.eulerAngles;
+        Vector3 targetRotation = new Vector3(xRotation, currentRotation.y, currentRotation.z);
+       cameraHolder.localRotation = Quaternion.Euler(targetRotation);
     }
 
     void LateUpdate()
@@ -47,12 +50,17 @@ public class PlayerCameraHandler : MonoBehaviour
         // 2. 얼굴 방향에서 Yaw만 추출
         Vector3 flatForward = headBone.forward;
         flatForward.y = 0f;
-        flatForward.Normalize();
+        flatForward.Normalize(); 
 
         // 3. Yaw 회전 추출
         Quaternion yawRotation = Quaternion.LookRotation(flatForward, Vector3.up);
 
-        // 4. 최종 회전 = 상하 Pitch(xRotation) + Yaw 조합
-        cameraHolder.rotation = yawRotation * Quaternion.Euler(xRotation, 0f, 0f);
+        // 4. 현재 카메라의 로컬 회전값 유지하면서 Yaw만 적용
+        Vector3 currentLocalRotation = cameraHolder.localRotation.eulerAngles;
+        Quaternion pitchRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        
+        // 5. Yaw는 world rotation으로, Pitch는 local rotation으로 적용
+        cameraHolder.rotation = yawRotation;
+        cameraHolder.localRotation = pitchRotation * cameraHolder.localRotation;
     }
 }

@@ -20,10 +20,10 @@ public abstract class WeaponBaseController : MonoBehaviour
     protected virtual void BindInputAction()
     {
         if (Managers.IsNull)
-            return; 
+            return;  
 
-        Managers.Input.Fire.started += InputAttack;
-        Managers.Input.Fire.canceled += InputAttack;
+      //  Managers.Input.Fire.started += InputAttack;
+       // Managers.Input.Fire.canceled += InputAttack;
     } 
     protected virtual void UnbindInputAction()
     {

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class CameraShaker : MonoBehaviour
 {
+
+    [SerializeField] private GameObject _cameraHolder;
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
     private CinemachineBasicMultiChannelPerlin _perlin;
 
@@ -25,13 +27,18 @@ public class CameraShaker : MonoBehaviour
 
     private IEnumerator Recoil(float targetY, float targetX, float speed, float returnSpeed, float maxRecoilAngle)
     {
-        // 현재 회전값을 Quaternion으로 저장
-        Quaternion startRotation = _virtualCamera.transform.rotation;
+        // 현재 회전값을 저장
+        Vector3 currentRotation = _cameraHolder.transform.localRotation.eulerAngles;
         
-        // 목표 회전값 계산 (오일러 각도를 Quaternion으로 변환)
-        Vector3 targetEuler = new Vector3(targetY, targetX, 0f);
-        targetEuler = Vector3.ClampMagnitude(targetEuler, maxRecoilAngle);
-        Quaternion targetRotation = Quaternion.Euler(targetEuler);
+        // 목표 회전값 계산 (현재 회전값에 반동값을 더함)
+        Vector3 targetEuler = new Vector3(
+            currentRotation.x + targetY, 
+            currentRotation.y + targetX,
+            currentRotation.z
+        ); 
+         
+        // 최대 반동 각도 제한
+        targetEuler = Vector3.ClampMagnitude(targetEuler - currentRotation, maxRecoilAngle) + currentRotation;
         
         float currentTime = 0f;
         
@@ -40,26 +47,13 @@ public class CameraShaker : MonoBehaviour
         {
             currentTime += Time.deltaTime;
             float t = currentTime / speed;
-            // Slerp를 사용하여 회전을 부드럽게 보간
-            _virtualCamera.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+            // 현재 회전값에서 목표 회전값으로 부드럽게 보간
+            _cameraHolder.transform.localRotation = Quaternion.Euler(
+                Vector3.Lerp(currentRotation, targetEuler, t)
+            );
             yield return null;
         }
         
-        currentTime = 0f;
-        Quaternion currentRotation = _virtualCamera.transform.rotation;
-
-        // 원위치로 복귀 
-        while (currentTime < returnSpeed)
-        {
-            currentTime += Time.deltaTime;
-            float t = currentTime / returnSpeed;
-            // Slerp를 사용하여 회전을 부드럽게 보간
-            _virtualCamera.transform.rotation = Quaternion.Slerp(currentRotation, Quaternion.identity, t);
-            yield return null;
-        }
-        
-        // 정확한 원위치로 복귀
-        _virtualCamera.transform.rotation = Quaternion.identity;
     } 
-
+ 
 }

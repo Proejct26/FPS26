@@ -27,9 +27,9 @@ MonoBehaviour:
     returnSpeed: 0.483
     maxRecoilAngle: 10
   spreadSettings:
-    originBulletSpread: 0.3
+    originBulletSpread: 0.1
     maxSpread: 1
     spreadRecoverySpeed: 0.5
     spreadIncrease: 0.5
-    aimingModeSpread: 0.1
+    aimingModeSpread: 0
   grenadeWeight: 1

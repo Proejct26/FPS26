@@ -8,14 +8,14 @@ public class GunController : WeaponBaseController
 {
     [SerializeField] private Transform _muzzle;
     [SerializeField] private Transform _ejectionPort;
+    [SerializeField] private float _spread = 0; // 테스트용
 
     // Component
     private GunAnimationHandler _gunAnimationHandler;
-
+ 
     // Variable
     private int _LoadedAmmo = 0; // 장전된 탄약  
     private int _RemainAmmo = 0; // 남은 탄약
-    [SerializeField] private float _spread = 0;
     private bool _isAimMode = false;
 
     private AmmoSettings _ammoSettings;
@@ -24,7 +24,7 @@ public class GunController : WeaponBaseController
 
     // Property
     public bool IsAimMode => _isAimMode;
-
+    public float Spread => _spread * 10;
 
     private Coroutine _changeSpreadCoroutine;
 

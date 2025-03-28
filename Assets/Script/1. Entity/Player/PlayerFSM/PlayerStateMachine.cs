@@ -12,7 +12,7 @@ public interface IPlayerState
 
 public class PlayerStateMachine
 {
-    private IPlayerState currentState;
+    private IPlayerState _currentState;
 
     /// <summary>
     /// 현재의 상태를 종료하고 새로운 상태를 실행하는 함수
@@ -20,13 +20,13 @@ public class PlayerStateMachine
     /// <param name="newState"></param>
     public void ChangeState(IPlayerState newState)
     {
-        currentState?.Exit();
-        currentState = newState;
-        currentState?.Enter();
+        _currentState?.Exit();
+        _currentState = newState;
+        _currentState?.Enter();
     }
 
     public void Update()
     {
-        currentState?.Update();
+        _currentState?.Update();
     }
 }

@@ -6,7 +6,8 @@
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CharacterController _controller;
-    [SerializeField] private PlayerStatHandler statHandler;
+    [SerializeField] private PlayerStatHandler _statHandler;
+    private PlayerInputHandler _input;
 
 
     /*[Header("무기 관련")]
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
+        _input = GetComponent<PlayerInputHandler>();
         StateMachine = new PlayerStateMachine();
     }
 
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
     /// <returns>이동 입력 여부</returns>
     public bool HasMoveInput()
     {
-        Vector2 input = Managers.Input.GetInput(EPlayerInput.move).ReadValue<Vector2>();
+        Vector3 input = _input.MoveInput;
         return input.sqrMagnitude > 0.01f;
     }
 
@@ -53,19 +55,17 @@ public class PlayerController : MonoBehaviour
     /// 점프 입력이 눌렸는지 확인
     /// </summary>
     /// <returns>점프 키가 눌렸는지 여부</returns>
-    public bool IsJumpInput()
-    {
-        return Managers.Input.GetInput(EPlayerInput.Jump).IsPressed();
-    }
+    public bool IsJumpInput() => _input.IsJumping;
+
 
     /// <summary>
     /// 이동 입력을 받아 캐릭터 이동 처리
     /// </summary>
     public void HandleMovement()
     {
-        Vector2 input = Managers.Input.GetInput(EPlayerInput.move).ReadValue<Vector2>();
-        Vector3 move = transform.right * input.x + transform.forward * input.y;
-        _controller.Move(move * statHandler.MoveSpeed * Time.deltaTime);
+        Vector3 input = _input.MoveInput;
+        Vector3 move = transform.right * input.x + transform.forward * input.z;
+        _controller.Move(move * _statHandler.MoveSpeed * Time.deltaTime);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void StartJump()
     {
-        _verticalVelocity = Mathf.Sqrt(statHandler.JumpPower * -2f * _gravity);
+        _verticalVelocity = Mathf.Sqrt(_statHandler.JumpPower * -2f * _gravity);
     }
 
     /// <summary>

@@ -14,6 +14,8 @@ public class ResourceManager : IManager
         _myResources.Clear();
     }
 
+
+    // Prefab 로드, 생성 기능
     public T Load<T>(string path) where T : Object
     {
         if (_myResources.TryGetValue(path, out Object resource))

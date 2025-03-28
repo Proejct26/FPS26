@@ -1,13 +1,22 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public enum EPlayerInput
 {
-	move,
+	move,		//wasd
 	interaction,
-	LeftMouse
+	Fire,	//발사
+	Zoom,	//줌
+	Jump,		//점프
+	Info,		//정보창
+
+ 	MainWeapon,
+	SubWeapon,
+	KnifeWeapon,
+	Reload,
+	AimMode,
 }
 
 [System.Serializable]
@@ -16,16 +25,23 @@ public class InputManager : IManager
 	[SerializeField] private InputActionAsset inputActionAsset; 
 	private Dictionary<EPlayerInput, InputAction> playerInputs = new Dictionary<EPlayerInput, InputAction>();
 
-	// Input Action Map  
+	// Input Action Map   
 	private InputActionMap playerInputMap;
 	 
+	public InputAction Fire => playerInputs[EPlayerInput.Fire];
+	public InputAction Jump => playerInputs[EPlayerInput.Jump]; 
+	public InputAction MainWeapon => playerInputs[EPlayerInput.MainWeapon];
+	public InputAction SubWeapon => playerInputs[EPlayerInput.SubWeapon];
+	public InputAction KnifeWeapon => playerInputs[EPlayerInput.KnifeWeapon];   
 
 	// === Input Actions ===
-	public InputAction GetInput(EPlayerInput type) => playerInputs[type];  
+	public InputAction GetInput(EPlayerInput type) => playerInputs[type];   
+
 
     public void Init()
     {
         BindAction(typeof(EPlayerInput));
+		inputActionAsset.Enable(); 
     }
 
 
@@ -53,8 +69,10 @@ public class InputManager : IManager
 			mapName = mapName.Substring(1);
 
 		playerInputMap = inputActionAsset.FindActionMap(mapName);
-		foreach (EPlayerInput t in Enum.GetValues(type))
-			playerInputs[t] = playerInputMap.FindAction(type.ToString());
+		foreach (EPlayerInput t in Enum.GetValues(type)){ 
+			string name = t.ToString(); 
+			playerInputs[t] = playerInputMap.FindAction(name);
+		}
 	} 
 
 

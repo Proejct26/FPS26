@@ -22,6 +22,7 @@ public class Crosshair : UI_Scene
 
     private Vector2 center;//크로스 헤어의 기본위치 값 저장 겸 스프레이를 위한 중앙값
 
+    //크로스 헤어 퍼짐 값
     private Vector2 directionY;
     private Vector2 directionX;
 

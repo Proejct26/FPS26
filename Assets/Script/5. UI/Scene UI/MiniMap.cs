@@ -18,10 +18,11 @@ public class MiniMap : UI_Scene
 
     //카메라의 사이즈 값으로 확대기능이 구현이 가능
 
-    public Image playerIcon;//플레이어 아이콘
-
-    public Vector3 playerPosition;//플레이어 위치값 저장
-    float playerRotation;//플레이어의 시야 각도 값
+    public Image playerIcon;  // 미니맵에서 플레이어 아이콘
+    public RectTransform minimapRect; // 미니맵 UI의 RectTransform
+    public Transform playerTransform; // 플레이어 Transform (Managers.Player 사용 가능)
+    public Transform minimapCenter; // 미니맵의 기준점 (예: 미니맵 카메라 위치)
+    public float minimapScale = 0.1f; // 월드 좌표와 미니맵 크기 비율
 
 
 
@@ -32,10 +33,23 @@ public class MiniMap : UI_Scene
 
     void Update()
     {
-        playerPosition = Managers.Player.gameObject.transform.position;//플레이어 위치값 넣기
-        playerRotation = Managers.Player.gameObject.transform.eulerAngles.y;//플레이어의 y축 회전값 넣기
+        if (playerTransform == null || minimapCenter == null) return;
 
-        playerIcon.rectTransform.anchoredPosition = playerPosition;//아이콘 위치를 플레이어 위치랑 연동
-        playerIcon.rectTransform.rotation = Quaternion.Euler(0, 0, playerRotation);//플레이어 각도에 따라 아이콘 각도 변경
+        // 플레이어의 월드 위치 가져오기
+        Vector3 playerPos = playerTransform.position;
+
+        // 미니맵 기준점(중앙)과의 상대 위치 계산 (X, Z만 사용)
+        Vector2 relativePos = new Vector2(playerPos.x - minimapCenter.position.x,
+                                          playerPos.z - minimapCenter.position.z);
+
+        // 미니맵 크기 비율 적용하여 UI 위치 조정
+        Vector2 minimapPos = relativePos * minimapScale;
+
+        // 미니맵 UI에서 아이콘 위치 설정
+        playerIcon.rectTransform.anchoredPosition = minimapPos;
+
+        // 플레이어의 회전값을 미니맵 아이콘 회전에 적용
+        float playerRotation = playerTransform.eulerAngles.y;
+        playerIcon.rectTransform.rotation = Quaternion.Euler(0, 0, -playerRotation);
     }
 }

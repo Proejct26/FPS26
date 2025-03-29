@@ -50,6 +50,7 @@ public class UI_Title : MonoBehaviour
     private IEnumerator PlayBgmAfterDelay()
     {
         yield return new WaitForSeconds(1f);
+        Debug.Log("Playing BGM after delay");
         Managers.Sound.Play("BgmTest", 0.8f, Define.Sound.Bgm);
     }
 
@@ -212,13 +213,13 @@ public class UI_Title : MonoBehaviour
 
     private void UpdateBgmVolume(float value)
     {
-        //Managers.Sound.SetVolume(Define.Sound.Bgm, value / 100f); // BGM (0번 AudioSource)
+        Managers.Sound.SetVolume(Define.Sound.Bgm, value / 100f);
         _bgmValueText.text = Mathf.RoundToInt(value).ToString();
     }
 
     private void UpdateSfxVolume(float value)
     {
-        //Managers.Sound.SetVolume(Define.Sound.Effect, value / 100f); // SFX (1번 AudioSource)
+        Managers.Sound.SetVolume(Define.Sound.Effect, value / 100f);
         _sfxValueText.text = Mathf.RoundToInt(value).ToString();
     }
 

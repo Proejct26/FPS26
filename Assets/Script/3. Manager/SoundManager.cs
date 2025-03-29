@@ -28,6 +28,10 @@ public class SoundManager : IManager
             }
 
             _audioSources[(int)Define.Sound.Bgm].loop = true;
+            
+            // 초기 볼륨 설정
+            SetVolume(Define.Sound.Bgm, PlayerPrefs.GetFloat("BGMVolume", 0.8f) / 100f);
+            SetVolume(Define.Sound.Effect, PlayerPrefs.GetFloat("SFXVolume", 0.5f) / 100f);
         }
     }
 
@@ -96,5 +100,29 @@ public class SoundManager : IManager
 
 		return audioClip;
     }
+    
+    // 볼륨 조절 메서드
+    public void SetVolume(Define.Sound type, float volume)
+    {
+        if (type >= Define.Sound.MaxCount)
+        {
+            Debug.Log($"잘못된 사운드 유형: {type}");
+            return;
+        }
 
+        AudioSource audioSource = _audioSources[(int)type];
+        audioSource.volume = Mathf.Clamp01(volume); // 0~1 사이로 제한
+    }
+
+    // 현재 볼륨 가져오기
+    public float GetVolume(Define.Sound type)
+    {
+        if (type >= Define.Sound.MaxCount)
+        {
+            Debug.Log($"잘못된 사운드 유형: {type}");
+            return 0f;
+        }
+
+        return _audioSources[(int)type].volume;
+    }
 } 

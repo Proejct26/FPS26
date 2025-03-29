@@ -26,13 +26,14 @@ public class UI_CustomPopup : UI_Popup
     public override void Init()
     {
         base.Init();
+        
         Bind<Button>(typeof(Buttons));
         Bind<TMP_InputField>(typeof(InputFields));
         Bind<TextMeshProUGUI>(typeof(Texts));
-
+        
         GetButton((int)Buttons.EnterGameButton).onClick.AddListener(OnEnterGameButtonClick);
         GetButton((int)Buttons.CustomBackButton).onClick.AddListener(OnBackButtonClick);
-
+        
         Get<TextMeshProUGUI>((int)Texts.CustomErrorText).gameObject.SetActive(false);
         Get<TMP_InputField>((int)InputFields.NickNameInputField).text = Managers.Data.Nickname;
     }

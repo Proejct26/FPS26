@@ -24,14 +24,15 @@ public class UI_StartPopup : UI_Popup
 
     private void OnStartButtonClick()
     {
-        ClosePopupUI();
         Managers.UI.ShowPopupUI<UI_CustomPopup>("CustomPopup");
+        // ClosePopupUI();
     }
 
     private void OnSettingButtonClick()
     {
-        ClosePopupUI();
         Managers.UI.ShowPopupUI<UI_SettingPopup>("SettingPopup");
+        // ClosePopupUI();
+        
     }
 
     private void OnQuitButtonClick()

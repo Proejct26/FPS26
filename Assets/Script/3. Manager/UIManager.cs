@@ -22,11 +22,8 @@ public class UIManager : IManager
         //Managers.UI.ShowSceneUI<MainUI>();  //같은 이름일 경우 텍스트 생략
         
          UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup"); //같은 이름일 경우 텍스트 생략
-         popup.Init();
+         
          // ClosePopupUI(popup);
-        
-        // // 씬 로드 이벤트 등록
-        // SceneManager.sceneLoaded += OnSceneLoaded;
     } 
   
     public void Clear()
@@ -92,6 +89,9 @@ public class UIManager : IManager
     {
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
+        
+        if(_popupStack.Count > 0)
+            ClosePopupUI(_popupStack.Peek());
 
         GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
         T popup = Util.GetOrAddComponent<T>(go);
@@ -99,6 +99,7 @@ public class UIManager : IManager
 
         go.transform.SetParent(_popupUIParent.transform, false);
 
+        popup.Init();
 
 		return popup; 
     }
@@ -134,17 +135,16 @@ public class UIManager : IManager
             ClosePopupUI();
     }
     
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Clear();
-        if (scene.name == "TitleScene")
-        {
-            ShowSceneUI<UI_Title>("TitleCanvas");
-        }
-        else if (scene.name == "MainScene")
-        {
-            ShowSceneUI<MainUI>("MainUI");
-        }
-    }
-
+    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // {
+    //     Clear();
+    //     if (scene.name == "TitleScene")
+    //     {
+    //         ShowSceneUI<UI_Title>("TitleCanvas");
+    //     }
+    //     else if (scene.name == "MainScene")
+    //     {
+    //         ShowSceneUI<MainUI>("MainUI");
+    //     }
+    // }
 }

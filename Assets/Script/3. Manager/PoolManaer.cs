@@ -96,6 +96,17 @@ public class PoolManager : IManager
         _pool.Add(original.name, pool);
     }
 
+    public void Release(GameObject obj, float time)
+    {
+        Managers.Instance.StartCoroutine(ReleaseCoroutine(obj, time));
+    } 
+ 
+    private IEnumerator ReleaseCoroutine(GameObject obj, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Release(obj);
+    }
+
     public void Release(GameObject obj)
     {
         string name = obj.gameObject.name;

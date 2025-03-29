@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7031907993768011620}
   - component: {fileID: 4412410245660647037}
   - component: {fileID: 4966747402883032672}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BulletLite_02_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4713719514245437058}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bullet_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 5870464556724626218}
   - component: {fileID: 2623390232990987660}
   - component: {fileID: 4553292675017405120}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BulletLite_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

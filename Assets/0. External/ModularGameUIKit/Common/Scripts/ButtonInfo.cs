@@ -12,8 +12,8 @@ namespace Ricimi
 	public class ButtonInfo
 	{
 		public string Label;
-		public bool ClosePopupWhenClicked;
-		public bool IgnoreButtonClickedEvent;
-		public Button.ButtonClickedEvent OnClickedEvent;
+		public bool ClosePopupWhenClick;
+		public bool IgnoreButtonClickEvent;
+		public Button.ButtonClickEvent OnClickEvent;
 	}
 }

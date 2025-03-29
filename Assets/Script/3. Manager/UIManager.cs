@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class UIManager : IManager
@@ -18,15 +19,21 @@ public class UIManager : IManager
 
     public void Init()
     {
-        // UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("SettingPopup");//같은 이름일 경우 텍스트 생략
-        // popup.Init();
-        // ClosePopupUI(popup);
+        //Managers.UI.ShowSceneUI<MainUI>();  //같은 이름일 경우 텍스트 생략
+        
+         UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup"); //같은 이름일 경우 텍스트 생략
+         popup.Init();
+         // ClosePopupUI(popup);
+        
+        // // 씬 로드 이벤트 등록
+        // SceneManager.sceneLoaded += OnSceneLoaded;
     } 
   
     public void Clear()
     {
         
     }
+    
     public void SetCanvas(GameObject go, bool sort = true)
     {
         Canvas canvas = go.GetOrAddComponent<Canvas>();
@@ -126,6 +133,18 @@ public class UIManager : IManager
         while (_popupStack.Count > 0)
             ClosePopupUI();
     }
-
+    
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Clear();
+        if (scene.name == "TitleScene")
+        {
+            ShowSceneUI<UI_Title>("TitleCanvas");
+        }
+        else if (scene.name == "MainScene")
+        {
+            ShowSceneUI<MainUI>("MainUI");
+        }
+    }
 
 }

@@ -27,7 +27,6 @@ public class MiniMap : UI_Scene
 
     void Update()
     {
-        
         // 플레이어의 회전값을 미니맵 아이콘 회전에 적용
         float playerRotation = playerTransform.eulerAngles.y;
         playerIcon.rectTransform.rotation = Quaternion.Euler(0, 0, -playerRotation);

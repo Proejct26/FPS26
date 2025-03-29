@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -42,7 +42,7 @@ public class InputManager : IManager
     public void Init()
     {
         BindAction(typeof(EPlayerInput));
-		inputActionAsset.Enable(); 
+		//inputActionAsset.Enable(); 
     }
 
 

@@ -36,6 +36,7 @@ public class Managers : Singleton<Managers>
         base.Awake();
   
        //Player = FindFirstObjectByType<PlayerController>().gameObject;
+        Player = FindFirstObjectByType<PlayerStatHandler>().gameObject;
         data = new DataManager();
         Init();
     }

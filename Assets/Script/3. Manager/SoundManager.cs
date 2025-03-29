@@ -30,8 +30,8 @@ public class SoundManager : IManager
             _audioSources[(int)Define.Sound.Bgm].loop = true;
             
             // 초기 볼륨 설정
-            SetVolume(Define.Sound.Bgm, PlayerPrefs.GetFloat("BGMVolume", 0.8f) / 100f);
-            SetVolume(Define.Sound.Effect, PlayerPrefs.GetFloat("SFXVolume", 0.5f) / 100f);
+            SetVolume(Define.Sound.Bgm, PlayerPrefs.GetFloat("BGMVolume", 0.8f));
+            SetVolume(Define.Sound.Effect, PlayerPrefs.GetFloat("SFXVolume", 0.5f));
         }
     }
 

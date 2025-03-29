@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// 플레이어의 이동, 점프, 중력 및 상태 FSM을 관리하는 컨트롤러
@@ -8,6 +9,8 @@ public class LocalPlayerController : PlayerControllerBase
     [SerializeField] private CharacterController _controller;
     [SerializeField] private PlayerStatHandler _statHandler;
     private PlayerInputHandler _input;
+    
+
 
     /*[Header("무기 관련")]
     [SerializeField] private Transform weaponHolder;                      // 무기 부착 위치
@@ -49,12 +52,13 @@ public class LocalPlayerController : PlayerControllerBase
     {
         //전송용 코드
     }
+
+
     /// <summary>
     /// 플레이어 이동 입력이 있는지 확인
     /// </summary>
     /// <returns>이동 입력 여부</returns>
     public override bool HasMoveInput() => _input.MoveInput.sqrMagnitude > 0.01f;
-
 
     /// <summary>
     /// 점프 입력이 눌렸는지 확인
@@ -73,14 +77,14 @@ public class LocalPlayerController : PlayerControllerBase
     /// <summary>
     /// 캐릭터의 수직 속도 값 반환 (점프, 낙하 판정용)
     /// </summary>
-    public float GetVerticalVelocity() => _verticalVelocity;
+    public override float GetVerticalVelocity() => _verticalVelocity;
 
 
 
     /// <summary>
     /// 이동 입력을 받아 캐릭터 이동 처리
     /// </summary>
-    public void HandleMovement()
+    public override void HandleMovement()
     {
         Vector3 input = _input.MoveInput;
         /*Vector3 move = head.right * input.x + head.forward * input.z;
@@ -97,7 +101,7 @@ public class LocalPlayerController : PlayerControllerBase
     /// <summary>
     /// 중력 계산 및 적용
     /// </summary>
-    public void ApplyGravity()
+    public override void ApplyGravity()
     {
         if (_controller.isGrounded && _verticalVelocity < 0)
             _verticalVelocity = -2f;
@@ -111,7 +115,7 @@ public class LocalPlayerController : PlayerControllerBase
     /// <summary>
     /// 점프 시작 시 수직 속도 계산
     /// </summary>
-    public void StartJump()
+    public override void StartJump()
     {
         _verticalVelocity = Mathf.Sqrt(_statHandler.JumpPower * -2f * _gravity);
     }
@@ -136,7 +140,7 @@ public class LocalPlayerController : PlayerControllerBase
     /// <summary>
     /// 발사 입력 시 호출
     /// </summary>
-    public void HandleFire(bool started)
+    public override void HandleFire(bool started)
     {
         /*if (_equippedWeapon == null)
         {

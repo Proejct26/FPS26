@@ -13,10 +13,7 @@ public class PlayerJumpState : IPlayerState
     /// </summary>
     public void Enter()
     {
-        if (_controller is LocalPlayerController local)
-        {
-            local.StartJump();
-        }
+        _controller.StartJump();
         _controller.animator.Play("jump forward");
     }
     /// <summary>
@@ -24,17 +21,12 @@ public class PlayerJumpState : IPlayerState
     /// </summary>
     public void Update()
     {
-        if (_controller is LocalPlayerController local)
-        {
-            local.HandleMovement();
-            local.ApplyGravity();
+        _controller.HandleMovement();
+        _controller.ApplyGravity();
 
-            if (local.IsFiring())
-                _controller.StateMachine.ChangeState(new PlayerAttackState(_controller));
-
-            if (local.GetVerticalVelocity() <= 0)
-                _controller.StateMachine.ChangeState(new PlayerFallState(_controller));
-        }
+        if (_controller.GetVerticalVelocity() <= 0)
+            _controller.StateMachine.ChangeState(new PlayerFallState(_controller));
+        
     }
 
     public void Exit() { }

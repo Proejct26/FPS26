@@ -13,8 +13,8 @@ public class Crosshair : UI_Scene
     public Image crosshairRight;
     public Image crosshairLeft;
 
-    public float spreadAmount = 10f; //크로스 헤어 벌어지는 정도 (반동)
-
+    public float SpreadAmount => currentWeapon != null && currentWeapon is GunController ? (currentWeapon as GunController).Spread: 0f; //크로스 헤어 벌어지는 정도 (반동)
+ 
     private RectTransform crosshairUpRect; // 크로스헤어 UI의 RectTransform 변수
     private RectTransform crosshairDownRect;
     private RectTransform crosshairRightRect;
@@ -25,6 +25,14 @@ public class Crosshair : UI_Scene
     //크로스 헤어 퍼짐 값
     private Vector2 directionY;
     private Vector2 directionX;
+
+    private PlayerWeaponHandler playerWeaponHandler;
+    private WeaponBaseController currentWeapon => playerWeaponHandler.CurrentWeapon;
+
+    private void Awake()
+    {
+        playerWeaponHandler = FindFirstObjectByType<PlayerWeaponHandler>(); 
+    }
 
     private void Start()
     {
@@ -73,10 +81,11 @@ public class Crosshair : UI_Scene
     /// <param name="directionY"></param>
     /// <param name="directionX"></param>
     /// <param name="spread"></param>
-    void Spread(Vector2 center, Vector2 directionY, Vector2 directionX)
+    void Spread(Vector2 center, Vector2 directionY, Vector2 directionX) 
     {
-        float spread = Mathf.Lerp(0, spreadAmount, GetSpreadFactor());//크로스 헤어 퍼짐 계산 
-
+      //  float spread = Mathf.Lerp(0, SpreadAmount, GetSpreadFactor());//크로스 헤어 퍼짐 계산 
+        float spread = SpreadAmount / 4; 
+        Debug.Log(spread);
         crosshairUpRect.anchoredPosition = center + directionY * spread;   // 위로 퍼짐
         crosshairDownRect.anchoredPosition = center - directionY * spread; // 아래로 퍼짐
         crosshairRightRect.anchoredPosition = center + directionX * spread; // 오른쪽으로 퍼짐

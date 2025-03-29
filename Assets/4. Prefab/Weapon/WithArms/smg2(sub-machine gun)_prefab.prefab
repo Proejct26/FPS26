@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f6ac22c1c9e1b43a1b75d76e2045ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponDataSO: {fileID: 0}
+  _weaponDataSO: {fileID: 11400000, guid: 826ab359f303af34b90289ac03470c7f, type: 2}
   _muzzle: {fileID: 4370747156243606102}
   _ejectionPort: {fileID: 5659209123202562481}
   _spread: 0

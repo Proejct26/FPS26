@@ -116,7 +116,7 @@ public class GunController : WeaponBaseController
         SetRecoil();
         _gunAnimationHandler.Fire(); 
 
-        GameObject target = RayCasting(); 
+        GameObject[] targets = RayCasting(); 
     }  
 
     private void SetRecoil() 
@@ -127,24 +127,32 @@ public class GunController : WeaponBaseController
         int recoilAmount = _isAimMode ? _recoilSettings.aimModeRecoilAmount : _recoilSettings.recoilAmount;
         Camera.main.GetComponent<CameraShaker>().SetRecoil(recoilAmount, _recoilSettings.recoilSpeed, _recoilSettings.returnSpeed, _recoilSettings.maxRecoilAngle);
     }
-    private GameObject RayCasting()
+    private GameObject[] RayCasting() 
     {
         Vector3 startPos = Camera.main.transform.position;
-        Ray ray = new Ray(startPos, Camera.main.transform.forward.RandomUnitVectorInCone(_spread));   
+        GameObject[] targets = new GameObject[_ammoSettings.projectileCount];   
 
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100f))
-        { 
-            // 히트 이펙트
-            var particle = Managers.Pool.Get("Particle/HitEffect_Wall"); 
-            particle.transform.position = hit.point;
-            particle.transform.rotation = Quaternion.LookRotation(hit.normal); 
-            Managers.Pool.Release(particle, 5f);  
+        for (int i = 0; i < _ammoSettings.projectileCount; i++)
+        {
+            Ray ray = new Ray(startPos, Camera.main.transform.forward.RandomUnitVectorInCone(_spread));   
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100f))
+            { 
+                // 히트 이펙트
+                var particle = Managers.Pool.Get("Particle/HitEffect_Wall"); 
+                particle.transform.position = hit.point;
+                particle.transform.rotation = Quaternion.LookRotation(hit.normal); 
+                Managers.Pool.Release(particle, 5f);  
 
-            // 충돌 체크 hit.collider.tag == "Head"
-            return hit.collider.gameObject;
+                // 충돌 체크 hit.collider.tag == "Head"
+                targets[i] = hit.collider.gameObject;
+            } 
+            else
+            {
+                targets[i] = null; 
+            }
         }
-        return null;
+        return targets;
     }
     private void SpawnEffect()
     {

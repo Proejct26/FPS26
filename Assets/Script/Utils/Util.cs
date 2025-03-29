@@ -4,21 +4,7 @@ using UnityEngine;
 
 public class Util
 {
-    public static string ConvertBigint(long num)
-    {
-        char [] degree = {' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-
-        string ret = "";
-
-        int i = 0;
-        while (num / 1000 > 0) 
-        {
-            num /= 1000;
-            i++;
-        }
-
-        return ret = num.ToString() + degree[i]; 
-    }
+    
     public static T GetOrAddComponent<T>(GameObject go) where T : UnityEngine.Component
     {
         T component = go.GetComponent<T>();

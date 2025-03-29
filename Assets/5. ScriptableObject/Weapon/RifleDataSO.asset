@@ -21,14 +21,14 @@ MonoBehaviour:
     reloadTime: 0
   recoilSettings:
     verticalRecoil: 1
-    horizontalRecoil: 0.5
-    recoilSpeed: 10
-    returnSpeed: 5
+    horizontalRecoil: 0
+    recoilSpeed: 1
+    returnSpeed: 1
     maxRecoilAngle: 10
   spreadSettings:
     originBulletSpread: 0
+    aimingModeSpread: 0
     maxSpread: 1
     spreadRecoverySpeed: 0.1
     spreadIncrease: 0.1
-    aimingModeSpread: 0.5
   grenadeWeight: 1

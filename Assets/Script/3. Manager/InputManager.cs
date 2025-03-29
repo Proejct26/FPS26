@@ -41,6 +41,9 @@ public class InputManager : IManager
 
     public void Init()
     {
+		if (inputActionAsset == null)
+			return;
+
         BindAction(typeof(EPlayerInput));
 		inputActionAsset.Enable(); 
     }

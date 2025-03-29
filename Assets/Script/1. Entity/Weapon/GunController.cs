@@ -8,14 +8,14 @@ public class GunController : WeaponBaseController
 {
     [SerializeField] private Transform _muzzle;
     [SerializeField] private Transform _ejectionPort;
+    [SerializeField] private float _spread = 0; // 테스트용
 
     // Component
     private GunAnimationHandler _gunAnimationHandler;
-
+ 
     // Variable
     private int _LoadedAmmo = 0; // 장전된 탄약  
     private int _RemainAmmo = 0; // 남은 탄약
-    [SerializeField] private float _spread = 0;
     private bool _isAimMode = false;
 
     private AmmoSettings _ammoSettings;
@@ -24,7 +24,7 @@ public class GunController : WeaponBaseController
 
     // Property
     public bool IsAimMode => _isAimMode;
-
+    public float Spread => _spread * 10;
 
     private Coroutine _changeSpreadCoroutine;
 
@@ -120,7 +120,7 @@ public class GunController : WeaponBaseController
     private void Trigger()
     {
         Vector3 startPos = Camera.main.transform.position;
-        Ray ray = new Ray(startPos, GetShootDir());  
+        Ray ray = new Ray(startPos, Camera.main.transform.forward.RandomUnitVectorInCone(_spread));   
 
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100f))
@@ -155,24 +155,6 @@ public class GunController : WeaponBaseController
 
         Managers.Sound.Play("Sound/Weapon/shotSound");
         
-    }
-
-    private Vector3 GetShootDir()
-    {
-        // 기본 발사 방향
-        Vector3 baseDirection = Camera.main.transform.forward;
-        
-        _spread = Mathf.Clamp(_spread, 0, _spreadSettings.maxSpread); 
-        // 카메라의 시야각을 고려한 퍼짐 계산
-        float spreadAngle = _spread; 
-        
-        // 카메라의 right와 up 벡터를 사용하여 퍼짐 방향 계산
-        Vector3 spreadDirection = baseDirection + 
-            Camera.main.transform.right * Random.Range(-spreadAngle, spreadAngle) + 
-            Camera.main.transform.up * Random.Range(-spreadAngle, spreadAngle);
-        
-        // 정규화하여 방향 벡터로 변환
-        return spreadDirection.normalized;
     }
 
     private void ResetSpread()

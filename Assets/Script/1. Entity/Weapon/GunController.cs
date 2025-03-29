@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class GunController : WeaponBaseController
 {
+    // Inspector
     [SerializeField] private Transform _muzzle;
     [SerializeField] private Transform _ejectionPort;
     [SerializeField] private float _spread = 0; // 테스트용
@@ -13,14 +14,18 @@ public class GunController : WeaponBaseController
     // Component
     private GunAnimationHandler _gunAnimationHandler;
  
+    // Data
+    private AmmoSettings _ammoSettings;
+    private RecoilSettings _recoilSettings; 
+    private SpreadSettings _spreadSettings;
+
     // Variable
     private int _LoadedAmmo = 0; // 장전된 탄약  
     private int _RemainAmmo = 0; // 남은 탄약
     private bool _isAimMode = false;
+    private bool _isReloading = false;
 
-    private AmmoSettings _ammoSettings;
-    private RecoilSettings _recoilSettings;
-    private SpreadSettings _spreadSettings;
+
 
     // Property
     public bool IsAimMode => _isAimMode;
@@ -52,9 +57,7 @@ public class GunController : WeaponBaseController
         Managers.Input.GetInput(EPlayerInput.Reload).started += OnReload;
         Managers.Input.GetInput(EPlayerInput.AimMode).started += InputAimMode;
         Managers.Input.GetInput(EPlayerInput.AimMode).canceled += InputAimMode;
-
- 
-    }
+    } 
 
     protected override void UnbindInputAction()
     {
@@ -70,9 +73,10 @@ public class GunController : WeaponBaseController
 
     private void OnReload(InputAction.CallbackContext context)
     {
-        if (_RemainAmmo <= 0)
-            return;
-
+        if (_RemainAmmo <= 0 || _LoadedAmmo == _ammoSettings.initializeAmmo || _isAimMode || _isReloading) 
+            return; 
+  
+        _isReloading = true;
         _gunAnimationHandler.HasAmmo(_LoadedAmmo > 0);  
         _gunAnimationHandler.Reload(); 
         Managers.Sound.Play("Sound/Weapon/reloadSound");
@@ -84,6 +88,7 @@ public class GunController : WeaponBaseController
     {
         _LoadedAmmo = Mathf.Min(_LoadedAmmo + _RemainAmmo, _ammoSettings.initializeAmmo);
         _RemainAmmo -= Mathf.Max(0, _LoadedAmmo - _ammoSettings.initializeAmmo);   
+        _isReloading = false;
     }
 
     private void InputAimMode(InputAction.CallbackContext context)
@@ -93,6 +98,9 @@ public class GunController : WeaponBaseController
 
     public void OnAimMode(bool active)
     {
+        if (_isReloading) 
+            return; 
+
         _gunAnimationHandler.AimMode(active);
         _isAimMode = active;
         ResetSpread();
@@ -100,17 +108,17 @@ public class GunController : WeaponBaseController
 
     protected override void Fire()  
     {  
-        if (_LoadedAmmo <= 0)
-            return; 
-            
+        if (_LoadedAmmo <= 0 || _isReloading)
+            return;      
         _LoadedAmmo--;  
 
         SpawnEffect();
-        Trigger();
         SetRecoil();
-
         _gunAnimationHandler.Fire(); 
+
+        GameObject target = RayCasting(); 
     }  
+
     private void SetRecoil() 
     {
         _spread *= 1f + _spreadSettings.spreadIncrease; 
@@ -119,7 +127,7 @@ public class GunController : WeaponBaseController
         int recoilAmount = _isAimMode ? _recoilSettings.aimModeRecoilAmount : _recoilSettings.recoilAmount;
         Camera.main.GetComponent<CameraShaker>().SetRecoil(recoilAmount, _recoilSettings.recoilSpeed, _recoilSettings.returnSpeed, _recoilSettings.maxRecoilAngle);
     }
-    private void Trigger()
+    private GameObject RayCasting()
     {
         Vector3 startPos = Camera.main.transform.position;
         Ray ray = new Ray(startPos, Camera.main.transform.forward.RandomUnitVectorInCone(_spread));   
@@ -127,13 +135,16 @@ public class GunController : WeaponBaseController
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100f))
         { 
+            // 히트 이펙트
             var particle = Managers.Pool.Get("Particle/HitEffect_Wall"); 
             particle.transform.position = hit.point;
             particle.transform.rotation = Quaternion.LookRotation(hit.normal); 
             Managers.Pool.Release(particle, 5f);  
 
             // 충돌 체크 hit.collider.tag == "Head"
+            return hit.collider.gameObject;
         }
+        return null;
     }
     private void SpawnEffect()
     {

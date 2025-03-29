@@ -7,6 +7,10 @@ public class RemotePlayerController : PlayerControllerBase
     private Quaternion _networkRotation;
     private float _lerpSpeed = 10f;
 
+    private Vector3 _moveInput;
+    private bool _isJumping;
+    private bool _isFiring;
+
     protected override void Update()
     {
         base.Update();
@@ -23,17 +27,27 @@ public class RemotePlayerController : PlayerControllerBase
         if (head != null)
             head.localRotation = Quaternion.Euler(-data.rotationX, 0f, 0f);
 
+        // 내부 상태 저장
+        _moveInput = data.moveInput;
+        _isJumping = data.isJumping;
+        _isFiring = data.isFiring;
+        string cur = "";
         // FSM 상태 처리
-        if (data.isFiring)
+        if (_isFiring) {
+            cur = "발사";
             StateMachine.ChangeState(new PlayerAttackState(this));
-        else if (data.isJumping)
+        }
+        if (_isJumping){
+            cur = "점프";
             StateMachine.ChangeState(new PlayerJumpState(this));
-        else if (!IsGrounded())
-            StateMachine.ChangeState(new PlayerFallState(this));
-        else if (data.moveInput.magnitude > 0.1f)
+        }
+        if (!IsGrounded())
+            { cur = "낙하"; StateMachine.ChangeState(new PlayerFallState(this)); }
+        if (_moveInput.magnitude > 0.1f)
             StateMachine.ChangeState(new PlayerMoveState(this));
         else
-            StateMachine.ChangeState(new PlayerIdleState(this));
+        { cur = "정지"; StateMachine.ChangeState(new PlayerIdleState(this)); }
+        Debug.Log($"{cur}");
     }
 
     public override PlayerStateData ToPlayerStateData()
@@ -43,6 +57,6 @@ public class RemotePlayerController : PlayerControllerBase
 
     public override bool IsGrounded()
     {
-        return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.2f, LayerMask.GetMask("Ground"));
+        return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.2f, LayerMask.GetMask("Default"));
     }
 }

@@ -14,6 +14,6 @@ namespace Ricimi
 		public string Label;
 		public bool ClosePopupWhenClick;
 		public bool IgnoreButtonClickEvent;
-		public Button.ButtonClickEvent OnClickEvent;
+		public Button.ButtonClickedEvent OnClickEvent;
 	}
 }

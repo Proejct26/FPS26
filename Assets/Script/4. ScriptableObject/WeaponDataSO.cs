@@ -10,6 +10,7 @@ public class AmmoSettings
     [SerializeField, Range(0, 100)] public int initializeAmmo; // 초기 탄약
     [SerializeField, Range(0, 100)] public int ammoLimit; // 최대 장탄수
     [SerializeField, Range(0f, 5f)] public float reloadTime;
+    [SerializeField, Range(0, 15)] public int projectileCount; 
 }
 
 [Serializable]

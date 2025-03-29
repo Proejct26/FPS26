@@ -495,6 +495,12 @@ PrefabInstance:
       propertyPath: m_Lens.NearClipPlane
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 7742539004654592125, guid: 7bc598ffc2445954e9466d0044c7d43c,
+        type: 3}
+      propertyPath: _subWeaponPrefab
+      value: 
+      objectReference: {fileID: 4724544863606683765, guid: e84bd873782274240802a4616ce684fd,
+        type: 3}
     - target: {fileID: 8560214073239392570, guid: 7bc598ffc2445954e9466d0044c7d43c,
         type: 3}
       propertyPath: m_LocalPosition.x

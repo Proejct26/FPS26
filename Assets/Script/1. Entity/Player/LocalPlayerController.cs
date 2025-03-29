@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// 플레이어의 이동, 점프, 중력 및 상태 FSM을 관리하는 컨트롤러
@@ -54,7 +55,6 @@ public class LocalPlayerController : PlayerControllerBase
     /// </summary>
     /// <returns>이동 입력 여부</returns>
     public override bool HasMoveInput() => _input.MoveInput.sqrMagnitude > 0.01f;
-
 
     /// <summary>
     /// 점프 입력이 눌렸는지 확인

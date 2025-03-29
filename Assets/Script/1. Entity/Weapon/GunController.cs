@@ -30,11 +30,12 @@ public class GunController : WeaponBaseController
 
     private void Awake()
     {
+        _gunAnimationHandler = gameObject.GetOrAddComponent<GunAnimationHandler>();  
+        
         _ammoSettings = _weaponDataSO.ammoSettings;
         _recoilSettings = _weaponDataSO.recoilSettings;
         _spreadSettings = _weaponDataSO.spreadSettings;
     
-        _gunAnimationHandler = gameObject.GetOrAddComponent<GunAnimationHandler>();  
         _LoadedAmmo = _ammoSettings.initializeAmmo;   
         _RemainAmmo = _ammoSettings.ammoLimit;
         _spread = _spreadSettings.originBulletSpread;

@@ -30,12 +30,12 @@ public class Managers : Singleton<Managers>
 
     public static GameObject Player {get; private set;}
 
-
+ 
     protected override void Awake()
     {
         base.Awake();
   
-       //Player = FindFirstObjectByType<PlayerController>().gameObject;
+        //Player = FindFirstObjectByType<PlayerControllerBase>().gameObject; 
         data = new DataManager();
         Init();
     }

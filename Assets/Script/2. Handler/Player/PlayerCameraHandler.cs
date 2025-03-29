@@ -22,11 +22,11 @@ public class PlayerCameraHandler : MonoBehaviour
         // //마우스 이동량 (InputSystem)
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
-        float mouseX = mouseDelta.x * _sensitivity * Time.deltaTime;
+        float mouseX = (yRotation + mouseDelta.x) * _sensitivity * Time.deltaTime;
         float mouseY = mouseDelta.y * _sensitivity * Time.deltaTime;
 
         // 좌우 회전 (플레이어)
-        transform.Rotate(Vector3.up * mouseX);
+        transform.Rotate(Vector3.up * mouseX); 
 
         // 상하 회전 (카메라 홀더)
         xRotation -= mouseY;

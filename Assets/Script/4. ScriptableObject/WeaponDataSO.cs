@@ -14,9 +14,9 @@ public class AmmoSettings
 
 [Serializable]
 public class RecoilSettings
-{
-    [SerializeField, Range(0, 50)] public int verticalRecoil = 1;    // 수직 반동 강도
-    [SerializeField, Range(0, 50)] public int horizontalRecoil = 0; // 수평 반동 강도
+{  
+    [SerializeField, Range(0, 50)] public int recoilAmount = 1;    // 수직 반동 강도
+    [SerializeField, Range(0, 50)] public int aimModeRecoilAmount = 1;    // 수직 반동 강도
     [SerializeField, Range(0, 1f)] public float recoilSpeed = 1f;      // 반동 적용 속도
     [SerializeField, Range(0, 1f)] public float returnSpeed = 1f;       // 원위치 복귀 속도
     [SerializeField, Range(10, 90)] public int maxRecoilAngle = 80;   // 최대 반동 각도 

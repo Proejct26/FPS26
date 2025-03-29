@@ -12,31 +12,30 @@ public class CameraShaker : MonoBehaviour
     private PlayerCameraHandler _playerCameraHandler;
     private Coroutine _recoilCoroutine; 
 
-    private void Awake()
+    private void Awake() 
     {
         _perlin = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _playerCameraHandler = FindFirstObjectByType<PlayerCameraHandler>();
     } 
  
-    public void SetRecoil(float Y, float X, float speed, float returnSpeed, float maxRecoilAngle = 50f)
+    public void SetRecoil(float X, float speed, float returnSpeed, float maxRecoilAngle = 50f)
     {
         if (_recoilCoroutine != null)
             StopCoroutine(_recoilCoroutine);
  
-        X = Random.Range(-X, X);
-        _recoilCoroutine = StartCoroutine(Recoil(-Y, X, speed, returnSpeed, maxRecoilAngle));  
+        _recoilCoroutine = StartCoroutine(Recoil(-X, speed, returnSpeed, maxRecoilAngle));  
     } 
 
-    private IEnumerator Recoil(float targetY, float targetX, float speed, float returnSpeed, float maxRecoilAngle)
+    private IEnumerator Recoil(float targetX, float speed, float returnSpeed, float maxRecoilAngle)
     {
         // 현재 회전값을 저장
-     
+       
         float currentTime = 0;
 
         while (currentTime < speed)
         {
             currentTime += Time.deltaTime;
-            _playerCameraHandler.xRotation += targetY * (Time.deltaTime / speed);
+            _playerCameraHandler.xRotation += targetX * (Time.deltaTime / speed);
             
             yield return null; 
         }

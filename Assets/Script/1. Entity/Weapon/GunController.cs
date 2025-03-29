@@ -31,7 +31,7 @@ public class GunController : WeaponBaseController
     private void Awake()
     {
         _gunAnimationHandler = gameObject.GetOrAddComponent<GunAnimationHandler>();  
-        
+
         _ammoSettings = _weaponDataSO.ammoSettings;
         _recoilSettings = _weaponDataSO.recoilSettings;
         _spreadSettings = _weaponDataSO.spreadSettings;
@@ -111,12 +111,13 @@ public class GunController : WeaponBaseController
 
         _gunAnimationHandler.Fire(); 
     }  
-    private void SetRecoil()
+    private void SetRecoil() 
     {
         _spread *= 1f + _spreadSettings.spreadIncrease; 
-
+ 
         ResetSpread();
-        Camera.main.GetComponent<CameraShaker>().SetRecoil(_recoilSettings.verticalRecoil, _recoilSettings.horizontalRecoil, _recoilSettings.recoilSpeed, _recoilSettings.returnSpeed);
+        int recoilAmount = _isAimMode ? _recoilSettings.aimModeRecoilAmount : _recoilSettings.recoilAmount;
+        Camera.main.GetComponent<CameraShaker>().SetRecoil(recoilAmount, _recoilSettings.recoilSpeed, _recoilSettings.returnSpeed, _recoilSettings.maxRecoilAngle);
     }
     private void Trigger()
     {

@@ -21,15 +21,15 @@ MonoBehaviour:
     ammoLimit: 100
     reloadTime: 1.5
   recoilSettings:
-    verticalRecoil: 14
+    verticalRecoil: 3
     horizontalRecoil: 0
-    recoilSpeed: 0.103
+    recoilSpeed: 0.023
     returnSpeed: 1
     maxRecoilAngle: 10
   spreadSettings:
-    originBulletSpread: 4
+    originBulletSpread: 30
     aimingModeSpread: 0
-    maxSpread: 6
+    maxSpread: 90
     spreadRecoverySpeed: 1
     spreadIncrease: 0.5
   grenadeWeight: 1

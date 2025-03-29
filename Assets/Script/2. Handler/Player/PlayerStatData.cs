@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [System.Serializable]
 public class PlayerStateData
 {
-    public string id;
-    public int spawnIndex;
-    public int KDA;
+    public string id;           //플레이어 id 정보
+    public int spawnIndex;      //스폰 정보
+    public int KDA;             //KDA
 
     public Vector3 position;    //플레이어 현 위치
     public Vector3 lookInput;   //어디를 보고 있는지 벡터     

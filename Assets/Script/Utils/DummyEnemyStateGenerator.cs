@@ -38,7 +38,7 @@ public class DummyEnemyStateGenerator : MonoBehaviour
             bool reached = Vector3.Distance(currentPos, targetPos) < 0.2f;
 
             // 랜덤 점프 / 사격 입력
-            bool isJumping = Random.value < 0.02f;  // 2% 확률 점프
+            bool isJumping = Random.value < 0.02f;  // 10% 확률 점프
             bool isFiring = Random.value < 0.1f;    // 10% 확률 사격
             Vector3 moveInput = reached || Random.value < 0.05f ? Vector3.zero : direction; // 가끔 멈추기
 

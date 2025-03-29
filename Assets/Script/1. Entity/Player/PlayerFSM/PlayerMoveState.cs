@@ -20,20 +20,15 @@ public class PlayerMoveState : IPlayerState
     /// </summary>
     public void Update()
     {
-        if (_controller is LocalPlayerController local)
-        {
-            local.HandleMovement();
-            local.ApplyGravity();
+        _controller.HandleMovement();
+        _controller.ApplyGravity();
 
-            if (!local.HasMoveInput())
-                _controller.StateMachine.ChangeState(new PlayerIdleState(_controller));
-            if (!local.IsGrounded())
-                _controller.StateMachine.ChangeState(new PlayerFallState(_controller));
-            if (local.IsJumpInput())
-                _controller.StateMachine.ChangeState(new PlayerJumpState(_controller));
-            if(local.IsFiring())
-                _controller.StateMachine.ChangeState(new PlayerAttackState(_controller));
-        }
+        if (!_controller.HasMoveInput())
+            _controller.StateMachine.ChangeState(new PlayerIdleState(_controller));
+        if (!_controller.IsGrounded())
+            _controller.StateMachine.ChangeState(new PlayerFallState(_controller));
+        if (_controller.IsJumpInput() && _controller.IsGrounded())
+            _controller.StateMachine.ChangeState(new PlayerJumpState(_controller));
     }
     public void Exit() { }
 

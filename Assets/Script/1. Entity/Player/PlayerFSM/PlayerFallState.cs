@@ -16,17 +16,11 @@ public class PlayerFallState : IPlayerState
     /// </summary>
     public void Update()
     {
-        if (_controller is LocalPlayerController local)
-        {
-            local.HandleMovement();
-            local.ApplyGravity();
+        _controller.HandleMovement();
+        _controller.ApplyGravity();
 
-            if(local.IsFiring())
-                _controller.StateMachine.ChangeState(new PlayerAttackState(_controller));
-
-            if (local.IsGrounded())
-                _controller.StateMachine.ChangeState(new PlayerIdleState(_controller));
-        }
+        if (_controller.IsGrounded())
+            _controller.StateMachine.ChangeState(new PlayerIdleState(_controller));
     }
 
     public void Exit() { }

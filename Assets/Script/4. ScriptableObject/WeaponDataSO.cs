@@ -15,22 +15,22 @@ public class AmmoSettings
 [Serializable]
 public class RecoilSettings
 {
-    [SerializeField, Range(0, 50f)] public float verticalRecoil = 1f;    // 수직 반동 강도
-    [SerializeField, Range(0, 50f)] public float horizontalRecoil = 0.5f; // 수평 반동 강도
+    [SerializeField, Range(0, 50)] public int verticalRecoil = 1;    // 수직 반동 강도
+    [SerializeField, Range(0, 50)] public int horizontalRecoil = 0; // 수평 반동 강도
     [SerializeField, Range(0, 1f)] public float recoilSpeed = 1f;      // 반동 적용 속도
     [SerializeField, Range(0, 1f)] public float returnSpeed = 1f;       // 원위치 복귀 속도
-    [SerializeField, Range(10, 90f)] public float maxRecoilAngle = 90f;   // 최대 반동 각도 
+    [SerializeField, Range(10, 90)] public int maxRecoilAngle = 80;   // 최대 반동 각도 
 } 
 
 
 [Serializable]
 public class SpreadSettings
 {
-    [SerializeField, Range(0, 1f)] public float originBulletSpread;  // 원래 탄퍼짐
-    [SerializeField, Range(0, 1f)] public float maxSpread = 1f;  // 최대 탄퍼짐  
+    [SerializeField, Range(0, 90)] public int originBulletSpread;  // 원래 탄퍼짐
+    [SerializeField, Range(0, 90)] public int aimingModeSpread; // 에임 모드시 명중률 
+    [SerializeField, Range(0, 90)] public int maxSpread;  // 최대 탄퍼짐  
     [SerializeField, Range(0, 1f)] public float spreadRecoverySpeed = 0.1f; // 회복 속도 
     [SerializeField, Range(0, 1f)] public float spreadIncrease = 0.1f; // 사격시 명중률 떨어지는 정도   
-    [SerializeField, Range(0, 1f)] public float aimingModeSpread = 0.5f; // 에임 모드시 명중률 
 }
 
 [CreateAssetMenu(fileName = "WeaponData", menuName = "ScriptableObject/WeaponData")]

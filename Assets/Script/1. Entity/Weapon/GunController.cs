@@ -17,6 +17,7 @@ public class GunController : WeaponBaseController
     // Component
     private GunAnimationHandler _gunAnimationHandler;
     private CameraEffectHandler _cameraEffectHandler;
+    private PlayerCameraHandler _playerCameraHandler;
 
     // Data
     private AmmoSettings _ammoSettings;
@@ -39,9 +40,6 @@ public class GunController : WeaponBaseController
 
     private void Awake()
     {
-        _cameraEffectHandler = FindFirstObjectByType<CameraEffectHandler>();
-        _gunAnimationHandler = gameObject.GetOrAddComponent<GunAnimationHandler>();  
-
         _ammoSettings = _weaponDataSO.ammoSettings;
         _recoilSettings = _weaponDataSO.recoilSettings;
         _spreadSettings = _weaponDataSO.spreadSettings;
@@ -56,7 +54,15 @@ public class GunController : WeaponBaseController
         if (_zoomCam != null)
             _zoomCam.gameObject.SetActive(false);
     }
- 
+
+    protected override void Start()
+    {
+        base.Start();
+
+        _cameraEffectHandler = FindFirstObjectByType<CameraEffectHandler>();
+        _gunAnimationHandler = gameObject.GetOrAddComponent<GunAnimationHandler>();  
+        _playerCameraHandler = Managers.Player.GetComponent<PlayerCameraHandler>();    
+    }
 
     protected override void BindInputAction()
     {
@@ -147,12 +153,14 @@ public class GunController : WeaponBaseController
     }
     private GameObject[] RayCasting() 
     {
-        Vector3 startPos = Camera.main.transform.position;
+
+        Camera cam = _playerCameraHandler.GetCamera(_sniperZoom != null && _sniperZoom.activeSelf && IsAimMode);   
+        Vector3 startPos = cam.transform.position;   
         GameObject[] targets = new GameObject[_ammoSettings.projectileCount];   
 
         for (int i = 0; i < _ammoSettings.projectileCount; i++)
         {
-            Ray ray = new Ray(startPos, Camera.main.transform.forward.RandomUnitVectorInCone(_spread));   
+            Ray ray = new Ray(startPos, cam.transform.forward.RandomUnitVectorInCone(_spread));    
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100f))
             { 

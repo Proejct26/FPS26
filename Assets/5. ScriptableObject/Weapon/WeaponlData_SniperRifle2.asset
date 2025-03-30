@@ -23,7 +23,7 @@ MonoBehaviour:
     projectileCount: 1
   recoilSettings:
     recoilAmount: 12
-    aimModeRecoilAmount: 10
+    aimModeRecoilAmount: 0
     recoilSpeed: 0.1
     maxRecoilAngle: 10
   spreadSettings:

@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91cf10da754fde439801039a9e5c93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scopeCam: {fileID: 482441575685276482}
   cameraHolder: {fileID: 2022370257074512274}
   _sensitivity: 5
 --- !u!114 &4814477222370327016

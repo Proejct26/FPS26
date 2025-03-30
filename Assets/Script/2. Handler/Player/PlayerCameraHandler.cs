@@ -5,21 +5,40 @@ using UnityEngine.InputSystem;
 
 public class PlayerCameraHandler : MonoBehaviour
 {
+    [SerializeField] private Camera _scopeCam;
     [SerializeField] private Transform cameraHolder; // 카메라 부모 (X축 회전만 담당)
     [SerializeField] private float _sensitivity = 2f;
 
     public float xRotation {get; set;} = 0f;
     public float yRotation {get; set;} = 0f;
- 
-    void Start()
+    private Camera _mainCam;
+
+
+    private void Start()
     {
+        InitCamera();
+    }
+
+    private void Update()
+    {
+        RotateCamera(); 
+    }
+    
+    public Camera GetCamera(bool scopeCam)
+    {
+        return scopeCam ? _scopeCam : _mainCam; 
+    }
+
+    private void InitCamera()
+    {
+        _mainCam = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    void Update()
+    private void RotateCamera()
     {
-        // //마우스 이동량 (InputSystem)
+        //마우스 이동량 (InputSystem)
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
         float mouseX = (yRotation + mouseDelta.x) * _sensitivity * Time.deltaTime;

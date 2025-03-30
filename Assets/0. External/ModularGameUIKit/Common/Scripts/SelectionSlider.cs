@@ -26,7 +26,7 @@ namespace Ricimi
 			LoadNewGroup();
 		}
 
-		public void OnPrevButtonClicked()
+		public void OnPrevButtonClick()
 		{
 			prevOption = selectedOption;
 			selectedOption--;
@@ -38,7 +38,7 @@ namespace Ricimi
 			LoadNewGroup();
 		}
 
-		public void OnNextButtonClicked()
+		public void OnNextButtonClick()
 		{
 			prevOption = selectedOption;
 			selectedOption = (selectedOption + 1) % Options.Count;

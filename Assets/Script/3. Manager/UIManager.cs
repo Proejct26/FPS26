@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class UIManager : IManager
@@ -17,14 +18,19 @@ public class UIManager : IManager
     private UI_Scene _sceneUI = null;
 
     public void Init()
-    {        
- 
+    { 
+        //Managers.UI.ShowSceneUI<MainUI>();  //같은 이름일 경우 텍스트 생략
+        
+       //  UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup"); //같은 이름일 경우 텍스트 생략
+         
+         // ClosePopupUI(popup);
     } 
   
     public void Clear()
     {
         
     }
+    
     public void SetCanvas(GameObject go, bool sort = true)
     {
         Canvas canvas = go.GetOrAddComponent<Canvas>();
@@ -83,6 +89,9 @@ public class UIManager : IManager
     {
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
+        
+        if(_popupStack.Count > 0)
+            ClosePopupUI(_popupStack.Peek());
 
         GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
         T popup = Util.GetOrAddComponent<T>(go);
@@ -90,6 +99,7 @@ public class UIManager : IManager
 
         go.transform.SetParent(_popupUIParent.transform, false);
 
+        popup.Init();
 
 		return popup; 
     }
@@ -124,6 +134,17 @@ public class UIManager : IManager
         while (_popupStack.Count > 0)
             ClosePopupUI();
     }
-
-
+    
+    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // {
+    //     Clear();
+    //     if (scene.name == "TitleScene")
+    //     {
+    //         ShowSceneUI<UI_Title>("TitleCanvas");
+    //     }
+    //     else if (scene.name == "MainScene")
+    //     {
+    //         ShowSceneUI<MainUI>("MainUI");
+    //     }
+    // }
 }

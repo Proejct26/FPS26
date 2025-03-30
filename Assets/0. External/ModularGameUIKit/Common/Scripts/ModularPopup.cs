@@ -103,11 +103,11 @@ namespace Ricimi
 			{
 				label.text = info.Label;
 			}
-			if (!info.IgnoreButtonClickedEvent)
+			if (!info.IgnoreButtonClickEvent)
 			{
-				button.onClick = info.OnClickedEvent;
+				button.onClick = info.OnClickEvent;
 			}
-			if (info.ClosePopupWhenClicked)
+			if (info.ClosePopupWhenClick)
 			{
 				button.onClick.AddListener(Close);
 			}

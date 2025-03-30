@@ -17,6 +17,7 @@ public enum EPlayerInput
 	KnifeWeapon,
 	Reload,
 	AimMode,
+	Look,
 }
 
 [System.Serializable]
@@ -40,6 +41,9 @@ public class InputManager : IManager
 
     public void Init()
     {
+		if (inputActionAsset == null)
+			return;
+
         BindAction(typeof(EPlayerInput));
 		inputActionAsset.Enable(); 
     }

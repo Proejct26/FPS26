@@ -37,7 +37,7 @@ public class Managers : Singleton<Managers>
   
         var pcb = FindFirstObjectByType<PlayerControllerBase>();
         if (pcb != null)
-            Player = pcb.gameObject;
+            Player = pcb.gameObject; 
 
         data = new DataManager();
         Init();

@@ -14,14 +14,19 @@ public class PlayerCameraHandler : MonoBehaviour
     
     private Camera _mainCam;
 
-    void Start()
+    private void Start()
     {
         InitCamera();
     }
 
-    void Update()
+    private void Update()
     {
-        RotateCamera();
+        RotateCamera(); 
+    }
+    
+    public Camera GetCamera(bool scopeCam)
+    {
+        return scopeCam ? _scopeCam : _mainCam; 
     }
 
     private void InitCamera()
@@ -33,7 +38,7 @@ public class PlayerCameraHandler : MonoBehaviour
 
     private void RotateCamera()
     {
-        // //마우스 이동량 (InputSystem)
+        //마우스 이동량 (InputSystem)
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
         float mouseX = (yRotation + mouseDelta.x) * _sensitivity * Time.deltaTime;
@@ -46,10 +51,5 @@ public class PlayerCameraHandler : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -80f, 80f); // 상하 회전 제한
         cameraHolder.localRotation = Quaternion.Euler(xRotation, 0f, 0f);   
-    }
-
-    public Camera GetCamera(bool isScopeMode)
-    {
-        return isScopeMode ? _scopeCam : _mainCam;
     }
 }

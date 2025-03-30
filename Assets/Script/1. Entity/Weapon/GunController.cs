@@ -143,7 +143,7 @@ public class GunController : WeaponBaseController
  
         ResetSpread();
         int recoilAmount = _isAimMode ? _recoilSettings.aimModeRecoilAmount : _recoilSettings.recoilAmount;
-        _cameraEffectHandler.SetRecoil(recoilAmount, _recoilSettings.recoilSpeed, _recoilSettings.returnSpeed, _recoilSettings.maxRecoilAngle); 
+        _cameraEffectHandler.SetRecoil(recoilAmount, _recoilSettings.recoilSpeed, _recoilSettings.maxRecoilAngle); 
     }
     private GameObject[] RayCasting() 
     {

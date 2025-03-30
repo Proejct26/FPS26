@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d1457798ca1844d9999655b0c7bded, type: 3}
   m_Name: WeaponlData_Smg1
   m_EditorClassIdentifier: 
-  damage: 3
-  attackDelay: 0.1
+  damage: 8
+  attackDelay: 0.08
   ammoSettings:
     _bulletPrefab: {fileID: 3575611928538805115, guid: d78f4931f32952a4291e6eea6532444b,
       type: 3}
@@ -25,12 +25,11 @@ MonoBehaviour:
     recoilAmount: 1
     aimModeRecoilAmount: 3
     recoilSpeed: 0.05
-    returnSpeed: 1
     maxRecoilAngle: 10
   spreadSettings:
-    originBulletSpread: 1
-    aimingModeSpread: 0
-    maxSpread: 90
+    originBulletSpread: 1.5
+    aimingModeSpread: 0.5
+    maxSpread: 10
     spreadRecoverySpeed: 1
     spreadIncrease: 0.5
   grenadeWeight: 1

@@ -17,17 +17,17 @@ public class CameraEffectHandler : MonoBehaviour
         _playerCameraHandler = FindFirstObjectByType<PlayerCameraHandler>();
     } 
  
-    public void SetRecoil(float X, float speed, float returnSpeed, float maxRecoilAngle = 50f)
+    public void SetRecoil(float X, float speed, float maxRecoilAngle = 50f)
     {
         if (_recoilCoroutine != null)
             StopCoroutine(_recoilCoroutine);
  
-        _recoilCoroutine = StartCoroutine(Recoil(-X, speed, returnSpeed, maxRecoilAngle));  
+        _recoilCoroutine = StartCoroutine(Recoil(-X, speed, maxRecoilAngle));  
     } 
 
-    private IEnumerator Recoil(float targetX, float speed, float returnSpeed, float maxRecoilAngle)
+    private IEnumerator Recoil(float targetX, float speed, float maxRecoilAngle)
     {
-        // 현재 회전값을 저장
+        // 현재 회전값을 저장 
        
         float currentTime = 0;
 

@@ -1385,6 +1385,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPS_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6014489089892647982, guid: 964508e4371dd054c9affb78aa7b2a27,
+        type: 3}
+      propertyPath: _sensitivity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067269905958613887, guid: 964508e4371dd054c9affb78aa7b2a27,
+        type: 3}
+      propertyPath: _knifePrefab
+      value: 
+      objectReference: {fileID: 9014002615599485563, guid: 30c9383683dea174793907f78d84235c,
+        type: 3}
+    - target: {fileID: 6067269905958613887, guid: 964508e4371dd054c9affb78aa7b2a27,
+        type: 3}
+      propertyPath: _subWeaponPrefab
+      value: 
+      objectReference: {fileID: 704470906119786993, guid: 431b48627d7b08147bad150593bfdca1,
+        type: 3}
+    - target: {fileID: 6067269905958613887, guid: 964508e4371dd054c9affb78aa7b2a27,
+        type: 3}
+      propertyPath: _mainWeaponPrefab
+      value: 
+      objectReference: {fileID: 8634434568037516225, guid: 451ee1456bc9c594f88b0a19024831f3,
+        type: 3}
     - target: {fileID: 8913257315268733529, guid: 964508e4371dd054c9affb78aa7b2a27,
         type: 3}
       propertyPath: m_LocalPosition.x

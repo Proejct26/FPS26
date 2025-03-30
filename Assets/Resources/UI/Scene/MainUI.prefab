@@ -329,7 +329,6 @@ MonoBehaviour:
   crosshairDown: {fileID: 9001094053598009996}
   crosshairRight: {fileID: 1238395812206342358}
   crosshairLeft: {fileID: 683442384916906168}
-  spreadAmount: 10
 --- !u!1 &2102005381811247636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1137,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIcon: {fileID: 7605800882129473307}
-  playerPosition: {x: 0, y: 0, z: 0}
+  minimapRect: {fileID: 0}
+  playerTransform: {fileID: 0}
+  minimapCenter: {fileID: 0}
+  minimapScale: 0.1
 --- !u!1 &8552325384418814269
 GameObject:
   m_ObjectHideFlags: 0

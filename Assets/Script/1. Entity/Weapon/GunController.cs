@@ -13,7 +13,7 @@ public class GunController : WeaponBaseController
 
     // Component
     private GunAnimationHandler _gunAnimationHandler;
- 
+    private CameraEffectHandler _cameraEffectHandler;
     // Data
     private AmmoSettings _ammoSettings;
     private RecoilSettings _recoilSettings; 
@@ -36,6 +36,7 @@ public class GunController : WeaponBaseController
     private void Awake()
     {
         _gunAnimationHandler = gameObject.GetOrAddComponent<GunAnimationHandler>();  
+        _cameraEffectHandler = Camera.main.GetComponent<CameraEffectHandler>();
 
         _ammoSettings = _weaponDataSO.ammoSettings;
         _recoilSettings = _weaponDataSO.recoilSettings;
@@ -101,6 +102,7 @@ public class GunController : WeaponBaseController
         if (_isReloading) 
             return; 
 
+        _cameraEffectHandler.SetAimMode(active); 
         _gunAnimationHandler.AimMode(active);
         _isAimMode = active;
         ResetSpread();
@@ -125,7 +127,7 @@ public class GunController : WeaponBaseController
  
         ResetSpread();
         int recoilAmount = _isAimMode ? _recoilSettings.aimModeRecoilAmount : _recoilSettings.recoilAmount;
-        Camera.main.GetComponent<CameraShaker>().SetRecoil(recoilAmount, _recoilSettings.recoilSpeed, _recoilSettings.returnSpeed, _recoilSettings.maxRecoilAngle);
+        Camera.main.GetComponent<CameraEffectHandler>().SetRecoil(recoilAmount, _recoilSettings.recoilSpeed, _recoilSettings.returnSpeed, _recoilSettings.maxRecoilAngle);
     }
     private GameObject[] RayCasting() 
     {

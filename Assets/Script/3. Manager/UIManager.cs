@@ -18,10 +18,10 @@ public class UIManager : IManager
     private UI_Scene _sceneUI = null;
 
     public void Init()
-    {
+    { 
         //Managers.UI.ShowSceneUI<MainUI>();  //같은 이름일 경우 텍스트 생략
         
-         UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup"); //같은 이름일 경우 텍스트 생략
+       //  UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup"); //같은 이름일 경우 텍스트 생략
          
          // ClosePopupUI(popup);
     } 

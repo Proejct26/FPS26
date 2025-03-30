@@ -28,7 +28,7 @@ MonoBehaviour:
     returnSpeed: 1
     maxRecoilAngle: 10
   spreadSettings:
-    originBulletSpread: 6
+    originBulletSpread: 5
     aimingModeSpread: 0
     maxSpread: 90
     spreadRecoverySpeed: 1

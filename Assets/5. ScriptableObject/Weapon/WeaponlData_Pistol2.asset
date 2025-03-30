@@ -20,6 +20,7 @@ MonoBehaviour:
     initializeAmmo: 20
     ammoLimit: 100
     reloadTime: 1.5
+    projectileCount: 1
   recoilSettings:
     recoilAmount: 4
     aimModeRecoilAmount: 4

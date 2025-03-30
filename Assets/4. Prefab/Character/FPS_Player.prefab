@@ -246,9 +246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponParent: {fileID: 7492963166118102614}
-  _mainWeaponPrefab: {fileID: 8335102493945524992, guid: 182e512a474fdc44ab0877d0dd046118,
+  _mainWeaponPrefab: {fileID: 8634434568037516225, guid: 451ee1456bc9c594f88b0a19024831f3,
     type: 3}
-  _subWeaponPrefab: {fileID: 4724544863606683765, guid: e84bd873782274240802a4616ce684fd,
+  _subWeaponPrefab: {fileID: 704470906119786993, guid: 431b48627d7b08147bad150593bfdca1,
     type: 3}
   _knifePrefab: {fileID: 9014002615599485563, guid: 30c9383683dea174793907f78d84235c,
     type: 3}
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraHolder: {fileID: 2022370257074512274}
-  _sensitivity: 2
+  _sensitivity: 5
 --- !u!114 &4814477222370327016
 MonoBehaviour:
   m_ObjectHideFlags: 0

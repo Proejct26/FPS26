@@ -291,12 +291,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!20 &401770668 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 482441575685276482, guid: 964508e4371dd054c9affb78aa7b2a27,
-    type: 3}
-  m_PrefabInstance: {fileID: 6189253600532133556}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &443095334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,21 +1416,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPS_Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6014489089892647982, guid: 964508e4371dd054c9affb78aa7b2a27,
-        type: 3}
-      propertyPath: _scopeCam
-      value: 
-      objectReference: {fileID: 6189253600532133557}
-    - target: {fileID: 6014489089892647982, guid: 964508e4371dd054c9affb78aa7b2a27,
-        type: 3}
-      propertyPath: _sensitivity
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6067269905958613887, guid: 964508e4371dd054c9affb78aa7b2a27,
-        type: 3}
-      propertyPath: _subWeaponPrefab
-      value: 
-      objectReference: {fileID: 401770668}
     - target: {fileID: 8913257315268733529, guid: 964508e4371dd054c9affb78aa7b2a27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1492,12 +1471,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 964508e4371dd054c9affb78aa7b2a27, type: 3}
---- !u!20 &6189253600532133557 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 482441575685276482, guid: 964508e4371dd054c9affb78aa7b2a27,
-    type: 3}
-  m_PrefabInstance: {fileID: 6189253600532133556}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8854837914525908944
 Transform:
   m_ObjectHideFlags: 0

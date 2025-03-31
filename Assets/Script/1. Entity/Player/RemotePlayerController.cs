@@ -13,7 +13,7 @@ public class RemotePlayerController : PlayerControllerBase
     private float _lerpSpeed = 10f;         //보간 정도
 
     [Header("이름 태그")]
-    [SerializeField] private PlayerNameTag nameTag;
+    [SerializeField] public PlayerNameTag nameTag;
 
     protected override void Update()
     {

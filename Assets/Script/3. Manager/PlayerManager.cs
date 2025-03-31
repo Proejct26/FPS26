@@ -34,6 +34,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (remotePlayers.TryGetValue(playerId, out var controller))
         {
+            controller.nameTag?.gameObject.SetActive(false);
             controller.gameObject.SetActive(false);
             remotePlayers.Remove(playerId);
         }

@@ -55,7 +55,7 @@ public class RemotePlayerController : PlayerControllerBase
 
     public override bool IsGrounded()
     {
-        return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 1f, LayerMask.GetMask("Default"));
+        return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.8f, LayerMask.GetMask("Default"));
     }
     public override bool IsJumpInput() => _networkData != null && _networkData.isJumping;
     public override bool HasMoveInput() => _networkData != null && _networkData.moveInput.sqrMagnitude > 0.01f;

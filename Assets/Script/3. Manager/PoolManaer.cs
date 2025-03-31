@@ -60,8 +60,8 @@ public class PoolManager : IManager
                 obj = Create();
 
             obj.gameObject.SetActive(true);
-
-            obj.transform.parent = parent;
+            obj.transform.SetParent(parent, false); 
+            obj.transform.localPosition = Vector3.zero; 
             return obj; 
         }
     }

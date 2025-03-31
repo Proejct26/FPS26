@@ -104,7 +104,7 @@ public class UIManager : IManager
 		return popup; 
     }
 
-    public void ClosePopupUI(UI_Popup popup)
+    public void ClosePopupUI(UI_Popup popup, float time = 0.0f)
     {
 		if (_popupStack.Count == 0)
 			return;
@@ -115,17 +115,17 @@ public class UIManager : IManager
             return;
         }
 
-        ClosePopupUI();
+        ClosePopupUI(time);
     }
 
-    public void ClosePopupUI()
+    public void ClosePopupUI(float time = 0.0f)
     {
         if (_popupStack.Count == 0)
             return;
 
         UI_Popup popup = _popupStack.Pop();
-        GameObject.Destroy(popup.gameObject); 
-        popup = null;
+        GameObject.Destroy(popup.gameObject, time); 
+        popup = null; 
         _order--; 
     }
 

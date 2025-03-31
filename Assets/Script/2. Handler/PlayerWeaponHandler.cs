@@ -45,7 +45,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     //public event Action On 
     private void Awake()
     {
-        _weapons = new WeaponBaseController[Enum.GetValues(typeof(EWeaponType)).Length];
+        _weapons = new WeaponBaseController[Enum.GetValues(typeof(EWeaponType)).Length];  
         _weaponDatas = new WeaponDataSO[Enum.GetValues(typeof(EWeaponType)).Length];
 
         _weaponDatas[(int)EWeaponType.Primary] = _primaryWeapon;
@@ -58,15 +58,22 @@ public class PlayerWeaponHandler : MonoBehaviour
     {
         InitWeapons();
         BindInputAction();
-        EquipWeapon(EWeaponType.Primary); 
     }
 
-    private void InitWeapons()
+    public void InitWeapons() 
     {
+        foreach (WeaponBaseController weapon in _weapons){
+            if (weapon == null)
+                continue;
+            Managers.Pool.Release(weapon.gameObject); 
+        }
+        
+        _weapons = new WeaponBaseController[Enum.GetValues(typeof(EWeaponType)).Length];  
+
         foreach (WeaponDataSO weaponDataSO in _weaponDatas)
         {
             if (weaponDataSO == null)
-                continue;
+                continue; 
 
             AddWeapon(weaponDataSO.weaponType, weaponDataSO.itemPrefab); 
         }
@@ -132,7 +139,7 @@ public class PlayerWeaponHandler : MonoBehaviour
             return;
 
         int index = (int)weaponType;
-        _weapons[index] = Instantiate(itemPrefab, _weaponParent).GetComponent<WeaponBaseController>();
+        _weapons[index] = Managers.Pool.Get(itemPrefab, _weaponParent).GetComponent<WeaponBaseController>(); 
         EquipWeapon(weaponType); 
     } 
  

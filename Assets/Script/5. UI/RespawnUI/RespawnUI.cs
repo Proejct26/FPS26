@@ -48,6 +48,10 @@ public class RespawnUI : UI_Popup
     private void Start()
     {
         UpdateItemInfo();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;   
+        Managers.Input.SetActive(false);
+
     } 
 
 
@@ -104,7 +108,8 @@ public class RespawnUI : UI_Popup
 
     private void UpdateRespawnTimeText()
     {
-        Get<TextMeshProUGUI>((int)Texts.respawnTimeText).text = $"{(int)(_respawnTime - (Time.time - _startTime))}";  
+        int time = (int)(_respawnTime - (Time.time - _startTime));
+        Get<TextMeshProUGUI>((int)Texts.respawnTimeText).text = time <= 0 ? "0" : time.ToString();    
     } 
 
     private void Respawn()
@@ -112,7 +117,14 @@ public class RespawnUI : UI_Popup
         if (Time.time - _startTime < _respawnTime)
             return;
 
-         
+        _playerWeaponHandler.InitWeapons(); 
+        ClosePopupUI(); 
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;   
+
+        Managers.Input.SetActive(true);
+        Debug.Log("Respawn");
     }
 
 }

@@ -34,7 +34,8 @@ public class WeaponListUI : UI_Popup
     private void SelectWeapon(WeaponDataSO weaponData)
     {   
         ClosePopupUI();
-       Managers.UI.ShowPopupUI<WeaponSelectUI>().InitWeaponInfo(weaponData); 
+        Managers.UI.ShowPopupUI<WeaponSelectUI>().InitWeaponInfo(weaponData); 
+       
     } 
  
     

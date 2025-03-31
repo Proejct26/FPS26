@@ -71,7 +71,6 @@ public class UI_CustomPopup : UI_Popup
         Get<TextMeshProUGUI>((int)Texts.CustomErrorText).gameObject.SetActive(false);
         Get<TMP_InputField>((int)InputFields.NickNameInputField).text = Managers.Data.Nickname;
         _selectedIconIndex = Managers.Data.SelectedIconIndex;
-        Debug.Log($"Init index: {_selectedIconIndex}");
         
         UpdateIconSelectionUI();
     }

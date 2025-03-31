@@ -33,10 +33,10 @@ public class UIManager : IManager
        {
            ShowPopupUI<UI_StartPopup>("StartPopup");
        }
-       else if (currentScene == "MainScene")
-       {
-           ShowSceneUI<MainUI>();
-       }
+       // else if (currentScene == "MainScene")
+       // {
+       //     ShowSceneUI<MainUI>();
+       // }
     } 
   
     public void Clear()

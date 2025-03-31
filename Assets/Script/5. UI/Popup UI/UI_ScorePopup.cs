@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UI_ScorePopup : UI_Popup
@@ -18,13 +19,15 @@ public class UI_ScorePopup : UI_Popup
         public TextMeshProUGUI assistantText;
     }
     
-    [SerializeField] private PlayerSlot[] teamASlots = new PlayerSlot[5]; // 팀A (0 ~ 4)
-    [SerializeField] private PlayerSlot[] teamBSlots = new PlayerSlot[5]; // 팀B (5 ~ 9)
-    [SerializeField] private Sprite[] iconSprites; // CustomPopup에서 선택한 인덱스와 매핑
+    [SerializeField] private PlayerSlot[] teamASlots = new PlayerSlot[5];   // 팀A (0 ~ 4)
+    [SerializeField] private PlayerSlot[] teamBSlots = new PlayerSlot[5];   // 팀B (5 ~ 9)
+    [SerializeField] private Sprite[] iconSprites;                          // 설정 창에서 선택한 아이콘 idx와 매핑
     
-    private void Start()
+    public override void Init()
     {
+        base.Init();
         InitializeSlots();
+        UpdateScoreboard(TestDataTeamA(), TestDataTeamB());
     }
     
     // 팀 슬롯 초기화
@@ -94,7 +97,7 @@ public class UI_ScorePopup : UI_Popup
         slot.deadText.text = playerData.deaths.ToString();
         slot.assistantText.text = playerData.assists.ToString();
 
-        // 아이콘 (자신의 데이터면 DataManager에서, 아니면 기본값)
+        // 아이콘
         int iconIndex = (playerData.id == Managers.Data.Nickname) ? Managers.Data.SelectedIconIndex : 0;
         if (iconIndex >= 0 && iconIndex < iconSprites.Length)
         {
@@ -108,20 +111,21 @@ public class UI_ScorePopup : UI_Popup
     }
     
     // 테스트용
-    private void Update()
+    private List<PlayerStateData> TestDataTeamA()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        return new List<PlayerStateData>
         {
-            List<PlayerStateData> teamA = new List<PlayerStateData>
-            {
-                new PlayerStateData { id = Managers.Data.Nickname, kills = 1, deaths = 2, assists = 3, isAlive = true }, // 내 데이터
-                new PlayerStateData { id = "Player2", kills = 0, deaths = 1, assists = 0, isAlive = false }
-            };
-            List<PlayerStateData> teamB = new List<PlayerStateData>
-            {
-                new PlayerStateData { id = "Player3", kills = 3, deaths = 2, assists = 1, isAlive = true }
-            };
-            UpdateScoreboard(teamA, teamB);
-        }
+            new PlayerStateData { id = Managers.Data.Nickname, kills = 1, deaths = 2, assists = 3, isAlive = true },
+            new PlayerStateData { id = "Player2", kills = 0, deaths = 1, assists = 0, isAlive = false }
+        };
+    }
+
+    // 테스트용
+    private List<PlayerStateData> TestDataTeamB()
+    {
+        return new List<PlayerStateData>
+        {
+            new PlayerStateData { id = "Player3", kills = 3, deaths = 2, assists = 1, isAlive = true }
+        };
     }
 }

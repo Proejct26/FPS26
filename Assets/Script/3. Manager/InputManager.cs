@@ -35,6 +35,7 @@ public class InputManager : IManager
 	public InputAction MainWeapon => playerInputs[EPlayerInput.MainWeapon];
 	public InputAction SubWeapon => playerInputs[EPlayerInput.SubWeapon];
 	public InputAction KnifeWeapon => playerInputs[EPlayerInput.KnifeWeapon];   
+    public InputAction Info => playerInputs[EPlayerInput.Info];
 
 	// === Input Actions ===
 	public InputAction GetInput(EPlayerInput type) => playerInputs[type];   

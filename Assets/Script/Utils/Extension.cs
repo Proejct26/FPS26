@@ -7,12 +7,17 @@ using Random = UnityEngine.Random;
 
 public static class Extension
 {
-	public static T GetOrAddComponent<T>(this GameObject go) where T : UnityEngine.Component
+
+    public static T GetOrAddComponent<T>(this GameObject go) where T : UnityEngine.Component
 	{
 		return Util.GetOrAddComponent<T>(go);
-	}
+    }
+    public static bool IsValid(this GameObject go)
+    {
+        return go != null && go.activeSelf;
+    }
 
-	public static void BindEvent(this GameObject go, Action<PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click)
+    public static void BindEvent(this GameObject go, Action<PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click)
 	{
 		UI_Base.BindEvent(go, action, type); 
 	}

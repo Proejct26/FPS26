@@ -1,3 +1,4 @@
+using Ricimi;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,11 @@ public static class Extension
 	{
 		UI_Base.BindEvent(go, action, type); 
 	}
+
+    public static T FindChild<T>(this GameObject go, string name = null, bool recursive = false) where T : UnityEngine.Object
+    {
+        return Util.FindChild<T>(go, name, recursive); 
+    }
 
 	public static Vector3 RandomUnitVectorInCone(this Vector3 direction, float coneHalfAngleDegrees)
 	{

@@ -94,8 +94,8 @@ public class UIManager : IManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
         
-        if(_popupStack.Count > 0)
-            ClosePopupUI(_popupStack.Peek());
+        // if(_popupStack.Count > 0)
+        //     ClosePopupUI(_popupStack.Peek()); 
 
         GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
         T popup = Util.GetOrAddComponent<T>(go);
@@ -108,7 +108,7 @@ public class UIManager : IManager
 		return popup; 
     }
 
-    public void ClosePopupUI(UI_Popup popup)
+    public void ClosePopupUI(UI_Popup popup, float time = 0.0f)
     {
 		if (_popupStack.Count == 0)
 			return;
@@ -119,17 +119,17 @@ public class UIManager : IManager
             return;
         }
 
-        ClosePopupUI();
+        ClosePopupUI(time);
     }
 
-    public void ClosePopupUI()
+    public void ClosePopupUI(float time = 0.0f)
     {
         if (_popupStack.Count == 0)
             return;
 
         UI_Popup popup = _popupStack.Pop();
-        GameObject.Destroy(popup.gameObject); 
-        popup = null;
+        GameObject.Destroy(popup.gameObject, time); 
+        popup = null; 
         _order--; 
     }
 

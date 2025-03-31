@@ -41,8 +41,8 @@ public class Managers : Singleton<Managers>
     {
         base.Awake();
   
-        var pcb = FindFirstObjectByType<PlayerControllerBase>();
-        if (pcb != null)
+        var pcb = FindAnyObjectByType<PlayerControllerBase>();
+        if (pcb != null) 
             Player = pcb.gameObject; 
 
         data = new DataManager();

@@ -17,13 +17,14 @@ public class WeaponData
     
 }
 
-[Serializable]
+[System.Serializable]
 public class GameSettings
 {
     public string Nickname { get; set; }
     public float BGMVolume { get; set; }
     public float SFXVolume { get; set; }
     public float MouseSensitivity { get; set; }
+    public int SelectedIconIndex { get; set; }
 
     public GameSettings()
     {
@@ -31,6 +32,7 @@ public class GameSettings
         BGMVolume = 50f;
         SFXVolume = 50f;
         MouseSensitivity = 50f;
+        SelectedIconIndex = 0;
     }
 }
 
@@ -68,25 +70,5 @@ public class DataManager : IManager
     public void Clear()
     {
         _mySettings = new GameSettings();
-    }
-}
-
-
-[System.Serializable]
-public class GameSettings
-{
-    public string Nickname { get; set; }
-    public float BGMVolume { get; set; }
-    public float SFXVolume { get; set; }
-    public float MouseSensitivity { get; set; }
-    public int SelectedIconIndex { get; set; }
-
-    public GameSettings()
-    {
-        Nickname = "";
-        BGMVolume = 50f;
-        SFXVolume = 50f;
-        MouseSensitivity = 50f;
-        SelectedIconIndex = 0;
     }
 }

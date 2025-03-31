@@ -1,3 +1,4 @@
+using Game;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,6 +49,19 @@ public class InputManager : IManager
 		//inputActionAsset.Enable(); 
     }
 
+    public void Update()
+    {
+        CS_KEY_INPUT ptk = new CS_KEY_INPUT();
+        ptk.Jump = 1;
+        ptk.KeyW = 1;
+        ptk.KeyA = 1;
+        ptk.KeyS = 1;
+        ptk.KeyD = 1;
+        ptk.RotateAxisX = 5;
+        ptk.RotateAxisY = 6;
+
+        Managers.Network.Send(ptk);
+    }
 
     public void Clear()
     {

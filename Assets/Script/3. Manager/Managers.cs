@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public interface IManager
 {

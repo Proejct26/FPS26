@@ -45,6 +45,7 @@ public class RemotePlayerController : PlayerControllerBase
         {
             nameTag.player = transform;
             nameTag.SetName(_networkData.name); // playerName은 PlayerStateData에 있어야 함
+            nameTag.nameText.color = _networkData.team == 0 ? Color.red : Color.blue;
         }
     }
 

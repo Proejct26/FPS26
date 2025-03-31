@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] private GameObject remotePlayerPrefab;
+    [Header("팀별 프리팹")]
+    [SerializeField] private GameObject redTeamPrefab;
+    [SerializeField] private GameObject blueTeamPrefab;
 
     private Dictionary<string, RemotePlayerController> remotePlayers = new();
 
@@ -16,10 +18,12 @@ public class PlayerManager : MonoBehaviour
         }
         else                //데이터가 없으면 pool에서 remotePlayerPrefab을 꺼내온다.
         {
-            GameObject remoteObj = Managers.Pool.Get(remotePlayerPrefab);
+            GameObject prefab = data.team == 0 ? redTeamPrefab : blueTeamPrefab;
+
+            GameObject remoteObj = Managers.Pool.Get(prefab);
             remoteObj.transform.position = data.position;
 
-            RemotePlayerController newController = remoteObj.GetComponent<RemotePlayerController>();
+            RemotePlayerController newController = remoteObj.GetComponentInChildren<RemotePlayerController>();
             newController.ApplyNetworkState(data);
 
             remotePlayers.Add(data.id, newController);
@@ -30,7 +34,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (remotePlayers.TryGetValue(playerId, out var controller))
         {
-            controller.gameObject.SetActive(false); // Or controller.ReturnToPool(); if using IPoolable
+            controller.gameObject.SetActive(false);
             remotePlayers.Remove(playerId);
         }
     }
@@ -38,9 +42,8 @@ public class PlayerManager : MonoBehaviour
     public void ClearAllRemotePlayers()
     {
         foreach (var player in remotePlayers.Values)
-        {
             player.gameObject.SetActive(false);
-        }
+
         remotePlayers.Clear();
     }
 }

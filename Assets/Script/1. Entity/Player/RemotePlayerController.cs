@@ -12,6 +12,9 @@ public class RemotePlayerController : PlayerControllerBase
     private float _gravity = -9.81f;        //중력 값
     private float _lerpSpeed = 10f;         //보간 정도
 
+    [Header("이름 태그")]
+    [SerializeField] private PlayerNameTag nameTag;
+
     protected override void Update()
     {
         base.Update();
@@ -37,6 +40,12 @@ public class RemotePlayerController : PlayerControllerBase
 
         if (head != null)
             head.localRotation = Quaternion.Euler(-_networkData.rotationX, 0f, 0f);
+
+        if (nameTag != null)
+        {
+            nameTag.player = transform;
+            nameTag.SetName(_networkData.name); // playerName은 PlayerStateData에 있어야 함
+        }
     }
 
     public override PlayerStateData ToPlayerStateData()
@@ -48,9 +57,9 @@ public class RemotePlayerController : PlayerControllerBase
     {
         return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 1f, LayerMask.GetMask("Default"));
     }
-    public override bool HasMoveInput() => _networkData.moveInput.sqrMagnitude > 0.01f;
-    public override bool IsJumpInput() => _networkData.isJumping;
-    public override bool IsFiring() => _networkData.isFiring;
+    public override bool IsJumpInput() => _networkData != null && _networkData.isJumping;
+    public override bool HasMoveInput() => _networkData != null && _networkData.moveInput.sqrMagnitude > 0.01f;
+    public override bool IsFiring() => _networkData != null && _networkData.isFiring;
 
     public override float GetVerticalVelocity() => _verticalVelocity;
 

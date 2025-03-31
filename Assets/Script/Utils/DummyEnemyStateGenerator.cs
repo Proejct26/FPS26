@@ -44,6 +44,7 @@ public class DummyEnemyStateGenerator : MonoBehaviour
 
             PlayerStateData dummyData = new PlayerStateData
             {
+                name = "화난 사람",
                 position = nextPos,
                 moveInput = moveInput,
                 rotationX = rotationX,

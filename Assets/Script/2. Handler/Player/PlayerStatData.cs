@@ -3,8 +3,9 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStateData
 {
-    public string id;           //플레이어 id 정보
-    public int spawnIndex;      //스폰 정보
+    public string id;              //플레이어 ID 정보
+    public string name;         //플레이어 이름 정보
+    public int team;            //팀 정보
     public int KDA;             //KDA
 
     public Vector3 position;    //플레이어 현 위치

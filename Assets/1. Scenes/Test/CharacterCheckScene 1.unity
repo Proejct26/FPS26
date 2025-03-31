@@ -460,41 +460,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPS_Player 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4466351486250299161, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 5697142803268561607, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5697142803268561607, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5697142803268561607, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5697142803268561607, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5697142803268561607, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7274320524368891134, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_Lens.NearClipPlane
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 8560214073239392570, guid: 7bc598ffc2445954e9466d0044c7d43c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -544,36 +509,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8854837915051591986, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.00000003981404
-      objectReference: {fileID: 0}
-    - target: {fileID: 8854837915051591986, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8854837915051591986, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8854837915051591986, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8854837915051591986, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8854837915051591986, guid: 7bc598ffc2445954e9466d0044c7d43c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

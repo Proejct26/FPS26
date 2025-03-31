@@ -16,12 +16,19 @@ public class MainUI : UI_Scene
     public Image MagazineBar;//탄창 게이지
     public TextMeshProUGUI MagazineText;//탄창 텍스트
 
+    private PlayerStatHandler playerStatHandler;
+    private PlayerWeaponHandler playerWeaponHandler;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponentInChildren<Crosshair>();
         gameObject.GetComponentInChildren<MiniMap>();
+        playerStatHandler = Managers.Player.GetComponent<PlayerStatHandler>();
+        playerWeaponHandler = Managers.Player.GetComponent<PlayerWeaponHandler>();
+
+        playerWeaponHandler.OnChangeMagazine += UpdateMagazine;
+        playerWeaponHandler.OnChangeWeapon += UpdateWeaponIcon;
     }
 
     // Update is called once per frame
@@ -32,7 +39,8 @@ public class MainUI : UI_Scene
 
     void UpdatePlayerData()
     {
-
+        //플레이어의 잔탄수등 세부 스텟을 실시간으로 업데이트 하기
+        ProgressBar(HealthBar, playerStatHandler.CurrentHealth, playerStatHandler.MaxHealth);
     }
 
     /// <summary>
@@ -45,4 +53,16 @@ public class MainUI : UI_Scene
     {
         image.fillAmount = Mathf.Clamp01(curValue / maxValue);
     }
+
+    private void UpdateMagazine(int loadedAmmo, int maxAmmo)
+    {
+        MagazineBar.fillAmount = (float)loadedAmmo / maxAmmo;
+        MagazineText.text = $"{loadedAmmo}/{maxAmmo}"; 
+    }
+
+    private void UpdateWeaponIcon()
+    {
+        WeaponIcon.sprite = playerWeaponHandler.CurrentWeapon.WeaponIcon; 
+    }
 }
+ 

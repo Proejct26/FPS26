@@ -22,7 +22,7 @@ namespace Ricimi
 			ChangeSelection();
 		}
 
-		public void OnPrevButtonClicked()
+		public void OnPrevButtonClick()
 		{
 			selectedOption--;
 			if (selectedOption < 0)
@@ -33,7 +33,7 @@ namespace Ricimi
 			ChangeSelection();
 		}
 
-		public void OnNextButtonClicked()
+		public void OnNextButtonClick()
 		{
 			selectedOption = (selectedOption + 1) % Options.Count;
 

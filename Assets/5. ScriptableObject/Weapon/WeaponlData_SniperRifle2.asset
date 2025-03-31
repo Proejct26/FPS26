@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponlData_SniperRifle2
   m_EditorClassIdentifier: 
   damage: 70
-  attackDelay: 1
+  attackDelay: 0.7
   ammoSettings:
     _bulletPrefab: {fileID: 3575611928538805115, guid: d78f4931f32952a4291e6eea6532444b,
       type: 3}
@@ -23,14 +23,13 @@ MonoBehaviour:
     projectileCount: 1
   recoilSettings:
     recoilAmount: 12
-    aimModeRecoilAmount: 1
-    recoilSpeed: 0.05
-    returnSpeed: 1
+    aimModeRecoilAmount: 0
+    recoilSpeed: 0.1
     maxRecoilAngle: 10
   spreadSettings:
-    originBulletSpread: 6
-    aimingModeSpread: 0
-    maxSpread: 90
-    spreadRecoverySpeed: 1
-    spreadIncrease: 0.5
+    originBulletSpread: 10
+    aimingModeSpread: 0.5
+    maxSpread: 30
+    spreadRecoverySpeed: 2
+    spreadIncrease: 1
   grenadeWeight: 1

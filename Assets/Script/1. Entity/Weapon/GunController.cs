@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
@@ -7,13 +8,17 @@ using UnityEngine.InputSystem;
 public class GunController : WeaponBaseController
 {
     // Inspector
+    [SerializeField] private CinemachineVirtualCamera _zoomCam;
     [SerializeField] private Transform _muzzle;
     [SerializeField] private Transform _ejectionPort;
+    [SerializeField] private GameObject _sniperZoom;
     [SerializeField] private float _spread = 0; // 테스트용
 
     // Component
     private GunAnimationHandler _gunAnimationHandler;
- 
+    private CameraEffectHandler _cameraEffectHandler;
+    private PlayerCameraHandler _playerCameraHandler;
+
     // Data
     private AmmoSettings _ammoSettings;
     private RecoilSettings _recoilSettings; 
@@ -35,8 +40,6 @@ public class GunController : WeaponBaseController
 
     private void Awake()
     {
-        _gunAnimationHandler = gameObject.GetOrAddComponent<GunAnimationHandler>();  
-
         _ammoSettings = _weaponDataSO.ammoSettings;
         _recoilSettings = _weaponDataSO.recoilSettings;
         _spreadSettings = _weaponDataSO.spreadSettings;
@@ -44,8 +47,22 @@ public class GunController : WeaponBaseController
         _LoadedAmmo = _ammoSettings.initializeAmmo;   
         _RemainAmmo = _ammoSettings.ammoLimit;
         _spread = _spreadSettings.originBulletSpread;
+
+        if (_sniperZoom != null)
+            _sniperZoom.SetActive(false);
+
+        if (_zoomCam != null)
+            _zoomCam.gameObject.SetActive(false);
     }
- 
+
+    protected override void Start()
+    {
+        base.Start();
+
+        _cameraEffectHandler = FindFirstObjectByType<CameraEffectHandler>();
+        _gunAnimationHandler = gameObject.GetOrAddComponent<GunAnimationHandler>();  
+        _playerCameraHandler = Managers.Player.GetComponent<PlayerCameraHandler>();    
+    }
 
     protected override void BindInputAction()
     {
@@ -101,6 +118,13 @@ public class GunController : WeaponBaseController
         if (_isReloading) 
             return; 
 
+        if (_sniperZoom != null)
+            _sniperZoom.SetActive(active);
+
+        if (_zoomCam != null)
+            _zoomCam.gameObject.SetActive(active); 
+
+
         _gunAnimationHandler.AimMode(active);
         _isAimMode = active;
         ResetSpread();
@@ -125,16 +149,18 @@ public class GunController : WeaponBaseController
  
         ResetSpread();
         int recoilAmount = _isAimMode ? _recoilSettings.aimModeRecoilAmount : _recoilSettings.recoilAmount;
-        Camera.main.GetComponent<CameraShaker>().SetRecoil(recoilAmount, _recoilSettings.recoilSpeed, _recoilSettings.returnSpeed, _recoilSettings.maxRecoilAngle);
+        _cameraEffectHandler.SetRecoil(recoilAmount, _recoilSettings.recoilSpeed, _recoilSettings.maxRecoilAngle); 
     }
     private GameObject[] RayCasting() 
     {
-        Vector3 startPos = Camera.main.transform.position;
+
+        Camera cam = _playerCameraHandler.GetCamera(_sniperZoom != null && _sniperZoom.activeSelf && IsAimMode);   
+        Vector3 startPos = cam.transform.position;   
         GameObject[] targets = new GameObject[_ammoSettings.projectileCount];   
 
         for (int i = 0; i < _ammoSettings.projectileCount; i++)
         {
-            Ray ray = new Ray(startPos, Camera.main.transform.forward.RandomUnitVectorInCone(_spread));   
+            Ray ray = new Ray(startPos, cam.transform.forward.RandomUnitVectorInCone(_spread));    
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100f))
             { 

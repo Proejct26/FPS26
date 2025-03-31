@@ -248,7 +248,7 @@ MonoBehaviour:
   _weaponParent: {fileID: 7492963166118102614}
   _mainWeaponPrefab: {fileID: 8634434568037516225, guid: 451ee1456bc9c594f88b0a19024831f3,
     type: 3}
-  _subWeaponPrefab: {fileID: 704470906119786993, guid: 431b48627d7b08147bad150593bfdca1,
+  _subWeaponPrefab: {fileID: 2124200299945822973, guid: 75e4bfab1c92a2243ad6fc3a4ffa2e32,
     type: 3}
   _knifePrefab: {fileID: 9014002615599485563, guid: 30c9383683dea174793907f78d84235c,
     type: 3}

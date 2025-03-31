@@ -153,7 +153,8 @@ public class GunController : WeaponBaseController
     }
     private GameObject[] RayCasting() 
     {
-        Camera cam = _playerCameraHandler.GetCamera(IsAimMode && _sniperZoom.activeSelf);
+
+        Camera cam = _playerCameraHandler.GetCamera(_sniperZoom != null && _sniperZoom.activeSelf && IsAimMode);   
         Vector3 startPos = cam.transform.position;   
         GameObject[] targets = new GameObject[_ammoSettings.projectileCount];   
 

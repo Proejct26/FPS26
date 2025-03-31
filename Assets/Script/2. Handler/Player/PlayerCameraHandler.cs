@@ -11,8 +11,8 @@ public class PlayerCameraHandler : MonoBehaviour
 
     public float xRotation {get; set;} = 0f;
     public float yRotation {get; set;} = 0f;
+    
     private Camera _mainCam;
-
 
     private void Start()
     {
@@ -50,6 +50,6 @@ public class PlayerCameraHandler : MonoBehaviour
         // 상하 회전 (카메라 홀더)
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -80f, 80f); // 상하 회전 제한
-        cameraHolder.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        cameraHolder.localRotation = Quaternion.Euler(xRotation, 0f, 0f);   
     }
 }

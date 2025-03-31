@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb8016ca656c7a478694162a09b7cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _closeButton: {fileID: 2849441473120473815}
   _buttonPrefab: {fileID: 931001145491685168, guid: 91245862b9cbcb44a88ab6aeda65e560,
     type: 3}
   _listParent: {fileID: 8920419954325647111}
@@ -480,7 +481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC8FC\uBB34\uAE30 \uC120\uD0DD\uCC3D"
+  m_text: "\uBB34\uAE30 \uC120\uD0DD\uCC3D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 80ffed68eb2e9114aa8700ca19533766, type: 2}
   m_sharedMaterial: {fileID: 5356927154578360215, guid: 80ffed68eb2e9114aa8700ca19533766,

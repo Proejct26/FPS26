@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,10 +18,14 @@ public class PlayerWeaponHandler : MonoBehaviour
 {
     // Field
     [SerializeField] private Transform _weaponParent;
-    [SerializeField] private GameObject _mainWeaponPrefab;
-    [SerializeField] private GameObject _subWeaponPrefab;
-    [SerializeField] private GameObject _knifePrefab;
+    [SerializeField] private WeaponDataSO _primaryWeapon;
+    [SerializeField] private WeaponDataSO _secondaryWeapon;
+    [SerializeField] private WeaponDataSO _throwableWeapon;
+    [SerializeField] private WeaponDataSO _knifeWeapon;
+ 
 
+    private WeaponDataSO[] _weaponDatas; 
+ 
     // Weapon
     private WeaponBaseController[] _weapons;
 
@@ -29,16 +34,24 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     // Property
     public WeaponBaseController CurrentWeapon => _weapons[_selectedWeaponIndex];
- 
+    
     // Event
     public event Action<int, int> OnChangeMagazine;
     public event Action OnChangeWeapon; 
+    public event Action OnChangeWeaponData; 
+
+
 
     //public event Action On 
     private void Awake()
     {
         _weapons = new WeaponBaseController[Enum.GetValues(typeof(EWeaponType)).Length];
-        
+        _weaponDatas = new WeaponDataSO[Enum.GetValues(typeof(EWeaponType)).Length];
+
+        _weaponDatas[(int)EWeaponType.Primary] = _primaryWeapon;
+        _weaponDatas[(int)EWeaponType.Secondary] = _secondaryWeapon;
+        _weaponDatas[(int)EWeaponType.Throwable] = _throwableWeapon;
+        _weaponDatas[(int)EWeaponType.Knife] = _knifeWeapon; 
     }
  
     private void Start() 
@@ -50,9 +63,13 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     private void InitWeapons()
     {
-        AddWeapon(EWeaponType.Primary, _mainWeaponPrefab);
-        AddWeapon(EWeaponType.Secondary, _subWeaponPrefab);
-        AddWeapon(EWeaponType.Knife, _knifePrefab); 
+        foreach (WeaponDataSO weaponDataSO in _weaponDatas)
+        {
+            if (weaponDataSO == null)
+                continue;
+
+            AddWeapon(weaponDataSO.weaponType, weaponDataSO.itemPrefab); 
+        }
 
         EquipWeapon(EWeaponType.Primary);
     }
@@ -72,7 +89,8 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (_weapons[(int)weaponType] == null)
             return;
 
-        _weapons[_selectedWeaponIndex].OnChangeMagazine -= OnChangeMagazine; 
+        if (_weapons[_selectedWeaponIndex] != null) 
+            _weapons[_selectedWeaponIndex].OnChangeMagazine -= OnChangeMagazine; 
         _weapons[(int)weaponType].OnChangeMagazine += OnChangeMagazine;
 
         _selectedWeaponIndex = (int)weaponType;
@@ -87,7 +105,18 @@ public class PlayerWeaponHandler : MonoBehaviour
  
         OnChangeWeapon?.Invoke();
     }
- 
+    
+    public void SetWeaponData(WeaponDataSO weaponDataSO) 
+    {
+        _weaponDatas[(int)weaponDataSO.weaponType] = weaponDataSO;  
+        OnChangeWeaponData?.Invoke(); 
+    } 
+    public WeaponDataSO GetWeaponData(EWeaponType weaponType) 
+    {
+        return _weaponDatas[(int)weaponType]; 
+    }
+
+
     public bool AddWeapon(WeaponDataSO weaponDataSO)
     {
         int index = (int)weaponDataSO.weaponType;

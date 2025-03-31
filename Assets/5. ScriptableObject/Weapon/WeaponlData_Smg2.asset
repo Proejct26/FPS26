@@ -18,6 +18,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 704470906119786993, guid: 431b48627d7b08147bad150593bfdca1,
     type: 3}
   weaponType: 0
+  weaponName: "\uAE30\uAD00\uB2E8\uCD1DB"
   damage: 10
   attackDelay: 0.1
   ammoSettings:

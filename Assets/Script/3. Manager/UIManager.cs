@@ -90,8 +90,8 @@ public class UIManager : IManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
         
-        if(_popupStack.Count > 0)
-            ClosePopupUI(_popupStack.Peek());
+        // if(_popupStack.Count > 0)
+        //     ClosePopupUI(_popupStack.Peek()); 
 
         GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
         T popup = Util.GetOrAddComponent<T>(go);

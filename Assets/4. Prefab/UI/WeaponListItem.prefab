@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 5231305936931908060}
   - component: {fileID: 4610368615104444541}
   m_Layer: 5
-  m_Name: Label-Title
+  m_Name: WeaponName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -226,8 +226,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4fb4b51c5f4e84cfc940851f0728bfbc, type: 2}
-  m_sharedMaterial: {fileID: -1895591174926498930, guid: 4fb4b51c5f4e84cfc940851f0728bfbc,
+  m_fontAsset: {fileID: 11400000, guid: 80ffed68eb2e9114aa8700ca19533766, type: 2}
+  m_sharedMaterial: {fileID: 5356927154578360215, guid: 80ffed68eb2e9114aa8700ca19533766,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

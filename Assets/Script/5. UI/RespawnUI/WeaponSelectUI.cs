@@ -9,8 +9,6 @@ public class WeaponSelectUI : UI_Popup
 {
     enum Texts
     {
-        WeaponTypeText,
-        WeaponNameText,
         damageText,
         fireRateText,
         RecoilText,
@@ -28,10 +26,12 @@ public class WeaponSelectUI : UI_Popup
     }
 
     private WeaponDataSO _weaponData;
-
+    private PlayerWeaponHandler _playerWeaponHandler;
     private void Awake()
     {
-        Bind<TextMeshProUGUI>(typeof(Texts));
+        _playerWeaponHandler = FindAnyObjectByType<PlayerWeaponHandler>();
+
+        Bind<TextMeshProUGUI>(typeof(Texts)); 
         Bind<Image>(typeof(Images)); 
         Bind<Button>(typeof(Buttons));
 
@@ -42,8 +42,6 @@ public class WeaponSelectUI : UI_Popup
     public void InitWeaponInfo(WeaponDataSO weaponData)
     {
         _weaponData = weaponData;
-        GetText((int)Texts.WeaponTypeText).text = _weaponData.weaponType.ToString();
-        //GetText((int)Texts.WeaponNameText).text = _weaponData.weaponName;
 
         int damageLevel = Mathf.Clamp(_weaponData.damage * 2, 10, 100) / 10;   
         // 발사 속도 레벨 계산 (0.1초 이하: 10점, 1.5초 이상: 0점)
@@ -70,7 +68,8 @@ public class WeaponSelectUI : UI_Popup
 
     private void SelectWeapon()
     {
-        
+        _playerWeaponHandler.SetWeaponData(_weaponData);  
+        ClosePopupUI();
     }
 
 

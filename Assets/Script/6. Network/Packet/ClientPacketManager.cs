@@ -42,11 +42,23 @@ public class PacketManager : IManager
         _onRecv.Add((ushort)Game.PacketID.ScCreateOtherCharacter, MakePacket<SC_CREATE_OTHER_CHARACTER>);
         _handler.Add((ushort)Game.PacketID.ScCreateOtherCharacter, PacketHandler.SC_CreateOtherCharacter);
 
-        _onRecv.Add((ushort)Game.PacketID.ScGrenadeexplositionpos, MakePacket<SC_GRENADEEXPLOSITIONPOS>);
-        _handler.Add((ushort)Game.PacketID.ScGrenadeexplositionpos, PacketHandler.SC_Grenadeexplositionpos);
+        _onRecv.Add((ushort)Game.PacketID.ScGrenadeExplositionPos, MakePacket<SC_GRENADE_EXPLOSITION_POS>);
+        _handler.Add((ushort)Game.PacketID.ScGrenadeExplositionPos, PacketHandler.SC_GrenadeExplositionPos);
+
+        _onRecv.Add((ushort)Game.PacketID.ScItemPickFail, MakePacket<SC_ITEM_PICK_FAIL>);
+        _handler.Add((ushort)Game.PacketID.ScItemPickFail, PacketHandler.SC_ItemPickFail);
+
+        _onRecv.Add((ushort)Game.PacketID.ScItemPickSuccess, MakePacket<SC_ITEM_PICK_SUCCESS>);
+        _handler.Add((ushort)Game.PacketID.ScItemPickSuccess, PacketHandler.SC_ItemPickSuccess);
+
+        _onRecv.Add((ushort)Game.PacketID.ScItemSpawned, MakePacket<SC_ITEM_SPAWNED>);
+        _handler.Add((ushort)Game.PacketID.ScItemSpawned, PacketHandler.SC_ItemSpawned);
 
         _onRecv.Add((ushort)Game.PacketID.ScKeyInput, MakePacket<SC_KEY_INPUT>);
         _handler.Add((ushort)Game.PacketID.ScKeyInput, PacketHandler.SC_KeyInput);
+
+        _onRecv.Add((ushort)Game.PacketID.ScOnAccept, MakePacket<SC_ON_ACCEPT>);
+        _handler.Add((ushort)Game.PacketID.ScOnAccept, PacketHandler.SC_OnAccept);
 
         _onRecv.Add((ushort)Game.PacketID.ScPosInterpolation, MakePacket<SC_POS_INTERPOLATION>);
         _handler.Add((ushort)Game.PacketID.ScPosInterpolation, PacketHandler.SC_PosInterpolation);

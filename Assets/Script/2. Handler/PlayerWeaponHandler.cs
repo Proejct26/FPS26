@@ -15,21 +15,28 @@ public enum EWeaponType
 
 public class PlayerWeaponHandler : MonoBehaviour
 {
+    // Field
     [SerializeField] private Transform _weaponParent;
     [SerializeField] private GameObject _mainWeaponPrefab;
     [SerializeField] private GameObject _subWeaponPrefab;
     [SerializeField] private GameObject _knifePrefab;
 
+    // Weapon
     private WeaponBaseController[] _weapons;
     private WeaponBaseController _mainWeapon;
     private WeaponBaseController _subWeapon;
     private WeaponBaseController _knife;
 
+    // Variable
     private int _selectedWeaponIndex = 0;
 
+    // Property
     public WeaponBaseController CurrentWeapon => _weapons[_selectedWeaponIndex];
+ 
 
-
+    // Event
+    public event Action OnWeaponChanged;
+   
     private void Awake()
     {
         InitWeapons();
@@ -69,5 +76,7 @@ public class PlayerWeaponHandler : MonoBehaviour
         _mainWeapon.gameObject.SetActive(index == 0); 
         _subWeapon.gameObject.SetActive(index == 1);
         _knife.gameObject.SetActive(index == 2); 
+
+        OnWeaponChanged?.Invoke();
     }
 }

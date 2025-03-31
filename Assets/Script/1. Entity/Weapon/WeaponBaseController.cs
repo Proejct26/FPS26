@@ -5,17 +5,47 @@ using UnityEngine.InputSystem;
 
 public abstract class WeaponBaseController : MonoBehaviour
 {
+    // Field
     [SerializeField] protected WeaponDataSO _weaponDataSO;
+    
+    // Data
+    protected AmmoSettings _ammoSettings;
+    protected RecoilSettings _recoilSettings; 
+    protected SpreadSettings _spreadSettings;
 
+    // Variable
     private Coroutine _fireCoroutine;
-    float lastFireTime;
+    private float lastFireTime;
+
+
+    // Property
+    protected int _LoadedAmmo {get; set;} = 0;// 장전된 탄약   
+    protected int _RemainAmmo {get; set;} = 0; // 남은 탄약
+    public int GetCurrentAmmo => _LoadedAmmo;
+    public int GetMaxAmmo => _ammoSettings.initializeAmmo;
+
+
+
+    protected virtual void Awake()
+    {
+        _ammoSettings = _weaponDataSO.ammoSettings;
+        _recoilSettings = _weaponDataSO.recoilSettings;
+        _spreadSettings = _weaponDataSO.spreadSettings;
+    }
+
     protected virtual void Start()
     {
         BindInputAction();
     }
 
-    public void OnEnable() => BindInputAction();
-    public void OnDisable() => UnbindInputAction();
+    protected virtual void OnEnable()
+    {
+        BindInputAction();
+    }
+    protected virtual void OnDisable()
+    {
+        UnbindInputAction();
+    }
     
     protected virtual void BindInputAction()
     {
@@ -67,4 +97,5 @@ public abstract class WeaponBaseController : MonoBehaviour
             yield return new WaitForSeconds(_weaponDataSO.attackDelay); 
         }
     }
+
 }

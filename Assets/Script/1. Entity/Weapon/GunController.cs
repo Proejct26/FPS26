@@ -19,17 +19,10 @@ public class GunController : WeaponBaseController
     private CameraEffectHandler _cameraEffectHandler;
     private PlayerCameraHandler _playerCameraHandler;
 
-    // Data
-    private AmmoSettings _ammoSettings;
-    private RecoilSettings _recoilSettings; 
-    private SpreadSettings _spreadSettings;
 
     // Variable
-    private int _LoadedAmmo = 0; // 장전된 탄약  
-    private int _RemainAmmo = 0; // 남은 탄약
     private bool _isAimMode = false;
     private bool _isReloading = false;
-
 
 
     // Property
@@ -38,12 +31,9 @@ public class GunController : WeaponBaseController
 
     private Coroutine _changeSpreadCoroutine;
 
-    private void Awake()
+    protected override void Awake()
     {
-        _ammoSettings = _weaponDataSO.ammoSettings;
-        _recoilSettings = _weaponDataSO.recoilSettings;
-        _spreadSettings = _weaponDataSO.spreadSettings;
-    
+        base.Awake();
         _LoadedAmmo = _ammoSettings.initializeAmmo;   
         _RemainAmmo = _ammoSettings.ammoLimit;
         _spread = _spreadSettings.originBulletSpread;

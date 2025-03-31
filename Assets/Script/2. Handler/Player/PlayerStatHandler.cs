@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -83,4 +83,44 @@ public class PlayerStatHandler : MonoBehaviour
         Debug.Log("Player died.");
     }
 
+
+    /// <summary>
+    /// 지속 시간 스탯 버프 처리
+    /// </summary>
+    /// <param name="speedDelta"></param>
+    /// <param name="jumpDelta"></param>
+    /// <param name="attackDelta"></param>
+    /// <param name="defenseDelta"></param>
+    /// <param name="duration"></param>
+    public void ApplyTemporaryBuff(
+        float? speedDelta = null,
+        float? jumpDelta = null,
+        float? attackDelta = null,
+        float? defenseDelta = null,
+        float duration = 5f)
+    {
+        StartCoroutine(ApplyBuffCoroutine(speedDelta, jumpDelta, attackDelta, defenseDelta, duration));
+    }
+
+    private IEnumerator ApplyBuffCoroutine(
+        float? speedDelta,
+        float? jumpDelta,
+        float? attackDelta,
+        float? defenseDelta,
+        float duration)
+    {
+        // 스탯 변경
+        if (speedDelta.HasValue) MoveSpeed += speedDelta.Value;
+        if (jumpDelta.HasValue) JumpPower += jumpDelta.Value;
+        if (attackDelta.HasValue) AttackPower += attackDelta.Value;
+        if (defenseDelta.HasValue) DefensePower += defenseDelta.Value;
+
+        yield return new WaitForSeconds(duration);
+
+        // 스탯 복구
+        if (speedDelta.HasValue) MoveSpeed -= speedDelta.Value;
+        if (jumpDelta.HasValue) JumpPower -= jumpDelta.Value;
+        if (attackDelta.HasValue) AttackPower -= attackDelta.Value;
+        if (defenseDelta.HasValue) DefensePower -= defenseDelta.Value;
+    }
 }

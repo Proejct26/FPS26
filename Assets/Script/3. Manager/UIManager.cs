@@ -19,6 +19,7 @@ public class UIManager : IManager
 
     public void Init()
     {
+
         // 실행 파일의 화면 크기 설정
         Screen.SetResolution(720, 480, false);
 

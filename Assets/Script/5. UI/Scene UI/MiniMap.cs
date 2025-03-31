@@ -5,34 +5,25 @@ using UnityEngine.UI;
 
 public class MiniMap : UI_Scene
 {
+    //다른 플레이어도 이 스크립트를 가지고 있을까?
+    //가지고 있을때는 자신을 뺀 모든플레이어의 위치를 미니맵에 표시해야한다
+
     //카메라의 사이즈 값으로 확대기능이 구현이 가능
 
     public Image playerIcon;  // 미니맵에서 플레이어 아이콘
-    public Image enemyIcon;
+    public GameObject enemyIconPrefab;//적군 아이콘
 
     Transform playerTransform; // 플레이어 Transform (Managers.Player 사용 가능)
-    Transform enemyTransform; //적 위치 변수
 
     public RenderTexture miniMapTexture;//미니맵 창
-
-    Camera miniMapCam;//OnBecameVisible 사용 테스트
+    Camera miniMapCam;//미니맵 카메라
 
 
     void Start()
     {
         playerTransform = Managers.Player.gameObject.GetComponent<Transform>();
-        enemyTransform = GameObject.FindWithTag("LocalPlayer")?.transform;
 
-        if (enemyTransform == null)
-        {
-            Debug.Log("없음");
-        }
-        else if (enemyTransform != null)
-        {
-            Debug.Log("있슴");
-        }
-
-        OnMiniMapCamere();//미니맵 연동
+        OnMiniMapCamere();
     }
 
     void Update()
@@ -41,22 +32,9 @@ public class MiniMap : UI_Scene
         float playerRotation = playerTransform.eulerAngles.y;
         playerIcon.rectTransform.rotation = Quaternion.Euler(0, 0, -playerRotation);
 
-        OnBecameVisible();
+        OnLocalPlayerIcon();
 
-        if (enemyTransform != null)
-        {
-            enemyIcon.rectTransform.position = enemyTransform.position;
-
-            // 적 아이콘 회전 (회전값 적용)
-            float enemyRotation = enemyTransform.eulerAngles.y;
-            enemyIcon.rectTransform.rotation = Quaternion.Euler(0, 0, -enemyRotation);
-
-        }
-
-        OnBecameInvisible();
     }
-
-
     /// <summary>
     /// 미니맵 카메라 생성 메서드
     /// </summary>
@@ -73,25 +51,22 @@ public class MiniMap : UI_Scene
 
         miniMapCam.targetTexture = miniMapTexture;//미니맵 창이랑 연동
         miniMapCam.cullingMask = ~(1 << 3) | (1 << 5);//플레이어 오브젝트와 무기 오브젝트 카메라에서 제외
-
     }
 
-    /// <summary>
-    /// 적군 미니맵 표시 메서드
-    /// </summary>
-    void OnBecameVisible()
+    void OnLocalPlayerIcon()
     {
-        if (gameObject.CompareTag("LocalPlayer"))
-        {
-            enemyIcon.gameObject.SetActive(true);
-        }
-    }
+        //다른 객체인가?
+        GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
 
-    void OnBecameInvisible()
-    {
-        if (gameObject.CompareTag("LocalPlayer"))
+        foreach (var player in allPlayers)
         {
-            enemyIcon.gameObject.SetActive(false);
+            // 자신은 제외하고 적 플레이어만 처리
+            if (player != Managers.Player.gameObject)
+            {
+                Transform localPlayerPos = Managers.Player.gameObject.transform;
+
+                Instantiate(playerIcon,localPlayerPos);
+            }
         }
     }
 

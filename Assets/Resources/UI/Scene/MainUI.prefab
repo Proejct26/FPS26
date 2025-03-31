@@ -1137,10 +1137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIcon: {fileID: 7605800882129473307}
-  minimapRect: {fileID: 0}
   playerTransform: {fileID: 0}
-  minimapCenter: {fileID: 0}
-  minimapScale: 0.1
+  miniMapTexture: {fileID: 8400000, guid: 6d7c07f940865174ab51b11db156a6a5, type: 2}
 --- !u!1 &8552325384418814269
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class MainUI : UI_Scene
     public TextMeshProUGUI MagazineText;//탄창 텍스트
 
     PlayerStatHandler playerStatHandler;
+    PlayerWeaponHandler playerWeaponHandler;
 
 
     // Start is called before the first frame update

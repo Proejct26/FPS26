@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d1457798ca1844d9999655b0c7bded, type: 3}
   m_Name: WeaponlData_Smg2
   m_EditorClassIdentifier: 
+  weaponIcon: {fileID: 21300024, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
   damage: 10
   attackDelay: 0.1
   ammoSettings:

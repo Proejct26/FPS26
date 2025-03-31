@@ -25,9 +25,18 @@ public class UIManager : IManager
 
         //Managers.UI.ShowSceneUI<MainUI>();  //같은 이름일 경우 텍스트 생략
         
-       //  UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup"); //같은 이름일 경우 텍스트 생략
-         
-         // ClosePopupUI(popup);
+        // UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup");
+       
+       // 씬에 따라 초기 UI 다르게 설정
+       string currentScene = SceneManager.GetActiveScene().name;
+       if (currentScene == "TitleScene")
+       {
+           ShowPopupUI<UI_StartPopup>("StartPopup");
+       }
+       // else if (currentScene == "MainScene")
+       // {
+       //     ShowSceneUI<MainUI>();
+       // }
     } 
   
     public void Clear()
@@ -138,17 +147,4 @@ public class UIManager : IManager
         while (_popupStack.Count > 0)
             ClosePopupUI();
     }
-    
-    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    // {
-    //     Clear();
-    //     if (scene.name == "TitleScene")
-    //     {
-    //         ShowSceneUI<UI_Title>("TitleCanvas");
-    //     }
-    //     else if (scene.name == "MainScene")
-    //     {
-    //         ShowSceneUI<MainUI>("MainUI");
-    //     }
-    // }
 }

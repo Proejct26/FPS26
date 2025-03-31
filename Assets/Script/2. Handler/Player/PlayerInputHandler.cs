@@ -1,4 +1,4 @@
-﻿
+
 using UnityEngine;
 
 
@@ -37,7 +37,7 @@ public class PlayerInputHandler : MonoBehaviour
         // 마우스 회전 (Vector2 → rotation 값으로 직접 사용)
         Vector2 look = Managers.Input.GetInput(EPlayerInput.Look).ReadValue<Vector2>();
         RotationX = look.y;  // 상하 (Pitch)
-        RotationY = look.x;  // 좌우 (Yaw)
+        RotationY = look.x;  // 좌우 (Yaw)    
 
         // LookInput 벡터 방향 (기본적으로 정면 방향 기준 벡터. 카메라 forward 등에서 계산 가능)
         LookInput = new Vector2(RotationX, RotationY);

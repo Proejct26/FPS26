@@ -16,12 +16,15 @@ public class MainUI : UI_Scene
     public Image MagazineBar;//탄창 게이지
     public TextMeshProUGUI MagazineText;//탄창 텍스트
 
+    PlayerStatHandler playerStatHandler;
+
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponentInChildren<Crosshair>();
         gameObject.GetComponentInChildren<MiniMap>();
+        playerStatHandler = Managers.Player.GetComponent<PlayerStatHandler>();
     }
 
     // Update is called once per frame
@@ -32,6 +35,8 @@ public class MainUI : UI_Scene
 
     void UpdatePlayerData()
     {
+        //플레이어의 잔탄수등 세부 스텟을 실시간으로 업데이트 하기
+        ProgressBar(HealthBar, playerStatHandler.CurrentHealth, playerStatHandler.MaxHealth);
 
     }
 

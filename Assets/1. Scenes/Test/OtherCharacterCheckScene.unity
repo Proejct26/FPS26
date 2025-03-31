@@ -2795,13 +2795,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3160921666926354799, guid: c7ff790337791134095cb3ce8e367854,
         type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1262584846}
+    - target: {fileID: 3160921666926354799, guid: c7ff790337791134095cb3ce8e367854,
+        type: 3}
       propertyPath: m_RenderMode
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4766769109379437376, guid: c7ff790337791134095cb3ce8e367854,
         type: 3}
       propertyPath: m_text
-      value: 
+      value: "\uC548\uB155\uD558\uC138\uC694"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766769109379437376, guid: c7ff790337791134095cb3ce8e367854,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766769109379437376, guid: c7ff790337791134095cb3ce8e367854,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766769109379437376, guid: c7ff790337791134095cb3ce8e367854,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766769109379437376, guid: c7ff790337791134095cb3ce8e367854,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766769109379437376, guid: c7ff790337791134095cb3ce8e367854,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766769109379437376, guid: c7ff790337791134095cb3ce8e367854,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5658757632329614971, guid: c7ff790337791134095cb3ce8e367854,
         type: 3}
@@ -2812,6 +2847,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928885184676304716, guid: c7ff790337791134095cb3ce8e367854,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928885184676304716, guid: c7ff790337791134095cb3ce8e367854,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 9166229221398081221, guid: c7ff790337791134095cb3ce8e367854,
         type: 3}
@@ -5119,6 +5164,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4887460767432162760, guid: 30c819560420f824da028f3502f83728,
     type: 3}
   m_PrefabInstance: {fileID: 1337187282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1262584846 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7429449467787823053, guid: b99f6c0c0c31bbe489a14dfc1e245366,
+    type: 3}
+  m_PrefabInstance: {fileID: 1132688336}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1265816472 stripped
 Transform:

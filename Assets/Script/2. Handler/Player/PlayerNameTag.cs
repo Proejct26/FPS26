@@ -19,7 +19,7 @@ public class PlayerNameTag : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Camera.main == null || player == null)
+        if (mainCam == null || player == null)
             return;
 
         // 위치 조정 (머리 위로)

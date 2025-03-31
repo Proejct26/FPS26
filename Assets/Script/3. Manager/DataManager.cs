@@ -1,11 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
 
+[Serializable]
+public class WeaponData
+{
+    [SerializeField] public List<WeaponDataSO> weaponDatas = new List<WeaponDataSO>();
+
+    public List<WeaponDataSO> GetWeaponData(EWeaponType weaponType)
+    {
+        return weaponDatas.FindAll(data => data.weaponType == weaponType);  
+    }
+    
+    
+}
+
+[Serializable]
+public class GameSettings
+{
+    public string Nickname { get; set; }
+    public float BGMVolume { get; set; }
+    public float SFXVolume { get; set; }
+    public float MouseSensitivity { get; set; }
+
+    public GameSettings()
+    {
+        Nickname = "";
+        BGMVolume = 50f;
+        SFXVolume = 50f;
+        MouseSensitivity = 50f;
+    }
+}
+
+[Serializable]
 public class DataManager : IManager
 {
-    private GameSettings _settings = new GameSettings();
-
+    [SerializeField] private GameSettings _settings = new GameSettings();
+    [field: SerializeField] public WeaponData WeaponData {get; private set;} = new WeaponData(); 
+ 
     public void Init()
     {
         // 초기화 시 기본값 설정
@@ -39,19 +73,4 @@ public class DataManager : IManager
     public float MouseSensitivity => _settings.MouseSensitivity;
 }
 
-[System.Serializable]
-public class GameSettings
-{
-    public string Nickname { get; set; }
-    public float BGMVolume { get; set; }
-    public float SFXVolume { get; set; }
-    public float MouseSensitivity { get; set; }
 
-    public GameSettings()
-    {
-        Nickname = "";
-        BGMVolume = 50f;
-        SFXVolume = 50f;
-        MouseSensitivity = 50f;
-    }
-}

@@ -38,6 +38,9 @@ public class WeaponDataSO : ScriptableObject
 {
     [Header("UI")]
     [SerializeField] public Sprite weaponIcon;
+    [SerializeField] public GameObject dropItemPrefab;
+    [SerializeField] public GameObject itemPrefab;
+    [SerializeField] public EWeaponType weaponType;
 
 
     [Header("Weapon Base")]

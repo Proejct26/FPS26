@@ -17,14 +17,15 @@ public abstract class WeaponBaseController : MonoBehaviour
     // Variable
     private Coroutine _fireCoroutine;
     private float lastFireTime;
+    protected int _LoadedAmmo = 0;// 장전된 탄약   
+    protected int _RemainAmmo = 0; // 남은 탄약 
 
     // Property
-    protected int _LoadedAmmo {get; set;} = 0;// 장전된 탄약   
-    protected int _RemainAmmo {get; set;} = 0; // 남은 탄약
+    public Sprite WeaponIcon => _weaponDataSO.weaponIcon;
+    public WeaponDataSO WeaponDataSO => _weaponDataSO; 
     public int GetCurrentAmmo => _LoadedAmmo;
     public int GetMaxAmmo => _ammoSettings.initializeAmmo;
 
-    public Sprite WeaponIcon => _weaponDataSO.weaponIcon;
 
     public event Action<int, int> OnChangeMagazine;
 

@@ -14,7 +14,7 @@ public interface IManager
 
 public class Managers : Singleton<Managers>
 { 
-    [field: SerializeField] private DataManager data;
+    [field: SerializeField] private DataManager data  = new DataManager();
     [field: SerializeField] private InputManager input = new InputManager();
     [field: SerializeField] private ResourceManager resource = new ResourceManager();
     [field: SerializeField] private EventManager @event = new EventManager();
@@ -45,7 +45,7 @@ public class Managers : Singleton<Managers>
         if (pcb != null) 
             Player = pcb.gameObject; 
 
-        data = new DataManager();
+   
         Init();
     }
     private void Start() 

@@ -18,6 +18,7 @@ public enum EPlayerInput
 	Reload,
 	AimMode,
 	Look,
+	ThrowWeapon,
 }
 
 [System.Serializable]
@@ -34,6 +35,7 @@ public class InputManager : IManager
 	public InputAction MainWeapon => playerInputs[EPlayerInput.MainWeapon];
 	public InputAction SubWeapon => playerInputs[EPlayerInput.SubWeapon];
 	public InputAction KnifeWeapon => playerInputs[EPlayerInput.KnifeWeapon];   
+	public InputAction Throw => playerInputs[EPlayerInput.ThrowWeapon]; 
 
 	// === Input Actions ===
 	public InputAction GetInput(EPlayerInput type) => playerInputs[type];   

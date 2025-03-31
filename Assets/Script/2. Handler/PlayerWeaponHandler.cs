@@ -7,10 +7,10 @@ using UnityEngine.InputSystem;
 
 public enum EWeaponType
 {
-    Main = 0,
-    Sub = 1,
+    Primary = 0,
+    Secondary = 1,
     Knife = 2,
-    Grenade = 3,
+    Throwable = 3, 
 }
 
 public class PlayerWeaponHandler : MonoBehaviour
@@ -23,9 +23,6 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     // Weapon
     private WeaponBaseController[] _weapons;
-    private WeaponBaseController _mainWeapon;
-    private WeaponBaseController _subWeapon;
-    private WeaponBaseController _knife;
 
     // Variable
     private int _selectedWeaponIndex = 0;
@@ -40,49 +37,95 @@ public class PlayerWeaponHandler : MonoBehaviour
     //public event Action On 
     private void Awake()
     {
-        InitWeapons();
         _weapons = new WeaponBaseController[Enum.GetValues(typeof(EWeaponType)).Length];
-        _weapons[(int)EWeaponType.Main] = _mainWeapon;
-        _weapons[(int)EWeaponType.Sub] = _subWeapon;
-        _weapons[(int)EWeaponType.Knife] = _knife;
-
+        
     }
  
     private void Start() 
     {
+        InitWeapons();
         BindInputAction();
-        SetActiveWeapon(EWeaponType.Main); 
+        EquipWeapon(EWeaponType.Primary); 
     }
 
     private void InitWeapons()
     {
-        _mainWeapon = Instantiate(_mainWeaponPrefab, _weaponParent).GetComponent<WeaponBaseController>(); 
-        _subWeapon = Instantiate(_subWeaponPrefab, _weaponParent).GetComponent<WeaponBaseController>();
-        _knife = Instantiate(_knifePrefab, _weaponParent).GetComponent<WeaponBaseController>();
+        AddWeapon(EWeaponType.Primary, _mainWeaponPrefab);
+        AddWeapon(EWeaponType.Secondary, _subWeaponPrefab);
+        AddWeapon(EWeaponType.Knife, _knifePrefab); 
+
+        EquipWeapon(EWeaponType.Primary);
     }
+
     private void BindInputAction()
     {
         if (Managers.IsNull)
             return; 
-
-        Managers.Input.GetInput(EPlayerInput.MainWeapon).started += (InputAction.CallbackContext context) => SetActiveWeapon(EWeaponType.Main);
-        Managers.Input.GetInput(EPlayerInput.SubWeapon).started += (InputAction.CallbackContext context) => SetActiveWeapon(EWeaponType.Sub);
-        Managers.Input.GetInput(EPlayerInput.KnifeWeapon).started += (InputAction.CallbackContext context) => SetActiveWeapon(EWeaponType.Knife);
+ 
+        Managers.Input.GetInput(EPlayerInput.MainWeapon).started += (InputAction.CallbackContext context) => EquipWeapon(EWeaponType.Primary);
+        Managers.Input.GetInput(EPlayerInput.SubWeapon).started += (InputAction.CallbackContext context) => EquipWeapon(EWeaponType.Secondary);
+        Managers.Input.GetInput(EPlayerInput.KnifeWeapon).started += (InputAction.CallbackContext context) => EquipWeapon(EWeaponType.Knife);
     }
  
-    private void SetActiveWeapon(EWeaponType weaponType)
+    private void EquipWeapon(EWeaponType weaponType)
     {
-        CurrentWeapon.OnChangeMagazine -= OnChangeMagazine; 
-        int index = (int)weaponType;
-        _selectedWeaponIndex = index;
-        CurrentWeapon.OnChangeMagazine += OnChangeMagazine;
-         
+        if (_weapons[(int)weaponType] == null)
+            return;
 
-        _mainWeapon.gameObject.SetActive(index == 0); 
-        _subWeapon.gameObject.SetActive(index == 1);
-        _knife.gameObject.SetActive(index == 2); 
+        _weapons[_selectedWeaponIndex].OnChangeMagazine -= OnChangeMagazine; 
+        _weapons[(int)weaponType].OnChangeMagazine += OnChangeMagazine;
 
+        _selectedWeaponIndex = (int)weaponType;
+
+        for (int i = 0; i < _weapons.Length; i++)
+        {
+            if (_weapons[i] == null)
+                continue; 
+
+            _weapons[i].gameObject.SetActive(i == _selectedWeaponIndex);
+        }
+ 
         OnChangeWeapon?.Invoke();
+    }
+ 
+    public bool AddWeapon(WeaponDataSO weaponDataSO)
+    {
+        int index = (int)weaponDataSO.weaponType;
+        if (_weapons[index] != null) // 이미 해당 타입의 무기를 장착중이라면 false 반환
+            return false;
 
+        AddWeapon(weaponDataSO.weaponType, weaponDataSO.itemPrefab); 
+        return true; 
+    }
+    private void AddWeapon(EWeaponType weaponType, GameObject itemPrefab) 
+    {
+        if (itemPrefab == null)
+            return;
+
+        int index = (int)weaponType;
+        _weapons[index] = Instantiate(itemPrefab, _weaponParent).GetComponent<WeaponBaseController>();
+        EquipWeapon(weaponType); 
+    } 
+ 
+    private void ThrowWeapon()
+    {
+        EWeaponType weaponType = CurrentWeapon.WeaponDataSO.weaponType; 
+        int index = (int)weaponType;
+        if (_weapons[index] == null || weaponType == EWeaponType.Knife) 
+            return;
+
+        GameObject weapon = _weapons[index].gameObject;
+        if (weapon.TryGetComponent(out WeaponBaseController weaponBaseController))
+        {
+            WeaponDataSO weaponDataSO = weaponBaseController.WeaponDataSO;
+            GameObject dropItem = Managers.Pool.Get(weaponDataSO.dropItemPrefab);
+
+            dropItem.transform.position = Managers.Player.transform.position + Managers.Player.transform.forward * 1f;
+            dropItem.GetOrAddComponent<Rigidbody>().AddForce(Managers.Player.transform.forward * 4f, ForceMode.Impulse);
+        } 
+        
+        Destroy(weapon); 
+        EquipWeapon(EWeaponType.Knife);
+        _weapons[index] = null;
     }
 }

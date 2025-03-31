@@ -9,7 +9,7 @@ public abstract class WeaponBaseController : MonoBehaviour
     // Field
     [SerializeField] protected WeaponDataSO _weaponDataSO;
 
-    // Data
+    // Data 
     protected AmmoSettings _ammoSettings;
     protected RecoilSettings _recoilSettings; 
     protected SpreadSettings _spreadSettings;
@@ -26,6 +26,8 @@ public abstract class WeaponBaseController : MonoBehaviour
     public int GetCurrentAmmo => _LoadedAmmo;
     public int GetMaxAmmo => _ammoSettings.initializeAmmo;
 
+    // Component
+    protected WeaponAnimationHandler _weaponAnimationHandler; 
 
     public event Action<int, int> OnChangeMagazine;
 

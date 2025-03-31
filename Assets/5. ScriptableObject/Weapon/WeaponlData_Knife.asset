@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d1457798ca1844d9999655b0c7bded, type: 3}
+  m_Name: WeaponlData_Knife
+  m_EditorClassIdentifier: 
+  weaponIcon: {fileID: 21300038, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
+  dropItemPrefab: {fileID: 1306367745336645715, guid: 745aae505a5444c43bf4435ab7af1848,
+    type: 3}
+  itemPrefab: {fileID: 8335102493945524992, guid: c614dd82f1ae8f44c9e600bc5d1687be,
+    type: 3}
+  weaponType: 2
+  weaponName: "\uCE7CA"
+  damage: 20
+  attackDelay: 1
+  ammoSettings:
+    _bulletPrefab: {fileID: 3575611928538805115, guid: d78f4931f32952a4291e6eea6532444b,
+      type: 3}
+    initializeAmmo: 1
+    ammoLimit: 1
+    reloadTime: 0
+    projectileCount: 1
+  recoilSettings:
+    recoilAmount: 0
+    aimModeRecoilAmount: 0
+    recoilSpeed: 0
+    maxRecoilAngle: 10
+  spreadSettings:
+    originBulletSpread: 0
+    aimingModeSpread: 0
+    maxSpread: 0
+    spreadRecoverySpeed: 0
+    spreadIncrease: 0
+  grenadeWeight: 0.1

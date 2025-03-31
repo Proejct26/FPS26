@@ -645,6 +645,37 @@ Transform:
   - {fileID: 4203999236892589264}
   m_Father: {fileID: 2521359234657428373}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1144882100759588494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6027063868189045155}
+  m_Layer: 0
+  m_Name: WeaponHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6027063868189045155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144882100759588494}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: -0.02, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1719122838944825109}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1187987433610092956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,7 +1073,6 @@ GameObject:
   - component: {fileID: 8460559994320097920}
   - component: {fileID: 6482069361688257408}
   - component: {fileID: 729536943106135725}
-  - component: {fileID: 8514645656762115962}
   - component: {fileID: 5432595999114164856}
   - component: {fileID: 661013678338857240}
   m_Layer: 0
@@ -1120,23 +1150,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 2696964542297791293}
   animator: {fileID: 6482069361688257408}
-  nameTag: {fileID: 8514645656762115962}
---- !u!114 &8514645656762115962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2827519942758006864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 450c3c1fd4b488642a379dd6c40e6475, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1634013168326554886}
-  offset: {x: 0, y: 2.2, z: 0}
-  nameText: {fileID: 4508250802439631392}
-  visibleDistance: 20
+  weaponHolder: {fileID: 6027063868189045155}
+  weaponPrefabs:
+  - {fileID: 1306367745336645715, guid: 745aae505a5444c43bf4435ab7af1848, type: 3}
+  - {fileID: 7847240014596489219, guid: 015575a993a5a3d4a9581fd0c5d75fed, type: 3}
+  - {fileID: 1231910257563632584, guid: d23e533e3f1700f47aecedad9585672f, type: 3}
+  - {fileID: 4280140794876716203, guid: 4b1f9e0f7576fa44bb69da56fd16cb9a, type: 3}
+  - {fileID: 2567875013113560307, guid: 1d0f08ad72e29634c9cda7485945079b, type: 3}
+  - {fileID: 5902459433618323506, guid: 037014a3c79926341be0aa7c8a683b1d, type: 3}
+  - {fileID: 3727292691470904061, guid: 57ef743f42bfc4b4d9ed9d45f677dd4e, type: 3}
+  - {fileID: 3562037514319824971, guid: 31171677a1e2e9b4582d1e58abd65215, type: 3}
+  nameTag: {fileID: 2009501981638128152}
 --- !u!82 &5432595999114164856
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3359,5 +3383,6 @@ Transform:
   - {fileID: 4970757546680620111}
   - {fileID: 7000059850426550927}
   - {fileID: 8642631350189334047}
+  - {fileID: 6027063868189045155}
   m_Father: {fileID: 1745205629373831394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

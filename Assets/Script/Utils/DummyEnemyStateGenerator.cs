@@ -127,6 +127,7 @@ public class DummyEnemyStateGenerator : MonoBehaviour
             id = id,
             name = name,
             team = team,
+            weapon = Random.Range(0, 7),
             position = pos,
             moveInput = Vector3.zero,
             rotationX = 0f,

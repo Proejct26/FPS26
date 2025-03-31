@@ -7,6 +7,7 @@ public class PlayerStateData
     public string name;         //플레이어 이름 정보
     public int team;            //팀 정보
     public int KDA;             //KDA
+    public int weapon;          //들고 있는 무기 정보
 
     public Vector3 position;    //플레이어 현 위치
     public Vector3 lookInput;   //어디를 보고 있는지 벡터     

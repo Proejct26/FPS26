@@ -22,7 +22,7 @@ public class UIManager : IManager
         // 실행 파일의 화면 크기 설정
         Screen.SetResolution(720, 480, false);
 
-        //Managers.UI.ShowSceneUI<MainUI>();  //같은 이름일 경우 텍스트 생략
+        Managers.UI.ShowSceneUI<MainUI>();  //같은 이름일 경우 텍스트 생략
         
        //  UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup"); //같은 이름일 경우 텍스트 생략
          

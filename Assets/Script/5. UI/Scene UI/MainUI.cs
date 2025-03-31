@@ -26,6 +26,9 @@ public class MainUI : UI_Scene
         gameObject.GetComponentInChildren<MiniMap>();
         playerStatHandler = Managers.Player.GetComponent<PlayerStatHandler>();
         playerWeaponHandler = Managers.Player.GetComponent<PlayerWeaponHandler>();
+
+        playerWeaponHandler.OnChangeMagazine += UpdateMagazine;
+        playerWeaponHandler.OnChangeWeapon += UpdateWeaponIcon;
     }
 
     // Update is called once per frame
@@ -51,9 +54,15 @@ public class MainUI : UI_Scene
         image.fillAmount = Mathf.Clamp01(curValue / maxValue);
     }
 
-    private void UpdateMagazine()
+    private void UpdateMagazine(int loadedAmmo, int maxAmmo)
     {
+        MagazineBar.fillAmount = (float)loadedAmmo / maxAmmo;
+        MagazineText.text = $"{loadedAmmo}/{maxAmmo}"; 
+    }
 
-
+    private void UpdateWeaponIcon()
+    {
+        WeaponIcon.sprite = playerWeaponHandler.CurrentWeapon.WeaponIcon; 
     }
 }
+ 

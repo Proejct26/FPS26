@@ -33,10 +33,11 @@ public class PlayerWeaponHandler : MonoBehaviour
     // Property
     public WeaponBaseController CurrentWeapon => _weapons[_selectedWeaponIndex];
  
-
     // Event
-    public event Action OnWeaponChanged;
-   
+    public event Action<int, int> OnChangeMagazine;
+    public event Action OnChangeWeapon; 
+
+    //public event Action On 
     private void Awake()
     {
         InitWeapons();
@@ -71,12 +72,17 @@ public class PlayerWeaponHandler : MonoBehaviour
  
     private void SetActiveWeapon(EWeaponType weaponType)
     {
+        CurrentWeapon.OnChangeMagazine -= OnChangeMagazine; 
         int index = (int)weaponType;
         _selectedWeaponIndex = index;
+        CurrentWeapon.OnChangeMagazine += OnChangeMagazine;
+         
+
         _mainWeapon.gameObject.SetActive(index == 0); 
         _subWeapon.gameObject.SetActive(index == 1);
         _knife.gameObject.SetActive(index == 2); 
 
-        OnWeaponChanged?.Invoke();
+        OnChangeWeapon?.Invoke();
+
     }
 }

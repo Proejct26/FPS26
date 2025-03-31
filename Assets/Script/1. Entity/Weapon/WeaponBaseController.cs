@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public abstract class WeaponBaseController : MonoBehaviour
 {
     // Field
     [SerializeField] protected WeaponDataSO _weaponDataSO;
-    
+
     // Data
     protected AmmoSettings _ammoSettings;
     protected RecoilSettings _recoilSettings; 
@@ -17,14 +18,15 @@ public abstract class WeaponBaseController : MonoBehaviour
     private Coroutine _fireCoroutine;
     private float lastFireTime;
 
-
     // Property
     protected int _LoadedAmmo {get; set;} = 0;// 장전된 탄약   
     protected int _RemainAmmo {get; set;} = 0; // 남은 탄약
     public int GetCurrentAmmo => _LoadedAmmo;
     public int GetMaxAmmo => _ammoSettings.initializeAmmo;
 
+    public Sprite WeaponIcon => _weaponDataSO.weaponIcon;
 
+    public event Action<int, int> OnChangeMagazine;
 
     protected virtual void Awake()
     {
@@ -41,6 +43,7 @@ public abstract class WeaponBaseController : MonoBehaviour
     protected virtual void OnEnable()
     {
         BindInputAction();
+        OnChangeMagazine?.Invoke(_LoadedAmmo, _ammoSettings.initializeAmmo);
     }
     protected virtual void OnDisable()
     {
@@ -78,7 +81,7 @@ public abstract class WeaponBaseController : MonoBehaviour
         else
             StopCoroutine(_fireCoroutine); 
     }
-
+ 
     protected abstract void Fire();
 
     private IEnumerator FireCoroutine()
@@ -89,7 +92,8 @@ public abstract class WeaponBaseController : MonoBehaviour
             {
                 Fire();
                 lastFireTime = Time.time;
-            }
+                OnChangeMagazine?.Invoke(_LoadedAmmo, _ammoSettings.initializeAmmo); 
+            } 
             else
             {
                 Debug.Log("FireDelay");
@@ -98,4 +102,10 @@ public abstract class WeaponBaseController : MonoBehaviour
         }
     }
 
+    protected virtual void ReloadAmmo()
+    {
+        _LoadedAmmo = Mathf.Min(_LoadedAmmo + _RemainAmmo, _ammoSettings.initializeAmmo);
+        _RemainAmmo -= Mathf.Max(0, _LoadedAmmo - _ammoSettings.initializeAmmo);   
+        OnChangeMagazine?.Invoke(_LoadedAmmo, _ammoSettings.initializeAmmo); 
+    }
 }

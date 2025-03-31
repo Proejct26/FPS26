@@ -91,10 +91,9 @@ public class GunController : WeaponBaseController
         Invoke(nameof(ReloadAmmo), _ammoSettings.reloadTime);  
     }
  
-    private void ReloadAmmo()
+    protected override void ReloadAmmo()
     {
-        _LoadedAmmo = Mathf.Min(_LoadedAmmo + _RemainAmmo, _ammoSettings.initializeAmmo);
-        _RemainAmmo -= Mathf.Max(0, _LoadedAmmo - _ammoSettings.initializeAmmo);   
+        base.ReloadAmmo();
         _isReloading = false;
     }
 

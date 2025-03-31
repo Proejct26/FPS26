@@ -36,14 +36,21 @@ public class SpreadSettings
 [CreateAssetMenu(fileName = "WeaponData", menuName = "ScriptableObject/WeaponData")]
 public class WeaponDataSO : ScriptableObject 
 {
+    [Header("UI")]
+    [SerializeField] public Sprite weaponIcon;
+
+
     [Header("Weapon Base")]
     [SerializeField] public int damage;
     [SerializeField] public float attackDelay;   
 
+    [Header("Settings")]
     [SerializeField] public AmmoSettings ammoSettings;
     [SerializeField] public RecoilSettings recoilSettings; 
     [SerializeField] public SpreadSettings spreadSettings;
     
+
+
     [Header("Grenade")]
     [SerializeField, Range(0.1f, 10f)] public float grenadeWeight = 1f;   
 

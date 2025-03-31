@@ -1,10 +1,11 @@
+using Ricimi;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_ScorePopup : MonoBehaviour
+public class UI_ScorePopup : UI_Popup
 {
     [System.Serializable]
     private class PlayerSlot

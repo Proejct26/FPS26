@@ -7,7 +7,6 @@ public class PlayerStateData
     public int spawnIndex;      //스폰 정보
     public int KDA;             //KDA
     
-    // 이현 추가
     public int kills;           // 킬 수
     public int deaths;          // 데스 수
     public int assists;         // 어시 수

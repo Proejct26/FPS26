@@ -8,7 +8,7 @@ public class PlayerStateData
     public uint team;            //팀 정보
     public uint maxHp;           //최대 체력
     public uint curHp;           //현재 체력
-    public uint weapon;          //들고 있는 무기 정보
+    public int weapon;          //들고 있는 무기 정보
     
     public uint kills;           // 킬 수
     public uint deaths;          // 데스 수

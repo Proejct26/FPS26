@@ -57,9 +57,8 @@ public class GameSceneManager : MonoBehaviour
     {
         _spawnData.Init();
         Managers.RegisterGameSceneManager(this);  
-
-        
     }
+
      private void Start()
     {
         PlayerManager.redTeamPrefab = _spawnData._redTeamPlayerPrefab;

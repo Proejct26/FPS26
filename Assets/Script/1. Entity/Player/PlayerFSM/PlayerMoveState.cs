@@ -12,7 +12,7 @@ public class PlayerMoveState : IPlayerState
 
     public void Enter()
     {
-        PlayWalkingIfNotAlready();
+        _controller.animator.Play("walking");
     }
 
     /// <summary>
@@ -32,12 +32,4 @@ public class PlayerMoveState : IPlayerState
     }
     public void Exit() { }
 
-    private void PlayWalkingIfNotAlready()
-    {
-        AnimatorStateInfo state = _controller.animator.GetCurrentAnimatorStateInfo(0);
-        if (!state.IsName("walking"))
-        {
-            _controller.animator.Play("walking");
-        }
-    }
 }

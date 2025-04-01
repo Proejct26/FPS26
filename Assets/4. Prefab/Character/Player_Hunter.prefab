@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 2358962536374074486}
   - component: {fileID: 4984034983569455728}
   - component: {fileID: 8250630504855406288}
+  - component: {fileID: 3315745651675590649}
   m_Layer: 0
   m_Name: HunterRIO
   m_TagString: Player
@@ -67,6 +68,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2196054263377766574}
+  - {fileID: 1389956951537549927}
   m_Father: {fileID: 412223923936260029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9090346005694721915
@@ -124,15 +126,17 @@ MonoBehaviour:
   weaponHolder: {fileID: 9220751208105546983}
   weaponFix: {fileID: 2535100533574842915}
   weaponPrefabs:
-  - {fileID: 1306367745336645715, guid: 745aae505a5444c43bf4435ab7af1848, type: 3}
-  - {fileID: 7847240014596489219, guid: 015575a993a5a3d4a9581fd0c5d75fed, type: 3}
-  - {fileID: 1231910257563632584, guid: d23e533e3f1700f47aecedad9585672f, type: 3}
-  - {fileID: 4280140794876716203, guid: 4b1f9e0f7576fa44bb69da56fd16cb9a, type: 3}
-  - {fileID: 2567875013113560307, guid: 1d0f08ad72e29634c9cda7485945079b, type: 3}
-  - {fileID: 5902459433618323506, guid: 037014a3c79926341be0aa7c8a683b1d, type: 3}
-  - {fileID: 3727292691470904061, guid: 57ef743f42bfc4b4d9ed9d45f677dd4e, type: 3}
-  - {fileID: 3562037514319824971, guid: 31171677a1e2e9b4582d1e58abd65215, type: 3}
+  - {fileID: 1306367745336645715, guid: 1cd6f5269f141ab429148a75b2f51d15, type: 3}
+  - {fileID: 7847240014596489219, guid: 231f1fab181a2da44a2946e3f2066bd9, type: 3}
+  - {fileID: 1231910257563632584, guid: 954ac3b5deea96d46a6febdaf35a1678, type: 3}
+  - {fileID: 4280140794876716203, guid: 48535ce4b7200ab48b29f23bdba02dce, type: 3}
+  - {fileID: 2567875013113560307, guid: 512a20eefaeb5c542b1bb924791380f1, type: 3}
+  - {fileID: 5902459433618323506, guid: eb51d6c30e99e754da5f04769bdbea95, type: 3}
+  - {fileID: 3727292691470904061, guid: c2269cdf56b84c94eb479fac247f4357, type: 3}
+  - {fileID: 3562037514319824971, guid: 665313c149d69cd4cbf72393b967c306, type: 3}
   nameTag: {fileID: 1229344794930512739}
+  model: {fileID: 5227928144450847961}
+  bodyCollider: {fileID: 5227928144450847961}
 --- !u!82 &4984034983569455728
 AudioSource:
   m_ObjectHideFlags: 0
@@ -251,6 +255,33 @@ MonoBehaviour:
   runMultiplier: 0.3
   controller: {fileID: 2358962536374074486}
   isRunning: 0
+--- !u!54 &3315745651675590649
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73404281191906797}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 10
+  m_CollisionDetection: 0
 --- !u!1 &214343807810343979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,7 +1070,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6741322971605800615}
   - component: {fileID: 7833886746641086634}
-  - component: {fileID: 4214531306321393570}
   m_Layer: 7
   m_Name: HeadCollider
   m_TagString: Head
@@ -1085,33 +1115,6 @@ CapsuleCollider:
   m_Height: 0.28
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &4214531306321393570
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2501778657845538455}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2537638499772617174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,7 +1796,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1389956951537549927}
   - component: {fileID: 6112659561642346184}
-  - component: {fileID: 8064887998148342599}
   m_Layer: 7
   m_Name: BodyCollider
   m_TagString: Body
@@ -1814,7 +1816,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2196054263377766574}
+  m_Father: {fileID: 5227928144450847961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6112659561642346184
 CapsuleCollider:
@@ -1831,7 +1833,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1839,33 +1841,6 @@ CapsuleCollider:
   m_Height: 1.53
   m_Direction: 1
   m_Center: {x: 0, y: 0.668127, z: 0}
---- !u!54 &8064887998148342599
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6045333126072502751}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &6133663678181110910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,7 +2625,6 @@ Transform:
   m_Children:
   - {fileID: 1741596008477453239}
   - {fileID: 2265442357957667497}
-  - {fileID: 1389956951537549927}
   m_Father: {fileID: 5227928144450847961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2194001343829939696

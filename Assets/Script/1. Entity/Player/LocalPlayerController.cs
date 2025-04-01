@@ -87,6 +87,7 @@ public class LocalPlayerController : PlayerControllerBase
     public override void HandleMovement()
     {
         Vector3 input = _input.MoveInput;
+
         /*Vector3 move = head.right * input.x + head.forward * input.z;
         _controller.Move(move * _statHandler.MoveSpeed * Time.deltaTime);*/
 
@@ -103,10 +104,14 @@ public class LocalPlayerController : PlayerControllerBase
     /// </summary>
     public override void ApplyGravity()
     {
-        if (_controller.isGrounded && _verticalVelocity < 0)
-            _verticalVelocity = -2f;
-
-        _verticalVelocity += _gravity * Time.deltaTime;
+        if (IsGrounded() && _verticalVelocity < 0)
+        {
+            _verticalVelocity = -2f; // 살짝 붙어 있도록 음수 유지
+        }
+        else
+        {
+            _verticalVelocity += _gravity * Time.deltaTime;
+        }
 
         Vector3 gravityMove = new Vector3(0f, _verticalVelocity, 0f);
         _controller.Move(gravityMove * Time.deltaTime);
@@ -157,5 +162,22 @@ public class LocalPlayerController : PlayerControllerBase
     public override void ApplyNetworkState(PlayerStateData data)
     {
         
+    }
+
+    public void SetNetworkPosition(Vector3 serverPos)
+    {
+        float distance = Vector3.Distance(transform.position, serverPos);
+
+        // 서버와 위치 차이가 너무 크면 순간이동
+        if (distance > 5f)
+        {
+            transform.position = serverPos;
+        }
+        // 적당히 차이나면 보간으로 보정
+        else if (distance > 0.1f)
+        {
+            transform.position = Vector3.Lerp(transform.position, serverPos, Time.deltaTime * 5f);
+        }
+        // 거의 차이 없으면 무시
     }
 }

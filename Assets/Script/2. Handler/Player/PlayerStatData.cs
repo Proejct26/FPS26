@@ -3,6 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStateData
 {
+    public uint networkId;
     public string id;              //플레이어 ID 정보
     public string name;         //플레이어 이름 정보
     public uint team;            //팀 정보

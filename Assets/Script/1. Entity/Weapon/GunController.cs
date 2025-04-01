@@ -11,9 +11,8 @@ public class GunController : WeaponBaseController
     [SerializeField] private Transform _ejectionPort;
     [SerializeField] private GameObject _sniperZoom;
     [SerializeField] private float _spread = 0; // 테스트용
-
+ 
     // Component
-    private GunAnimationHandler _gunAnimationHandler;
     private CameraEffectHandler _cameraEffectHandler;
     private PlayerCameraHandler _playerCameraHandler;
 
@@ -48,7 +47,7 @@ public class GunController : WeaponBaseController
         base.Start();
 
         _cameraEffectHandler = FindFirstObjectByType<CameraEffectHandler>();
-        _gunAnimationHandler = gameObject.GetOrAddComponent<GunAnimationHandler>();  
+        _weaponAnimationHandler = gameObject.GetOrAddComponent<WeaponAnimationHandler>();  
         _playerCameraHandler = Managers.Player.GetComponent<PlayerCameraHandler>();    
     }
 
@@ -82,8 +81,8 @@ public class GunController : WeaponBaseController
             return; 
   
         _isReloading = true;
-        _gunAnimationHandler.HasAmmo(_LoadedAmmo > 0);  
-        _gunAnimationHandler.Reload(); 
+        _weaponAnimationHandler.HasAmmo(_LoadedAmmo > 0);  
+        _weaponAnimationHandler.Reload(); 
         Managers.Sound.Play("Sound/Weapon/reloadSound");
         
         Invoke(nameof(ReloadAmmo), _ammoSettings.reloadTime);  
@@ -112,7 +111,7 @@ public class GunController : WeaponBaseController
             _zoomCam.gameObject.SetActive(active); 
 
 
-        _gunAnimationHandler.AimMode(active);
+        _weaponAnimationHandler.AimMode(active);
         _isAimMode = active;
         ResetSpread();
     }
@@ -125,7 +124,7 @@ public class GunController : WeaponBaseController
 
         SpawnEffect();
         SetRecoil();
-        _gunAnimationHandler.Fire(); 
+        _weaponAnimationHandler.Fire(); 
 
         GameObject[] targets = RayCasting(); 
     }  
@@ -184,7 +183,7 @@ public class GunController : WeaponBaseController
         // 머즐 효가
         GameObject muzzleFlash = Managers.Pool.Get($"Sprite/Weapon/muzzelFlash 0{Random.Range(1, 6)}"); 
         muzzleFlash.transform.position = _muzzle.position;
-        muzzleFlash.transform.rotation = _muzzle.rotation; 
+        muzzleFlash.transform.rotation = transform.rotation;
         Managers.Pool.Release(muzzleFlash, 0.05f);
 
         Managers.Sound.Play("Sound/Weapon/shotSound");

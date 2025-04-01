@@ -140,6 +140,8 @@ public class PlayerWeaponHandler : MonoBehaviour
 
         int index = (int)weaponType;
         _weapons[index] = Managers.Pool.Get(itemPrefab, _weaponParent).GetComponent<WeaponBaseController>(); 
+        _weapons[index].transform.localPosition = Vector3.zero;
+        _weapons[index].transform.localRotation = Quaternion.identity;
         EquipWeapon(weaponType); 
     } 
  

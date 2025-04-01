@@ -48,7 +48,6 @@ class PacketHandler
         Debug.Log(
             $"ID : {createMyCharacterPacket.PlayerId}, " +
             $"PosIndex : {createMyCharacterPacket.PosIndex}, " +
-            $"Look : {createMyCharacterPacket.DirX}, {createMyCharacterPacket.DirY}, {createMyCharacterPacket.DirZ}, " +
             $"HP : {createMyCharacterPacket.MaxHP}, " +
             $"TeamID : {createMyCharacterPacket.TeamID}"
         );
@@ -85,10 +84,11 @@ class PacketHandler
             assists = createOtherCharacterPacket.KdaInfo.Assist,
             isAlive = createOtherCharacterPacket.CurHP != 0,
 
-            position = new Vector3((float)createOtherCharacterPacket.PosX, (float)createOtherCharacterPacket.PosY, (float)createOtherCharacterPacket.PosZ),
-            lookInput = new Vector3(0, (float)createOtherCharacterPacket.RotateAxisY, 0),
-            rotationX = (float)createOtherCharacterPacket.RotateAxisX,
-            rotationY = (float)createOtherCharacterPacket.RotateAxisY
+            // 이쪽 값들은 없습니다. 새로 작업해주셔야합니다.
+            //position = new Vector3((float)createOtherCharacterPacket.PosX, (float)createOtherCharacterPacket.PosY, (float)createOtherCharacterPacket.PosZ),
+            //lookInput = new Vector3(0, (float)createOtherCharacterPacket.RotateAxisY, 0),
+            //rotationX = (float)createOtherCharacterPacket.RotateAxisX,
+            //rotationY = (float)createOtherCharacterPacket.RotateAxisY
         };
 
         //PlayerManager에 삽입하기

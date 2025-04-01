@@ -46,7 +46,7 @@ public class GameSceneManager : MonoBehaviour
 {
     [SerializeField] private SpawnData _spawnData = new SpawnData();
     public PlayerManager PlayerManager {get; private set;} = new PlayerManager();
- 
+    public SpawnData SpawnData => _spawnData;
     public virtual void EnterScene()
     {  
         Managers.UI.ShowPopupUI<UI_StartPopup>("StartPopup");  

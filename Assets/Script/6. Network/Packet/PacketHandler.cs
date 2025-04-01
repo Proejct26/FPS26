@@ -4,6 +4,9 @@ using ServerCore;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.Windows;
+using static UnityEditor.PlayerSettings;
 
 class PacketHandler
 {
@@ -80,7 +83,7 @@ class PacketHandler
             team = createOtherCharacterPacket.TeamID,
             maxHp = createOtherCharacterPacket.MaxHP,
             curHp = createOtherCharacterPacket.CurHP,
-            weapon = createOtherCharacterPacket.Weapon,
+            weapon = (int)createOtherCharacterPacket.Weapon,
 
             kills = createOtherCharacterPacket.KdaInfo.Kill,
             deaths = createOtherCharacterPacket.KdaInfo.Death,
@@ -136,7 +139,22 @@ class PacketHandler
         SC_KEY_INPUT keyInputPacket = packet as SC_KEY_INPUT;
 
         // TODO: SC_KeyInput 패킷 처리 로직을 여기에 구현
+        if (Managers.GameSceneManager.PlayerManager.TryGetPlayer(keyInputPacket.PlayerId.ToString(), out var controller))
+        {
+            Vector3 moveInput = Vector3.zero;
+            if (keyInputPacket.KeyW == 1) moveInput.z += 1;
+            if (keyInputPacket.KeyS == 1) moveInput.z -= 1;
+            if (keyInputPacket.KeyA == 1) moveInput.x -= 1;
+            if (keyInputPacket.KeyD == 1) moveInput.x += 1;
 
+            //결과 적용
+            controller.SetNetworkInput(
+                moveInput,
+                keyInputPacket.RotateAxisX,
+                keyInputPacket.RotateAxisY,
+                keyInputPacket.Jump == 1
+            );
+        }
     }
 
     // SC_ON_ACCEPT 패킷을 처리하는 함수
@@ -153,6 +171,11 @@ class PacketHandler
         SC_POS_INTERPOLATION posInterpolationPacket = packet as SC_POS_INTERPOLATION;
 
         // TODO: SC_PosInterpolation 패킷 처리 로직을 여기에 구현
+        if(Managers.Player.TryGetComponent(out LocalPlayerController local))
+        {
+            Vector3 pos = new Vector3(posInterpolationPacket.PosX, posInterpolationPacket.PosY, posInterpolationPacket.PosZ);
+            local.SetNetworkPosition(pos);
+        }
     }
 
     // SC_SHOT_HIT 패킷을 처리하는 함수

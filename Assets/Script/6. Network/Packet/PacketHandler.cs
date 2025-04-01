@@ -45,7 +45,6 @@ class PacketHandler
         SC_CREATE_MY_CHARACTER createMyCharacterPacket = packet as SC_CREATE_MY_CHARACTER;
 
         // TODO: SC_CreateMyCharacter 패킷 처리 로직을 여기에 구현
-
         Debug.Log(
             $"ID : {createMyCharacterPacket.PlayerId}, " +
             $"PosIndex : {createMyCharacterPacket.PosIndex}, " +
@@ -53,14 +52,15 @@ class PacketHandler
             $"HP : {createMyCharacterPacket.MaxHP}, " +
             $"TeamID : {createMyCharacterPacket.TeamID}"
         );
-
-        // crateCharacterPacket 에 있는 정보 추출 후 사용
+ 
+        // crateCharacterPacket 에 있는 정보 추출 후 사용 
         Debug.Log("플레이어 생성 완료!");
+        Managers.GameSceneManager.SpawnLocalPlayer((int)createMyCharacterPacket.PosIndex, (int)createMyCharacterPacket.TeamID);
 
-        // 서버에 다시 신호 보내기
-        CS_SEND_NICKNAME onSendNicknamePacket = new CS_SEND_NICKNAME();
-        onSendNicknamePacket.Name = "TestPlayer";
-        Managers.Network.Send(onSendNicknamePacket);
+        // // 서버에 다시 신호 보내기
+        // CS_SEND_NICKNAME onSendNicknamePacket = new CS_SEND_NICKNAME();
+        // onSendNicknamePacket.Name = "TestPlayer";
+        // Managers.Network.Send(onSendNicknamePacket);
     }
 
     // SC_CREATE_OTHER_CHARACTER 패킷을 처리하는 함수

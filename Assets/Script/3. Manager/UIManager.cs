@@ -111,8 +111,8 @@ public class UIManager : IManager
         _popupStack.Push(popup);
 
         go.transform.SetParent(_popupUIParent.transform, false);
-
-        popup.Init();
+ 
+       // popup.Init();
 
 		return popup; 
     }

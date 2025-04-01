@@ -33,7 +33,12 @@ public class Managers : Singleton<Managers>
     public static NetworkManager Network => Instance.network;
     public static PacketManager Packet => Instance.packet;
 
-    public static GameObject Player {get; private set;}
+    private static GameObject player;
+    public static GameObject Player 
+    {
+        get {return player == null ? player = FindAnyObjectByType<PlayerControllerBase>().gameObject : player;} 
+        private set{player = value;}
+    }
 
     public static GameSceneManager GameSceneManager {get; private set;}
  
@@ -42,11 +47,6 @@ public class Managers : Singleton<Managers>
     {
         base.Awake();
   
-        var pcb = FindAnyObjectByType<PlayerControllerBase>();
-        if (pcb != null) 
-            Player = pcb.gameObject; 
-
-   
         Init();
     }
 
@@ -57,8 +57,6 @@ public class Managers : Singleton<Managers>
 
     public static void RegisterGameSceneManager(GameSceneManager gameSceneManager)
     {
-        if (GameSceneManager != null)
-        GameSceneManager.ExitScene();
         gameSceneManager.EnterScene(); 
 
         GameSceneManager = gameSceneManager;  

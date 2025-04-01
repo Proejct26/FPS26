@@ -52,7 +52,7 @@ public class RemotePlayerController : PlayerControllerBase
 
     public void SetNetworkPosition(Vector3 pos)
     {
-        _networkPosition = pos;
+        _networkPosition = pos; 
     }
 
     private void FixedUpdate()
@@ -63,11 +63,12 @@ public class RemotePlayerController : PlayerControllerBase
         Quaternion targetRotation = Quaternion.Euler(0f, _inputYaw, 0f);
         _networkRotation = Quaternion.Slerp(_rb.rotation, targetRotation, Time.fixedDeltaTime * _lerpSpeed);
         _rb.MoveRotation(_networkRotation);
-
+ 
         // 위치 보간
-        Vector3 newPos = Vector3.Lerp(_rb.position, _networkPosition, Time.fixedDeltaTime * _lerpSpeed);
+      //  Vector3 newPos = Vector3.Lerp(_rb.position, _networkPosition, Time.fixedDeltaTime * _lerpSpeed);
+        Vector3 newPos = _networkPosition;
         _rb.MovePosition(newPos);
-
+        
         if (_inputMove.sqrMagnitude > 0.01f)
         {
             Vector3 forward = _networkRotation * Vector3.forward;

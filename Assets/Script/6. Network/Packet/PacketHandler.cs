@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Windows;
-using static UnityEditor.PlayerSettings;
+
 
 class PacketHandler
 { 
@@ -20,9 +20,9 @@ class PacketHandler
         //     new Vector3(attackPacket.NormalX, attackPacket.NormalY, attackPacket.NormalZ));
 
         WeaponBaseController.SpawnHitEffect(new Vector3(attackPacket.PosX, attackPacket.PosY, attackPacket.PosZ), 
-            new Vector3(attackPacket.NormalX, attackPacket.NormalY, attackPacket.NormalZ));   
+            new Vector3(attackPacket.NormalX, attackPacket.NormalY, attackPacket.NormalZ), attackPacket.HittedTargetId != 99999);     
         // TODO: SC_Attack 패킷 처리 로직을 여기에 구현
-    }
+    } 
 
     // SC_CHANGE_WEAPON 패킷을 처리하는 함수
     public static void SC_ChangeWeapon(PacketSession session, IMessage packet)
@@ -82,6 +82,7 @@ class PacketHandler
         //패킷 데이터 기반으로 상태 설정 완료
         PlayerStateData stat = new PlayerStateData()
         {
+            networkId = createOtherCharacterPacket.PlayerId,
             id = createOtherCharacterPacket.PlayerId.ToString(),
             name = createOtherCharacterPacket.Name,
             team = createOtherCharacterPacket.TeamID,
@@ -166,11 +167,10 @@ class PacketHandler
     {
         SC_POS_INTERPOLATION posInterpolationPacket = packet as SC_POS_INTERPOLATION;
 
-        // TODO: SC_PosInterpolation 패킷 처리 로직을 여기에 구현
-        if(Managers.Player.TryGetComponent(out LocalPlayerController local))
+        if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(posInterpolationPacket.PlayerId, out var controller))
         {
             Vector3 pos = new Vector3(posInterpolationPacket.PosX, posInterpolationPacket.PosY, posInterpolationPacket.PosZ);
-            local.SetNetworkPosition(pos);
+            controller.SetNetworkPosition(pos); 
         }
     }
 

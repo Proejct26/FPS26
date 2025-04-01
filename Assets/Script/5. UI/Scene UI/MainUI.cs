@@ -23,13 +23,12 @@ public class MainUI : UI_Scene
     void Start()
     {
         gameObject.GetComponentInChildren<Crosshair>();
-        
+        gameObject.GetComponentInChildren<MiniMap>();
         playerStatHandler = Managers.Player.GetComponent<PlayerStatHandler>();
         playerWeaponHandler = Managers.Player.GetComponent<PlayerWeaponHandler>();
 
         playerWeaponHandler.OnChangeMagazine += UpdateMagazine;
         playerWeaponHandler.OnChangeWeapon += UpdateWeaponIcon;
-        gameObject.GetComponentInChildren<MiniMap>();
     }
 
     // Update is called once per frame

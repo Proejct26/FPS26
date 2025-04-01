@@ -35,6 +35,8 @@ public class Managers : Singleton<Managers>
 
     public static GameObject Player {get; private set;}
 
+    public static GameSceneManager GameSceneManager {get; private set;}
+ 
  
     protected override void Awake()
     {
@@ -47,17 +49,19 @@ public class Managers : Singleton<Managers>
    
         Init();
     }
-    private void Start() 
-    {
-        //UI.ShowPopupUI<SkillPopupUI>(); 
-       
-	} 
 
     private void Update()
     {
-        //_input.OnUpdate();
-
         Network.Update();
+    }
+
+    public static void RegisterGameSceneManager(GameSceneManager gameSceneManager)
+    {
+        if (GameSceneManager != null)
+        GameSceneManager.ExitScene();
+        gameSceneManager.EnterScene(); 
+
+        GameSceneManager = gameSceneManager;  
     }
 
     private static void Init()
@@ -75,16 +79,5 @@ public class Managers : Singleton<Managers>
     {
 
     }
-    
-    public static void SetTimer(Action action, float time)
-    {
-        Instance.StartCoroutine(Instance.SetTimerCoroutine(action, time));
-    }
-    
-    private IEnumerator SetTimerCoroutine(Action action, float time)
-    {
-        yield return new WaitForSeconds(time);
-        action?.Invoke();
-    }
-    
+
 }

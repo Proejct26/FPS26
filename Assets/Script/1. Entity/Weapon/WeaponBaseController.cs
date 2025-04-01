@@ -84,7 +84,13 @@ public abstract class WeaponBaseController : MonoBehaviour
         if (started)  
             _fireCoroutine = StartCoroutine(FireCoroutine());
         else
-            StopCoroutine(_fireCoroutine); 
+        {
+            if (_fireCoroutine != null)
+            {
+                StopCoroutine(_fireCoroutine);
+                _fireCoroutine = null; 
+            }
+        }
     }
  
     protected abstract void Fire();

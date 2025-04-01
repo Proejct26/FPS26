@@ -26,15 +26,14 @@ public class PlayerManager : IManager
         }
         else                                                        //데이터가 없으면 pool에서 remotePlayerPrefab을 꺼내온다.
         {
-            GameObject prefab = Managers.GameSceneManager.SpawnData.GetPlayerPrefab((int)data.team); 
-
-            GameObject remoteObj = Managers.Pool.Get(prefab);
+            GameObject remoteObj = Managers.GameSceneManager.SpawnRemotePlayer((int)data.team); 
             remoteObj.transform.position = data.position;
+            remoteObj.transform.rotation = Quaternion.Euler(data.rotationX, data.rotationY, 0);
 
             RemotePlayerController newController = remoteObj.GetComponentInChildren<RemotePlayerController>();
-            newController.ApplyNetworkState(data);
+            newController.ApplyNetworkState(data);  
 
-            remotePlayers.Add(data.id, newController);
+            remotePlayers.Add(data.id, newController); 
         }
     }
 

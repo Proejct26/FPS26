@@ -32,9 +32,9 @@ public class RespawnUI : UI_Popup
     private float _startTime = 0f;
     private float _respawnTime = 5f;
 
+
     private void Awake() 
     {
-
         BindInit(); 
         Init();
         
@@ -47,6 +47,7 @@ public class RespawnUI : UI_Popup
 
     private void Start()
     {
+ 
         UpdateItemInfo();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;   
@@ -102,12 +103,14 @@ public class RespawnUI : UI_Popup
 
     private void OpenWeaponListUI(EWeaponType weaponType)
     {
+
         WeaponListUI weaponListUI = Managers.UI.ShowPopupUI<WeaponListUI>();
         weaponListUI.InitWeaponList(weaponType); 
     }
 
     private void UpdateRespawnTimeText()
     {
+
         int time = (int)(_respawnTime - (Time.time - _startTime));
         Get<TextMeshProUGUI>((int)Texts.respawnTimeText).text = time <= 0 ? "0" : time.ToString();    
     } 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UnityEngine.UI;
 
 public class UI_Popup : UI_Base
 {
@@ -14,7 +15,10 @@ public class UI_Popup : UI_Base
 
 
    public virtual void ClosePopupUI()
-   {
+   {  
+      if (TryGetComponent<GraphicRaycaster>(out GraphicRaycaster graphicRaycaster))
+         graphicRaycaster.enabled = false;  
+
       Managers.UI.ClosePopupUI(this, 0.5f); 
 
       CanvasGroup canvasGroup = GetComponent<CanvasGroup>();

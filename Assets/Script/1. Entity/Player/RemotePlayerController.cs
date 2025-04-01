@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -7,36 +8,110 @@ public class RemotePlayerController : PlayerControllerBase
 
     private Vector3 _networkPosition;
     private Quaternion _networkRotation;
-
-    private float _verticalVelocity = 0f;   //수평 방향 속도
-    private float _gravity = -9.81f;        //중력 값
     private float _lerpSpeed = 10f;         //보간 정도
+
+    [SerializeField] private Transform weaponHolder; // 손에 붙이는 슬롯
+    [SerializeField] private Transform weaponFix;   //방향 조정
 
     [Header("이름 태그")]
     [SerializeField] public PlayerNameTag nameTag;
+
+    [SerializeField] private Transform model;   // HunterRio, CowboyRio
+    [SerializeField] private Transform bodyCollider;  // Rigidbody + CapsuleCollider
+
+    private GameObject equippedWeapon;
+
+    private Vector3 _inputMove;
+    private float _inputYaw;
+    private float _inputPitch;
+    private bool _isJumping;
+
+    private Rigidbody _rb;
+
+    public PlayerStateData PlayerStateData => _networkData;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _rb = bodyCollider.GetComponent<Rigidbody>();
+
+        _rb.useGravity = true;  // 중력 작동
+        _rb.isKinematic = false;
+        _rb.interpolation = RigidbodyInterpolation.Interpolate;
+        _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+    }
+
+    public void SetNetworkInput(Vector3 moveInput, float pitch, float yaw, bool isJumping)
+    {
+        _inputMove = moveInput;
+        _inputPitch = pitch;
+        _inputYaw = yaw;
+        _isJumping = isJumping;
+    }
+
+    public void SetNetworkPosition(Vector3 pos)
+    {
+        _networkPosition = pos;
+    }
+
+    private void FixedUpdate()
+    {
+        if (_networkData == null) return;
+
+        // 회전 보간
+        Quaternion targetRotation = Quaternion.Euler(0f, _inputYaw, 0f);
+        _networkRotation = Quaternion.Slerp(_rb.rotation, targetRotation, Time.fixedDeltaTime * _lerpSpeed);
+        _rb.MoveRotation(_networkRotation);
+
+        // 위치 보간
+        Vector3 newPos = Vector3.Lerp(_rb.position, _networkPosition, Time.fixedDeltaTime * _lerpSpeed);
+        _rb.MovePosition(newPos);
+
+        if (_inputMove.sqrMagnitude > 0.01f)
+        {
+            Vector3 forward = _networkRotation * Vector3.forward;
+            Vector3 right = _networkRotation * Vector3.right;
+
+            Vector3 moveDir = (right * _inputMove.x + forward * _inputMove.z).normalized;
+            _networkPosition += moveDir * Time.fixedDeltaTime;
+        }
+    }
 
     protected override void Update()
     {
         base.Update();
 
-        if (_networkData == null)
-            return;
+        if(_networkData == null) return;
 
-        // 보간 위치/회전 갱신
-        _networkPosition = Vector3.Lerp(_networkPosition, _networkData.position, Time.deltaTime * _lerpSpeed);
-        _networkRotation = Quaternion.Slerp(_networkRotation, Quaternion.Euler(0f, _networkData.rotationY, 0f), Time.deltaTime * _lerpSpeed);
+        // 캐릭터 transform은 rigidbody 따라가기
+        transform.position = _rb.position;
+        transform.rotation = _rb.rotation;
 
-        transform.position = _networkPosition;
-        transform.rotation = _networkRotation;
 
+        // 시야 회전
+        if (head != null)
+            head.localRotation = Quaternion.Euler(-_inputPitch, 0f, 0f);
+
+        // 무기 정렬
+        if (weaponFix != null)
+            weaponFix.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+
+        // FSM 동작 (상태 전이 및 애니메이션 포함)
         StateMachine?.Update();
+
+
     }
 
     public override void ApplyNetworkState(PlayerStateData data)
     {
-        if (data == null) return;
-
+        if (_networkData == null)
+        {
+            _networkPosition = data.position;  //초기 위치 세팅
+        }
         _networkData = data;
+
+        if (data == null) return;
 
         if (head != null)
             head.localRotation = Quaternion.Euler(-_networkData.rotationX, 0f, 0f);
@@ -47,6 +122,8 @@ public class RemotePlayerController : PlayerControllerBase
             nameTag.SetName(_networkData.name); // playerName은 PlayerStateData에 있어야 함
             nameTag.nameText.color = _networkData.team == 0 ? Color.red : Color.blue;
         }
+
+        EquipWeapon(data.weapon);
     }
 
     public override PlayerStateData ToPlayerStateData()
@@ -56,46 +133,26 @@ public class RemotePlayerController : PlayerControllerBase
 
     public override bool IsGrounded()
     {
-        return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.8f, LayerMask.GetMask("Default"));
+        Vector3 origin = bodyCollider.position + Vector3.up * 0.1f;
+        Debug.DrawRay(origin, Vector3.down * 1.2f, Color.red);
+        return Physics.Raycast(origin, Vector3.down, 1.2f, LayerMask.GetMask("Default"));
     }
-    public override bool IsJumpInput() => _networkData != null && _networkData.isJumping;
-    public override bool HasMoveInput() => _networkData != null && _networkData.moveInput.sqrMagnitude > 0.01f;
+
+    public override bool IsJumpInput() => _isJumping;
+    public override bool HasMoveInput() => _inputMove.sqrMagnitude > 0.01f;
     public override bool IsFiring() => _networkData != null && _networkData.isFiring;
+    
+    // Remote 플레이어는 직접 이동 로직 없음 (서버 입력을 신뢰)
+    public override void HandleMovement() { }
+    public override float GetVerticalVelocity() => 0f;
 
-    public override float GetVerticalVelocity() => _verticalVelocity;
+    public override void ApplyGravity() { }
+    public override void StartJump() {
+        if (_rb == null) return;
 
-    public override void HandleMovement()
-    {
-        Vector3 forward = _networkRotation * Vector3.forward;
-        Vector3 right = _networkRotation * Vector3.right;
-
-        Vector3 move = right * _networkData.moveInput.x + forward * _networkData.moveInput.z;
-        move.y = 0f;
-        _networkPosition += move.normalized * Time.deltaTime * 3f;
-    }
-
-    public override void ApplyGravity()
-    {
-        if (IsGrounded())
-        {
-            if (_verticalVelocity < 0)
-            {
-                _verticalVelocity = -2f;
-
-                if (Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out RaycastHit hit, 1.2f, LayerMask.GetMask("Default")))
-                {
-                    _networkPosition.y = hit.point.y;
-                }
-            }
-        }
-
-        _verticalVelocity += _gravity * Time.deltaTime;
-        _networkPosition += new Vector3(0f, _verticalVelocity, 0f) * Time.deltaTime;
-    }
-
-    public override void StartJump()
-    {
-        _verticalVelocity = Mathf.Sqrt(5f * -2f * _gravity);
+        Vector3 velocity = _rb.velocity;
+        velocity.y = Mathf.Sqrt(2f * 9.81f * 1.2f); // 높이 1.2m 기준 점프력
+        _rb.velocity = velocity;
     }
 
     /// <summary>
@@ -109,6 +166,21 @@ public class RemotePlayerController : PlayerControllerBase
             return;
         }
         _equippedWeapon.Attack(started);*/
+    }
+
+    public void EquipWeapon(int weaponId)
+    {
+        if (equippedWeapon != null)
+            Destroy(equippedWeapon);
+
+        WeaponDataSO weaponData = Managers.Data.WeaponData.GetWeaponData(weaponId);
+
+        if (weaponData == null)
+            return;
+
+        equippedWeapon = Instantiate(weaponData.dummyPrefab, weaponFix);
+        equippedWeapon.transform.localPosition = Vector3.zero;
+        equippedWeapon.transform.localRotation = Quaternion.Euler(0, 180f, 0);  
     }
 
 }

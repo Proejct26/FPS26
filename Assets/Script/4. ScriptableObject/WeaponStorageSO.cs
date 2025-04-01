@@ -8,8 +8,13 @@ public class WeaponStorageSO : ScriptableObject
 {
     [SerializeField] private List<WeaponDataSO> _weaponDatas;
 
-    public List<WeaponDataSO> GetWeaponData(EWeaponType weaponType)
+    public List<WeaponDataSO> GetWeaponsByType(EWeaponType weaponType)
     {
         return _weaponDatas.FindAll(data => data.weaponType == weaponType);  
     }
+
+    public WeaponDataSO GetWeaponData(int key)
+    {
+        return _weaponDatas.Find(data => data.key == key);   
+    } 
 }

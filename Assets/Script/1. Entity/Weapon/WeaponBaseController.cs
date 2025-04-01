@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(WeaponAnimationHandler))]
 public abstract class WeaponBaseController : MonoBehaviour
@@ -84,7 +86,13 @@ public abstract class WeaponBaseController : MonoBehaviour
         if (started)  
             _fireCoroutine = StartCoroutine(FireCoroutine());
         else
-            StopCoroutine(_fireCoroutine); 
+        {
+            if (_fireCoroutine != null)
+            {
+                StopCoroutine(_fireCoroutine);
+                _fireCoroutine = null; 
+            }
+        }
     }
  
     protected abstract void Fire();
@@ -112,5 +120,25 @@ public abstract class WeaponBaseController : MonoBehaviour
         _LoadedAmmo = Mathf.Min(_LoadedAmmo + _RemainAmmo, _ammoSettings.initializeAmmo);
         _RemainAmmo -= Mathf.Max(0, _LoadedAmmo - _ammoSettings.initializeAmmo);   
         OnChangeMagazine?.Invoke(_LoadedAmmo, _ammoSettings.initializeAmmo); 
+    }
+
+
+
+    public static void SpawnMuzzleFlash(Vector3 position, Vector3 dir)
+    {
+        GameObject muzzleFlash = Managers.Pool.Get($"Sprite/Weapon/muzzelFlash 0{Random.Range(1, 6)}"); 
+        muzzleFlash.transform.position = position;
+        muzzleFlash.transform.rotation = Quaternion.LookRotation(dir); 
+        Managers.Pool.Release(muzzleFlash, 0.05f);
+
+        
+    }
+
+    public static void SpawnHitEffect(Vector3 position, Vector3 dir, bool isPlayer = true)
+    {
+        var particle = Managers.Pool.Get(!isPlayer ? "Particle/HitEffect_Wall" : "Particle/HitEffect_Person");  
+        particle.transform.position = position;
+        particle.transform.rotation = Quaternion.LookRotation(dir); 
+        Managers.Pool.Release(particle, 5f);    
     }
 }

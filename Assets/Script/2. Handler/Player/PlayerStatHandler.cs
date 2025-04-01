@@ -66,6 +66,16 @@ public class PlayerStatHandler : MonoBehaviour
         }
     }
 
+    public void SetHealth(float amount)
+    {
+        CurrentHealth = amount;
+        if (CurrentHealth <= 0f)
+        {
+            CurrentHealth = 0f;
+            HandleDeath();
+        }
+    }
+
     /// <summary>
     /// 회복 아이템 획득 시
     /// </summary>

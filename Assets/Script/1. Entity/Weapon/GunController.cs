@@ -1,4 +1,5 @@
 using Cinemachine;
+using Game;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -151,13 +152,26 @@ public class GunController : WeaponBaseController
             if (Physics.Raycast(ray, out hit, 100f))
             { 
                 // 히트 이펙트
-                var particle = Managers.Pool.Get("Particle/HitEffect_Wall"); 
-                particle.transform.position = hit.point;
-                particle.transform.rotation = Quaternion.LookRotation(hit.normal); 
-                Managers.Pool.Release(particle, 5f);  
-
+                CS_ATTACK attackPacket = new CS_ATTACK();
+                attackPacket.PosX = hit.point.x;
+                attackPacket.PosY = hit.point.y;
+                attackPacket.PosZ = hit.point.z;
+                attackPacket.NormalX = hit.normal.x;
+                attackPacket.NormalY = hit.normal.y;
+                attackPacket.NormalZ = hit.normal.z; 
+                 
+                Managers.Network.Send(attackPacket); 
+                //WeaponBaseController.SpawnHitEffect(hit.point, hit.normal, attackPacket.BAttack);    
                 // 충돌 체크 hit.collider.tag == "Head"
                 targets[i] = hit.collider.gameObject;
+
+                if (hit.collider.TryGetComponent(out RemotePlayerController controller))
+                {
+                    CS_SHOT_HIT shotHitPacket = new CS_SHOT_HIT();
+                    shotHitPacket.PlayerId = controller.PlayerStateData.networkId;
+                    shotHitPacket.Hp = (uint)(controller.PlayerStateData.curHp - _weaponDataSO.damage);  
+                    Managers.Network.Send(shotHitPacket);
+                }
             } 
             else
             {
@@ -181,13 +195,9 @@ public class GunController : WeaponBaseController
         rigidbody.AddForce(dir, ForceMode.Impulse);  
  
         // 머즐 효가
-        GameObject muzzleFlash = Managers.Pool.Get($"Sprite/Weapon/muzzelFlash 0{Random.Range(1, 6)}"); 
-        muzzleFlash.transform.position = _muzzle.position;
-        muzzleFlash.transform.rotation = transform.rotation;
-        Managers.Pool.Release(muzzleFlash, 0.05f);
 
         Managers.Sound.Play("Sound/Weapon/shotSound");
-        
+        WeaponBaseController.SpawnMuzzleFlash(_muzzle.position, transform.forward);
     }
 
     private void ResetSpread()

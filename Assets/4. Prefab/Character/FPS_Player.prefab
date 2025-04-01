@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3016808626813228906}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24643697, y: -0.31054437, z: -0.4}
+  m_LocalPosition: {x: 0, y: -0.46, z: -0.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -246,12 +246,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponParent: {fileID: 7492963166118102614}
-  _mainWeaponPrefab: {fileID: 8335102493945524992, guid: 182e512a474fdc44ab0877d0dd046118,
-    type: 3}
-  _subWeaponPrefab: {fileID: 4724544863606683765, guid: e84bd873782274240802a4616ce684fd,
-    type: 3}
-  _knifePrefab: {fileID: 8634434568037516225, guid: 451ee1456bc9c594f88b0a19024831f3,
-    type: 3}
+  _primaryWeapon: {fileID: 11400000, guid: 432a2ae25b37941419105672d3c1933d, type: 2}
+  _secondaryWeapon: {fileID: 11400000, guid: 5fda0b13c71c6234da6191e6e2994a73, type: 2}
+  _throwableWeapon: {fileID: 0}
+  _knifeWeapon: {fileID: 11400000, guid: b6b19e68864c9a74690f99360641561c, type: 2}
 --- !u!114 &6014489089892647982
 MonoBehaviour:
   m_ObjectHideFlags: 0

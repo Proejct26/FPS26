@@ -42,9 +42,6 @@ public class PacketManager : IManager
         _onRecv.Add((ushort)Game.PacketID.ScCreateOtherCharacter, MakePacket<SC_CREATE_OTHER_CHARACTER>);
         _handler.Add((ushort)Game.PacketID.ScCreateOtherCharacter, PacketHandler.SC_CreateOtherCharacter);
 
-        _onRecv.Add((ushort)Game.PacketID.ScGrenadeExplositionPos, MakePacket<SC_GRENADE_EXPLOSITION_POS>);
-        _handler.Add((ushort)Game.PacketID.ScGrenadeExplositionPos, PacketHandler.SC_GrenadeExplositionPos);
-
         _onRecv.Add((ushort)Game.PacketID.ScItemPickFail, MakePacket<SC_ITEM_PICK_FAIL>);
         _handler.Add((ushort)Game.PacketID.ScItemPickFail, PacketHandler.SC_ItemPickFail);
 
@@ -63,18 +60,24 @@ public class PacketManager : IManager
         _onRecv.Add((ushort)Game.PacketID.ScPosInterpolation, MakePacket<SC_POS_INTERPOLATION>);
         _handler.Add((ushort)Game.PacketID.ScPosInterpolation, PacketHandler.SC_PosInterpolation);
 
+        _onRecv.Add((ushort)Game.PacketID.ScSendMessage, MakePacket<SC_SEND_MESSAGE>);
+        _handler.Add((ushort)Game.PacketID.ScSendMessage, PacketHandler.SC_SendMessage);
+
         _onRecv.Add((ushort)Game.PacketID.ScShotHit, MakePacket<SC_SHOT_HIT>);
         _handler.Add((ushort)Game.PacketID.ScShotHit, PacketHandler.SC_ShotHit);
-
-        _onRecv.Add((ushort)Game.PacketID.ScThrowGrenade, MakePacket<SC_THROW_GRENADE>);
-        _handler.Add((ushort)Game.PacketID.ScThrowGrenade, PacketHandler.SC_ThrowGrenade);
     }
 
     public void OnRecvPacket(PacketSession session, ushort id, ArraySegment<byte> buffer)
     {
         Action<PacketSession, ArraySegment<byte>, ushort> action = null;
-        if (_onRecv.TryGetValue(id, out action))
-            action.Invoke(session, buffer, id);
+         if (_onRecv.TryGetValue(id, out action))
+            JobQueue.Push(() => 
+            {
+                action.Invoke(session, buffer, id);
+                MyDebug.Log($"패킷 수신 완료: {session.GetType().Name}, {id}"); 
+            }); 
+            
+        
     }
 
     void MakePacket<T>(PacketSession session, ArraySegment<byte> buffer, ushort id) where T : IMessage, new()
@@ -91,8 +94,9 @@ public class PacketManager : IManager
         else
         {
             Action<PacketSession, IMessage> action = null;
-            if (_handler.TryGetValue(id, out action))
-                action.Invoke(session, pkt);
+             if (_handler.TryGetValue(id, out action))
+                    action.Invoke(session, pkt); 
+
         }
     }
 

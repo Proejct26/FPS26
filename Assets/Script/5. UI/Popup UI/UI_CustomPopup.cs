@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Game;
 
 public class UI_CustomPopup : UI_Popup
 {
@@ -105,8 +106,12 @@ public class UI_CustomPopup : UI_Popup
         Managers.Data.SettingData(nickname: nickName, selectedIconIndex: _selectedIconIndex);
         Debug.Log($"닉네임 설정: {nickName}, Icon: {_selectedIconIndex}");
 
-        ClosePopupUI();
-        SceneManager.LoadScene("MainScene");
+        CS_SEND_NICKNAME sendNicknamePacket = new CS_SEND_NICKNAME();
+        sendNicknamePacket.Name = nickName;
+        Managers.Network.Send(sendNicknamePacket); 
+ 
+        Managers.UI.CloseAllPopupUI();  
+        //SceneManager.LoadScene("MainScene");
     }
 
     private void OnBackButtonClick()

@@ -1,4 +1,4 @@
-﻿using Game;
+using Game;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -212,7 +212,7 @@ namespace ServerCore
 			if (args.BytesTransferred > 0 && args.SocketError == SocketError.Success)
 			{
 				try
-				{
+				{ 
 					// Write 커서 이동
 					if (_recvBuffer.OnWrite(args.BytesTransferred) == false)
 					{

@@ -1,149 +1,148 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game;
 
-public class DummyEnemyStateGenerator : MonoBehaviour
+public class DummyRemotePlayersSimulator : MonoBehaviour
 {
-    [SerializeField] private PlayerManager playerManager;
-
-    [Header("더미 플레이어 수")]
-    [SerializeField] private int dummyCount = 10;
-
-    [Header("생성 위치 범위")]
-    [SerializeField] private Vector3 spawnAreaCenter = Vector3.zero;
-    [SerializeField] private Vector3 spawnAreaSize = new Vector3(30f, 0f, 30f);
-
-    [Header("상태 갱신 주기")]
+    [SerializeField] private int dummyCount = 5;
     [SerializeField] private float updateInterval = 0.1f;
     [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float waitTime = 1.5f;
 
-    private readonly string[] dummyNames = new string[]
+    private class Dummy
     {
-        "고양이단", "펭귄조", "화난개", "웃는사람", "도적왕", "작은거인", "눈물의레인", "토끼점퍼", "불타는곰", "미소천사"
-    };
-
-    private class DummyState
-    {
-        public PlayerStateData state;
-        public Vector3 targetPosition;
-        public float waitTimer = 0f;
+        public string id;
+        public int team;
+        public Vector3 position;
+        public float yaw;
+        public float pitch;
+        public Vector3 target;
     }
 
-    private Dictionary<string, DummyState> dummyPlayers = new();
+    private Dictionary<string, Dummy> dummies = new();
 
     private void Start()
     {
+        StartCoroutine(DelayedStart());
+    }
+
+    private IEnumerator DelayedStart()
+    {
+        yield return null; // 한 프레임 대기
         StartCoroutine(SimulateDummies());
     }
 
+
     private IEnumerator SimulateDummies()
     {
+        // Red team (team 0)
+        for (int i = 0; i < dummyCount; i++)
+        {
+            int team = 0;
+            string id = $"{i}";
+
+            var dummy = new Dummy
+            {
+                id = id,
+                team = team,
+                position = GetRandomSpawnPosition(),
+                yaw = Random.Range(0f, 360f),
+                pitch = 0f,
+                target = GetRandomSpawnPosition()
+            };
+
+            dummies[id] = dummy;
+            SendCreatePacket(dummy);
+        }
+
+        // Blue team (team 1)
+        for (int i = dummyCount; i < dummyCount+dummyCount; i++)
+        {
+            int team = 1;
+            string id = $"{i}";
+
+            var dummy = new Dummy
+            {
+                id = id,
+                team = team,
+                position = GetRandomSpawnPosition(),
+                yaw = Random.Range(0f, 360f),
+                pitch = 0f,
+                target = GetRandomSpawnPosition()
+            };
+
+            dummies[id] = dummy;
+            SendCreatePacket(dummy);
+        }
+
         while (true)
         {
-            for (int i = 0; i < dummyCount; i++)
-            {
-                string id = $"Dummy_{i}";
-
-                if (!dummyPlayers.ContainsKey(id))
-                {
-                    var data = new DummyState
-                    {
-                        state = GenerateNewDummyData(i),
-                        targetPosition = GetRandomSpawnPosition()
-                    };
-                    dummyPlayers[id] = data;
-                }
-
-                SimulateMovement(dummyPlayers[id]);
-                playerManager.OnReceivePlayerState(dummyPlayers[id].state);
-            }
-
-            // 퇴장 시뮬레이션 (선택사항)
-            if (Random.value < 0.02f)
-            {
-                int idx = Random.Range(0, dummyCount);
-                string leaveId = $"Dummy_{idx}";
-                if (dummyPlayers.TryGetValue(leaveId, out var dummy))
-                {
-                    playerManager.OnRemotePlayerDisconnected(leaveId);
-                    dummyPlayers.Remove(leaveId);
-                }
-            }
+            foreach (var dummy in dummies.Values)
+                SimulateMoveAndSend(dummy);
 
             yield return new WaitForSeconds(updateInterval);
         }
     }
 
-    private void SimulateMovement(DummyState dummy)
+    private void SendCreatePacket(Dummy dummy)
     {
-        var data = dummy.state;
-
-        if (dummy.waitTimer > 0)
+        PlayerStateData data = new PlayerStateData
         {
-            dummy.waitTimer -= updateInterval;
-            data.moveInput = Vector3.zero;
-            return;
-        }
+            id = dummy.id,
+            name = dummy.id,
+            team = (uint)dummy.team,
+            position = dummy.position,
+            rotationY = dummy.yaw,
+            rotationX = dummy.pitch,
+            weapon = 0,
+            maxHp = 100,
+            curHp = 100,
+            isAlive = true
+        };
 
-        Vector3 direction = (dummy.targetPosition - data.position);
-        Vector3 flatDir = new Vector3(direction.x, 0f, direction.z);
-        float distance = flatDir.magnitude;
+        Managers.GameSceneManager.PlayerManager.OnReceivePlayerState(data);
+    }
 
-        if (distance < 0.5f)
+    private void SimulateMoveAndSend(Dummy dummy)
+    {
+
+        Vector3 dir = dummy.target - dummy.position;
+        Vector3 flatDir = new Vector3(dir.x, 0, dir.z);
+
+        if (flatDir.magnitude < 0.5f)
         {
-            dummy.waitTimer = waitTime;
-            dummy.targetPosition = GetRandomSpawnPosition();
-            data.moveInput = Vector3.zero;
+            dummy.target = GetRandomSpawnPosition();
         }
         else
         {
             Vector3 moveDir = flatDir.normalized;
-            data.moveInput = moveDir;
-            data.position += moveDir * moveSpeed * updateInterval;
+            dummy.position += moveDir * moveSpeed * updateInterval;
+            dummy.yaw = Quaternion.LookRotation(moveDir).eulerAngles.y;
 
-            // 회전은 이동 방향을 기반으로
-            if (moveDir != Vector3.zero)
+            uint playerId = uint.Parse(dummy.id);
+
+            SC_KEY_INPUT inputPacket = new SC_KEY_INPUT
             {
-                data.rotationY = Quaternion.LookRotation(moveDir).eulerAngles.y;
-            }
+                PlayerId = playerId,
+                KeyW = moveDir.z > 0 ? 1u : 0u,
+                KeyS = moveDir.z < 0 ? 1u : 0u,
+                KeyA = moveDir.x < 0 ? 1u : 0u,
+                KeyD = moveDir.x > 0 ? 1u : 0u,
+                RotateAxisX = (uint)dummy.pitch,
+                RotateAxisY = (uint)dummy.yaw,
+                Jump = Random.value < 0.01f ? 1u : 0u
+            };
+
+            PacketHandler.SC_KeyInput(null, inputPacket);
         }
-
-        // 부가 입력
-        data.isJumping = Random.value < 0.01f;
-        data.isFiring = Random.value < 0.05f;
-        data.rotationX = Mathf.Clamp(data.rotationX + Random.Range(-1f, 1f), -60f, 60f);
-    }
-
-    private PlayerStateData GenerateNewDummyData(int index)
-    {
-        string id = $"Dummy_{index}";
-        int team = index % 2;
-        string name = dummyNames[Random.Range(0, dummyNames.Length)];
-        Vector3 pos = GetRandomSpawnPosition();
-
-        return new PlayerStateData
-        {
-            id = id,
-            name = name,
-            team = team,
-            position = pos,
-            moveInput = Vector3.zero,
-            rotationX = 0f,
-            rotationY = Random.Range(0f, 360f),
-            isJumping = false,
-            isFiring = false,
-            hitSuccess = false,
-            hitTargetId = ""
-        };
     }
 
     private Vector3 GetRandomSpawnPosition()
     {
-        return spawnAreaCenter + new Vector3(
-            Random.Range(-spawnAreaSize.x / 2f, spawnAreaSize.x / 2f),
-            0,
-            Random.Range(-spawnAreaSize.z / 2f, spawnAreaSize.z / 2f)
-        );
+        float x = Random.Range(5f, 25f);
+        float z = Random.Range(5f, 25f);
+        float y = 5f; // 바닥보다 약간 위 (중력과 충돌처리 가능하게)
+
+        return new Vector3(x, 0.2f, z); // fallback
     }
 }

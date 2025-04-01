@@ -12,7 +12,6 @@ public class RemotePlayerController : PlayerControllerBase
 
     [SerializeField] private Transform weaponHolder; // 손에 붙이는 슬롯
     [SerializeField] private Transform weaponFix;   //방향 조정
-    [SerializeField] private List<GameObject> weaponPrefabs; // 인덱스별 총기 리스트
 
     [Header("이름 태그")]
     [SerializeField] public PlayerNameTag nameTag;
@@ -169,20 +168,19 @@ public class RemotePlayerController : PlayerControllerBase
         _equippedWeapon.Attack(started);*/
     }
 
-    public void EquipWeapon(int weaponType)
+    public void EquipWeapon(int weaponId)
     {
         if (equippedWeapon != null)
             Destroy(equippedWeapon);
 
-        if (weaponType < 0 || weaponType >= weaponPrefabs.Count)
-        {
-            Debug.LogWarning($"잘못된 무기 타입: {weaponType}");
-            return;
-        }
+        WeaponDataSO weaponData = Managers.Data.WeaponData.GetWeaponData(weaponId);
 
-        equippedWeapon = Instantiate(weaponPrefabs[weaponType], weaponFix);
+        if (weaponData == null)
+            return;
+
+        equippedWeapon = Instantiate(weaponData.dummyPrefab, weaponFix);
         equippedWeapon.transform.localPosition = Vector3.zero;
-        equippedWeapon.transform.localRotation = Quaternion.Euler(0, 180f, 0);
+        equippedWeapon.transform.localRotation = Quaternion.Euler(0, 180f, 0);  
     }
 
 }

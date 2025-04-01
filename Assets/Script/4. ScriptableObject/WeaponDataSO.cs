@@ -42,7 +42,7 @@ public class WeaponDataSO : ScriptableObject
     [SerializeField] public EWeaponType weaponType;
 
     [Header("Prefab")]
-    [SerializeField] public GameObject dropItemPrefab;
+    [SerializeField] public GameObject dummyPrefab;
     [SerializeField] public GameObject itemPrefab;
 
 

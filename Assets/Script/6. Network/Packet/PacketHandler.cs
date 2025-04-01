@@ -28,6 +28,10 @@ class PacketHandler
     public static void SC_ChangeWeapon(PacketSession session, IMessage packet)
     {
         SC_CHANGE_WEAPON changeWeaponPacket = packet as SC_CHANGE_WEAPON;
+        if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(changeWeaponPacket.PlayerId, out var controller))
+        {
+            controller.EquipWeapon((int)changeWeaponPacket.Weapon);
+        } 
 
         // TODO: SC_ChangeWeapon 패킷 처리 로직을 여기에 구현
     }

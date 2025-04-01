@@ -13,8 +13,8 @@ public class WeaponStorageSO : ScriptableObject
         return _weaponDatas.FindAll(data => data.weaponType == weaponType);  
     }
 
-    public WeaponDataSO GetWeaponData(int key, EWeaponType weaponType)
+    public WeaponDataSO GetWeaponData(int key)
     {
-        return _weaponDatas.Find(data => data.key == key && data.weaponType == weaponType);  
+        return _weaponDatas.Find(data => data.key == key);   
     } 
 }

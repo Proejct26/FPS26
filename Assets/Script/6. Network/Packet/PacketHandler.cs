@@ -166,11 +166,21 @@ class PacketHandler
     {
         SC_POS_INTERPOLATION posInterpolationPacket = packet as SC_POS_INTERPOLATION;
 
-        // TODO: SC_PosInterpolation 패킷 처리 로직을 여기에 구현
-        if(Managers.Player.TryGetComponent(out LocalPlayerController local))
+        uint playerID = posInterpolationPacket.PlayerId;
+
+        Vector3 targetPos = new Vector3(
+            posInterpolationPacket.PosX,
+            posInterpolationPacket.PosY,
+            posInterpolationPacket.PosZ
+        );
+
+        if (Managers.GameSceneManager.PlayerManager.TryGetPlayer(playerID, out var controller))
         {
-            Vector3 pos = new Vector3(posInterpolationPacket.PosX, posInterpolationPacket.PosY, posInterpolationPacket.PosZ);
-            local.SetNetworkPosition(pos);
+            controller.SetNetworkPosition(targetPos); // RemotePlayerController or LocalPlayerController
+        }
+        else
+        {
+            Debug.LogWarning($"[SC_PosInterpolation] 플레이어 {playerID} 를 찾을 수 없습니다.");
         }
     }
 

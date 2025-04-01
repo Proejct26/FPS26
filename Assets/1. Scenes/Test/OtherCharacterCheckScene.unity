@@ -159,7 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba937b6d4f8ae8478daa3f8d6c44af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerManager: {fileID: 1200831277}
   dummyCount: 10
   spawnAreaCenter: {x: 0, y: 0, z: 0}
   spawnAreaSize: {x: 30, y: 0, z: 30}
@@ -5271,54 +5270,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb81a67ad1cf2984784527d333cae7d2, type: 3}
---- !u!1 &1200831276
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1200831278}
-  - component: {fileID: 1200831277}
-  m_Layer: 0
-  m_Name: PlayerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1200831277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200831276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9cb48a299b7b7f42aa1eb5712afda01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  redTeamPrefab: {fileID: 4118806565809273668, guid: 0222269a5fbc444489845b7e00eb5f36,
-    type: 3}
-  blueTeamPrefab: {fileID: 6934824541329014293, guid: 2bd44824751b1ab4ebadb7cfa0383111,
-    type: 3}
---- !u!4 &1200831278
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200831276}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6956248, y: -2.6386263, z: -3.5605211}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1213606163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7070,6 +7021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5a21bb103b3c94199fd245f4d9585e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    <WeaponData>k__BackingField: {fileID: 0}
   input:
     inputActionAsset: {fileID: -944628639613478452, guid: fce91d072eee25142a2f0a1000568b2c,
       type: 3}
@@ -8252,7 +8205,6 @@ SceneRoots:
   - {fileID: 587616489}
   - {fileID: 544204538}
   - {fileID: 1132688336}
-  - {fileID: 1200831278}
   - {fileID: 607161634}
   - {fileID: 134368015}
   - {fileID: 837853012}

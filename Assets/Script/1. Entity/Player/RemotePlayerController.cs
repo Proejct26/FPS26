@@ -125,7 +125,7 @@ public class RemotePlayerController : PlayerControllerBase
         _equippedWeapon.Attack(started);*/
     }
 
-    public void EquipWeapon(int weaponType)
+    public void EquipWeapon(uint weaponType)
     {
         if (equippedWeapon != null)
             Destroy(equippedWeapon);
@@ -136,7 +136,7 @@ public class RemotePlayerController : PlayerControllerBase
             return;
         }
 
-        equippedWeapon = Instantiate(weaponPrefabs[weaponType], weaponFix);
+        equippedWeapon = Instantiate(weaponPrefabs[(int)weaponType], weaponFix);
         equippedWeapon.transform.localPosition = Vector3.zero;
         equippedWeapon.transform.localRotation = Quaternion.Euler(0, 180f, 0);
     }

@@ -69,6 +69,30 @@ class PacketHandler
         SC_CREATE_OTHER_CHARACTER createOtherCharacterPacket = packet as SC_CREATE_OTHER_CHARACTER;
 
         // TODO: SC_CreateOtherCharacter 패킷 처리 로직을 여기에 구현
+
+        //패킷 데이터 기반으로 상태 설정 완료
+        PlayerStateData stat = new PlayerStateData()
+        {
+            id = createOtherCharacterPacket.PlayerId.ToString(),
+            name = createOtherCharacterPacket.Name,
+            team = createOtherCharacterPacket.TeamID,
+            maxHp = createOtherCharacterPacket.MaxHP,
+            curHp = createOtherCharacterPacket.CurHP,
+            weapon = createOtherCharacterPacket.Weapon,
+
+            kills = createOtherCharacterPacket.KdaInfo.Kill,
+            deaths = createOtherCharacterPacket.KdaInfo.Death,
+            assists = createOtherCharacterPacket.KdaInfo.Assist,
+            isAlive = createOtherCharacterPacket.CurHP != 0,
+
+            position = new Vector3((float)createOtherCharacterPacket.PosX, (float)createOtherCharacterPacket.PosY, (float)createOtherCharacterPacket.PosZ),
+            lookInput = new Vector3(0, (float)createOtherCharacterPacket.RotateAxisY, 0),
+            rotationX = (float)createOtherCharacterPacket.RotateAxisX,
+            rotationY = (float)createOtherCharacterPacket.RotateAxisY
+        };
+
+        //PlayerManager에 삽입하기
+        Managers.GameSceneManager.PlayerManager.OnReceivePlayerState(stat);
     }
 
     // SC_GRENADE_EXPLOSITION_POS 패킷을 처리하는 함수
@@ -109,6 +133,7 @@ class PacketHandler
         SC_KEY_INPUT keyInputPacket = packet as SC_KEY_INPUT;
 
         // TODO: SC_KeyInput 패킷 처리 로직을 여기에 구현
+
     }
 
     // SC_ON_ACCEPT 패킷을 처리하는 함수

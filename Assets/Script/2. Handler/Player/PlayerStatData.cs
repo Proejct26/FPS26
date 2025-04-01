@@ -5,13 +5,14 @@ public class PlayerStateData
 {
     public string id;              //플레이어 ID 정보
     public string name;         //플레이어 이름 정보
-    public int team;            //팀 정보
-    public int KDA;             //KDA
-    public int weapon;          //들고 있는 무기 정보
+    public uint team;            //팀 정보
+    public uint maxHp;           //최대 체력
+    public uint curHp;           //현재 체력
+    public uint weapon;          //들고 있는 무기 정보
     
-    public int kills;           // 킬 수
-    public int deaths;          // 데스 수
-    public int assists;         // 어시 수
+    public uint kills;           // 킬 수
+    public uint deaths;          // 데스 수
+    public uint assists;         // 어시 수
     public bool isAlive;        // 생존 여부
 
     public Vector3 position;    //플레이어 현 위치

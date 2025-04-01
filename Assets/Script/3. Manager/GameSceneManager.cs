@@ -34,6 +34,9 @@ public class GameSceneManager : MonoBehaviour
 {
     [SerializeField] private SpawnData _spawnData = new SpawnData();
 
+    public PlayerManager PlayerManager { get; private set; } = new PlayerManager();
+
+
     public virtual void EnterScene()
     {  
         

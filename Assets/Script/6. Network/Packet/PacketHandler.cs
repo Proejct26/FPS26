@@ -185,7 +185,9 @@ class PacketHandler
     
         if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(shotHitPacket.PlayerId, out var controller))
         {
-            controller.PlayerStateData.curHp = shotHitPacket.Hp; 
+            if (controller.TryGetComponent(out PlayerStatHandler playerStatHandler))
+                playerStatHandler.SetHealth(shotHitPacket.Hp);  
+             
         }
     }
 

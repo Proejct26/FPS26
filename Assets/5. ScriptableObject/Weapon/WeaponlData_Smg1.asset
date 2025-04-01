@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d1457798ca1844d9999655b0c7bded, type: 3}
   m_Name: WeaponlData_Smg1
   m_EditorClassIdentifier: 
+  key: 1201
   weaponIcon: {fileID: 21300006, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
   dropItemPrefab: {fileID: 2567875013113560307, guid: 1d0f08ad72e29634c9cda7485945079b,
     type: 3}

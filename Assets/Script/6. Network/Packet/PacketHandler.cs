@@ -172,6 +172,14 @@ class PacketHandler
         }
     }
 
+    // SC_SEND_MESSAGE 패킷을 처리하는 함수
+    public static void SC_SendMessage(PacketSession session, IMessage packet)
+    {
+        SC_SEND_MESSAGE sendMessagePacket = packet as SC_SEND_MESSAGE;
+
+        // TODO: SC_SendMessage 패킷 처리 로직을 여기에 구현
+    }
+
     // SC_SHOT_HIT 패킷을 처리하는 함수
     public static void SC_ShotHit(PacketSession session, IMessage packet)
     {

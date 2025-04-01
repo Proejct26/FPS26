@@ -19,8 +19,8 @@ class PacketHandler
         // WeaponBaseController.SpawnMuzzleFlash(new Vector3(attackPacket.PosX, attackPacket.PosY, attackPacket.PosZ), 
         //     new Vector3(attackPacket.NormalX, attackPacket.NormalY, attackPacket.NormalZ));
 
-        WeaponBaseController.SpawnHitEffect(new Vector3(attackPacket.PosX.ConvertToFloat(), attackPacket.PosY.ConvertToFloat(), attackPacket.PosZ.ConvertToFloat()), 
-            new Vector3(attackPacket.NormalX.ConvertToFloat(), attackPacket.NormalY.ConvertToFloat(), attackPacket.NormalZ.ConvertToFloat()));  
+        WeaponBaseController.SpawnHitEffect(new Vector3(attackPacket.PosX, attackPacket.PosY, attackPacket.PosZ), 
+            new Vector3(attackPacket.NormalX, attackPacket.NormalY, attackPacket.NormalZ));   
         // TODO: SC_Attack 패킷 처리 로직을 여기에 구현
     }
 

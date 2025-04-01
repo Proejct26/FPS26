@@ -153,23 +153,23 @@ public class GunController : WeaponBaseController
             { 
                 // 히트 이펙트
                 CS_ATTACK attackPacket = new CS_ATTACK();
-                attackPacket.PosX = (uint)hit.point.x;
-                attackPacket.PosY = (uint)hit.point.y;
-                attackPacket.PosZ = (uint)hit.point.z;
-                attackPacket.NormalX = (uint)hit.normal.x;
-                attackPacket.NormalY = (uint)hit.normal.y;
-                attackPacket.NormalZ = (uint)hit.normal.z; 
-                
+                attackPacket.PosX = hit.point.x;
+                attackPacket.PosY = hit.point.y;
+                attackPacket.PosZ = hit.point.z;
+                attackPacket.NormalX = hit.normal.x;
+                attackPacket.NormalY = hit.normal.y;
+                attackPacket.NormalZ = hit.normal.z; 
+                 
                 Managers.Network.Send(attackPacket); 
                 //WeaponBaseController.SpawnHitEffect(hit.point, hit.normal, attackPacket.BAttack);    
                 // 충돌 체크 hit.collider.tag == "Head"
                 targets[i] = hit.collider.gameObject;
 
-                if (remotePlayerController != null)
+                if (hit.collider.TryGetComponent(out RemotePlayerController controller))
                 {
                     CS_SHOT_HIT shotHitPacket = new CS_SHOT_HIT();
-                    shotHitPacket.PlayerId = remotePlayerController.PlayerStateData.networkId;
-                    shotHitPacket.Hp = (uint)(remotePlayerController.PlayerStateData.curHp - _weaponDataSO.damage); 
+                    shotHitPacket.PlayerId = controller.PlayerStateData.networkId;
+                    shotHitPacket.Hp = (uint)(controller.PlayerStateData.curHp - _weaponDataSO.damage);  
                     Managers.Network.Send(shotHitPacket);
                 }
             } 

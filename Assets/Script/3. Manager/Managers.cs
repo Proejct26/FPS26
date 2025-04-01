@@ -36,7 +36,7 @@ public class Managers : Singleton<Managers>
     private static GameObject player;
     public static GameObject Player 
     {
-        get {return player == null ? player = FindAnyObjectByType<PlayerControllerBase>().gameObject : player;} 
+        get {return player == null ? player = FindAnyObjectByType<LocalPlayerController>().gameObject : player;}  
         private set{player = value;}
     }
 

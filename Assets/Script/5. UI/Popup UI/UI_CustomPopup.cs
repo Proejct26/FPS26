@@ -10,7 +10,11 @@ public class UI_CustomPopup : UI_Popup
     enum Buttons
     {
         EnterGameButton,
-        CustomBackButton
+        CustomBackButton,
+        IconButton1,
+        IconButton2,
+        IconButton3,
+        IconButton4,
     }
 
     enum InputFields
@@ -23,6 +27,10 @@ public class UI_CustomPopup : UI_Popup
         CustomErrorText
     }
 
+    private int _selectedIconIndex = 0;
+    private Button[] _iconButtons;
+    private Image[] _outlineImages;
+
     public override void Init()
     {
         base.Init();
@@ -34,11 +42,57 @@ public class UI_CustomPopup : UI_Popup
         GetButton((int)Buttons.EnterGameButton).onClick.AddListener(OnEnterGameButtonClick);
         GetButton((int)Buttons.CustomBackButton).onClick.AddListener(OnBackButtonClick);
         
+        _outlineImages = new Image[4];
+        
+        _iconButtons = new Button[4];
+        _iconButtons[0] = GetButton((int)Buttons.IconButton1);
+        _iconButtons[1] = GetButton((int)Buttons.IconButton2);
+        _iconButtons[2] = GetButton((int)Buttons.IconButton3);
+        _iconButtons[3] = GetButton((int)Buttons.IconButton4);
+        
+        // 아웃라인 이미지 초기화
+        for (int i = 0; i < _iconButtons.Length; i++)
+        {
+            if (_iconButtons[i] == null)
+            {
+                Debug.Log($"IconButton{i + 1} is null");
+                continue;
+            }
+            _outlineImages[i] = _iconButtons[i].transform.Find("OutlineImage")?.GetComponent<Image>();
+            if (_outlineImages[i] == null)
+            {
+                Debug.Log($"IconButton{i + 1}의 OutlineImage 누락");
+                continue;
+            }
+            int index = i;
+            _iconButtons[i].onClick.AddListener(() => SelectIcon(index));
+        }
+        
         Get<TextMeshProUGUI>((int)Texts.CustomErrorText).gameObject.SetActive(false);
         Get<TMP_InputField>((int)InputFields.NickNameInputField).text = Managers.Data.Nickname;
+        _selectedIconIndex = Managers.Data.SelectedIconIndex;
+        
+        UpdateIconSelectionUI();
     }
 
-    private void OnEnterGameButtonClick()
+    private void SelectIcon(int index)
+    {
+        _selectedIconIndex = index;
+        UpdateIconSelectionUI();
+    }
+    
+    private void UpdateIconSelectionUI()
+    {
+        for (int i = 0; i < _iconButtons.Length; i++)
+        {
+            if (_outlineImages[i] != null)
+            {
+                _outlineImages[i].color = (i == _selectedIconIndex) ? Color.green : Color.gray;
+            }
+        }
+    }
+
+private void OnEnterGameButtonClick()
     {
         string nickName = Get<TMP_InputField>((int)InputFields.NickNameInputField).text.Trim();
         if (!IsValidNickName(nickName, out string errorMessage))
@@ -47,9 +101,9 @@ public class UI_CustomPopup : UI_Popup
             Get<TextMeshProUGUI>((int)Texts.CustomErrorText).gameObject.SetActive(true);
             return;
         }
-
-        Managers.Data.SettingData(nickname: nickName);
-        Debug.Log($"NickName 설정: {nickName}");
+        
+        Managers.Data.SettingData(nickname: nickName, selectedIconIndex: _selectedIconIndex);
+        Debug.Log($"닉네임 설정: {nickName}, Icon: {_selectedIconIndex}");
 
         ClosePopupUI();
         SceneManager.LoadScene("MainScene");
@@ -83,6 +137,7 @@ public class UI_CustomPopup : UI_Popup
                 return false;
             }
         }
+        
         return true;
     }
 

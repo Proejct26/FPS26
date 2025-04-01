@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45818d3f57fe5b543923cd3ff0bbe186, type: 3}
+  m_Name: WeaponStorageSO
+  m_EditorClassIdentifier: 
+  _weaponDatas:
+  - {fileID: 11400000, guid: b6b19e68864c9a74690f99360641561c, type: 2}
+  - {fileID: 11400000, guid: 5fda0b13c71c6234da6191e6e2994a73, type: 2}
+  - {fileID: 11400000, guid: 7bd49416bf2f223489f388120211af4a, type: 2}
+  - {fileID: 11400000, guid: 0affeec086d7e61448ba51d3db663102, type: 2}
+  - {fileID: 11400000, guid: b4d2acada5026fa46a3fef41ae640dd1, type: 2}
+  - {fileID: 11400000, guid: 432a2ae25b37941419105672d3c1933d, type: 2}
+  - {fileID: 11400000, guid: 826ab359f303af34b90289ac03470c7f, type: 2}
+  - {fileID: 11400000, guid: 4d05d33a93e3f4e41a0954333cca122a, type: 2}
+  - {fileID: 11400000, guid: 35a048c5322b2a84f9e38358fcd3dc14, type: 2}

@@ -14,9 +14,9 @@ public class PlayerCameraHandler : MonoBehaviour
     
     private Camera _mainCam;
 
-    private void Start()
+    private void Awake()
     {
-        InitCamera();
+        InitCamera(); 
     }
 
     private void Update()
@@ -33,7 +33,7 @@ public class PlayerCameraHandler : MonoBehaviour
     {
         _mainCam = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.visible = false; 
     }
 
     private void RotateCamera()

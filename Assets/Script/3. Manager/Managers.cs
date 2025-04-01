@@ -13,7 +13,7 @@ public interface IManager
 
 public class Managers : Singleton<Managers>
 { 
-    [field: SerializeField] private DataManager data;
+    [field: SerializeField] private DataManager data  = new DataManager();
     [field: SerializeField] private InputManager input = new InputManager();
     [field: SerializeField] private ResourceManager resource = new ResourceManager();
     [field: SerializeField] private EventManager @event = new EventManager();
@@ -35,6 +35,8 @@ public class Managers : Singleton<Managers>
 
     public static GameObject Player {get; private set;}
 
+    public static GameSceneManager GameSceneManager {get; private set;}
+ 
  
     protected override void Awake()
     {
@@ -44,20 +46,22 @@ public class Managers : Singleton<Managers>
         if (pcb != null) 
             Player = pcb.gameObject; 
 
-        data = new DataManager();
+   
         Init();
     }
-    private void Start() 
-    {
-        //UI.ShowPopupUI<SkillPopupUI>(); 
-       
-	} 
 
     private void Update()
     {
-        //_input.OnUpdate();
-
         Network.Update();
+    }
+
+    public static void RegisterGameSceneManager(GameSceneManager gameSceneManager)
+    {
+        if (GameSceneManager != null)
+        GameSceneManager.ExitScene();
+        gameSceneManager.EnterScene(); 
+
+        GameSceneManager = gameSceneManager;  
     }
 
     private static void Init()
@@ -75,16 +79,5 @@ public class Managers : Singleton<Managers>
     {
 
     }
-    
-    public static void SetTimer(Action action, float time)
-    {
-        Instance.StartCoroutine(Instance.SetTimerCoroutine(action, time));
-    }
-    
-    private IEnumerator SetTimerCoroutine(Action action, float time)
-    {
-        yield return new WaitForSeconds(time);
-        action?.Invoke();
-    }
-    
+
 }

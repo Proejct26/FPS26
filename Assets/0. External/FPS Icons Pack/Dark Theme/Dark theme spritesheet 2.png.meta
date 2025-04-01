@@ -211,7 +211,7 @@ TextureImporter:
       name: DT Automatic rifle 6
       rect:
         serializedVersion: 2
-        x: 16
+        x: 22
         y: 3567
         width: 1517
         height: 508
@@ -278,8 +278,8 @@ TextureImporter:
         y: 2949
         width: 1381
         height: 538
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5121905, y: 0.7920598}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -383,8 +383,8 @@ TextureImporter:
         y: 2475
         width: 743
         height: 358
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.59405077}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -463,7 +463,7 @@ TextureImporter:
       name: DT Submachinegun 1
       rect:
         serializedVersion: 2
-        x: 176
+        x: 170
         y: 1967
         width: 1163
         height: 462
@@ -485,7 +485,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1663
-        y: 2111
+        y: 2117
         width: 1628
         height: 318
       alignment: 0
@@ -635,8 +635,8 @@ TextureImporter:
         y: 1484
         width: 1278
         height: 483
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49999994, y: 0.5464739}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -656,8 +656,8 @@ TextureImporter:
         y: 26
         width: 1046
         height: 481
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6400016}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -677,8 +677,8 @@ TextureImporter:
         y: 990
         width: 1595
         height: 494
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5035182, y: 0.60223806}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -698,8 +698,8 @@ TextureImporter:
         y: 507
         width: 1579
         height: 482
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49999997, y: 0.59314114}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -714,7 +714,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8a7c37712f0f4bc429cdb1fc8e66de47
     internalID: 0
     vertices: []
     indices: 

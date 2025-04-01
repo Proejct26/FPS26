@@ -85,7 +85,7 @@ public class Crosshair : UI_Scene
     {
       //  float spread = Mathf.Lerp(0, SpreadAmount, GetSpreadFactor());//크로스 헤어 퍼짐 계산 
         float spread = SpreadAmount / 4; 
-        Debug.Log(spread);
+
         crosshairUpRect.anchoredPosition = center + directionY * spread;   // 위로 퍼짐
         crosshairDownRect.anchoredPosition = center - directionY * spread; // 아래로 퍼짐
         crosshairRightRect.anchoredPosition = center + directionX * spread; // 오른쪽으로 퍼짐

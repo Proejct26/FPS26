@@ -158,23 +158,23 @@ public class PlayerWeaponHandler : MonoBehaviour
  
     private void ThrowWeapon()
     {
-        EWeaponType weaponType = CurrentWeapon.WeaponDataSO.weaponType; 
-        int index = (int)weaponType;
-        if (_weapons[index] == null || weaponType == EWeaponType.Knife) 
-            return;
+        // EWeaponType weaponType = CurrentWeapon.WeaponDataSO.weaponType; 
+        // int index = (int)weaponType;
+        // if (_weapons[index] == null || weaponType == EWeaponType.Knife) 
+        //     return;
 
-        GameObject weapon = _weapons[index].gameObject;
-        if (weapon.TryGetComponent(out WeaponBaseController weaponBaseController))
-        {
-            WeaponDataSO weaponDataSO = weaponBaseController.WeaponDataSO;
-            GameObject dropItem = Managers.Pool.Get(weaponDataSO.dropItemPrefab);
+        // GameObject weapon = _weapons[index].gameObject;
+        // if (weapon.TryGetComponent(out WeaponBaseController weaponBaseController))
+        // {
+        //     WeaponDataSO weaponDataSO = weaponBaseController.WeaponDataSO;
+        //     GameObject dropItem = Managers.Pool.Get(weaponDataSO.dropItemPrefab);
 
-            dropItem.transform.position = Managers.Player.transform.position + Managers.Player.transform.forward * 1f;
-            dropItem.GetOrAddComponent<Rigidbody>().AddForce(Managers.Player.transform.forward * 4f, ForceMode.Impulse);
-        } 
+        //     dropItem.transform.position = Managers.Player.transform.position + Managers.Player.transform.forward * 1f;
+        //     dropItem.GetOrAddComponent<Rigidbody>().AddForce(Managers.Player.transform.forward * 4f, ForceMode.Impulse);
+        // } 
         
-        Destroy(weapon); 
-        EquipWeapon(EWeaponType.Knife);
-        _weapons[index] = null;
+        // Destroy(weapon); 
+        // EquipWeapon(EWeaponType.Knife);
+        // _weapons[index] = null;
     }
 }

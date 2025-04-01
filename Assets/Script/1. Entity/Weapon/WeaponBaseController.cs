@@ -131,14 +131,14 @@ public abstract class WeaponBaseController : MonoBehaviour
         muzzleFlash.transform.rotation = Quaternion.LookRotation(dir); 
         Managers.Pool.Release(muzzleFlash, 0.05f);
 
-        Managers.Sound.Play("Sound/Weapon/shotSound");
+        
     }
 
-    public static void SpawnHitEffect(Vector3 position, Vector3 dir, bool isWall = true)
+    public static void SpawnHitEffect(Vector3 position, Vector3 dir, bool isPlayer = true)
     {
-        var particle = Managers.Pool.Get(isWall ? "Particle/HitEffect_Wall" : "Particle/HitEffect_Person");  
+        var particle = Managers.Pool.Get(!isPlayer ? "Particle/HitEffect_Wall" : "Particle/HitEffect_Person");  
         particle.transform.position = position;
         particle.transform.rotation = Quaternion.LookRotation(dir); 
-        Managers.Pool.Release(particle, 5f);  
+        Managers.Pool.Release(particle, 5f);    
     }
 }

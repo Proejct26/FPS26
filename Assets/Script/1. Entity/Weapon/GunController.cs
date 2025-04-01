@@ -154,15 +154,15 @@ public class GunController : WeaponBaseController
                 // 히트 이펙트
                 CS_ATTACK attackPacket = new CS_ATTACK();
                 attackPacket.BAttack = hit.collider.gameObject.GetComponent<RemotePlayerController>() != null;
-                attackPacket.PosX = (uint)hit.point.x;
-                attackPacket.PosY = (uint)hit.point.y;
-                attackPacket.PosZ = (uint)hit.point.z;
-                attackPacket.NormalX = (uint)hit.normal.x;
-                attackPacket.NormalY = (uint)hit.normal.y;
-                attackPacket.NormalZ = (uint)hit.normal.z; 
-                
+                attackPacket.PosX = hit.point.x.ConvertToUInt(); 
+                attackPacket.PosY = hit.point.y.ConvertToUInt();
+                attackPacket.PosZ = hit.point.z.ConvertToUInt();
+                attackPacket.NormalX = hit.normal.x.ConvertToUInt(); 
+                attackPacket.NormalY = hit.normal.y.ConvertToUInt(); 
+                attackPacket.NormalZ = hit.normal.z.ConvertToUInt(); 
+                 
                 Managers.Network.Send(attackPacket); 
-
+                //WeaponBaseController.SpawnHitEffect(hit.point, hit.normal, attackPacket.BAttack);    
                 // 충돌 체크 hit.collider.tag == "Head"
                 targets[i] = hit.collider.gameObject;
             } 
@@ -188,13 +188,9 @@ public class GunController : WeaponBaseController
         rigidbody.AddForce(dir, ForceMode.Impulse);  
  
         // 머즐 효가
-        GameObject muzzleFlash = Managers.Pool.Get($"Sprite/Weapon/muzzelFlash 0{Random.Range(1, 6)}"); 
-        muzzleFlash.transform.position = _muzzle.position;
-        muzzleFlash.transform.rotation = transform.rotation;
-        Managers.Pool.Release(muzzleFlash, 0.05f);
 
         Managers.Sound.Play("Sound/Weapon/shotSound");
-        
+        WeaponBaseController.SpawnMuzzleFlash(_muzzle.position, transform.forward);
     }
 
     private void ResetSpread()

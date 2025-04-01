@@ -8,6 +8,20 @@ using Random = UnityEngine.Random;
 
 public static class Extension
 {
+    public static uint ConvertToUInt(this float value)
+    {
+        if (value < 0)
+            return (uint)(Mathf.Abs(value) * 1000) | 0x80000000;
+        return (uint)(value * 1000);
+    }
+
+    public static float ConvertToFloat(this uint value)
+    {
+        if ((value & 0x80000000) != 0)
+            return -((value & 0x7FFFFFFF) / 1000f);
+        return value / 1000f; 
+    } 
+
 
     public static T GetOrAddComponent<T>(this GameObject go) where T : UnityEngine.Component
 	{

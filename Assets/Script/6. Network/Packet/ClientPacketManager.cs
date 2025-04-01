@@ -74,7 +74,11 @@ public class PacketManager : IManager
     {
         Action<PacketSession, ArraySegment<byte>, ushort> action = null;
          if (_onRecv.TryGetValue(id, out action))
-            action.Invoke(session, buffer, id); 
+            JobQueue.Push(() => 
+            {
+                action.Invoke(session, buffer, id);
+                MyDebug.Log($"패킷 수신 완료: {session.GetType().Name}, {id}"); 
+            }); 
             
         
     }
@@ -94,7 +98,8 @@ public class PacketManager : IManager
         {
             Action<PacketSession, IMessage> action = null;
              if (_handler.TryGetValue(id, out action))
-                 JobQueue.Push(() => action.Invoke(session, pkt));  
+                    action.Invoke(session, pkt); 
+
         }
     }
 

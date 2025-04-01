@@ -10,8 +10,14 @@ class PacketHandler
     // SC_ATTACK 패킷을 처리하는 함수
     public static void SC_Attack(PacketSession session, IMessage packet)
     {
-        SC_ATTACK attackPacket = packet as SC_ATTACK; 
-      //  Managers.Pool.Get("")
+        SC_ATTACK attackPacket = packet as SC_ATTACK;  
+         
+
+        // WeaponBaseController.SpawnMuzzleFlash(new Vector3(attackPacket.PosX, attackPacket.PosY, attackPacket.PosZ), 
+        //     new Vector3(attackPacket.NormalX, attackPacket.NormalY, attackPacket.NormalZ));
+
+        WeaponBaseController.SpawnHitEffect(new Vector3(attackPacket.PosX.ConvertToFloat(), attackPacket.PosY.ConvertToFloat(), attackPacket.PosZ.ConvertToFloat()), 
+            new Vector3(attackPacket.NormalX.ConvertToFloat(), attackPacket.NormalY.ConvertToFloat(), attackPacket.NormalZ.ConvertToFloat()));  
         // TODO: SC_Attack 패킷 처리 로직을 여기에 구현
     }
 

@@ -42,9 +42,6 @@ public class PacketManager : IManager
         _onRecv.Add((ushort)Game.PacketID.ScCreateOtherCharacter, MakePacket<SC_CREATE_OTHER_CHARACTER>);
         _handler.Add((ushort)Game.PacketID.ScCreateOtherCharacter, PacketHandler.SC_CreateOtherCharacter);
 
-        _onRecv.Add((ushort)Game.PacketID.ScGrenadeExplositionPos, MakePacket<SC_GRENADE_EXPLOSITION_POS>);
-        _handler.Add((ushort)Game.PacketID.ScGrenadeExplositionPos, PacketHandler.SC_GrenadeExplositionPos);
-
         _onRecv.Add((ushort)Game.PacketID.ScItemPickFail, MakePacket<SC_ITEM_PICK_FAIL>);
         _handler.Add((ushort)Game.PacketID.ScItemPickFail, PacketHandler.SC_ItemPickFail);
 
@@ -68,9 +65,6 @@ public class PacketManager : IManager
 
         _onRecv.Add((ushort)Game.PacketID.ScShotHit, MakePacket<SC_SHOT_HIT>);
         _handler.Add((ushort)Game.PacketID.ScShotHit, PacketHandler.SC_ShotHit);
-
-        _onRecv.Add((ushort)Game.PacketID.ScThrowGrenade, MakePacket<SC_THROW_GRENADE>);
-        _handler.Add((ushort)Game.PacketID.ScThrowGrenade, PacketHandler.SC_ThrowGrenade);
     }
 
     public void OnRecvPacket(PacketSession session, ushort id, ArraySegment<byte> buffer)

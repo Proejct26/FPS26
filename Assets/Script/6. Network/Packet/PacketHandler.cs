@@ -95,14 +95,6 @@ class PacketHandler
         MyDebug.Log("리무트 플레이어 생성 완료!");  
     }
 
-    // SC_GRENADE_EXPLOSITION_POS 패킷을 처리하는 함수
-    public static void SC_GrenadeExplositionPos(PacketSession session, IMessage packet)
-    {
-        SC_GRENADE_EXPLOSITION_POS grenadeExplositionPosPacket = packet as SC_GRENADE_EXPLOSITION_POS;
-
-        // TODO: SC_GrenadeExplositionPos 패킷 처리 로직을 여기에 구현
-    }
-
     // SC_ITEM_PICK_FAIL 패킷을 처리하는 함수
     public static void SC_ItemPickFail(PacketSession session, IMessage packet)
     {
@@ -177,7 +169,9 @@ class PacketHandler
     {
         SC_SEND_MESSAGE sendMessagePacket = packet as SC_SEND_MESSAGE;
 
+        string unityString = sendMessagePacket.Message;
         // TODO: SC_SendMessage 패킷 처리 로직을 여기에 구현
+        Debug.Log($"{unityString}");
     }
 
     // SC_SHOT_HIT 패킷을 처리하는 함수
@@ -185,15 +179,6 @@ class PacketHandler
     {
         SC_SHOT_HIT shotHitPacket = packet as SC_SHOT_HIT;
    
-
         // TODO: SC_ShotHit 패킷 처리 로직을 여기에 구현
-    }
-
-    // SC_THROW_GRENADE 패킷을 처리하는 함수
-    public static void SC_ThrowGrenade(PacketSession session, IMessage packet)
-    {
-        SC_THROW_GRENADE throwGrenadePacket = packet as SC_THROW_GRENADE;
-
-        // TODO: SC_ThrowGrenade 패킷 처리 로직을 여기에 구현
     }
 }

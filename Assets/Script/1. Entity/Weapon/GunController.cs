@@ -153,7 +153,6 @@ public class GunController : WeaponBaseController
             { 
                 // 히트 이펙트
                 CS_ATTACK attackPacket = new CS_ATTACK();
-                attackPacket.BAttack = hit.collider.gameObject.GetComponent<RemotePlayerController>() != null;
                 attackPacket.PosX = (uint)hit.point.x;
                 attackPacket.PosY = (uint)hit.point.y;
                 attackPacket.PosZ = (uint)hit.point.z;

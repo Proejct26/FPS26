@@ -4,18 +4,7 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-[Serializable]
-public class WeaponData
-{
-    [SerializeField] public List<WeaponDataSO> weaponDatas = new List<WeaponDataSO>();
 
-    public List<WeaponDataSO> GetWeaponData(EWeaponType weaponType)
-    {
-        return weaponDatas.FindAll(data => data.weaponType == weaponType);  
-    }
-    
-    
-}
 
 [System.Serializable]
 public class GameSettings
@@ -34,13 +23,13 @@ public class GameSettings
         MouseSensitivity = 50f;
         SelectedIconIndex = 0;
     }
-}
+} 
 
 [Serializable]
 public class DataManager : IManager
 {
     [SerializeField] private GameSettings _settings = new GameSettings();
-    [field: SerializeField] public WeaponData WeaponData {get; private set;} = new WeaponData(); 
+    [field: SerializeField] public WeaponStorageSO WeaponData {get; private set;}
  
     private GameSettings _mySettings = new GameSettings();
     

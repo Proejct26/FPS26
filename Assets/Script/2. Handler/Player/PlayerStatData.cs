@@ -8,6 +8,11 @@ public class PlayerStateData
     public int team;            //팀 정보
     public int KDA;             //KDA
     public int weapon;          //들고 있는 무기 정보
+    
+    public int kills;           // 킬 수
+    public int deaths;          // 데스 수
+    public int assists;         // 어시 수
+    public bool isAlive;        // 생존 여부
 
     public Vector3 position;    //플레이어 현 위치
     public Vector3 lookInput;   //어디를 보고 있는지 벡터     

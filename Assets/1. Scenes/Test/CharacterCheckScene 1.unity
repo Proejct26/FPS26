@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17658089, g: 0.22102123, b: 0.30333114, a: 1}
+  m_IndirectSpecularColor: {r: 0.17658123, g: 0.22102171, b: 0.30333182, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5731,6 +5731,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5a21bb103b3c94199fd245f4d9585e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    <WeaponData>k__BackingField:
+      weaponDatas: []
   input:
     inputActionAsset: {fileID: -944628639613478452, guid: fce91d072eee25142a2f0a1000568b2c,
       type: 3}

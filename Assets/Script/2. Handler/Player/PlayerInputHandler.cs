@@ -18,7 +18,10 @@ public class PlayerInputHandler : MonoBehaviour
     public bool IsFiring { get; private set; }
 
     public bool IsZooming { get; private set; }
+    public bool IsScorePopup { get; private set; }
 
+    private UI_ScorePopup _scorePopup;
+    
     private void Update()
     {
         UpdateInput();
@@ -44,6 +47,23 @@ public class PlayerInputHandler : MonoBehaviour
 
         IsJumping = Managers.Input.GetInput(EPlayerInput.Jump).IsPressed();
         IsFiring = Managers.Input.GetInput(EPlayerInput.Fire).IsPressed();
+        // IsScorePopup = Managers.Input.GetInput(EPlayerInput.Info).IsPressed();
+        
+        // Tab 체크
+        bool newScorePopupState = Managers.Input.GetInput(EPlayerInput.Info).IsPressed();
+        if (newScorePopupState != IsScorePopup)
+        {
+            IsScorePopup = newScorePopupState;
+            if (IsScorePopup && _scorePopup == null)
+            {
+                _scorePopup = Managers.UI.ShowPopupUI<UI_ScorePopup>("ScorePopup");
+            }
+            else if (!IsScorePopup && _scorePopup != null)
+            {
+                Managers.UI.ClosePopupUI(_scorePopup);
+                _scorePopup = null;
+            }
+        }
     }
 
 }

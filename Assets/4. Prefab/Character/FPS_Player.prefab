@@ -246,11 +246,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponParent: {fileID: 7492963166118102614}
-  _mainWeaponPrefab: {fileID: 8634434568037516225, guid: 451ee1456bc9c594f88b0a19024831f3,
+  _mainWeaponPrefab: {fileID: 8335102493945524992, guid: 182e512a474fdc44ab0877d0dd046118,
     type: 3}
-  _subWeaponPrefab: {fileID: 2124200299945822973, guid: 75e4bfab1c92a2243ad6fc3a4ffa2e32,
+  _subWeaponPrefab: {fileID: 4724544863606683765, guid: e84bd873782274240802a4616ce684fd,
     type: 3}
-  _knifePrefab: {fileID: 9014002615599485563, guid: 30c9383683dea174793907f78d84235c,
+  _knifePrefab: {fileID: 8634434568037516225, guid: 451ee1456bc9c594f88b0a19024831f3,
     type: 3}
 --- !u!114 &6014489089892647982
 MonoBehaviour:
@@ -483,7 +483,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4273439017018518573}
   - component: {fileID: 482441575685276482}
-  - component: {fileID: 6840828176061812879}
   - component: {fileID: 5930449608677751463}
   m_Layer: 3
   m_Name: ScopeCamera
@@ -558,14 +557,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6840828176061812879
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5672085360549122074}
-  m_Enabled: 1
 --- !u!114 &5930449608677751463
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -25,9 +25,18 @@ public class UIManager : IManager
 
         //Managers.UI.ShowSceneUI<MainUI>();  //같은 이름일 경우 텍스트 생략
         
-       //  UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup"); //같은 이름일 경우 텍스트 생략
-         
-         // ClosePopupUI(popup);
+        // UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup");
+       
+       // 씬에 따라 초기 UI 다르게 설정
+       string currentScene = SceneManager.GetActiveScene().name;
+       if (currentScene == "TitleScene")
+       {
+           ShowPopupUI<UI_StartPopup>("StartPopup");
+       }
+       // else if (currentScene == "MainScene")
+       // {
+       //     ShowSceneUI<MainUI>();
+       // }
     } 
   
     public void Clear()
@@ -94,8 +103,8 @@ public class UIManager : IManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
         
-        if(_popupStack.Count > 0)
-            ClosePopupUI(_popupStack.Peek());
+        // if(_popupStack.Count > 0)
+        //     ClosePopupUI(_popupStack.Peek()); 
 
         GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
         T popup = Util.GetOrAddComponent<T>(go);
@@ -108,7 +117,7 @@ public class UIManager : IManager
 		return popup; 
     }
 
-    public void ClosePopupUI(UI_Popup popup)
+    public void ClosePopupUI(UI_Popup popup, float time = 0.0f)
     {
 		if (_popupStack.Count == 0)
 			return;
@@ -119,17 +128,17 @@ public class UIManager : IManager
             return;
         }
 
-        ClosePopupUI();
+        ClosePopupUI(time);
     }
 
-    public void ClosePopupUI()
+    public void ClosePopupUI(float time = 0.0f)
     {
         if (_popupStack.Count == 0)
             return;
 
         UI_Popup popup = _popupStack.Pop();
-        GameObject.Destroy(popup.gameObject); 
-        popup = null;
+        GameObject.Destroy(popup.gameObject, time); 
+        popup = null; 
         _order--; 
     }
 
@@ -138,17 +147,4 @@ public class UIManager : IManager
         while (_popupStack.Count > 0)
             ClosePopupUI();
     }
-    
-    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    // {
-    //     Clear();
-    //     if (scene.name == "TitleScene")
-    //     {
-    //         ShowSceneUI<UI_Title>("TitleCanvas");
-    //     }
-    //     else if (scene.name == "MainScene")
-    //     {
-    //         ShowSceneUI<MainUI>("MainUI");
-    //     }
-    // }
 }

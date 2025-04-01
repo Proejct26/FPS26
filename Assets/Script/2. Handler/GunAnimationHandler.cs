@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunAnimationHandler : MonoBehaviour
+public class WeaponAnimationHandler : MonoBehaviour
 {
     private readonly static int _FireHash = Animator.StringToHash("Fire");
     private readonly static int _ReloadHash = Animator.StringToHash("Reload");

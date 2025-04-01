@@ -6,7 +6,7 @@ public class KnifeController : WeaponBaseController
 {
     protected override void Fire()
     {
-        Debug.Log("칼 휘두루두루");
+        _weaponAnimationHandler.Fire();
     }
 
 

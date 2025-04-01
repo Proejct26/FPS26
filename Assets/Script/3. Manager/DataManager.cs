@@ -1,42 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
 
-public class DataManager : IManager
+[Serializable]
+public class WeaponData
 {
-    private GameSettings _settings = new GameSettings();
+    [SerializeField] public List<WeaponDataSO> weaponDatas = new List<WeaponDataSO>();
 
-    public void Init()
+    public List<WeaponDataSO> GetWeaponData(EWeaponType weaponType)
     {
-        // 초기화 시 기본값 설정
-        _settings = new GameSettings();
+        return weaponDatas.FindAll(data => data.weaponType == weaponType);  
     }
-
-    public void Clear()
-    {
-        _settings = new GameSettings();
-    }
-
-    // 데이터를 저장하는 메서드
-    public void SettingData(string nickname = null, float? bgmVolume = null, float? sfxVolume = null, float? mouseSensitivity = null)
-    {
-        if (nickname != null)
-            _settings.Nickname = nickname;
-        if (bgmVolume.HasValue)
-            _settings.BGMVolume = bgmVolume.Value;
-        if (sfxVolume.HasValue)
-            _settings.SFXVolume = sfxVolume.Value;
-        if (mouseSensitivity.HasValue)
-            _settings.MouseSensitivity = mouseSensitivity.Value;
-
-        Debug.Log("Settings updated in DataManager");
-    }
-
-    // Getter
-    public string Nickname => _settings.Nickname;
-    public float BGMVolume => _settings.BGMVolume;
-    public float SFXVolume => _settings.SFXVolume;
-    public float MouseSensitivity => _settings.MouseSensitivity;
+    
+    
 }
 
 [System.Serializable]
@@ -46,6 +24,7 @@ public class GameSettings
     public float BGMVolume { get; set; }
     public float SFXVolume { get; set; }
     public float MouseSensitivity { get; set; }
+    public int SelectedIconIndex { get; set; }
 
     public GameSettings()
     {
@@ -53,5 +32,43 @@ public class GameSettings
         BGMVolume = 50f;
         SFXVolume = 50f;
         MouseSensitivity = 50f;
+        SelectedIconIndex = 0;
+    }
+}
+
+[Serializable]
+public class DataManager : IManager
+{
+    [SerializeField] private GameSettings _settings = new GameSettings();
+    [field: SerializeField] public WeaponData WeaponData {get; private set;} = new WeaponData(); 
+ 
+    private GameSettings _mySettings = new GameSettings();
+    
+    public void Init()
+    {
+        _mySettings = new GameSettings();
+    }
+
+    public void SettingData(string nickname = null, float? bgmVolume = null, float? sfxVolume = null,
+                            float? mouseSensitivity = null, int? selectedIconIndex = null)
+    {
+        if (nickname != null) _mySettings.Nickname = nickname;
+        if (bgmVolume.HasValue) _mySettings.BGMVolume = bgmVolume.Value;
+        if (sfxVolume.HasValue) _mySettings.SFXVolume = sfxVolume.Value;
+        if (mouseSensitivity.HasValue) _mySettings.MouseSensitivity = mouseSensitivity.Value;
+        if (selectedIconIndex.HasValue) _mySettings.SelectedIconIndex = selectedIconIndex.Value;
+
+        Debug.Log($"세팅 데이터 업데이트: 닉네임: {_mySettings.Nickname}, Icon: {_mySettings.SelectedIconIndex}");
+    }
+
+    public string Nickname => _mySettings.Nickname;
+    public int SelectedIconIndex => _mySettings.SelectedIconIndex;
+    public float BGMVolume => _mySettings.BGMVolume;
+    public float SFXVolume => _mySettings.SFXVolume;
+    public float MouseSensitivity => _mySettings.MouseSensitivity;
+
+    public void Clear()
+    {
+        _mySettings = new GameSettings();
     }
 }

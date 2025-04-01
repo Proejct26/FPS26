@@ -54,7 +54,7 @@ public class PlayerWeaponHandler : MonoBehaviour
         _weaponDatas[(int)EWeaponType.Throwable] = _throwableWeapon;
         _weaponDatas[(int)EWeaponType.Knife] = _knifeWeapon; 
 
-        OnChangeWeapon +=SyncWeaponData;
+        
     }
  
     private void SyncWeaponData()
@@ -68,6 +68,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     {
         InitWeapons();
         BindInputAction();
+        OnChangeWeapon +=SyncWeaponData;
     }
 
     public void InitWeapons() 

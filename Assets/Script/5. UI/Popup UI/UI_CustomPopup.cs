@@ -110,7 +110,7 @@ public class UI_CustomPopup : UI_Popup
         sendNicknamePacket.Name = nickName;
         Managers.Network.Send(sendNicknamePacket); 
  
-        ClosePopupUI(); 
+        Managers.UI.CloseAllPopupUI();  
         //SceneManager.LoadScene("MainScene");
     }
 

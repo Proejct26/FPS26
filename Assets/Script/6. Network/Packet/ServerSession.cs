@@ -26,6 +26,7 @@ public class ServerSession : PacketSession
         if (!System.Enum.TryParse(typeof(PacketID), enumName, true, out object value))
         {
             Debug.LogError($"패킷 ID 매칭 실패: {name} → {enumName}");
+            MyDebug.Log($"패킷 ID 매칭 실패: {name} → {enumName}");
             return;
         }
 
@@ -55,9 +56,10 @@ public class ServerSession : PacketSession
         Send(new ArraySegment<byte>(sendBuffer));
     }
 
-    public override void OnConnected(EndPoint endPoint)
+    public override void OnConnected(EndPoint endPoint) 
     {
-        Debug.Log($"OnConnected : {endPoint}");
+        Debug.Log($"OnConnected : {endPoint}"); 
+        MyDebug.Log($"OnConnected : {endPoint}");
 
         Managers.Packet.CustomHandler = (s, m, i) =>
         {
@@ -67,7 +69,8 @@ public class ServerSession : PacketSession
 
     public override void OnDisconnected(EndPoint endPoint)
     {
-        Debug.Log($"OnDisconnected : {endPoint}");
+        MyDebug.Log($"OnDisconnected : {endPoint}");
+        
     }
 
     public override void OnRecvPacket(ushort id, ArraySegment<byte> buffer)

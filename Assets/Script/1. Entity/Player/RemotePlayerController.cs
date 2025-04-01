@@ -14,6 +14,7 @@ public class RemotePlayerController : PlayerControllerBase
     private float _lerpSpeed = 10f;         //보간 정도
 
     [SerializeField] private Transform weaponHolder; // 손에 붙이는 슬롯
+    [SerializeField] private Transform weaponFix;   //방향 조정
     [SerializeField] private List<GameObject> weaponPrefabs; // 인덱스별 총기 리스트
 
     [Header("이름 태그")]
@@ -35,6 +36,12 @@ public class RemotePlayerController : PlayerControllerBase
         transform.rotation = _networkRotation;
 
         StateMachine?.Update();
+
+        if (weaponFix != null)
+        {
+            // 캐릭터의 정면 방향을 따라 회전 고정
+            weaponFix.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+        }
     }
 
     public override void ApplyNetworkState(PlayerStateData data)
@@ -129,7 +136,7 @@ public class RemotePlayerController : PlayerControllerBase
             return;
         }
 
-        equippedWeapon = Instantiate(weaponPrefabs[weaponType], weaponHolder);
+        equippedWeapon = Instantiate(weaponPrefabs[weaponType], weaponFix);
         equippedWeapon.transform.localPosition = Vector3.zero;
         equippedWeapon.transform.localRotation = Quaternion.Euler(0, 180f, 0);
     }

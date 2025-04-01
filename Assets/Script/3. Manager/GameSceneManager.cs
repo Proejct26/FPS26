@@ -58,6 +58,12 @@ public class GameSceneManager : MonoBehaviour
         _spawnData.Init();
         Managers.RegisterGameSceneManager(this);  
 
+        
+    }
+     private void Start()
+    {
+        PlayerManager.redTeamPrefab = _spawnData._redTeamPlayerPrefab;
+        PlayerManager.blueTeamPrefab = _spawnData._blueTeamPlayerPrefab;
     }
 
 
@@ -80,7 +86,4 @@ public class GameSceneManager : MonoBehaviour
         player.transform.position = spawnTf.position; 
         player.transform.rotation = spawnTf.rotation;
     }
-
-
- 
 }

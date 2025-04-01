@@ -89,7 +89,7 @@ class PacketHandler
 
         //PlayerManager에 삽입하기
         Managers.GameSceneManager.PlayerManager.OnReceivePlayerState(stat);
-        MyDebug.Log("리무트 플레이어 생성 완료!"); 
+        MyDebug.Log("리무트 플레이어 생성 완료!");  
     }
 
     // SC_GRENADE_EXPLOSITION_POS 패킷을 처리하는 함수

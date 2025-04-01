@@ -21,6 +21,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool IsScorePopup { get; private set; }
 
     private UI_ScorePopup _scorePopup;
+    private UI_Chat _chatUI;
+    private bool _isChatActive;
     
     private void Update()
     {
@@ -64,6 +66,38 @@ public class PlayerInputHandler : MonoBehaviour
                 _scorePopup = null;
             }
         }
+        
+        // 채팅
+        if (_chatUI == null)
+        {
+            _chatUI = Managers.UI.ShowSceneUI<UI_Chat>("ChatUI");
+        }
+        
+        // 엔터 키로 채팅 토글
+        if (Managers.Input.GetInput(EPlayerInput.Chat).WasPressedThisFrame())
+        {
+            if (!_isChatActive)
+            {
+                _isChatActive = true;
+                _chatUI.ToggleChat(true); // 입력창 켜기
+            }
+            else
+            {
+                _chatUI.SendMessage(); // 메시지 전송
+                _isChatActive = false;
+            }
+        }
+        
+        // 채팅 활성화 시 다른 입력 무시
+        if (_isChatActive)
+        {
+            MoveInput = Vector3.zero;    // 이동 입력 초기화
+            LookInput = Vector2.zero; // 방향 입력 초기화
+            RotationX = 0f;
+            RotationY = 0f;
+            IsJumping = false;
+            IsFiring = false;
+            return;
+        }
     }
-
 }

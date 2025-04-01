@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Chat",
+                    "type": "Button",
+                    "id": "d222eec9-87e5-4c0b-82e3-8adc976c6702",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -288,6 +297,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ThrowWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "092c818b-02ed-4833-86ed-15c1c1bbf60e",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Chat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

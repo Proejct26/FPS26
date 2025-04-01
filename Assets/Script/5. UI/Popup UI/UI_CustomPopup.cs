@@ -92,7 +92,7 @@ public class UI_CustomPopup : UI_Popup
         }
     }
 
-private void OnEnterGameButtonClick()
+    private void OnEnterGameButtonClick()
     {
         string nickName = Get<TMP_InputField>((int)InputFields.NickNameInputField).text.Trim();
         if (!IsValidNickName(nickName, out string errorMessage))

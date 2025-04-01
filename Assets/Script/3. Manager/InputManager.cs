@@ -12,6 +12,7 @@ public enum EPlayerInput
 	Zoom,	//줌
 	Jump,		//점프
 	Info,		//정보창
+    Chat,       //채팅
 
  	MainWeapon,
 	SubWeapon,

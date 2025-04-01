@@ -63,6 +63,7 @@ public class UI_SettingPopup : UI_Popup
     private void OnBackButtonClick()
     {
         ClosePopupUI();
+        // Managers.UI.CloseAllPopupUI(); // 모든 팝업 닫기
         Managers.UI.ShowPopupUI<UI_StartPopup>("StartPopup");
     }
 

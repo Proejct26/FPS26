@@ -41,6 +41,7 @@ public class Managers : Singleton<Managers>
     }
 
     public static GameSceneManager GameSceneManager {get; private set;}
+    public static ChatDataManager Chat { get; private set; } = new ChatDataManager();
  
  
     protected override void Awake()
@@ -72,6 +73,7 @@ public class Managers : Singleton<Managers>
         Pool.Init();
         Network.Init();
         Packet.Init();
+        Chat.Init();
     }
 
     public static void Clear()

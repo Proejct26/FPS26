@@ -10,8 +10,8 @@ class PacketHandler
     // SC_ATTACK 패킷을 처리하는 함수
     public static void SC_Attack(PacketSession session, IMessage packet)
     {
-        SC_ATTACK attackPacket = packet as SC_ATTACK;
-
+        SC_ATTACK attackPacket = packet as SC_ATTACK; 
+      //  Managers.Pool.Get("")
         // TODO: SC_Attack 패킷 처리 로직을 여기에 구현
     }
 
@@ -153,6 +153,7 @@ class PacketHandler
     public static void SC_ShotHit(PacketSession session, IMessage packet)
     {
         SC_SHOT_HIT shotHitPacket = packet as SC_SHOT_HIT;
+   
 
         // TODO: SC_ShotHit 패킷 처리 로직을 여기에 구현
     }

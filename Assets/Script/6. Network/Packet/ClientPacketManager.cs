@@ -73,8 +73,10 @@ public class PacketManager : IManager
     public void OnRecvPacket(PacketSession session, ushort id, ArraySegment<byte> buffer)
     {
         Action<PacketSession, ArraySegment<byte>, ushort> action = null;
-        if (_onRecv.TryGetValue(id, out action))
-            action.Invoke(session, buffer, id);
+         if (_onRecv.TryGetValue(id, out action))
+            action.Invoke(session, buffer, id); 
+            
+        
     }
 
     void MakePacket<T>(PacketSession session, ArraySegment<byte> buffer, ushort id) where T : IMessage, new()
@@ -91,8 +93,8 @@ public class PacketManager : IManager
         else
         {
             Action<PacketSession, IMessage> action = null;
-            if (_handler.TryGetValue(id, out action))
-                action.Invoke(session, pkt);
+             if (_handler.TryGetValue(id, out action))
+                 JobQueue.Push(() => action.Invoke(session, pkt));  
         }
     }
 

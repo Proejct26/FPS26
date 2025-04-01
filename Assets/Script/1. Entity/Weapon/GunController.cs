@@ -1,4 +1,5 @@
 using Cinemachine;
+using Game;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -151,10 +152,16 @@ public class GunController : WeaponBaseController
             if (Physics.Raycast(ray, out hit, 100f))
             { 
                 // 히트 이펙트
-                var particle = Managers.Pool.Get("Particle/HitEffect_Wall"); 
-                particle.transform.position = hit.point;
-                particle.transform.rotation = Quaternion.LookRotation(hit.normal); 
-                Managers.Pool.Release(particle, 5f);  
+                CS_ATTACK attackPacket = new CS_ATTACK();
+                attackPacket.BAttack = hit.collider.gameObject.GetComponent<RemotePlayerController>() != null;
+                attackPacket.PosX = (uint)hit.point.x;
+                attackPacket.PosY = (uint)hit.point.y;
+                attackPacket.PosZ = (uint)hit.point.z;
+                attackPacket.NormalX = (uint)hit.normal.x;
+                attackPacket.NormalY = (uint)hit.normal.y;
+                attackPacket.NormalZ = (uint)hit.normal.z; 
+                
+                Managers.Network.Send(attackPacket); 
 
                 // 충돌 체크 hit.collider.tag == "Head"
                 targets[i] = hit.collider.gameObject;

@@ -45,6 +45,7 @@ public class Managers : Singleton<Managers>
  
     protected override void Awake()
     {
+        JobQueue.Push(()=>{});  
         base.Awake();
   
         Init();

@@ -3074,6 +3074,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnData:
+    _redTeamPlayerPrefab: {fileID: 4118806565809273668, guid: 0222269a5fbc444489845b7e00eb5f36,
+      type: 3}
+    _blueTeamPlayerPrefab: {fileID: 6934824541329014293, guid: 2bd44824751b1ab4ebadb7cfa0383111,
+      type: 3}
     _redTeamSpawnPointParent: {fileID: 1801431003}
     _blueTeamSpawnPointParent: {fileID: 81863098}
 --- !u!1001 &816912819

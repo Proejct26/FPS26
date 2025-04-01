@@ -8,13 +8,19 @@ using UnityEngine.PlayerLoop;
 [Serializable]
 public class SpawnData
 {
+    [Header("Player Prefab")]
+    [SerializeField] public GameObject _redTeamPlayerPrefab;
+    [SerializeField] public GameObject _blueTeamPlayerPrefab;  
+
+    [Header("Spawn Point")]
     [SerializeField] private Transform _redTeamSpawnPointParent;
     [SerializeField] private Transform _blueTeamSpawnPointParent; 
+
 
     public List<Transform> RedTeamSpawnPoints {get; private set;} = new List<Transform>();
     public List<Transform> BlueTeamSpawnPoints {get; private set;} = new List<Transform>();
 
-    private void Init()
+    public void Init()
     {
         foreach (Transform child in _redTeamSpawnPointParent)
             RedTeamSpawnPoints.Add(child);
@@ -28,6 +34,11 @@ public class SpawnData
     {
         return team == 0 ? RedTeamSpawnPoints[index] : BlueTeamSpawnPoints[index];
     } 
+
+    public GameObject GetPlayerPrefab(int team)
+    {
+        return team == 0 ? _redTeamPlayerPrefab : _blueTeamPlayerPrefab;
+    } 
 }
 
 public class GameSceneManager : MonoBehaviour
@@ -36,22 +47,36 @@ public class GameSceneManager : MonoBehaviour
 
     public virtual void EnterScene()
     {  
-        
     }
 
     public virtual void ExitScene()
     {
 
-    } 
-
-    private void Start()
+    }
+    void Awake()
     {
-        Managers.RegisterGameSceneManager(this); 
+        _spawnData.Init();
+        
+    }
+     private void Start()
+    {
+        Managers.RegisterGameSceneManager(this);  
+ 
     }
 
-    public Transform GetSpawnPosition(int team, int index = 0)
+    public void SpawnRemotePlayer(int team, int index = 0)
     {
-        return _spawnData.GetSpawnPosition(team, index); 
+        GameObject prefab = _spawnData.GetPlayerPrefab(team);
+        Transform spawnTf = _spawnData.GetSpawnPosition(team, index); 
+
+        GameObject player = Managers.Pool.Get(prefab);
+        player.transform.position = spawnTf.position;
+        player.transform.rotation = spawnTf.rotation;
+
+        //player.GetComponent<PlayerControllerBase>().Init(team);  
     } 
+
+
+    
  
 }

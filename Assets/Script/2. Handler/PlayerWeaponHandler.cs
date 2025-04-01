@@ -1,3 +1,4 @@
+using Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,8 +53,17 @@ public class PlayerWeaponHandler : MonoBehaviour
         _weaponDatas[(int)EWeaponType.Secondary] = _secondaryWeapon;
         _weaponDatas[(int)EWeaponType.Throwable] = _throwableWeapon;
         _weaponDatas[(int)EWeaponType.Knife] = _knifeWeapon; 
+
+        OnChangeWeapon +=SyncWeaponData;
     }
  
+    private void SyncWeaponData()
+    {
+        CS_CHANGE_WEAPON changeWeaponPacket = new CS_CHANGE_WEAPON();
+        changeWeaponPacket.Weapon = (uint)CurrentWeapon.WeaponDataSO.key;
+        Managers.Network.Send(changeWeaponPacket); 
+    }
+
     private void Start() 
     {
         InitWeapons();

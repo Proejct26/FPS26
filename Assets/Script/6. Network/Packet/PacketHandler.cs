@@ -45,22 +45,16 @@ class PacketHandler
         SC_CREATE_MY_CHARACTER createMyCharacterPacket = packet as SC_CREATE_MY_CHARACTER;
 
         // TODO: SC_CreateMyCharacter 패킷 처리 로직을 여기에 구현
-
         Debug.Log(
             $"ID : {createMyCharacterPacket.PlayerId}, " +
             $"PosIndex : {createMyCharacterPacket.PosIndex}, " +
-            $"Look : {createMyCharacterPacket.DirX}, {createMyCharacterPacket.DirY}, {createMyCharacterPacket.DirZ}, " +
             $"HP : {createMyCharacterPacket.MaxHP}, " +
             $"TeamID : {createMyCharacterPacket.TeamID}"
         );
-
-        // crateCharacterPacket 에 있는 정보 추출 후 사용
-        Debug.Log("플레이어 생성 완료!");
-
-        // 서버에 다시 신호 보내기
-        CS_SEND_NICKNAME onSendNicknamePacket = new CS_SEND_NICKNAME();
-        onSendNicknamePacket.Name = "TestPlayer";
-        Managers.Network.Send(onSendNicknamePacket);
+ 
+        // crateCharacterPacket 에 있는 정보 추출 후 사용  
+        MyDebug.Log("플레이어 생성 완료!"); 
+        Managers.GameSceneManager.SpawnLocalPlayer((int)createMyCharacterPacket.PosIndex, (int)createMyCharacterPacket.TeamID);
     }
 
     // SC_CREATE_OTHER_CHARACTER 패킷을 처리하는 함수
@@ -69,6 +63,33 @@ class PacketHandler
         SC_CREATE_OTHER_CHARACTER createOtherCharacterPacket = packet as SC_CREATE_OTHER_CHARACTER;
 
         // TODO: SC_CreateOtherCharacter 패킷 처리 로직을 여기에 구현
+
+        Transform spawnTf = Managers.GameSceneManager.SpawnData.GetSpawnPosition((int)createOtherCharacterPacket.TeamID, (int)createOtherCharacterPacket.PosIndex);
+
+        //패킷 데이터 기반으로 상태 설정 완료
+        PlayerStateData stat = new PlayerStateData()
+        {
+            id = createOtherCharacterPacket.PlayerId.ToString(),
+            name = createOtherCharacterPacket.Name,
+            team = createOtherCharacterPacket.TeamID,
+            maxHp = createOtherCharacterPacket.MaxHP,
+            curHp = createOtherCharacterPacket.CurHP,
+            weapon = createOtherCharacterPacket.Weapon,
+
+            kills = createOtherCharacterPacket.KdaInfo.Kill,
+            deaths = createOtherCharacterPacket.KdaInfo.Death,
+            assists = createOtherCharacterPacket.KdaInfo.Assist,
+            isAlive = createOtherCharacterPacket.CurHP != 0,
+
+            // 이쪽 값들은 없습니다. 새로 작업해주셔야합니다.
+            position = spawnTf.position,
+            rotationX = spawnTf.eulerAngles.x,
+            rotationY = spawnTf.eulerAngles.y,  
+        };
+
+        //PlayerManager에 삽입하기
+        Managers.GameSceneManager.PlayerManager.OnReceivePlayerState(stat);
+        MyDebug.Log("리무트 플레이어 생성 완료!"); 
     }
 
     // SC_GRENADE_EXPLOSITION_POS 패킷을 처리하는 함수
@@ -109,6 +130,7 @@ class PacketHandler
         SC_KEY_INPUT keyInputPacket = packet as SC_KEY_INPUT;
 
         // TODO: SC_KeyInput 패킷 처리 로직을 여기에 구현
+
     }
 
     // SC_ON_ACCEPT 패킷을 처리하는 함수

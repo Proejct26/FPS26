@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -12,8 +13,13 @@ public class RemotePlayerController : PlayerControllerBase
     private float _gravity = -9.81f;        //중력 값
     private float _lerpSpeed = 10f;         //보간 정도
 
+    [SerializeField] private Transform weaponHolder; // 손에 붙이는 슬롯
+    [SerializeField] private Transform weaponFix;   //방향 조정
+    [SerializeField] private List<GameObject> weaponPrefabs; // 인덱스별 총기 리스트
+
     [Header("이름 태그")]
     [SerializeField] public PlayerNameTag nameTag;
+    private GameObject equippedWeapon;
 
     protected override void Update()
     {
@@ -30,6 +36,12 @@ public class RemotePlayerController : PlayerControllerBase
         transform.rotation = _networkRotation;
 
         StateMachine?.Update();
+
+        if (weaponFix != null)
+        {
+            // 캐릭터의 정면 방향을 따라 회전 고정
+            weaponFix.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+        }
     }
 
     public override void ApplyNetworkState(PlayerStateData data)
@@ -47,6 +59,8 @@ public class RemotePlayerController : PlayerControllerBase
             nameTag.SetName(_networkData.name); // playerName은 PlayerStateData에 있어야 함
             nameTag.nameText.color = _networkData.team == 0 ? Color.red : Color.blue;
         }
+
+        EquipWeapon(data.weapon);
     }
 
     public override PlayerStateData ToPlayerStateData()
@@ -109,6 +123,22 @@ public class RemotePlayerController : PlayerControllerBase
             return;
         }
         _equippedWeapon.Attack(started);*/
+    }
+
+    public void EquipWeapon(uint weaponType)
+    {
+        if (equippedWeapon != null)
+            Destroy(equippedWeapon);
+
+        if (weaponType < 0 || weaponType >= weaponPrefabs.Count)
+        {
+            Debug.LogWarning($"잘못된 무기 타입: {weaponType}");
+            return;
+        }
+
+        equippedWeapon = Instantiate(weaponPrefabs[(int)weaponType], weaponFix);
+        equippedWeapon.transform.localPosition = Vector3.zero;
+        equippedWeapon.transform.localRotation = Quaternion.Euler(0, 180f, 0);
     }
 
 }

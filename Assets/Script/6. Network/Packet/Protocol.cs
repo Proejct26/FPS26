@@ -49,42 +49,40 @@ namespace Game {
             "SWQYASABKA0SDgoGd2VhcG9uGAIgASgNIjUKEVNDX0NIQVJBQ1RFUl9ET1dO",
             "EhAKCHBsYXllcklkGAEgASgNEg4KBnRlYW1JRBgCIAEoDSJBChVTQ19DSEFS",
             "QUNURVJfS0lMTF9MT0cSKAoOcGxheWVySW5mb0xpc3QYASADKAsyEC5nYW1l",
-            "LlBsYXllckluZm8ihQEKFlNDX0NSRUFURV9NWV9DSEFSQUNURVISEAoIcGxh",
-            "eWVySWQYASABKA0SEAoIcG9zSW5kZXgYAiABKA0SDAoEZGlyWBgDIAEoDRIM",
-            "CgRkaXJZGAQgASgNEgwKBGRpcloYBSABKA0SDQoFbWF4SFAYBiABKA0SDgoG",
-            "dGVhbUlEGAcgASgNIu0BChlTQ19DUkVBVEVfT1RIRVJfQ0hBUkFDVEVSEhAK",
-            "CHBsYXllcklkGAEgASgNEgwKBHBvc1gYAiABKA0SDAoEcG9zWRgDIAEoDRIM",
-            "CgRwb3NaGAQgASgNEhMKC3JvdGF0ZUF4aXNYGAUgASgHEhMKC3JvdGF0ZUF4",
-            "aXNZGAYgASgHEg0KBW1heEhQGAcgASgNEg0KBWN1ckhQGAggASgNEgwKBG5h",
-            "bWUYCSABKAkSHgoHa2RhSW5mbxgKIAEoCzINLmdhbWUuS0RBSW5mbxIOCgZ3",
-            "ZWFwb24YCyABKA0SDgoGdGVhbUlEGAwgASgNIkYKGlNDX0dSRU5BREVfRVhQ",
-            "TE9TSVRJT05fUE9TEgwKBHBvc1gYASABKA0SDAoEcG9zWRgCIAEoDRIMCgRw",
-            "b3NaGAMgASgNIjUKEVNDX0lURU1fUElDS19GQUlMEhAKCHBsYXllcklkGAEg",
-            "ASgNEg4KBml0ZW1JZBgCIAEoDSI4ChRTQ19JVEVNX1BJQ0tfU1VDQ0VTUxIQ",
-            "CghwbGF5ZXJJZBgBIAEoDRIOCgZpdGVtSWQYAiABKA0iSQoPU0NfSVRFTV9T",
-            "UEFXTkVEEg4KBml0ZW1JZBgBIAEoDRIQCghpdGVtVHlwZRgCIAEoDRIUCgxp",
-            "dGVtUG9zSW5kZXgYAyABKA0ikAEKDFNDX0tFWV9JTlBVVBIQCghwbGF5ZXJJ",
-            "ZBgBIAEoDRIMCgRrZXlXGAIgASgNEgwKBGtleUEYAyABKA0SDAoEa2V5UxgE",
-            "IAEoDRIMCgRrZXlEGAUgASgNEhMKC3JvdGF0ZUF4aXNYGAYgASgHEhMKC3Jv",
-            "dGF0ZUF4aXNZGAcgASgHEgwKBEp1bXAYCCABKA0iIAoMU0NfT05fQUNDRVBU",
-            "EhAKCHBsYXllcklkGAEgASgNIkAKFFNDX1BPU19JTlRFUlBPTEFUSU9OEgwK",
-            "BHBvc1gYASABKA0SDAoEcG9zWRgCIAEoDRIMCgRwb3NaGAMgASgNIisKC1ND",
-            "X1NIT1RfSElUEhAKCHBsYXllcklkGAEgASgNEgoKAmhwGAIgASgNImYKEFND",
-            "X1RIUk9XX0dSRU5BREUSDAoEcG9zWBgBIAEoDRIMCgRwb3NZGAIgASgNEgwK",
-            "BHBvc1oYAyABKA0SDAoEZGlyWBgEIAEoBxIMCgRkaXJZGAUgASgHEgwKBGRp",
-            "cloYBiABKAcqowQKCFBhY2tldElEEg0KCUNTX0F0dGFjaxAAEhMKD0NTX0No",
-            "YW5nZVdlYXBvbhABEhwKGENTX0dyZW5hZGVFeHBsb3NpdGlvblBvcxACEhEK",
-            "DUNTX0l0ZW1QaWNrZWQQAxIPCgtDU19LZXlJbnB1dBAEEhcKE0NTX1Bvc0lu",
-            "dGVycG9sYXRpb24QBRIVChFDU19SZXF1ZXN0UmVzdGFydBAGEhMKD0NTX1Nl",
-            "bmROaWNrbmFtZRAHEg4KCkNTX1Nob3RIaXQQCBITCg9DU19UaHJvd0dyZW5h",
-            "ZGUQCRINCglTQ19BdHRhY2sQChITCg9TQ19DaGFuZ2VXZWFwb24QCxIUChBT",
-            "Q19DaGFyYWN0ZXJEb3duEAwSFwoTU0NfQ2hhcmFjdGVyS2lsbExvZxANEhgK",
-            "FFNDX0NyZWF0ZU15Q2hhcmFjdGVyEA4SGwoXU0NfQ3JlYXRlT3RoZXJDaGFy",
-            "YWN0ZXIQDxIcChhTQ19HcmVuYWRlRXhwbG9zaXRpb25Qb3MQEBITCg9TQ19J",
-            "dGVtUGlja0ZhaWwQERIWChJTQ19JdGVtUGlja1N1Y2Nlc3MQEhISCg5TQ19J",
-            "dGVtU3Bhd25lZBATEg8KC1NDX0tleUlucHV0EBQSDwoLU0NfT25BY2NlcHQQ",
-            "FRIXChNTQ19Qb3NJbnRlcnBvbGF0aW9uEBYSDgoKU0NfU2hvdEhpdBAXEhMK",
-            "D1NDX1Rocm93R3JlbmFkZRAYYgZwcm90bzM="));
+            "LlBsYXllckluZm8iWwoWU0NfQ1JFQVRFX01ZX0NIQVJBQ1RFUhIQCghwbGF5",
+            "ZXJJZBgBIAEoDRIQCghwb3NJbmRleBgCIAEoDRINCgVtYXhIUBgDIAEoDRIO",
+            "CgZ0ZWFtSUQYBCABKA0iqwEKGVNDX0NSRUFURV9PVEhFUl9DSEFSQUNURVIS",
+            "EAoIcGxheWVySWQYASABKA0SEAoIcG9zSW5kZXgYAiABKA0SDQoFbWF4SFAY",
+            "AyABKA0SDQoFY3VySFAYBCABKA0SDAoEbmFtZRgFIAEoCRIeCgdrZGFJbmZv",
+            "GAYgASgLMg0uZ2FtZS5LREFJbmZvEg4KBndlYXBvbhgHIAEoDRIOCgZ0ZWFt",
+            "SUQYCCABKA0iRgoaU0NfR1JFTkFERV9FWFBMT1NJVElPTl9QT1MSDAoEcG9z",
+            "WBgBIAEoDRIMCgRwb3NZGAIgASgNEgwKBHBvc1oYAyABKA0iNQoRU0NfSVRF",
+            "TV9QSUNLX0ZBSUwSEAoIcGxheWVySWQYASABKA0SDgoGaXRlbUlkGAIgASgN",
+            "IjgKFFNDX0lURU1fUElDS19TVUNDRVNTEhAKCHBsYXllcklkGAEgASgNEg4K",
+            "Bml0ZW1JZBgCIAEoDSJJCg9TQ19JVEVNX1NQQVdORUQSDgoGaXRlbUlkGAEg",
+            "ASgNEhAKCGl0ZW1UeXBlGAIgASgNEhQKDGl0ZW1Qb3NJbmRleBgDIAEoDSKQ",
+            "AQoMU0NfS0VZX0lOUFVUEhAKCHBsYXllcklkGAEgASgNEgwKBGtleVcYAiAB",
+            "KA0SDAoEa2V5QRgDIAEoDRIMCgRrZXlTGAQgASgNEgwKBGtleUQYBSABKA0S",
+            "EwoLcm90YXRlQXhpc1gYBiABKAcSEwoLcm90YXRlQXhpc1kYByABKAcSDAoE",
+            "SnVtcBgIIAEoDSIgCgxTQ19PTl9BQ0NFUFQSEAoIcGxheWVySWQYASABKA0i",
+            "QAoUU0NfUE9TX0lOVEVSUE9MQVRJT04SDAoEcG9zWBgBIAEoDRIMCgRwb3NZ",
+            "GAIgASgNEgwKBHBvc1oYAyABKA0iKwoLU0NfU0hPVF9ISVQSEAoIcGxheWVy",
+            "SWQYASABKA0SCgoCaHAYAiABKA0iZgoQU0NfVEhST1dfR1JFTkFERRIMCgRw",
+            "b3NYGAEgASgNEgwKBHBvc1kYAiABKA0SDAoEcG9zWhgDIAEoDRIMCgRkaXJY",
+            "GAQgASgHEgwKBGRpclkYBSABKAcSDAoEZGlyWhgGIAEoByqjBAoIUGFja2V0",
+            "SUQSDQoJQ1NfQXR0YWNrEAASEwoPQ1NfQ2hhbmdlV2VhcG9uEAESHAoYQ1Nf",
+            "R3JlbmFkZUV4cGxvc2l0aW9uUG9zEAISEQoNQ1NfSXRlbVBpY2tlZBADEg8K",
+            "C0NTX0tleUlucHV0EAQSFwoTQ1NfUG9zSW50ZXJwb2xhdGlvbhAFEhUKEUNT",
+            "X1JlcXVlc3RSZXN0YXJ0EAYSEwoPQ1NfU2VuZE5pY2tuYW1lEAcSDgoKQ1Nf",
+            "U2hvdEhpdBAIEhMKD0NTX1Rocm93R3JlbmFkZRAJEg0KCVNDX0F0dGFjaxAK",
+            "EhMKD1NDX0NoYW5nZVdlYXBvbhALEhQKEFNDX0NoYXJhY3RlckRvd24QDBIX",
+            "ChNTQ19DaGFyYWN0ZXJLaWxsTG9nEA0SGAoUU0NfQ3JlYXRlTXlDaGFyYWN0",
+            "ZXIQDhIbChdTQ19DcmVhdGVPdGhlckNoYXJhY3RlchAPEhwKGFNDX0dyZW5h",
+            "ZGVFeHBsb3NpdGlvblBvcxAQEhMKD1NDX0l0ZW1QaWNrRmFpbBAREhYKElND",
+            "X0l0ZW1QaWNrU3VjY2VzcxASEhIKDlNDX0l0ZW1TcGF3bmVkEBMSDwoLU0Nf",
+            "S2V5SW5wdXQQFBIPCgtTQ19PbkFjY2VwdBAVEhcKE1NDX1Bvc0ludGVycG9s",
+            "YXRpb24QFhIOCgpTQ19TaG90SGl0EBcSEwoPU0NfVGhyb3dHcmVuYWRlEBhi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Game.PacketID), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -104,8 +102,8 @@ namespace Game {
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_CHANGE_WEAPON), global::Game.SC_CHANGE_WEAPON.Parser, new[]{ "PlayerId", "Weapon" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_CHARACTER_DOWN), global::Game.SC_CHARACTER_DOWN.Parser, new[]{ "PlayerId", "TeamID" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_CHARACTER_KILL_LOG), global::Game.SC_CHARACTER_KILL_LOG.Parser, new[]{ "PlayerInfoList" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_CREATE_MY_CHARACTER), global::Game.SC_CREATE_MY_CHARACTER.Parser, new[]{ "PlayerId", "PosIndex", "DirX", "DirY", "DirZ", "MaxHP", "TeamID" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_CREATE_OTHER_CHARACTER), global::Game.SC_CREATE_OTHER_CHARACTER.Parser, new[]{ "PlayerId", "PosX", "PosY", "PosZ", "RotateAxisX", "RotateAxisY", "MaxHP", "CurHP", "Name", "KdaInfo", "Weapon", "TeamID" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_CREATE_MY_CHARACTER), global::Game.SC_CREATE_MY_CHARACTER.Parser, new[]{ "PlayerId", "PosIndex", "MaxHP", "TeamID" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_CREATE_OTHER_CHARACTER), global::Game.SC_CREATE_OTHER_CHARACTER.Parser, new[]{ "PlayerId", "PosIndex", "MaxHP", "CurHP", "Name", "KdaInfo", "Weapon", "TeamID" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_GRENADE_EXPLOSITION_POS), global::Game.SC_GRENADE_EXPLOSITION_POS.Parser, new[]{ "PosX", "PosY", "PosZ" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_ITEM_PICK_FAIL), global::Game.SC_ITEM_PICK_FAIL.Parser, new[]{ "PlayerId", "ItemId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_ITEM_PICK_SUCCESS), global::Game.SC_ITEM_PICK_SUCCESS.Parser, new[]{ "PlayerId", "ItemId" }, null, null, null, null),
@@ -4552,9 +4550,6 @@ namespace Game {
     public SC_CREATE_MY_CHARACTER(SC_CREATE_MY_CHARACTER other) : this() {
       playerId_ = other.playerId_;
       posIndex_ = other.posIndex_;
-      dirX_ = other.dirX_;
-      dirY_ = other.dirY_;
-      dirZ_ = other.dirZ_;
       maxHP_ = other.maxHP_;
       teamID_ = other.teamID_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -4596,53 +4591,8 @@ namespace Game {
       }
     }
 
-    /// <summary>Field number for the "dirX" field.</summary>
-    public const int DirXFieldNumber = 3;
-    private uint dirX_;
-    /// <summary>
-    /// 보는 방향
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint DirX {
-      get { return dirX_; }
-      set {
-        dirX_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "dirY" field.</summary>
-    public const int DirYFieldNumber = 4;
-    private uint dirY_;
-    /// <summary>
-    /// 보는 방향
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint DirY {
-      get { return dirY_; }
-      set {
-        dirY_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "dirZ" field.</summary>
-    public const int DirZFieldNumber = 5;
-    private uint dirZ_;
-    /// <summary>
-    /// 보는 방향
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint DirZ {
-      get { return dirZ_; }
-      set {
-        dirZ_ = value;
-      }
-    }
-
     /// <summary>Field number for the "maxHP" field.</summary>
-    public const int MaxHPFieldNumber = 6;
+    public const int MaxHPFieldNumber = 3;
     private uint maxHP_;
     /// <summary>
     /// 최대 Hp
@@ -4657,7 +4607,7 @@ namespace Game {
     }
 
     /// <summary>Field number for the "teamID" field.</summary>
-    public const int TeamIDFieldNumber = 7;
+    public const int TeamIDFieldNumber = 4;
     private uint teamID_;
     /// <summary>
     /// 접속한 팀 ID
@@ -4688,9 +4638,6 @@ namespace Game {
       }
       if (PlayerId != other.PlayerId) return false;
       if (PosIndex != other.PosIndex) return false;
-      if (DirX != other.DirX) return false;
-      if (DirY != other.DirY) return false;
-      if (DirZ != other.DirZ) return false;
       if (MaxHP != other.MaxHP) return false;
       if (TeamID != other.TeamID) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -4702,9 +4649,6 @@ namespace Game {
       int hash = 1;
       if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
       if (PosIndex != 0) hash ^= PosIndex.GetHashCode();
-      if (DirX != 0) hash ^= DirX.GetHashCode();
-      if (DirY != 0) hash ^= DirY.GetHashCode();
-      if (DirZ != 0) hash ^= DirZ.GetHashCode();
       if (MaxHP != 0) hash ^= MaxHP.GetHashCode();
       if (TeamID != 0) hash ^= TeamID.GetHashCode();
       if (_unknownFields != null) {
@@ -4733,24 +4677,12 @@ namespace Game {
         output.WriteRawTag(16);
         output.WriteUInt32(PosIndex);
       }
-      if (DirX != 0) {
-        output.WriteRawTag(24);
-        output.WriteUInt32(DirX);
-      }
-      if (DirY != 0) {
-        output.WriteRawTag(32);
-        output.WriteUInt32(DirY);
-      }
-      if (DirZ != 0) {
-        output.WriteRawTag(40);
-        output.WriteUInt32(DirZ);
-      }
       if (MaxHP != 0) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(24);
         output.WriteUInt32(MaxHP);
       }
       if (TeamID != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(32);
         output.WriteUInt32(TeamID);
       }
       if (_unknownFields != null) {
@@ -4771,24 +4703,12 @@ namespace Game {
         output.WriteRawTag(16);
         output.WriteUInt32(PosIndex);
       }
-      if (DirX != 0) {
-        output.WriteRawTag(24);
-        output.WriteUInt32(DirX);
-      }
-      if (DirY != 0) {
-        output.WriteRawTag(32);
-        output.WriteUInt32(DirY);
-      }
-      if (DirZ != 0) {
-        output.WriteRawTag(40);
-        output.WriteUInt32(DirZ);
-      }
       if (MaxHP != 0) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(24);
         output.WriteUInt32(MaxHP);
       }
       if (TeamID != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(32);
         output.WriteUInt32(TeamID);
       }
       if (_unknownFields != null) {
@@ -4806,15 +4726,6 @@ namespace Game {
       }
       if (PosIndex != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PosIndex);
-      }
-      if (DirX != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DirX);
-      }
-      if (DirY != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DirY);
-      }
-      if (DirZ != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DirZ);
       }
       if (MaxHP != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxHP);
@@ -4839,15 +4750,6 @@ namespace Game {
       }
       if (other.PosIndex != 0) {
         PosIndex = other.PosIndex;
-      }
-      if (other.DirX != 0) {
-        DirX = other.DirX;
-      }
-      if (other.DirY != 0) {
-        DirY = other.DirY;
-      }
-      if (other.DirZ != 0) {
-        DirZ = other.DirZ;
       }
       if (other.MaxHP != 0) {
         MaxHP = other.MaxHP;
@@ -4879,22 +4781,10 @@ namespace Game {
             break;
           }
           case 24: {
-            DirX = input.ReadUInt32();
-            break;
-          }
-          case 32: {
-            DirY = input.ReadUInt32();
-            break;
-          }
-          case 40: {
-            DirZ = input.ReadUInt32();
-            break;
-          }
-          case 48: {
             MaxHP = input.ReadUInt32();
             break;
           }
-          case 56: {
+          case 32: {
             TeamID = input.ReadUInt32();
             break;
           }
@@ -4922,22 +4812,10 @@ namespace Game {
             break;
           }
           case 24: {
-            DirX = input.ReadUInt32();
-            break;
-          }
-          case 32: {
-            DirY = input.ReadUInt32();
-            break;
-          }
-          case 40: {
-            DirZ = input.ReadUInt32();
-            break;
-          }
-          case 48: {
             MaxHP = input.ReadUInt32();
             break;
           }
-          case 56: {
+          case 32: {
             TeamID = input.ReadUInt32();
             break;
           }
@@ -4983,11 +4861,7 @@ namespace Game {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public SC_CREATE_OTHER_CHARACTER(SC_CREATE_OTHER_CHARACTER other) : this() {
       playerId_ = other.playerId_;
-      posX_ = other.posX_;
-      posY_ = other.posY_;
-      posZ_ = other.posZ_;
-      rotateAxisX_ = other.rotateAxisX_;
-      rotateAxisY_ = other.rotateAxisY_;
+      posIndex_ = other.posIndex_;
       maxHP_ = other.maxHP_;
       curHP_ = other.curHP_;
       name_ = other.name_;
@@ -5018,77 +4892,23 @@ namespace Game {
       }
     }
 
-    /// <summary>Field number for the "posX" field.</summary>
-    public const int PosXFieldNumber = 2;
-    private uint posX_;
+    /// <summary>Field number for the "posIndex" field.</summary>
+    public const int PosIndexFieldNumber = 2;
+    private uint posIndex_;
     /// <summary>
-    /// 현재 위치
+    /// 생성될 위치 인덱스 정보
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint PosX {
-      get { return posX_; }
+    public uint PosIndex {
+      get { return posIndex_; }
       set {
-        posX_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "posY" field.</summary>
-    public const int PosYFieldNumber = 3;
-    private uint posY_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint PosY {
-      get { return posY_; }
-      set {
-        posY_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "posZ" field.</summary>
-    public const int PosZFieldNumber = 4;
-    private uint posZ_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint PosZ {
-      get { return posZ_; }
-      set {
-        posZ_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "rotateAxisX" field.</summary>
-    public const int RotateAxisXFieldNumber = 5;
-    private uint rotateAxisX_;
-    /// <summary>
-    /// 마우스 X축 회전값
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint RotateAxisX {
-      get { return rotateAxisX_; }
-      set {
-        rotateAxisX_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "rotateAxisY" field.</summary>
-    public const int RotateAxisYFieldNumber = 6;
-    private uint rotateAxisY_;
-    /// <summary>
-    /// 마우스 Y축 회전값
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint RotateAxisY {
-      get { return rotateAxisY_; }
-      set {
-        rotateAxisY_ = value;
+        posIndex_ = value;
       }
     }
 
     /// <summary>Field number for the "maxHP" field.</summary>
-    public const int MaxHPFieldNumber = 7;
+    public const int MaxHPFieldNumber = 3;
     private uint maxHP_;
     /// <summary>
     /// Hp
@@ -5103,7 +4923,7 @@ namespace Game {
     }
 
     /// <summary>Field number for the "curHP" field.</summary>
-    public const int CurHPFieldNumber = 8;
+    public const int CurHPFieldNumber = 4;
     private uint curHP_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -5115,7 +4935,7 @@ namespace Game {
     }
 
     /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 9;
+    public const int NameFieldNumber = 5;
     private string name_ = "";
     /// <summary>
     /// 이름
@@ -5130,7 +4950,7 @@ namespace Game {
     }
 
     /// <summary>Field number for the "kdaInfo" field.</summary>
-    public const int KdaInfoFieldNumber = 10;
+    public const int KdaInfoFieldNumber = 6;
     private global::Game.KDAInfo kdaInfo_;
     /// <summary>
     /// KDA 정보
@@ -5145,7 +4965,7 @@ namespace Game {
     }
 
     /// <summary>Field number for the "weapon" field.</summary>
-    public const int WeaponFieldNumber = 11;
+    public const int WeaponFieldNumber = 7;
     private uint weapon_;
     /// <summary>
     /// 들고 있는 무기 정보
@@ -5160,7 +4980,7 @@ namespace Game {
     }
 
     /// <summary>Field number for the "teamID" field.</summary>
-    public const int TeamIDFieldNumber = 12;
+    public const int TeamIDFieldNumber = 8;
     private uint teamID_;
     /// <summary>
     /// 접속한 팀 ID
@@ -5190,11 +5010,7 @@ namespace Game {
         return true;
       }
       if (PlayerId != other.PlayerId) return false;
-      if (PosX != other.PosX) return false;
-      if (PosY != other.PosY) return false;
-      if (PosZ != other.PosZ) return false;
-      if (RotateAxisX != other.RotateAxisX) return false;
-      if (RotateAxisY != other.RotateAxisY) return false;
+      if (PosIndex != other.PosIndex) return false;
       if (MaxHP != other.MaxHP) return false;
       if (CurHP != other.CurHP) return false;
       if (Name != other.Name) return false;
@@ -5209,11 +5025,7 @@ namespace Game {
     public override int GetHashCode() {
       int hash = 1;
       if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
-      if (PosX != 0) hash ^= PosX.GetHashCode();
-      if (PosY != 0) hash ^= PosY.GetHashCode();
-      if (PosZ != 0) hash ^= PosZ.GetHashCode();
-      if (RotateAxisX != 0) hash ^= RotateAxisX.GetHashCode();
-      if (RotateAxisY != 0) hash ^= RotateAxisY.GetHashCode();
+      if (PosIndex != 0) hash ^= PosIndex.GetHashCode();
       if (MaxHP != 0) hash ^= MaxHP.GetHashCode();
       if (CurHP != 0) hash ^= CurHP.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
@@ -5242,48 +5054,32 @@ namespace Game {
         output.WriteRawTag(8);
         output.WriteUInt32(PlayerId);
       }
-      if (PosX != 0) {
+      if (PosIndex != 0) {
         output.WriteRawTag(16);
-        output.WriteUInt32(PosX);
-      }
-      if (PosY != 0) {
-        output.WriteRawTag(24);
-        output.WriteUInt32(PosY);
-      }
-      if (PosZ != 0) {
-        output.WriteRawTag(32);
-        output.WriteUInt32(PosZ);
-      }
-      if (RotateAxisX != 0) {
-        output.WriteRawTag(45);
-        output.WriteFixed32(RotateAxisX);
-      }
-      if (RotateAxisY != 0) {
-        output.WriteRawTag(53);
-        output.WriteFixed32(RotateAxisY);
+        output.WriteUInt32(PosIndex);
       }
       if (MaxHP != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(24);
         output.WriteUInt32(MaxHP);
       }
       if (CurHP != 0) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(32);
         output.WriteUInt32(CurHP);
       }
       if (Name.Length != 0) {
-        output.WriteRawTag(74);
+        output.WriteRawTag(42);
         output.WriteString(Name);
       }
       if (kdaInfo_ != null) {
-        output.WriteRawTag(82);
+        output.WriteRawTag(50);
         output.WriteMessage(KdaInfo);
       }
       if (Weapon != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(56);
         output.WriteUInt32(Weapon);
       }
       if (TeamID != 0) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(64);
         output.WriteUInt32(TeamID);
       }
       if (_unknownFields != null) {
@@ -5300,48 +5096,32 @@ namespace Game {
         output.WriteRawTag(8);
         output.WriteUInt32(PlayerId);
       }
-      if (PosX != 0) {
+      if (PosIndex != 0) {
         output.WriteRawTag(16);
-        output.WriteUInt32(PosX);
-      }
-      if (PosY != 0) {
-        output.WriteRawTag(24);
-        output.WriteUInt32(PosY);
-      }
-      if (PosZ != 0) {
-        output.WriteRawTag(32);
-        output.WriteUInt32(PosZ);
-      }
-      if (RotateAxisX != 0) {
-        output.WriteRawTag(45);
-        output.WriteFixed32(RotateAxisX);
-      }
-      if (RotateAxisY != 0) {
-        output.WriteRawTag(53);
-        output.WriteFixed32(RotateAxisY);
+        output.WriteUInt32(PosIndex);
       }
       if (MaxHP != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(24);
         output.WriteUInt32(MaxHP);
       }
       if (CurHP != 0) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(32);
         output.WriteUInt32(CurHP);
       }
       if (Name.Length != 0) {
-        output.WriteRawTag(74);
+        output.WriteRawTag(42);
         output.WriteString(Name);
       }
       if (kdaInfo_ != null) {
-        output.WriteRawTag(82);
+        output.WriteRawTag(50);
         output.WriteMessage(KdaInfo);
       }
       if (Weapon != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(56);
         output.WriteUInt32(Weapon);
       }
       if (TeamID != 0) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(64);
         output.WriteUInt32(TeamID);
       }
       if (_unknownFields != null) {
@@ -5357,20 +5137,8 @@ namespace Game {
       if (PlayerId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
       }
-      if (PosX != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PosX);
-      }
-      if (PosY != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PosY);
-      }
-      if (PosZ != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PosZ);
-      }
-      if (RotateAxisX != 0) {
-        size += 1 + 4;
-      }
-      if (RotateAxisY != 0) {
-        size += 1 + 4;
+      if (PosIndex != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PosIndex);
       }
       if (MaxHP != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(MaxHP);
@@ -5405,20 +5173,8 @@ namespace Game {
       if (other.PlayerId != 0) {
         PlayerId = other.PlayerId;
       }
-      if (other.PosX != 0) {
-        PosX = other.PosX;
-      }
-      if (other.PosY != 0) {
-        PosY = other.PosY;
-      }
-      if (other.PosZ != 0) {
-        PosZ = other.PosZ;
-      }
-      if (other.RotateAxisX != 0) {
-        RotateAxisX = other.RotateAxisX;
-      }
-      if (other.RotateAxisY != 0) {
-        RotateAxisY = other.RotateAxisY;
+      if (other.PosIndex != 0) {
+        PosIndex = other.PosIndex;
       }
       if (other.MaxHP != 0) {
         MaxHP = other.MaxHP;
@@ -5461,49 +5217,33 @@ namespace Game {
             break;
           }
           case 16: {
-            PosX = input.ReadUInt32();
+            PosIndex = input.ReadUInt32();
             break;
           }
           case 24: {
-            PosY = input.ReadUInt32();
-            break;
-          }
-          case 32: {
-            PosZ = input.ReadUInt32();
-            break;
-          }
-          case 45: {
-            RotateAxisX = input.ReadFixed32();
-            break;
-          }
-          case 53: {
-            RotateAxisY = input.ReadFixed32();
-            break;
-          }
-          case 56: {
             MaxHP = input.ReadUInt32();
             break;
           }
-          case 64: {
+          case 32: {
             CurHP = input.ReadUInt32();
             break;
           }
-          case 74: {
+          case 42: {
             Name = input.ReadString();
             break;
           }
-          case 82: {
+          case 50: {
             if (kdaInfo_ == null) {
               KdaInfo = new global::Game.KDAInfo();
             }
             input.ReadMessage(KdaInfo);
             break;
           }
-          case 88: {
+          case 56: {
             Weapon = input.ReadUInt32();
             break;
           }
-          case 96: {
+          case 64: {
             TeamID = input.ReadUInt32();
             break;
           }
@@ -5527,49 +5267,33 @@ namespace Game {
             break;
           }
           case 16: {
-            PosX = input.ReadUInt32();
+            PosIndex = input.ReadUInt32();
             break;
           }
           case 24: {
-            PosY = input.ReadUInt32();
-            break;
-          }
-          case 32: {
-            PosZ = input.ReadUInt32();
-            break;
-          }
-          case 45: {
-            RotateAxisX = input.ReadFixed32();
-            break;
-          }
-          case 53: {
-            RotateAxisY = input.ReadFixed32();
-            break;
-          }
-          case 56: {
             MaxHP = input.ReadUInt32();
             break;
           }
-          case 64: {
+          case 32: {
             CurHP = input.ReadUInt32();
             break;
           }
-          case 74: {
+          case 42: {
             Name = input.ReadString();
             break;
           }
-          case 82: {
+          case 50: {
             if (kdaInfo_ == null) {
               KdaInfo = new global::Game.KDAInfo();
             }
             input.ReadMessage(KdaInfo);
             break;
           }
-          case 88: {
+          case 56: {
             Weapon = input.ReadUInt32();
             break;
           }
-          case 96: {
+          case 64: {
             TeamID = input.ReadUInt32();
             break;
           }

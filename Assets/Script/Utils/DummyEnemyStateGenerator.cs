@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DummyEnemyStateGenerator : MonoBehaviour
 {
-    [SerializeField] private PlayerManager playerManager;
 
     [Header("더미 플레이어 수")]
     [SerializeField] private int dummyCount = 10;
@@ -39,6 +38,7 @@ public class DummyEnemyStateGenerator : MonoBehaviour
 
     private IEnumerator SimulateDummies()
     {
+        PlayerManager playerManager = Managers.GameSceneManager.PlayerManager;
         while (true)
         {
             for (int i = 0; i < dummyCount; i++)
@@ -118,7 +118,7 @@ public class DummyEnemyStateGenerator : MonoBehaviour
     private PlayerStateData GenerateNewDummyData(int index)
     {
         string id = $"Dummy_{index}";
-        int team = index % 2;
+        uint team = (uint)Random.Range(0,1);
         string name = dummyNames[Random.Range(0, dummyNames.Length)];
         Vector3 pos = GetRandomSpawnPosition();
 
@@ -127,6 +127,7 @@ public class DummyEnemyStateGenerator : MonoBehaviour
             id = id,
             name = name,
             team = team,
+            weapon = (uint)Random.Range(0, 7),
             position = pos,
             moveInput = Vector3.zero,
             rotationX = 0f,

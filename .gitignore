@@ -77,3 +77,5 @@ crashlytics-build.properties
 #예외 처리 경로
 !Builds/
 !Builds/**
+/Builds
+/Builds

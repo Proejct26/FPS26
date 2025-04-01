@@ -22,6 +22,7 @@ public class UI_StartPopup : UI_Popup
         GetButton((int)Buttons.QuitButton).onClick.AddListener(OnQuitButtonClick);
     }
 
+
     private void OnStartButtonClick()
     {
         Managers.UI.ShowPopupUI<UI_CustomPopup>("CustomPopup");

@@ -20,7 +20,7 @@ public class WeaponListUI : UI_Popup
 
     public void InitWeaponList(EWeaponType weaponType)
     {
-        _weaponDatas = Managers.Data.WeaponData.GetWeaponData(weaponType);
+        _weaponDatas = Managers.Data.WeaponData.GetWeaponsByType(weaponType);
 
         foreach (var weaponData in _weaponDatas)
         {

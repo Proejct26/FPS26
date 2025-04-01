@@ -153,16 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    <WeaponData>k__BackingField:
-      weaponDatas:
-      - {fileID: 11400000, guid: 5fda0b13c71c6234da6191e6e2994a73, type: 2}
-      - {fileID: 11400000, guid: 7bd49416bf2f223489f388120211af4a, type: 2}
-      - {fileID: 11400000, guid: 0affeec086d7e61448ba51d3db663102, type: 2}
-      - {fileID: 11400000, guid: b4d2acada5026fa46a3fef41ae640dd1, type: 2}
-      - {fileID: 11400000, guid: 432a2ae25b37941419105672d3c1933d, type: 2}
-      - {fileID: 11400000, guid: 826ab359f303af34b90289ac03470c7f, type: 2}
-      - {fileID: 11400000, guid: 4d05d33a93e3f4e41a0954333cca122a, type: 2}
-      - {fileID: 11400000, guid: 35a048c5322b2a84f9e38358fcd3dc14, type: 2}
+    <WeaponData>k__BackingField: {fileID: 0}
   input:
     inputActionAsset: {fileID: -944628639613478452, guid: fce91d072eee25142a2f0a1000568b2c,
       type: 3}
@@ -7999,6 +7990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FPS_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653522114596364826, guid: 964508e4371dd054c9affb78aa7b2a27,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6067269905958613887, guid: 964508e4371dd054c9affb78aa7b2a27,
         type: 3}

@@ -6,15 +6,18 @@ using UnityEngine.UI;
 
 public class MainUI : UI_Scene
 {
-    public TextMeshProUGUI RoundText;//라운드 텍스트
+    public TextMeshProUGUI redroundText;//레드팀 승리 카운트 텍스트
+    public TextMeshProUGUI blueroundText;//블루팀 승리 카운트 텍스트
 
-    public Image HealthBar;//체력바
+    public Image healthBar;//체력바
 
-    public Image WeaponIcon;//무기 아이콘
+    public Image weaponIcon;//무기 아이콘
+
+    
 
     //탄창 ui
-    public Image MagazineBar;//탄창 게이지
-    public TextMeshProUGUI MagazineText;//탄창 텍스트
+    public Image magazineBar;//탄창 게이지
+    public TextMeshProUGUI magazineText;//탄창 텍스트
 
     private PlayerStatHandler playerStatHandler;
     private PlayerWeaponHandler playerWeaponHandler;
@@ -40,7 +43,7 @@ public class MainUI : UI_Scene
     void UpdatePlayerData()
     {
         //플레이어의 잔탄수등 세부 스텟을 실시간으로 업데이트 하기
-        ProgressBar(HealthBar, playerStatHandler.CurrentHealth, playerStatHandler.MaxHealth);
+        ProgressBar(healthBar, playerStatHandler.CurrentHealth, playerStatHandler.MaxHealth);
     }
 
     /// <summary>
@@ -56,13 +59,13 @@ public class MainUI : UI_Scene
 
     private void UpdateMagazine(int loadedAmmo, int maxAmmo)
     {
-        MagazineBar.fillAmount = (float)loadedAmmo / maxAmmo;
-        MagazineText.text = $"{loadedAmmo}/{maxAmmo}"; 
+        magazineBar.fillAmount = (float)loadedAmmo / maxAmmo;
+        magazineText.text = $"{loadedAmmo}/{maxAmmo}"; 
     }
 
     private void UpdateWeaponIcon()
     {
-        WeaponIcon.sprite = playerWeaponHandler.CurrentWeapon.WeaponIcon; 
+        weaponIcon.sprite = playerWeaponHandler.CurrentWeapon.WeaponIcon; 
     }
 }
  

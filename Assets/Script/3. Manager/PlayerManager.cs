@@ -8,8 +8,8 @@ public class PlayerManager : IManager
     [SerializeField] public GameObject redTeamPrefab;
     [SerializeField] public GameObject blueTeamPrefab;
 
-    private Dictionary<string, RemotePlayerController> remotePlayers = new();
- 
+    private Dictionary<uint, RemotePlayerController> remotePlayers = new();
+  
      public void Init()
     {
         remotePlayers.Clear();  // 초기화 시 클리어
@@ -24,7 +24,7 @@ public class PlayerManager : IManager
 
     public void OnReceivePlayerState(PlayerStateData data)
     {
-        if (remotePlayers.TryGetValue(data.id, out var controller)) //dict에 해당 id 값이 있는지 확인. 있으면 해당 컨트롤러에 받은 데이터 삽입
+        if (remotePlayers.TryGetValue(data.networkId, out var controller)) //dict에 해당 id 값이 있는지 확인. 있으면 해당 컨트롤러에 받은 데이터 삽입
         {
             controller.ApplyNetworkState(data);
         }
@@ -45,17 +45,17 @@ public class PlayerManager : IManager
             RemotePlayerController newController = remoteObj.GetComponentInChildren<RemotePlayerController>();
             newController.ApplyNetworkState(data);  
 
-            remotePlayers.Add(data.id, newController); 
+            remotePlayers.Add(data.networkId, newController); 
         }
     }
 
-    public void OnRemotePlayerDisconnected(string playerId)     //플레이어 게임 종료 했을 경우
+    public void OnRemotePlayerDisconnected(uint networkId)     //플레이어 게임 종료 했을 경우
     {
-        if (remotePlayers.TryGetValue(playerId, out var controller))
+        if (remotePlayers.TryGetValue(networkId, out var controller))
         {
             controller.nameTag?.gameObject.SetActive(false);
             controller.gameObject.SetActive(false);
-            remotePlayers.Remove(playerId);
+            remotePlayers.Remove(networkId);
         }
     }
 
@@ -67,8 +67,8 @@ public class PlayerManager : IManager
         remotePlayers.Clear();
     }
 
-    public bool TryGetPlayer(string id, out RemotePlayerController controller)
+    public bool TryGetPlayer(uint id, out RemotePlayerController controller)
     {
         return remotePlayers.TryGetValue(id, out controller);
-    }
+    } 
 }

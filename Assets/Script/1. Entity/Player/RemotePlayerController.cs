@@ -29,6 +29,8 @@ public class RemotePlayerController : PlayerControllerBase
 
     private Rigidbody _rb;
 
+    public PlayerStateData PlayerStateData => _networkData;
+
     protected override void Awake()
     {
         base.Awake();

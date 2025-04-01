@@ -9,7 +9,7 @@ using UnityEngine.Windows;
 using static UnityEditor.PlayerSettings;
 
 class PacketHandler
-{
+{ 
     // SC_ATTACK 패킷을 처리하는 함수
     public static void SC_Attack(PacketSession session, IMessage packet)
     {
@@ -139,7 +139,7 @@ class PacketHandler
         SC_KEY_INPUT keyInputPacket = packet as SC_KEY_INPUT;
 
         // TODO: SC_KeyInput 패킷 처리 로직을 여기에 구현
-        if (Managers.GameSceneManager.PlayerManager.TryGetPlayer(keyInputPacket.PlayerId.ToString(), out var controller))
+        if (Managers.GameSceneManager.PlayerManager.TryGetPlayer(keyInputPacket.PlayerId, out var controller))
         {
             Vector3 moveInput = Vector3.zero;
             if (keyInputPacket.KeyW == 1) moveInput.z += 1;
@@ -182,13 +182,15 @@ class PacketHandler
     public static void SC_ShotHit(PacketSession session, IMessage packet)
     {
         SC_SHOT_HIT shotHitPacket = packet as SC_SHOT_HIT;
-   
-
-        // TODO: SC_ShotHit 패킷 처리 로직을 여기에 구현
+    
+        if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(shotHitPacket.PlayerId, out var controller))
+        {
+            controller.PlayerStateData.curHp = shotHitPacket.Hp; 
+        }
     }
 
     // SC_THROW_GRENADE 패킷을 처리하는 함수
-    public static void SC_ThrowGrenade(PacketSession session, IMessage packet)
+    public static void SC_ThrowGrenade(PacketSession session, IMessage packet) 
     {
         SC_THROW_GRENADE throwGrenadePacket = packet as SC_THROW_GRENADE;
 

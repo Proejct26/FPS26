@@ -153,7 +153,8 @@ public class GunController : WeaponBaseController
             { 
                 // 히트 이펙트
                 CS_ATTACK attackPacket = new CS_ATTACK();
-                attackPacket.BAttack = hit.collider.gameObject.GetComponent<RemotePlayerController>() != null;
+                RemotePlayerController remotePlayerController = hit.collider.gameObject.GetComponent<RemotePlayerController>();
+                attackPacket.BAttack = remotePlayerController != null;
                 attackPacket.PosX = hit.point.x.ConvertToUInt(); 
                 attackPacket.PosY = hit.point.y.ConvertToUInt();
                 attackPacket.PosZ = hit.point.z.ConvertToUInt();
@@ -165,6 +166,14 @@ public class GunController : WeaponBaseController
                 //WeaponBaseController.SpawnHitEffect(hit.point, hit.normal, attackPacket.BAttack);    
                 // 충돌 체크 hit.collider.tag == "Head"
                 targets[i] = hit.collider.gameObject;
+
+                if (remotePlayerController != null)
+                {
+                    CS_SHOT_HIT shotHitPacket = new CS_SHOT_HIT();
+                    shotHitPacket.PlayerId = remotePlayerController.PlayerStateData.networkId;
+                    shotHitPacket.Hp = (uint)(remotePlayerController.PlayerStateData.curHp - _weaponDataSO.damage); 
+                    Managers.Network.Send(shotHitPacket);
+                }
             } 
             else
             {

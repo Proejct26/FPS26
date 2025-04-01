@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(WeaponAnimationHandler))]
 public abstract class WeaponBaseController : MonoBehaviour
 {
     // Field
@@ -23,7 +24,7 @@ public abstract class WeaponBaseController : MonoBehaviour
     // Property
     public Sprite WeaponIcon => _weaponDataSO.weaponIcon;
     public WeaponDataSO WeaponDataSO => _weaponDataSO; 
-    public int GetCurrentAmmo => _LoadedAmmo;
+    public int GetCurrentAmmo => _LoadedAmmo; 
     public int GetMaxAmmo => _ammoSettings.initializeAmmo;
 
     // Component
@@ -33,6 +34,7 @@ public abstract class WeaponBaseController : MonoBehaviour
 
     protected virtual void Awake()
     {
+        _weaponAnimationHandler = gameObject.GetOrAddComponent<WeaponAnimationHandler>(); 
         _ammoSettings = _weaponDataSO.ammoSettings;
         _recoilSettings = _weaponDataSO.recoilSettings;
         _spreadSettings = _weaponDataSO.spreadSettings;

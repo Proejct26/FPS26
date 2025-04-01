@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Windows;
-using static UnityEditor.PlayerSettings;
 
 class PacketHandler
 { 

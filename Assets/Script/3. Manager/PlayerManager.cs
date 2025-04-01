@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerManager : IManager
 {
+    [Header("팀별 프리팹")]
+    [SerializeField] public GameObject redTeamPrefab;
+    [SerializeField] public GameObject blueTeamPrefab;
+
     private Dictionary<string, RemotePlayerController> remotePlayers = new();
  
      public void Init()
@@ -26,7 +30,15 @@ public class PlayerManager : IManager
         }
         else                                                        //데이터가 없으면 pool에서 remotePlayerPrefab을 꺼내온다.
         {
-            GameObject remoteObj = Managers.GameSceneManager.SpawnRemotePlayer((int)data.team); 
+            GameObject prefab = data.team == 0 ? redTeamPrefab : blueTeamPrefab;
+
+            GameObject remoteObj = Managers.Pool.Get(prefab);
+            if (remoteObj == null)
+            {
+                Debug.LogWarning($"[PlayerManager] Prefab 가져오기 실패: {data.id}");
+                return;
+            }
+
             remoteObj.transform.position = data.position;
             remoteObj.transform.rotation = Quaternion.Euler(data.rotationX, data.rotationY, 0);
 
@@ -53,5 +65,10 @@ public class PlayerManager : IManager
             player.gameObject.SetActive(false);
 
         remotePlayers.Clear();
+    }
+
+    public bool TryGetPlayer(string id, out RemotePlayerController controller)
+    {
+        return remotePlayers.TryGetValue(id, out controller);
     }
 }

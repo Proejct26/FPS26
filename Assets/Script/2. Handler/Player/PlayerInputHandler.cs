@@ -108,8 +108,15 @@ public class PlayerInputHandler : MonoBehaviour
         keyInput.RotateAxisX = (uint)normalizedX;
         keyInput.RotateAxisY = (uint)normalizedY;
         keyInput.Jump = (uint)(IsJumping ? 1 : 0);
-        
+
+        Vector3 lookDir = Managers.Player.transform.forward;
+        keyInput.NormalX = lookDir.x;
+        keyInput.NormalY = lookDir.y;
+        keyInput.NormalZ = lookDir.z;
+
         MyDebug.Log($"키 입력: {keyInput.KeyA}, {keyInput.KeyD}, {keyInput.KeyW}, {keyInput.KeyS}, {keyInput.RotateAxisX}, {keyInput.RotateAxisY}, {keyInput.Jump}");
+        MyDebug.Log($"lookDir: {lookDir}");
+
         Managers.Network.Send(keyInput); 
     }
 

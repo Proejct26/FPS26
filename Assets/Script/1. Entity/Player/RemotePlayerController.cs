@@ -9,7 +9,9 @@ public class RemotePlayerController : PlayerControllerBase
     private Vector3 _networkPosition;
     private Quaternion _networkRotation;
 
-    [SerializeField] private Transform weaponHolder; // 손에 붙이는 슬롯
+    private PlayerStatHandler _statHandler;
+
+[SerializeField] private Transform weaponHolder; // 손에 붙이는 슬롯
     [SerializeField] private Transform weaponFix;   //방향 조정
 
     [Header("이름 태그")]
@@ -21,10 +23,13 @@ public class RemotePlayerController : PlayerControllerBase
 
     private GameObject equippedWeapon;
 
+    private float _currentYaw = 0f;
+
     private Vector3 _inputMove;
     private float _inputYaw;
     private float _inputPitch;
     private bool _isJumping;
+    private Vector3 _lookDirection;
 
     private Queue<Vector3> _positionQueue = new Queue<Vector3>();
     private Vector3 _startPos;
@@ -43,6 +48,7 @@ public class RemotePlayerController : PlayerControllerBase
         base.Awake();
 
         _rb = bodyCollider.GetComponent<Rigidbody>();
+        _statHandler = GetComponent<PlayerStatHandler>();
 
         _rb.useGravity = true;  // 중력 작동
         _rb.isKinematic = false;
@@ -54,12 +60,17 @@ public class RemotePlayerController : PlayerControllerBase
          
     }
 
-    public void SetNetworkInput(Vector3 moveInput, float pitch, float yaw, bool isJumping)
+    public void SetNetworkInput(Vector3 moveInput, float pitch, float yaw, bool isJumping, Vector3 lookDir)
     {
         _inputMove = moveInput;
         _inputPitch = pitch;
         _inputYaw = yaw;
+        _currentYaw += yaw;
         _isJumping = isJumping;
+
+
+        if (lookDir != Vector3.zero)
+            _lookDirection = lookDir.normalized;
     }
 
     public void SetNetworkPosition(Vector3 pos)
@@ -96,6 +107,9 @@ public class RemotePlayerController : PlayerControllerBase
 
         InterpolatePosition(); // ← 보간 이동 처리
 
+
+        if (_lookDirection != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(new Vector3(_lookDirection.x, 0f, _lookDirection.z));
 
         // 시야 회전
         if (head != null)
@@ -178,7 +192,7 @@ public class RemotePlayerController : PlayerControllerBase
     {
         Vector3 origin = bodyCollider.position + Vector3.up * 0.1f;
         Debug.DrawRay(origin, Vector3.down * 1.2f, Color.red);
-        return Physics.Raycast(origin, Vector3.down, 1.2f, LayerMask.GetMask("Default"));
+        return Physics.Raycast(origin, Vector3.down, 1.0f, groundLayer);
     }
 
     public override bool IsJumpInput() => _isJumping;
@@ -186,13 +200,30 @@ public class RemotePlayerController : PlayerControllerBase
     public override bool IsFiring() => _networkData != null && _networkData.isFiring;
     
     // Remote 플레이어는 직접 이동 로직 없음 (서버 입력을 신뢰)
-    public override void HandleMovement() { }
-    public override float GetVerticalVelocity() => 0f;
+    public override void HandleMovement() 
+    {
+        float moveSpeed = 3f; // or _statHandler.MoveSpeed;
+
+        Vector3 move = transform.right * _inputMove.x + transform.forward * _inputMove.z;
+        move.y = 0f;
+
+        if (move.sqrMagnitude > 0.01f)
+            _rb.MovePosition(_rb.position + move.normalized * moveSpeed * Time.deltaTime);
+    }
+
+
+    public override float GetVerticalVelocity() => _rb.velocity.y;
     public override Vector3 GetMoveInput() => _inputMove;
 
-    public override void ApplyGravity() { }
-    public override void StartJump() {
+    public override void ApplyGravity() {
         if (_rb == null) return;
+
+        Vector3 velocity = _rb.velocity;
+        velocity.y += Physics.gravity.y * Time.deltaTime;
+        _rb.velocity = velocity;
+    }
+    public override void StartJump() {
+        if (_rb == null || !IsGrounded()) return;
 
         Vector3 velocity = _rb.velocity;
         velocity.y = Mathf.Sqrt(2f * 9.81f * 1.2f); // 높이 1.2m 기준 점프력
@@ -226,6 +257,36 @@ public class RemotePlayerController : PlayerControllerBase
         equippedWeapon.transform.localPosition = Vector3.zero;
         equippedWeapon.transform.localRotation = Quaternion.Euler(0, 180f, 0);  
         _dummyGunController = equippedWeapon.GetComponent<DummyGunController>(); 
-    } 
+    }
 
+
+#if UNITY_EDITOR
+    protected void OnGUI()          //디버그용
+    {
+        if (Camera.main == null) return;
+
+        Vector3 worldPos = transform.position + Vector3.up * 2.2f;
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+
+        // 카메라 뒤면 안 보이게
+        if (screenPos.z < 0) return;
+
+        GUIStyle style = new GUIStyle(GUI.skin.label)
+        {
+            fontSize = 14,
+            fontStyle = FontStyle.Bold,
+            normal = { textColor = Color.yellow },
+            alignment = TextAnchor.UpperCenter
+        };
+
+        string info = $"[{name}]\n" +
+                      $"▶ {StateMachine?.CurrentStateName}\n" +
+                      $"↔ Move: {_inputMove}\n" +
+                      $"⇧ Jump: {_isJumping}\n" +
+                      $"⛓ Grounded: {IsGrounded()}";
+
+        Vector2 size = style.CalcSize(new GUIContent(info));
+        GUI.Label(new Rect(screenPos.x - size.x / 2, Screen.height - screenPos.y - size.y, size.x, size.y), info, style);
+    }
+#endif
 }

@@ -50,7 +50,7 @@ public class PlayerMoveState : IPlayerState
         }
         else
         {
-            animToPlay = rightAmount > 0 ? "strafe(2)" : "strafe";
+            animToPlay = rightAmount > 0 ? "strafe (2)" : "strafe";
         }
 
         // 중복 재생 방지

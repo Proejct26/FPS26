@@ -21,6 +21,8 @@ public class PlayerStateMachine
         _controller = controller;
     }
 
+    public string CurrentStateName => _currentState?.GetType().Name ?? "None";      //디버그용
+
     /// <summary>
     /// 현재의 상태를 종료하고 새로운 상태를 실행하는 함수
     /// </summary>
@@ -28,6 +30,7 @@ public class PlayerStateMachine
     public void ChangeState(IPlayerState newState)
     {
         if (_currentState?.GetType() == newState.GetType()) return;
+
         _currentState?.Exit();
         _currentState = newState;
         _currentState?.Enter();

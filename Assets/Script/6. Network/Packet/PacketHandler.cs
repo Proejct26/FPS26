@@ -39,28 +39,27 @@ class PacketHandler
         // TODO: SC_ChangeWeapon 패킷 처리 로직을 여기에 구현
     }
 
-    // SC_CHARACTER_DOWN 패킷을 처리하는 함수
+
     public static void SC_CharacterDown(PacketSession session, IMessage packet)
     {
         SC_CHARACTER_DOWN characterDownPacket = packet as SC_CHARACTER_DOWN;
-
-        // TODO: SC_CharacterDown 패킷 처리 로직을 여기에 구현
+        MyDebug.Log($"[{characterDownPacket.PlayerId}] 플레이어가 죽었습니다.");  
     }
 
-    // SC_CHARACTER_KILL_LOG 패킷을 처리하는 함수
+
     public static void SC_CharacterKillLog(PacketSession session, IMessage packet)
     {
         SC_CHARACTER_KILL_LOG characterKillLogPacket = packet as SC_CHARACTER_KILL_LOG;
-
-        // TODO: SC_CharacterKillLog 패킷 처리 로직을 여기에 구현
+ 
+        
     }
 
-    // SC_CREATE_MY_CHARACTER 패킷을 처리하는 함수
+
     public static void SC_CreateMyCharacter(PacketSession session, IMessage packet)
     {
         SC_CREATE_MY_CHARACTER createMyCharacterPacket = packet as SC_CREATE_MY_CHARACTER;
 
-        // TODO: SC_CreateMyCharacter 패킷 처리 로직을 여기에 구현
+
         Debug.Log(
             $"ID : {createMyCharacterPacket.PlayerId}, " +
             $"PosIndex : {createMyCharacterPacket.PosIndex}, " +
@@ -138,6 +137,11 @@ class PacketHandler
     {
         SC_KEY_INPUT keyInputPacket = packet as SC_KEY_INPUT;
 
+        // 디버깅: 패킷 데이터 로깅
+        Debug.Log($"SC_KEY_INPUT 패킷 수신: PlayerId={keyInputPacket.PlayerId}, " +
+                  $"RotateAxisX={keyInputPacket.RotateAxisX}, RotateAxisY={keyInputPacket.RotateAxisY}, " +
+                  $"Jump={keyInputPacket.Jump}");
+
         // TODO: SC_KeyInput 패킷 처리 로직을 여기에 구현
         if (Managers.GameSceneManager.PlayerManager.TryGetPlayer(keyInputPacket.PlayerId, out var controller))
         {
@@ -185,13 +189,13 @@ class PacketHandler
         string unityString = sendMessagePacket.Message;
         // TODO: SC_SendMessage 패킷 처리 로직을 여기에 구현
         Debug.Log($"{unityString}");
-    } 
+    }  
     
     // SC_SHOT_HIT 패킷을 처리하는 함수
     public static void SC_ShotHit(PacketSession session, IMessage packet)
     {
         SC_SHOT_HIT shotHitPacket = packet as SC_SHOT_HIT;
-    
+        MyDebug.Log($"SC_SHOT_HIT 패킷 수신: PlayerId={shotHitPacket.PlayerId}, Hp={shotHitPacket.Hp}"); 
         if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(shotHitPacket.PlayerId, out var controller))
         {
             if (controller.TryGetComponent(out PlayerStatHandler playerStatHandler))
@@ -202,3 +206,4 @@ class PacketHandler
         // TODO: SC_ShotHit 패킷 처리 로직을 여기에 구현
     }
 }
+ 

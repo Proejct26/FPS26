@@ -63,7 +63,7 @@ public class PlayerInputHandler : MonoBehaviour
             RotationX = currentRotationX; 
             RotationY = currentRotationY;
             SendInput();
-            MyDebug.Log($"회전 입력: {currentRotationX}, {currentRotationY}");
+
         }  
     }
 
@@ -78,18 +78,18 @@ public class PlayerInputHandler : MonoBehaviour
         {
             MoveInput = new Vector3(moveInput.x, 0f, moveInput.y);
         }
-        MyDebug.Log($"이동 입력: {MoveInput}");
+
         SendInput();
     }
 
     private void InputJump(InputAction.CallbackContext context)
     {
         IsJumping = context.phase != InputActionPhase.Canceled;
-        MyDebug.Log($"점프 입력: {IsJumping}");
+
         SendInput();
     }
-  
-    private void SendInput()   
+   
+    private void SendInput()    
     {
         if (Managers.Player == null)
             return;
@@ -105,11 +105,15 @@ public class PlayerInputHandler : MonoBehaviour
         float normalizedX = eulerAngles.x < 0 ? eulerAngles.x + 360f : eulerAngles.x;
         float normalizedY = eulerAngles.y < 0 ? eulerAngles.y + 360f : eulerAngles.y;
         
-        keyInput.RotateAxisX = (uint)normalizedX;
-        keyInput.RotateAxisY = (uint)normalizedY;
+        keyInput.RotateAxisX = normalizedX; 
+        keyInput.RotateAxisY = normalizedY;
         keyInput.Jump = (uint)(IsJumping ? 1 : 0);
+        keyInput.NormalX = transform.forward.x;
+        keyInput.NormalY = transform.forward.y;
+        keyInput.NormalZ = transform.forward.z; 
+
+         
         
-        MyDebug.Log($"키 입력: {keyInput.KeyA}, {keyInput.KeyD}, {keyInput.KeyW}, {keyInput.KeyS}, {keyInput.RotateAxisX}, {keyInput.RotateAxisY}, {keyInput.Jump}");
         Managers.Network.Send(keyInput); 
     }
 

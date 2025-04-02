@@ -34,6 +34,7 @@ public class JobQueue : Singleton<JobQueue>
             float startTime = Time.realtimeSinceStartup;
             int processedCount = 0;
 
+
             while (_jobs.TryDequeue(out Action job) && 
                    processedCount < MAX_JOBS_PER_FRAME && 
                    Time.realtimeSinceStartup - startTime < MAX_PROCESSING_TIME)
@@ -50,7 +51,7 @@ public class JobQueue : Singleton<JobQueue>
                 {
                     processedCount++;
                 }
-            } 
+            }   
 
             // 남은 작업이 있다면 다음 프레임에서 처리
             if (!_jobs.IsEmpty)

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: WeaponlData_SniperRifle2
   m_EditorClassIdentifier: 
   key: 1302
-  weaponIcon: {fileID: 21300034, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
-  dropItemPrefab: {fileID: 3562037514319824971, guid: 31171677a1e2e9b4582d1e58abd65215,
+  weaponName: "\uC800\uACA9\uCD1DB"
+  weaponType: 0
+  dummyPrefab: {fileID: 3562037514319824971, guid: 665313c149d69cd4cbf72393b967c306,
     type: 3}
   itemPrefab: {fileID: 8634434568037516225, guid: 451ee1456bc9c594f88b0a19024831f3,
     type: 3}
-  weaponType: 0
-  weaponName: "\uC800\uACA9\uCD1DB"
+  weaponIcon: {fileID: 21300034, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
   damage: 70
   attackDelay: 0.7
   ammoSettings:

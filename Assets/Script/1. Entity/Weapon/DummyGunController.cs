@@ -10,11 +10,14 @@ public class DummyGunController : MonoBehaviour
 
     public void Fire()
     {
-        WeaponBaseController.SpawnMuzzleFlash(_muzzle.position, _muzzle.rotation.eulerAngles);
+        if (_muzzle == null)
+            return;
+
+        WeaponBaseController.SpawnMuzzleFlash(_muzzle.position, transform.forward);
         WeaponBaseController.SpawnBullet(_weaponDataSO.ammoSettings._bulletPrefab, _enjectionPort.position, 
-            _muzzle.forward, (transform.up + transform.right).normalized);
+            _muzzle.forward, (transform.up + transform.right).normalized); 
 
         Managers.Sound.Play3D("Sound/Weapon/shotSound", _muzzle.position); 
     } 
 }
- 
+  

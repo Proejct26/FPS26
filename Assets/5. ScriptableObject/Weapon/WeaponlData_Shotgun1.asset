@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: WeaponlData_Shotgun1
   m_EditorClassIdentifier: 
   key: 1101
-  weaponIcon: {fileID: 21300012, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
-  dropItemPrefab: {fileID: 1231910257563632584, guid: d23e533e3f1700f47aecedad9585672f,
+  weaponName: "\uC0F7\uAC74A"
+  weaponType: 0
+  dummyPrefab: {fileID: 1231910257563632584, guid: 954ac3b5deea96d46a6febdaf35a1678,
     type: 3}
   itemPrefab: {fileID: 9130538387348980961, guid: 3bc98a9e09892db45b84ad86e0cb4c03,
     type: 3}
-  weaponType: 0
-  weaponName: "\uC0F7\uAC74A"
+  weaponIcon: {fileID: 21300012, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
   damage: 7
   attackDelay: 1
   ammoSettings:

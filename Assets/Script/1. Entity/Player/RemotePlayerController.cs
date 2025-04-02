@@ -38,6 +38,7 @@ public class RemotePlayerController : PlayerControllerBase
 
     public PlayerStateData PlayerStateData => _networkData;
     public DummyGunController DummyGunController => _dummyGunController; 
+    //public PlayerStat
 
     protected override void Awake()
     {
@@ -203,7 +204,7 @@ public class RemotePlayerController : PlayerControllerBase
     /// 발사 입력 시 호출
     /// </summary>
     public override void HandleFire(bool started)
-    {
+    { 
         /*if (_equippedWeapon == null)
         {
             Debug.LogWarning("무기가 없습니다.");
@@ -225,6 +226,7 @@ public class RemotePlayerController : PlayerControllerBase
         equippedWeapon = Instantiate(weaponData.dummyPrefab, weaponFix);
         equippedWeapon.transform.localPosition = Vector3.zero;
         equippedWeapon.transform.localRotation = Quaternion.Euler(0, 180f, 0);  
-    }
+        _dummyGunController = equippedWeapon.GetComponent<DummyGunController>(); 
+    } 
 
 }

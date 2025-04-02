@@ -15,7 +15,8 @@ MonoBehaviour:
   key: 2001
   weaponName: "\uAD8C\uCD1DA"
   weaponType: 1
-  dummyPrefab: {fileID: 0}
+  dummyPrefab: {fileID: 1306367745336645715, guid: 1cd6f5269f141ab429148a75b2f51d15,
+    type: 3}
   itemPrefab: {fileID: 8335102493945524992, guid: 182e512a474fdc44ab0877d0dd046118,
     type: 3}
   weaponIcon: {fileID: 21300004, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}

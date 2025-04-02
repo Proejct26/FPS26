@@ -32,7 +32,5 @@ public abstract class PlayerControllerBase : MonoBehaviour
     public abstract void StartJump();
     public abstract void HandleFire(bool started);
     public abstract float GetVerticalVelocity();
-
-
-
+    public virtual Vector3 GetMoveInput() => Vector3.zero;
 }

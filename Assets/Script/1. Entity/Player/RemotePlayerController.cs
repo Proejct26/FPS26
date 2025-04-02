@@ -8,7 +8,6 @@ public class RemotePlayerController : PlayerControllerBase
 
     private Vector3 _networkPosition;
     private Quaternion _networkRotation;
-    private float _lerpSpeed = 10f;         //보간 정도
 
     [SerializeField] private Transform weaponHolder; // 손에 붙이는 슬롯
     [SerializeField] private Transform weaponFix;   //방향 조정
@@ -145,6 +144,7 @@ public class RemotePlayerController : PlayerControllerBase
     // Remote 플레이어는 직접 이동 로직 없음 (서버 입력을 신뢰)
     public override void HandleMovement() { }
     public override float GetVerticalVelocity() => 0f;
+    public override Vector3 GetMoveInput() => _inputMove;
 
     public override void ApplyGravity() { }
     public override void StartJump() {

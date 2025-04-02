@@ -46,9 +46,10 @@ public class Managers : Singleton<Managers>
  
     protected override void Awake()
     {
+        base.Awake();
+        
         Application.targetFrameRate = 60;
         JobQueue.Push(()=>{});  
-        base.Awake();
   
         Init();
     }

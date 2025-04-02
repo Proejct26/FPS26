@@ -13,7 +13,7 @@ public enum EPlayerInput
 	Jump,		//점프
 	Info,		//정보창
     Chat,       //채팅
-
+	Tab,        //채팅 모드 전환 
  	MainWeapon,
 	SubWeapon,
 	KnifeWeapon,
@@ -52,20 +52,6 @@ public class InputManager : IManager
 
         BindAction(typeof(EPlayerInput));
 		inputActionAsset.Enable(); 
-    }
-
-    public void Update()
-    {
-        CS_KEY_INPUT ptk = new CS_KEY_INPUT();
-        ptk.Jump = 1;
-        ptk.KeyW = 1;
-        ptk.KeyA = 1;
-        ptk.KeyS = 1;
-        ptk.KeyD = 1;
-        ptk.RotateAxisX = 5;
-        ptk.RotateAxisY = 6;
-
-        Managers.Network.Send(ptk);
     }
 
     public void Clear()

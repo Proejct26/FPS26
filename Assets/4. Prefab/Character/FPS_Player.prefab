@@ -246,8 +246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponParent: {fileID: 7492963166118102614}
-  _primaryWeapon: {fileID: 11400000, guid: 432a2ae25b37941419105672d3c1933d, type: 2}
-  _secondaryWeapon: {fileID: 11400000, guid: 5fda0b13c71c6234da6191e6e2994a73, type: 2}
+  _primaryWeapon: {fileID: 11400000, guid: b4d2acada5026fa46a3fef41ae640dd1, type: 2}
+  _secondaryWeapon: {fileID: 11400000, guid: 7bd49416bf2f223489f388120211af4a, type: 2}
   _throwableWeapon: {fileID: 0}
   _knifeWeapon: {fileID: 11400000, guid: b6b19e68864c9a74690f99360641561c, type: 2}
 --- !u!114 &6014489089892647982

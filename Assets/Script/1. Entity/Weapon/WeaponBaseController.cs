@@ -141,4 +141,18 @@ public abstract class WeaponBaseController : MonoBehaviour
         particle.transform.rotation = Quaternion.LookRotation(dir); 
         Managers.Pool.Release(particle, 5f);    
     }
+
+    public static void SpawnBullet(GameObject bulletPrefab, Vector3 position, Vector3 dir, Vector3 exportDir)
+    {
+        // 총알
+        GameObject bullet = Managers.Pool.Get(bulletPrefab);
+        bullet.transform.position = position;
+        bullet.transform.rotation = Quaternion.LookRotation(dir);
+        Managers.Pool.Release(bullet, 3f);  
+
+        // 탄피 효과
+        Rigidbody rigidbody = bullet.GetOrAddComponent<Rigidbody>();
+        rigidbody.velocity = Vector3.zero; 
+        rigidbody.AddForce(exportDir, ForceMode.Impulse);   
+    }
 }

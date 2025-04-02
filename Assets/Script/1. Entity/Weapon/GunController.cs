@@ -193,20 +193,9 @@ public class GunController : WeaponBaseController
     }
     private void SpawnEffect()
     {
-        // 총알
-        GameObject bullet = Managers.Pool.Get(_ammoSettings._bulletPrefab);
-        bullet.transform.position = _ejectionPort.position;
-        bullet.transform.rotation = _ejectionPort.rotation;
-        Managers.Pool.Release(bullet, 3f);  
-
-        // 탄피 효과
-        Vector3 dir = (transform.up + transform.right).normalized;  
-        Rigidbody rigidbody = bullet.GetOrAddComponent<Rigidbody>();
-        rigidbody.velocity = Vector3.zero; 
-        rigidbody.AddForce(dir, ForceMode.Impulse);  
+        WeaponBaseController.SpawnBullet(_ammoSettings._bulletPrefab, _ejectionPort.position, 
+            _ejectionPort.rotation.eulerAngles, (transform.up + transform.right).normalized);
  
-        // 머즐 효가
-
         Managers.Sound.Play("Sound/Weapon/shotSound");
         WeaponBaseController.SpawnMuzzleFlash(_muzzle.position, transform.forward);
     }

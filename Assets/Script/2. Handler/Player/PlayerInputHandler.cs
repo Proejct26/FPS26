@@ -42,6 +42,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         Managers.Input.GetInput(EPlayerInput.Jump).started += InputJump;
         Managers.Input.GetInput(EPlayerInput.Jump).canceled += InputJump; 
+
+        Managers.Input.GetInput(EPlayerInput.Tab).performed += InputChatToggleMode; 
     }
 
     private void InputLook(InputAction.CallbackContext context)
@@ -93,10 +95,10 @@ public class PlayerInputHandler : MonoBehaviour
             return;
             
         CS_KEY_INPUT keyInput = new CS_KEY_INPUT();
-        keyInput.KeyA = (uint)(MoveInput.x > 0.5f ? 1 : 0);
-        keyInput.KeyD = (uint)(MoveInput.x < -0.5f ? 1 : 0); 
-        keyInput.KeyW = (uint)(MoveInput.z > 0.5f ? 1 : 0);
-        keyInput.KeyS = (uint)(MoveInput.z < -0.5f ? 1 : 0);
+        keyInput.KeyA = MoveInput.x > 0.5f;
+        keyInput.KeyD = MoveInput.x < -0.5f;
+        keyInput.KeyW = MoveInput.z > 0.5f;
+        keyInput.KeyS = MoveInput.z < -0.5f;
         
         // Euler 각도를 0~360도 범위로 정규화
         Vector3 eulerAngles = Managers.Player.transform.rotation.eulerAngles;
@@ -125,8 +127,24 @@ public class PlayerInputHandler : MonoBehaviour
             _isChatActive = false;
            // Managers.Input.SetActive(true);
         }
+        
+        // 엔터 키로 채팅 토글
+        if (Managers.Input.GetInput(EPlayerInput.Chat).WasPressedThisFrame())
+        {
+            if (!_isChatActive)
+            {
+                _isChatActive = true;
+                _chatUI.ToggleChat(true); // 입력창 켜기
+            }
+            else
+            {
+                _chatUI.SendMessage(); // 현재 모드로 전송
+                _isChatActive = false;
+            }
+        }
+        
 
-                // 채팅 활성화 시 다른 입력 무시
+        // 채팅 활성화 시 다른 입력 무시
         if (_isChatActive)
         {
             MoveInput = Vector3.zero;    // 이동 입력 초기화
@@ -139,6 +157,13 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     
+    private void InputChatToggleMode(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            _chatUI.ToggleChatMode();
+        
+    }
+
     private void InputInfo(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)

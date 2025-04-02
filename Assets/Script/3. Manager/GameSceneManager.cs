@@ -6,6 +6,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering;
+using System.Linq;
 
 public struct KDAData
 {
@@ -18,12 +19,28 @@ public struct KDAData
 
 public class GameKdaData
 {
-    public List<KDAData> KDAInfoList {get; private set;} = new List<KDAData>();
+    public List<KDAData> KDAInfoList = new List<KDAData>();
     
     public event Action OnChangedKDAInfo;
 
     public void AddKDAInfo(int playerId, int team, int kill, int death, int assist)
     {
+
+        for (int i = 0; i < KDAInfoList.Count; i++)
+        {
+            if (KDAInfoList[i].playerId == playerId)
+            {
+                KDAData temp = KDAInfoList[i];
+                temp.kill = kill;
+                temp.death = death;
+                temp.assist = assist;
+
+                KDAInfoList[i] = temp;
+                return;
+            }
+        }
+
+
         KDAInfoList.Add(new KDAData()
         {
             kill = kill,
@@ -163,6 +180,10 @@ public class GameSceneManager : MonoBehaviour
         if (PlayerId != -1) 
         {
             Managers.Player.GetComponent<LocalPlayerController>().OnRespawn();
+            Transform tf = _spawnData.GetSpawnPosition(teamIdx, posIndex);
+            Managers.Player.transform.position = tf.position; 
+            Managers.Player.transform.rotation = tf.rotation; 
+
             Managers.UI.CloseAllPopupUI();
            return Managers.Player; 
         }

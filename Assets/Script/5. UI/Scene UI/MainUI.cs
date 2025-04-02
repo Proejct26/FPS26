@@ -35,6 +35,7 @@ public class MainUI : UI_Scene
         Managers.GameSceneManager.OnChangedTeamScore += UpdateTeamScore;
         playerStatHandler.OnHealthChanged += UpdatePlayerData; 
         UpdateTeamScore();
+
     }
 
     // Update is called once per frame

@@ -34,6 +34,7 @@ public class PlayerMoveState : IPlayerState
     private void UpdateAnimation()
     {
         Vector3 move = _controller.GetMoveInput();
+        if (move.sqrMagnitude < 0.01f) return;
 
         Vector3 forward = _controller.transform.forward;
         Vector3 right = _controller.transform.right;

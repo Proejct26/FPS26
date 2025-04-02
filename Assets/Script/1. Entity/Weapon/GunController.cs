@@ -151,12 +151,12 @@ public class GunController : WeaponBaseController
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100f))
             { 
-                bool hitPlayer = hit.collider.TryGetComponent(out PlayerCollider controller);
+                bool hitPlayer = hit.collider.TryGetComponent(out PlayerCollider playerCollider);
  
                 PlayerStateData playerStateData = null;
-                if (controller != null)
+                if (playerCollider != null) 
                 {
-                    playerStateData = controller.Parent.GetComponent<RemotePlayerController>().PlayerStateData; 
+                    playerStateData = playerCollider.Parent.GetComponent<RemotePlayerController>().PlayerStateData; 
                 } 
 
                 // 히트 이펙트
@@ -175,16 +175,18 @@ public class GunController : WeaponBaseController
                 targets[i] = hit.collider.gameObject;
 
  
-                if (controller != null)
+                if (playerCollider != null)
                 {
-                    int damage = (int)(_weaponDataSO.damage * controller.GetDamage()); 
+                    int damage = (int)(_weaponDataSO.damage * playerCollider.GetDamage()); 
                     CS_SHOT_HIT shotHitPacket = new CS_SHOT_HIT();
                     shotHitPacket.PlayerId = playerStateData.networkId;
                     shotHitPacket.Hp = (uint)(Mathf.Max(0, playerStateData.curHp - damage));    
                     Managers.Network.Send(shotHitPacket);
+
+                    MyDebug.Log($"SC_SHOT_HIT 패킷 전송: PlayerId={playerStateData.networkId}, Hp={shotHitPacket.Hp}");
                 }
             } 
-            else
+            else 
             {
                 targets[i] = null; 
             }

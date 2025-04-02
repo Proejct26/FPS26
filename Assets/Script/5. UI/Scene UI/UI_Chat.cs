@@ -1,10 +1,12 @@
+using Game;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class UI_Chat : UI_Scene
+public class UI_Chat : UI_Base
 {
     [SerializeField] private ScrollRect _scrollRect;        // 채팅 로그 + 스크롤바
     [SerializeField] private TMP_InputField _inputField;    // 메세지 입력 필드
@@ -14,82 +16,54 @@ public class UI_Chat : UI_Scene
     [SerializeField] private TextMeshProUGUI _chatModeText; // 채팅창 좌측 [전체] / [팀]
 
     private bool _isTeamChat = false;
-    
+    private bool _isChatActive = false;
+    public bool IsChatActive => _isChatActive;
     public override void Init()
     {
-        base.Init();
+        
+    }
+
+    public void Awake()
+    {
         _inputField.gameObject.SetActive(false);
         _scrollRect.gameObject.SetActive(true);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         UpdateChatMode();
     }
-    
-    // 상대 메세지 테스트용
-    private void Update()
+
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.P)) // P 키로 테스트
-        {
-            AddMessage(new ChatMessageData
-            {
-                PlayerId = 3,
-                Nickname = "Player2",
-                Message = "안녕하세요",
-                TeamId = 1
-            });
-        }
-        if (Input.GetKeyDown(KeyCode.L)) // L 키로 테스트
-        {
-            AddMessage(new ChatMessageData
-            {
-                PlayerId = 5,
-                Nickname = "Player3",
-                Message = "잘 부탁드립니다! 즐겜해요~",
-                TeamId = 2
-            });
-        }
-        
-        // 팀 채팅 테스트
-        if (Input.GetKeyDown(KeyCode.O)) // 내 팀
-        {
-            AddMessage(new ChatMessageData
-            {
-                PlayerId = 3,
-                Nickname = "Player4",
-                Message = "왼쪽으로 가죠",
-                TeamId = 1,
-                IsTeamChat = true
-            });
-        }
-        if (Input.GetKeyDown(KeyCode.K)) // 적팀 (표시 안 돼야 함)
-        {
-            AddMessage(new ChatMessageData
-            {
-                PlayerId = 5,
-                Nickname = "Player5",
-                Message = "저 팀 못하는듯",
-                TeamId = 2,
-                IsTeamChat = true
-            });
-        }
+        Managers.Input.GetInput(EPlayerInput.Chat).started += InputChat;
+        Managers.Input.GetInput(EPlayerInput.Tab).started += InputChatToggleMode;  
+        Managers.Chat.OnMessageAdded += AddMessage;
     }
+
+    // 상대 메세지 테스트용
 
     // 입력한 메시지를 채팅창에 추가
     public void SendMessage()
     {
         if (!string.IsNullOrEmpty(_inputField.text))    // 텍스트 확인
         {
-            var myInfo = Managers.Chat.GetPlayerInfo(Managers.Network.PlayerId);
+            var myInfo = Managers.Chat.GetPlayerInfo((uint)Managers.GameSceneManager.PlayerId);
             ChatMessageData message = new ChatMessageData()
             {
-                PlayerId = Managers.Network.PlayerId,
+                PlayerId = (uint)Managers.GameSceneManager.PlayerId, 
                 Nickname = myInfo.Nickname,
                 Message = _inputField.text,
-                TeamId = myInfo.TeamId,
+                TeamId = myInfo.TeamId, 
                 IsTeamChat = _isTeamChat
             };
-            Managers.Chat.AddMessage(message);
-            AddMessage(message);
+
+            AddMessage(message); 
+
+            CS_SEND_MESSAGE_ALL sendMessageAllPacket = new CS_SEND_MESSAGE_ALL()
+            {
+                Message = _inputField.text,
+                PlayerId = (uint)Managers.GameSceneManager.PlayerId, 
+            };
+            Managers.Network.Send(sendMessageAllPacket); 
+ 
+
         }
         ToggleChat(false);
     }
@@ -102,7 +76,11 @@ public class UI_Chat : UI_Scene
             return; // 다른 팀채팅 무시
         }
         
-        bool isSelf = data.PlayerId == Managers.Network.PlayerId;   // 내 메세지인지 확인
+        bool isSelf = data.PlayerId == Managers.GameSceneManager.PlayerId;   // 내 메세지인지 확인
+
+
+
+
         GameObject prefab = isSelf ? _myMessage : _otherMessage;
         GameObject messageObj = Instantiate(prefab, _content);
         
@@ -113,8 +91,6 @@ public class UI_Chat : UI_Scene
             TextMeshProUGUI messageText = messageObj.transform.Find("Message")?.GetComponent<TextMeshProUGUI>();
             messageText.text = messagePrefix + data.Message;
             messageText.color = Color.white;
-
-            // TODO 데이터 송신
         }
         else
         {
@@ -131,6 +107,9 @@ public class UI_Chat : UI_Scene
         }
         ScrollToBottom();
     }
+
+
+
 
     // 입력창, 스크롤바 On/Off (엔터키)
     public void ToggleChat(bool active)
@@ -149,6 +128,7 @@ public class UI_Chat : UI_Scene
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            Managers.Input.SetActive(true);
         }
     }
     
@@ -177,4 +157,35 @@ public class UI_Chat : UI_Scene
         Canvas.ForceUpdateCanvases();
         _scrollRect.verticalNormalizedPosition = 0f;
     }
+
+
+    private void InputChat(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Started) return;
+        
+        if (!_isChatActive)
+        {
+            _isChatActive = true;
+            ToggleChat(true); // 입력창 켜기
+        }
+        else
+        {
+            SendMessage(); // 메시지 전송
+            _isChatActive = false;
+ 
+        }
+
+        // 채팅 활성화 시 다른 입력 무시
+        // if (_isChatActive)
+        // {
+           
+        // }
+    }
+
+    private void InputChatToggleMode(InputAction.CallbackContext context)
+    {
+        ToggleChatMode();
+        
+    }
+
 }

@@ -24,36 +24,13 @@ public class PlayerInputHandler : MonoBehaviour
 
     private UI_ScorePopup _scorePopup;
     private UI_Chat _chatUI;
-    private bool _isChatActive;
-    
-
+ 
 
     private void Start()
-    {
-        _chatUI = Managers.UI.ShowSceneUI<UI_Chat>("ChatUI");
-        if (_chatUI == null)
-        {
-            Debug.Log("ChatUI 초기화 실패");
-            return;
-        }
-        var chatAction = Managers.Input.GetInput(EPlayerInput.Chat);
-        if (chatAction == null)
-        {
-            Debug.LogError("EPlayerInput.Chat Action is null");
-            return;
-        }
-        
-        chatAction.started += InputChat; 
-        
-        var tabAction = Managers.Input.GetInput(EPlayerInput.Tab);
-        tabAction.started += InputChatToggleMode;
-        
-        Debug.Log("Chat 이벤트 등록 완료");
-        
+    {         
+        _chatUI = FindAnyObjectByType<UI_Chat>();
         Managers.Input.GetInput(EPlayerInput.Info).started += InputInfo;
         Managers.Input.GetInput(EPlayerInput.Info).canceled += InputInfo;
-
-        Managers.Input.GetInput(EPlayerInput.Chat).started += InputChat;
 
         Managers.Input.GetInput(EPlayerInput.Look).performed += InputLook; 
 
@@ -62,13 +39,10 @@ public class PlayerInputHandler : MonoBehaviour
 
         Managers.Input.GetInput(EPlayerInput.Jump).started += InputJump;
         Managers.Input.GetInput(EPlayerInput.Jump).canceled += InputJump; 
-
-        Managers.Input.GetInput(EPlayerInput.Tab).performed += InputChatToggleMode; 
     }
 
     private void InputLook(InputAction.CallbackContext context)
     {
-        if (_isChatActive) return;
         
         // 입력값을 안전하게 읽기
         LookInput = context.ReadValue<Vector2>();
@@ -90,11 +64,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void InputMove(InputAction.CallbackContext context)
     {
-        if (_isChatActive)
-        {
-            MoveInput = Vector3.zero;
-            return;
-        }
         
         Vector2 moveInput = context.ReadValue<Vector2>();
         if(moveInput.sqrMagnitude < 0.01f)
@@ -142,45 +111,14 @@ public class PlayerInputHandler : MonoBehaviour
         Managers.Network.Send(keyInput); 
     }
 
-    private void InputChat(InputAction.CallbackContext context)
-    {
-        if (context.phase != InputActionPhase.Started) return;
-        
-        if (!_isChatActive)
-        {
-            _isChatActive = true;
-            _chatUI.ToggleChat(true); // 입력창 켜기
-         //   Managers.Input.SetActive(false); 
-        }
-        else
-        {
-            _chatUI.SendMessage(); // 메시지 전송
-            _isChatActive = false;
-           // Managers.Input.SetActive(true);
-        }
+     
 
-        // 채팅 활성화 시 다른 입력 무시
-        if (_isChatActive)
-        {
-            MoveInput = Vector3.zero;    // 이동 입력 초기화
-            LookInput = Vector2.zero; // 방향 입력 초기화
-            RotationX = 0f;
-            RotationY = 0f;
-            IsJumping = false;
-            IsFiring = false;
-            return;
-        }
-    }
-    
-    private void InputChatToggleMode(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Started)
-            _chatUI.ToggleChatMode();
-        
-    }
 
     private void InputInfo(InputAction.CallbackContext context)
     {
+        if (_chatUI.IsChatActive) 
+            return;
+
         if (context.phase == InputActionPhase.Started)
         {
             _scorePopup = Managers.UI.ShowPopupUI<UI_ScorePopup>("ScorePopup");

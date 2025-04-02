@@ -17,6 +17,7 @@ public class UIManager : IManager
     private Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
     private UI_Scene _sceneUI = null;
 
+    public UI_Scene SceneUI => _sceneUI;
     public void Init()
     {
  

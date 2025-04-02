@@ -86,6 +86,8 @@ public class PacketManager : IManager
 
         // Protobuf 메시지를 buffer 전체에서 파싱
         pkt.MergeFrom(buffer.Array, buffer.Offset, buffer.Count);
+        Debug.Log($"PacketHandler 호출: {id}");  
+
 
         if (CustomHandler != null)
         {
@@ -94,8 +96,10 @@ public class PacketManager : IManager
         else
         {
             Action<PacketSession, IMessage> action = null;
-             if (_handler.TryGetValue(id, out action))
+             if (_handler.TryGetValue(id, out action)){
                 JobQueue.Push(()=>action.Invoke(session, pkt));   
+                
+             }
 
         }
     }

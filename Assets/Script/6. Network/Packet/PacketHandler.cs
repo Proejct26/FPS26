@@ -204,7 +204,7 @@ class PacketHandler
             controller.SetNetworkPosition(pos); 
         }
     }
-
+ 
 
     // SC_SEND_MESSAGE 패킷을 처리하는 함
         // SC_SEND_MESSAGE_ALL 패킷을 처리하는 함수
@@ -212,22 +212,27 @@ class PacketHandler
     {
         SC_SEND_MESSAGE_ALL sendMessageAllPacket = packet as SC_SEND_MESSAGE_ALL;
 
-        // ChatMessageData chatData = new ChatMessageData()
-        // {
-        //     PlayerId = sendMessageAllPacket.PlayerId,
-        //     Message = sendMessageAllPacket.Message,
+        ChatMessageData chatData = new ChatMessageData()
+        {
+            PlayerId = sendMessageAllPacket.PlayerId,
+            Message = sendMessageAllPacket.Message,
 
-        //     Nickname = sendMessageAllPacket.Nickname,
-        //     TeamId = sendMessageAllPacket.TeamId,
-        //     IsTeamChat = false;
-        // };
+            Nickname = Managers.GameSceneManager.PlayerManager.TryGetPlayer(sendMessageAllPacket.PlayerId, out var controller) 
+                ? controller.PlayerStateData.name : "Unknown",  
 
+            TeamId = controller ? controller.PlayerStateData.team : 0,
+            IsTeamChat = false
+        };
 
+        if (Managers.GameSceneManager.PlayerId != sendMessageAllPacket.PlayerId) 
+            Managers.Chat.AddMessage(chatData); 
+        
+ 
         // TODO: SC_SendMessageAll 패킷 처리 로직을 여기에 구현
         string unityString = sendMessageAllPacket.Message;
         Debug.Log($"SC_SendMessageAll : {unityString}");
+    }  
 
-    }
 
     // SC_SEND_MESSAGE_TEAM 패킷을 처리하는 함수
     public static void SC_SendMessageTeam(PacketSession session, IMessage packet)
@@ -237,10 +242,25 @@ class PacketHandler
         // TODO: SC_SendMessageTeam 패킷 처리 로직을 여기에 구현
         string unityString = sendMessageTeamPacket.Message;
 
+        ChatMessageData chatData = new ChatMessageData()
+        {
+            PlayerId = sendMessageTeamPacket.PlayerId,
+            Message = sendMessageTeamPacket.Message,
+
+            Nickname = Managers.GameSceneManager.PlayerManager.TryGetPlayer(sendMessageTeamPacket.PlayerId, out var controller) 
+                ? controller.name : "Unknown", 
+
+            TeamId = controller ? controller.PlayerStateData.team : 0,
+            IsTeamChat = true
+        }; 
+
+        Managers.Chat.AddMessage(chatData); 
+
         Debug.Log($"SC_SendMessageTeam : {unityString}");
 
     }
     
+
     // SC_SHOT_HIT 패킷을 처리하는 함수
     public static void SC_ShotHit(PacketSession session, IMessage packet)
     {

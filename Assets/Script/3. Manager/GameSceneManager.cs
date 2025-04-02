@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Rendering;
 
 
 [Serializable]
@@ -41,12 +42,14 @@ public class SpawnData
     } 
 }
 
+
 public class GameSceneManager : MonoBehaviour
 {
     [SerializeField] private SpawnData _spawnData = new SpawnData();
     public PlayerManager PlayerManager {get; private set;} = new PlayerManager();
     public SpawnData SpawnData => _spawnData;
-    public int PlayerId {get; set;} = -1;
+    public int PlayerId {get; private set;} = -1;
+
 
     public virtual void EnterScene()
     {  

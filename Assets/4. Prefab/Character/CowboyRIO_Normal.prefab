@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5890217226203651792}
   m_Layer: 0
   m_Name: CowboyRIO_Normal
-  m_TagString: Player
+  m_TagString: LocalPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,13 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc34a3b0e2bf7114b963eb805e5e473c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  head: {fileID: 0}
+  animator: {fileID: 0}
   _controller: {fileID: 1513432870568483632}
   _statHandler: {fileID: 6198272866859364636}
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  groundCheckDistance: 0.3
-  groundCheckOffset: {x: 0, y: 0.1, z: 0}
+  playerId: 
 --- !u!114 &6198272866859364636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,10 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91cf10da754fde439801039a9e5c93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scopeCam: {fileID: 0}
   cameraHolder: {fileID: 3355354538518889965}
-  headBone: {fileID: 8260362774243736455}
   _sensitivity: 2
-  cameraOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &6679313497953191578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,12 +417,6 @@ PrefabInstance:
 --- !u!4 &6015769636393677927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3ba5df55de38cf04d86504dab0da7464,
-    type: 3}
-  m_PrefabInstance: {fileID: 6122353293448319884}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8260362774243736455 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2761907016946837515, guid: 3ba5df55de38cf04d86504dab0da7464,
     type: 3}
   m_PrefabInstance: {fileID: 6122353293448319884}
   m_PrefabAsset: {fileID: 0}

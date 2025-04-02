@@ -77,10 +77,9 @@ public class PacketManager : IManager
             JobQueue.Push(() => 
             {
                 action.Invoke(session, buffer, id);
+                Debug.Log($"{id}번 메시지가 실행됨");
               //  MyDebug.Log($"패킷 수신 완료: {id}"); 
             }); 
-            
-        
     }
 
     void MakePacket<T>(PacketSession session, ArraySegment<byte> buffer, ushort id) where T : IMessage, new()
@@ -99,7 +98,6 @@ public class PacketManager : IManager
             Action<PacketSession, IMessage> action = null;
              if (_handler.TryGetValue(id, out action))
                     action.Invoke(session, pkt); 
-
         }
     }
 

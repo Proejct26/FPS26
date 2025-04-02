@@ -125,8 +125,29 @@ public class PlayerInputHandler : MonoBehaviour
             _isChatActive = false;
            // Managers.Input.SetActive(true);
         }
+        
+        // 엔터 키로 채팅 토글
+        if (Managers.Input.GetInput(EPlayerInput.Chat).WasPressedThisFrame())
+        {
+            if (!_isChatActive)
+            {
+                _isChatActive = true;
+                _chatUI.ToggleChat(true); // 입력창 켜기
+            }
+            else
+            {
+                _chatUI.SendMessage(); // 현재 모드로 전송
+                _isChatActive = false;
+            }
+        }
+        
+        // 탭 키로 챗모드 전환
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            _chatUI.ToggleChatMode();
+        }
 
-                // 채팅 활성화 시 다른 입력 무시
+        // 채팅 활성화 시 다른 입력 무시
         if (_isChatActive)
         {
             MoveInput = Vector3.zero;    // 이동 입력 초기화

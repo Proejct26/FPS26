@@ -38,9 +38,11 @@ public class UI_StartPopup : UI_Popup
 
     private void OnQuitButtonClick()
     {
-        Application.Quit();
+        Managers.Clear();
         #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;  // 에디터에서 종료
+        #else
+        Application.Quit(); // 빌드된 게임에서 종료
         #endif
     }
 }

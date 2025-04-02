@@ -181,15 +181,26 @@ class PacketHandler
         }
     }
 
-    // SC_SEND_MESSAGE 패킷을 처리하는 함수
-    public static void SC_SendMessage(PacketSession session, IMessage packet)
+    // SC_SEND_MESSAGE 패킷을 처리하는 함
+        // SC_SEND_MESSAGE_ALL 패킷을 처리하는 함수
+    public static void SC_SendMessageAll(PacketSession session, IMessage packet)
     {
-        SC_SEND_MESSAGE sendMessagePacket = packet as SC_SEND_MESSAGE;
+        SC_SEND_MESSAGE_ALL sendMessageAllPacket = packet as SC_SEND_MESSAGE_ALL;
 
-        string unityString = sendMessagePacket.Message;
-        // TODO: SC_SendMessage 패킷 처리 로직을 여기에 구현
-        Debug.Log($"{unityString}");
-    }  
+        // TODO: SC_SendMessageAll 패킷 처리 로직을 여기에 구현
+        string unityString = sendMessageAllPacket.Message;
+        Debug.Log($"SC_SendMessageAll : {unityString}");
+    }
+
+    // SC_SEND_MESSAGE_TEAM 패킷을 처리하는 함수
+    public static void SC_SendMessageTeam(PacketSession session, IMessage packet)
+    {
+        SC_SEND_MESSAGE_TEAM sendMessageTeamPacket = packet as SC_SEND_MESSAGE_TEAM;
+
+        // TODO: SC_SendMessageTeam 패킷 처리 로직을 여기에 구현
+        string unityString = sendMessageTeamPacket.Message;
+        Debug.Log($"SC_SendMessageTeam : {unityString}");
+    }
     
     // SC_SHOT_HIT 패킷을 처리하는 함수
     public static void SC_ShotHit(PacketSession session, IMessage packet)

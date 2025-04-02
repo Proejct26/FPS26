@@ -13,7 +13,7 @@ public enum EPlayerInput
 	Jump,		//점프
 	Info,		//정보창
     Chat,       //채팅
-
+	Tab,        //채팅 모드 전환 
  	MainWeapon,
 	SubWeapon,
 	KnifeWeapon,

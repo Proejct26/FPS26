@@ -42,6 +42,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         Managers.Input.GetInput(EPlayerInput.Jump).started += InputJump;
         Managers.Input.GetInput(EPlayerInput.Jump).canceled += InputJump; 
+
+        Managers.Input.GetInput(EPlayerInput.Tab).performed += InputChatToggleMode; 
     }
 
     private void InputLook(InputAction.CallbackContext context)
@@ -141,11 +143,6 @@ public class PlayerInputHandler : MonoBehaviour
             }
         }
         
-        // 탭 키로 챗모드 전환
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            _chatUI.ToggleChatMode();
-        }
 
         // 채팅 활성화 시 다른 입력 무시
         if (_isChatActive)
@@ -160,6 +157,13 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     
+    private void InputChatToggleMode(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            _chatUI.ToggleChatMode();
+        
+    }
+
     private void InputInfo(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)

@@ -88,7 +88,7 @@ public class RemotePlayerController : PlayerControllerBase
         // FSM 동작 (상태 전이 및 애니메이션 포함)
         StateMachine?.Update();
 
-
+ 
     }
 
     public override void ApplyNetworkState(PlayerStateData data)

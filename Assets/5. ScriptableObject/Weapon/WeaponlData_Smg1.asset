@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: WeaponlData_Smg1
   m_EditorClassIdentifier: 
   key: 1201
-  weaponIcon: {fileID: 21300006, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
+  weaponName: "\uAE30\uAD00\uB2E8\uCD1DA"
+  weaponType: 0
   dropItemPrefab: {fileID: 2567875013113560307, guid: 1d0f08ad72e29634c9cda7485945079b,
     type: 3}
   itemPrefab: {fileID: 7927471080846231128, guid: 9e8da40208464fb4fb8c7120afa492be,
     type: 3}
-  weaponType: 0
-  weaponName: "\uAE30\uAD00\uB2E8\uCD1DA"
+  weaponIcon: {fileID: 21300000, guid: ed9b33747bd682147b8bead24a86aab1, type: 3}
   damage: 8
   attackDelay: 0.08
   ammoSettings:

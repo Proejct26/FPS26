@@ -17,6 +17,7 @@ public class RemotePlayerController : PlayerControllerBase
 
     [SerializeField] private Transform model;   // HunterRio, CowboyRio
     [SerializeField] private Transform bodyCollider;  // Rigidbody + CapsuleCollider
+    [SerializeField] private LayerMask groundLayer;
 
     private GameObject equippedWeapon;
 
@@ -24,6 +25,13 @@ public class RemotePlayerController : PlayerControllerBase
     private float _inputYaw;
     private float _inputPitch;
     private bool _isJumping;
+
+    private Queue<Vector3> _positionQueue = new Queue<Vector3>();
+    private Vector3 _startPos;
+    private Vector3 _targetPos;
+    private float _lerpTime = 0f;
+    private float _lerpDuration = 0.26f; // 한 보간 단위 시간 (ms 단위로도 설정 가능)
+    private bool _isInterpolating = false;
 
     private Rigidbody _rb;
 
@@ -39,6 +47,10 @@ public class RemotePlayerController : PlayerControllerBase
         _rb.isKinematic = false;
         _rb.interpolation = RigidbodyInterpolation.Interpolate;
         _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        foreach (var collider in transform.GetComponentsInChildren<PlayerCollider>())
+            collider.Parent = gameObject; 
+         
     }
 
     public void SetNetworkInput(Vector3 moveInput, float pitch, float yaw, bool isJumping)
@@ -51,31 +63,25 @@ public class RemotePlayerController : PlayerControllerBase
 
     public void SetNetworkPosition(Vector3 pos)
     {
-        _networkPosition = pos;
-    }
-
-    private void FixedUpdate()
-    {
-        if (_networkData == null) return;
-
-        // 회전 보간
-        Quaternion targetRotation = Quaternion.Euler(0f, _inputYaw, 0f);
-        _networkRotation = Quaternion.Slerp(_rb.rotation, targetRotation, Time.fixedDeltaTime * _lerpSpeed);
-        _rb.MoveRotation(_networkRotation);
-
-        // 위치 보간
-        Vector3 newPos = Vector3.Lerp(_rb.position, _networkPosition, Time.fixedDeltaTime * _lerpSpeed);
-        _rb.MovePosition(newPos);
-
-        if (_inputMove.sqrMagnitude > 0.01f)
+        Ray ray = new Ray(pos + Vector3.up * 1f, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hit, 10f, groundLayer))
         {
-            Vector3 forward = _networkRotation * Vector3.forward;
-            Vector3 right = _networkRotation * Vector3.right;
-
-            Vector3 moveDir = (right * _inputMove.x + forward * _inputMove.z).normalized;
-            _networkPosition += moveDir * Time.fixedDeltaTime;
+            _networkPosition = hit.point;
         }
+        else
+        {
+            _networkPosition = pos;
+        }
+
+        if (_positionQueue.Count > 3)
+        {
+            while (_positionQueue.Count > 2)
+                _positionQueue.Dequeue(); // 오래된 것 버리기
+        }
+
+        _positionQueue.Enqueue(_networkPosition);
     }
+
 
     protected override void Update()
     {
@@ -83,9 +89,11 @@ public class RemotePlayerController : PlayerControllerBase
 
         if(_networkData == null) return;
 
-        // 캐릭터 transform은 rigidbody 따라가기
-        transform.position = _rb.position;
-        transform.rotation = _rb.rotation;
+        // // 캐릭터 transform은 rigidbody 따라가기
+        // transform.position = _rb.position;
+        // transform.rotation = _rb.rotation;
+
+        InterpolatePosition(); // ← 보간 이동 처리
 
 
         // 시야 회전
@@ -98,8 +106,43 @@ public class RemotePlayerController : PlayerControllerBase
 
         // FSM 동작 (상태 전이 및 애니메이션 포함)
         StateMachine?.Update();
+    }
 
+    private void InterpolatePosition()
+    {
+        if (!_isInterpolating)
+        {
+            if (_positionQueue.Count > 0)
+            {
+                _startPos = transform.position;
+                _targetPos = _positionQueue.Dequeue();
+                _lerpTime = 0f;
+                _isInterpolating = true;
+            }
+            else return;
+        }
 
+        _lerpTime += Time.deltaTime;
+        float t = Mathf.Clamp01(_lerpTime / _lerpDuration);
+
+        // 부드럽게 LERP
+        transform.position = Vector3.Lerp(_startPos, _targetPos, t);
+
+        if (t >= 1f)
+        {
+            transform.position = _targetPos;
+            _isInterpolating = false;
+
+            if (_positionQueue.Count > 0)
+            {
+                _startPos = _targetPos;
+                _targetPos = _positionQueue.Dequeue();
+                _lerpTime = 0f;
+
+                transform.position = Vector3.Lerp(_startPos, _targetPos, 0f);
+                _isInterpolating = true;
+            }
+        }
     }
 
     public override void ApplyNetworkState(PlayerStateData data)

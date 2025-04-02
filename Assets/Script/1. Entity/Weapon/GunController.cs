@@ -151,25 +151,36 @@ public class GunController : WeaponBaseController
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100f))
             { 
+                bool hitPlayer = hit.collider.TryGetComponent(out PlayerCollider controller);
+ 
+                PlayerStateData playerStateData = null;
+                if (controller != null)
+                {
+                    playerStateData = controller.Parent.GetComponent<RemotePlayerController>().PlayerStateData; 
+                } 
+
                 // 히트 이펙트
                 CS_ATTACK attackPacket = new CS_ATTACK();
-                attackPacket.PosX = (uint)hit.point.x;
-                attackPacket.PosY = (uint)hit.point.y;
-                attackPacket.PosZ = (uint)hit.point.z;
-                attackPacket.NormalX = (uint)hit.normal.x;
-                attackPacket.NormalY = (uint)hit.normal.y;
-                attackPacket.NormalZ = (uint)hit.normal.z; 
-                
-                Managers.Network.Send(attackPacket); 
-                //WeaponBaseController.SpawnHitEffect(hit.point, hit.normal, attackPacket.BAttack);    
+                attackPacket.HittedTargetId = hitPlayer ? playerStateData.networkId : 99999;
+                attackPacket.PosX = hit.point.x;
+                attackPacket.PosY = hit.point.y;
+                attackPacket.PosZ = hit.point.z;
+                attackPacket.NormalX = hit.normal.x;
+                attackPacket.NormalY = hit.normal.y; 
+                attackPacket.NormalZ = hit.normal.z; 
+                  
+                Managers.Network.Send(attackPacket);   
+
                 // 충돌 체크 hit.collider.tag == "Head"
                 targets[i] = hit.collider.gameObject;
 
-                if (remotePlayerController != null)
+ 
+                if (controller != null)
                 {
+                    int damage = (int)(_weaponDataSO.damage * controller.GetDamage()); 
                     CS_SHOT_HIT shotHitPacket = new CS_SHOT_HIT();
-                    shotHitPacket.PlayerId = remotePlayerController.PlayerStateData.networkId;
-                    shotHitPacket.Hp = (uint)(remotePlayerController.PlayerStateData.curHp - _weaponDataSO.damage); 
+                    shotHitPacket.PlayerId = playerStateData.networkId;
+                    shotHitPacket.Hp = (uint)(Mathf.Max(0, playerStateData.curHp - damage));    
                     Managers.Network.Send(shotHitPacket);
                 }
             } 

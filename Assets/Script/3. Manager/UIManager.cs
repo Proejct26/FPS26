@@ -19,20 +19,20 @@ public class UIManager : IManager
 
     public void Init()
     {
-
+ 
         // 실행 파일의 화면 크기 설정
         Screen.SetResolution(720, 480, false);
 
-        //Managers.UI.ShowSceneUI<MainUI>();  //같은 이름일 경우 텍스트 생략
+        //Managers.UI.ShowSceneUI<MainUI>();  //같은 이름일 경우 텍스트 생략 
         
         // UI_Popup popup = Managers.UI.ShowPopupUI<UI_Popup>("StartPopup");
-       
+        
        // 씬에 따라 초기 UI 다르게 설정
-       string currentScene = SceneManager.GetActiveScene().name;
-       if (currentScene == "TitleScene")
-       {
-           ShowPopupUI<UI_StartPopup>("StartPopup");
-       }
+    //    string currentScene = SceneManager.GetActiveScene().name;
+    //    if (currentScene == "TitleScene")
+    //    {
+    //        ShowPopupUI<UI_StartPopup>("StartPopup");
+    //    }
        // else if (currentScene == "MainScene")
        // {
        //     ShowSceneUI<MainUI>();

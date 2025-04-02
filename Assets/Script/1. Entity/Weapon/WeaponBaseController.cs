@@ -134,7 +134,7 @@ public abstract class WeaponBaseController : MonoBehaviour
         
     }
 
-    public static void SpawnHitEffect(Vector3 position, Vector3 dir, bool isPlayer = true)
+    public static void SpawnHitEffect(Vector3 position, Vector3 dir, bool isPlayer = false) 
     {
         var particle = Managers.Pool.Get(!isPlayer ? "Particle/HitEffect_Wall" : "Particle/HitEffect_Person");  
         particle.transform.position = position;

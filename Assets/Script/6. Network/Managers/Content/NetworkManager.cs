@@ -9,6 +9,8 @@ using Google.Protobuf;
 public class NetworkManager : IManager
 {
     ServerSession _session = new ServerSession();
+    
+    public uint PlayerId { get; set; } // Chat 테스트용
 
     public void Send(IMessage packet)
     {

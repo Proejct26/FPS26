@@ -1,3 +1,5 @@
+using Game;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,20 +39,33 @@ public class LocalPlayerController : PlayerControllerBase
     private void Start()
     {
         StateMachine.ChangeState(new PlayerIdleState(this));
+
+        var stateData = ToPlayerStateData();
+        StartCoroutine(SendStateToServer(stateData));
     }
 
     protected override void Update()
     {
         base.Update();
-
-        // 서버 전송
-        var stateData = ToPlayerStateData();
-        SendStateToServer(stateData);
+ 
     }
+ 
 
-    private void SendStateToServer(PlayerStateData data)
+    private IEnumerator SendStateToServer(PlayerStateData data)
     {
-        //전송용 코드
+       while (true)
+       {
+            CS_POS_INTERPOLATION posInterpolationPacket = new CS_POS_INTERPOLATION();
+            posInterpolationPacket.PosX = transform.position.x;
+            posInterpolationPacket.PosY = transform.position.y;
+            posInterpolationPacket.PosZ = transform.position.z;
+
+            Managers.Network.Send(posInterpolationPacket);
+
+
+            
+            yield return new WaitForSeconds(0.25f);
+       }
     }
 
 

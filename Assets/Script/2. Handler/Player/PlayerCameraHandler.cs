@@ -1,3 +1,4 @@
+using Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,5 +52,6 @@ public class PlayerCameraHandler : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -80f, 80f); // 상하 회전 제한
         cameraHolder.localRotation = Quaternion.Euler(xRotation, 0f, 0f);   
-    }
+
+    } 
 }

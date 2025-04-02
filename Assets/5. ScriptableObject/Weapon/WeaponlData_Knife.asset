@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: WeaponlData_Knife
   m_EditorClassIdentifier: 
   key: 3001
-  weaponIcon: {fileID: 21300038, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
+  weaponName: "\uCE7CA"
+  weaponType: 2
   dropItemPrefab: {fileID: 1306367745336645715, guid: 745aae505a5444c43bf4435ab7af1848,
     type: 3}
   itemPrefab: {fileID: 8335102493945524992, guid: c614dd82f1ae8f44c9e600bc5d1687be,
     type: 3}
-  weaponType: 2
-  weaponName: "\uCE7CA"
+  weaponIcon: {fileID: 21300000, guid: 4f20d804df3dbf14196d8f1e9c856a37, type: 3}
   damage: 20
   attackDelay: 1
   ammoSettings:

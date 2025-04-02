@@ -74,7 +74,7 @@ public class PacketManager : IManager
             JobQueue.Push(() => 
             {
                 action.Invoke(session, buffer, id);
-                MyDebug.Log($"패킷 수신 완료: {session.GetType().Name}, {id}"); 
+              //  MyDebug.Log($"패킷 수신 완료: {id}"); 
             }); 
             
         

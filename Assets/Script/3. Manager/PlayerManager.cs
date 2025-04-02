@@ -35,7 +35,7 @@ public class PlayerManager : IManager
             GameObject remoteObj = Managers.Pool.Get(prefab);
             if (remoteObj == null)
             {
-                Debug.LogWarning($"[PlayerManager] Prefab 가져오기 실패: {data.id}");
+                Debug.LogWarning($"[PlayerManager] Prefab 가져오기 실패: {data.id}"); 
                 return;
             }
 

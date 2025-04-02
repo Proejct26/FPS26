@@ -44,6 +44,7 @@ public class UI_ScorePopup : UI_Popup
         }
     }
     
+    // 개별 슬롯 데이터 삭제
     private void ClearSlot(PlayerSlot slot)
     {
         slot.iconImage.sprite = null;

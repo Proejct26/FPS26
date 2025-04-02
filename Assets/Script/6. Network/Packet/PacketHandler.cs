@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Windows;
-using static UnityEditor.PlayerSettings;
 
 class PacketHandler
 { 
@@ -19,10 +18,10 @@ class PacketHandler
         // WeaponBaseController.SpawnMuzzleFlash(new Vector3(attackPacket.PosX, attackPacket.PosY, attackPacket.PosZ), 
         //     new Vector3(attackPacket.NormalX, attackPacket.NormalY, attackPacket.NormalZ));
 
-        WeaponBaseController.SpawnHitEffect(new Vector3(attackPacket.PosX.ConvertToFloat(), attackPacket.PosY.ConvertToFloat(), attackPacket.PosZ.ConvertToFloat()), 
-            new Vector3(attackPacket.NormalX.ConvertToFloat(), attackPacket.NormalY.ConvertToFloat(), attackPacket.NormalZ.ConvertToFloat()));  
+        WeaponBaseController.SpawnHitEffect(new Vector3(attackPacket.PosX, attackPacket.PosY, attackPacket.PosZ), 
+            new Vector3(attackPacket.NormalX, attackPacket.NormalY, attackPacket.NormalZ), attackPacket.HittedTargetId != 99999);     
         // TODO: SC_Attack 패킷 처리 로직을 여기에 구현
-    }
+    } 
 
     // SC_CHANGE_WEAPON 패킷을 처리하는 함수
     public static void SC_ChangeWeapon(PacketSession session, IMessage packet)
@@ -82,6 +81,7 @@ class PacketHandler
         //패킷 데이터 기반으로 상태 설정 완료
         PlayerStateData stat = new PlayerStateData()
         {
+            networkId = createOtherCharacterPacket.PlayerId,
             id = createOtherCharacterPacket.PlayerId.ToString(),
             name = createOtherCharacterPacket.Name,
             team = createOtherCharacterPacket.TeamID,
@@ -140,7 +140,7 @@ class PacketHandler
             Vector3 moveInput = Vector3.zero;
             if (keyInputPacket.KeyW == 1) moveInput.z += 1;
             if (keyInputPacket.KeyS == 1) moveInput.z -= 1;
-            if (keyInputPacket.KeyA == 1) moveInput.x -= 1;
+            if (keyInputPacket.KeyA == 1) moveInput.x -= 1; 
             if (keyInputPacket.KeyD == 1) moveInput.x += 1;
 
             //결과 적용
@@ -148,7 +148,7 @@ class PacketHandler
                 moveInput,
                 keyInputPacket.RotateAxisX,
                 keyInputPacket.RotateAxisY,
-                keyInputPacket.Jump == 1
+                keyInputPacket.Jump == 1 
             );
         }
     }
@@ -166,21 +166,10 @@ class PacketHandler
     {
         SC_POS_INTERPOLATION posInterpolationPacket = packet as SC_POS_INTERPOLATION;
 
-        uint playerID = posInterpolationPacket.PlayerId;
-
-        Vector3 targetPos = new Vector3(
-            posInterpolationPacket.PosX,
-            posInterpolationPacket.PosY,
-            posInterpolationPacket.PosZ
-        );
-
-        if (Managers.GameSceneManager.PlayerManager.TryGetPlayer(playerID, out var controller))
+        if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(posInterpolationPacket.PlayerId, out var controller))
         {
-            controller.SetNetworkPosition(targetPos); // RemotePlayerController or LocalPlayerController
-        }
-        else
-        {
-            Debug.LogWarning($"[SC_PosInterpolation] 플레이어 {playerID} 를 찾을 수 없습니다.");
+            Vector3 pos = new Vector3(posInterpolationPacket.PosX, posInterpolationPacket.PosY, posInterpolationPacket.PosZ);
+            controller.SetNetworkPosition(pos); 
         }
     }
 
@@ -192,8 +181,8 @@ class PacketHandler
         string unityString = sendMessagePacket.Message;
         // TODO: SC_SendMessage 패킷 처리 로직을 여기에 구현
         Debug.Log($"{unityString}");
-    }
-
+    } 
+    
     // SC_SHOT_HIT 패킷을 처리하는 함수
     public static void SC_ShotHit(PacketSession session, IMessage packet)
     {

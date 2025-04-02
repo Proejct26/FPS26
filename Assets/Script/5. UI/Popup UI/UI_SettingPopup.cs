@@ -29,7 +29,7 @@ public class UI_SettingPopup : UI_Popup
 
     private const float DEFAULT_BGM = 50f;
     private const float DEFAULT_SFX = 50f;
-    private const float DEFAULT_MOUSE_SENSITIVITY = 50f;
+    private const float DEFAULT_MOUSE_SENSITIVITY = 10f;
 
     public override void Init()
     {

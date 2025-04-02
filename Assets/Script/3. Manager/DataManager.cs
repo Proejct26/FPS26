@@ -20,7 +20,7 @@ public class GameSettings
         Nickname = "";
         BGMVolume = 50f;
         SFXVolume = 50f;
-        MouseSensitivity = 50f;
+        MouseSensitivity = 10f;
         SelectedIconIndex = 0;
     }
 } 

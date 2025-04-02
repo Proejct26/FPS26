@@ -125,7 +125,7 @@
                 {
                     "name": "Tab",
                     "type": "Button",
-                    "id": "20842742-2218-45da-a699-df5f7c43a9ab",
+                    "id": "83f3bc98-d06a-4a81-87c3-dbe53d0aa2b0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -322,7 +322,7 @@
                 },
                 {
                     "name": "",
-                    "id": "0c4265cd-af82-48f8-8b98-b86ea165b9ae",
+                    "id": "dd598f69-c907-4f35-9a57-755ad2025ffe",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4984034983569455728}
   - component: {fileID: 8250630504855406288}
   - component: {fileID: 3315745651675590649}
+  - component: {fileID: 8620730611739221448}
   m_Layer: 0
   m_Name: HunterRIO
   m_TagString: Player
@@ -125,18 +126,12 @@ MonoBehaviour:
   animator: {fileID: 2944175580321607065}
   weaponHolder: {fileID: 9220751208105546983}
   weaponFix: {fileID: 2535100533574842915}
-  weaponPrefabs:
-  - {fileID: 1306367745336645715, guid: 1cd6f5269f141ab429148a75b2f51d15, type: 3}
-  - {fileID: 7847240014596489219, guid: 231f1fab181a2da44a2946e3f2066bd9, type: 3}
-  - {fileID: 1231910257563632584, guid: 954ac3b5deea96d46a6febdaf35a1678, type: 3}
-  - {fileID: 4280140794876716203, guid: 48535ce4b7200ab48b29f23bdba02dce, type: 3}
-  - {fileID: 2567875013113560307, guid: 512a20eefaeb5c542b1bb924791380f1, type: 3}
-  - {fileID: 5902459433618323506, guid: eb51d6c30e99e754da5f04769bdbea95, type: 3}
-  - {fileID: 3727292691470904061, guid: c2269cdf56b84c94eb479fac247f4357, type: 3}
-  - {fileID: 3562037514319824971, guid: 665313c149d69cd4cbf72393b967c306, type: 3}
   nameTag: {fileID: 1229344794930512739}
   model: {fileID: 5227928144450847961}
   bodyCollider: {fileID: 5227928144450847961}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!82 &4984034983569455728
 AudioSource:
   m_ObjectHideFlags: 0
@@ -278,10 +273,33 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 10
   m_CollisionDetection: 0
+--- !u!136 &8620730611739221448
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73404281191906797}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &214343807810343979
 GameObject:
   m_ObjectHideFlags: 0

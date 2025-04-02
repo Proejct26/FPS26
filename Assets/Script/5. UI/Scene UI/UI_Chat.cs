@@ -113,6 +113,8 @@ public class UI_Chat : UI_Scene
             TextMeshProUGUI messageText = messageObj.transform.Find("Message")?.GetComponent<TextMeshProUGUI>();
             messageText.text = messagePrefix + data.Message;
             messageText.color = Color.white;
+
+            // TODO 데이터 송신
         }
         else
         {

@@ -35,7 +35,7 @@ public class RemotePlayerController : PlayerControllerBase
     private Vector3 _startPos;
     private Vector3 _targetPos;
     private float _lerpTime = 0f;
-    private float _lerpDuration = 0.26f; // 한 보간 단위 시간 (ms 단위로도 설정 가능)
+    private float _lerpDuration = 0.05f; // 한 보간 단위 시간 (ms 단위로도 설정 가능)  
     private bool _isInterpolating = false;
 
     private Rigidbody _rb;
@@ -286,15 +286,15 @@ public class RemotePlayerController : PlayerControllerBase
             normal = { textColor = Color.yellow },
             alignment = TextAnchor.UpperCenter
         };
+ 
+        // string info = $"[{name}]\n" +
+        //               $"▶ {StateMachine?.CurrentStateName}\n" +
+        //               $"↔ Move: {_inputMove}\n" +
+        //               $"⇧ Jump: {_isJumping}\n" +
+        //               $"⛓ Grounded: {IsGrounded()}";
 
-        string info = $"[{name}]\n" +
-                      $"▶ {StateMachine?.CurrentStateName}\n" +
-                      $"↔ Move: {_inputMove}\n" +
-                      $"⇧ Jump: {_isJumping}\n" +
-                      $"⛓ Grounded: {IsGrounded()}";
-
-        Vector2 size = style.CalcSize(new GUIContent(info));
-        GUI.Label(new Rect(screenPos.x - size.x / 2, Screen.height - screenPos.y - size.y, size.x, size.y), info, style);
+        // Vector2 size = style.CalcSize(new GUIContent(info));
+        // GUI.Label(new Rect(screenPos.x - size.x / 2, Screen.height - screenPos.y - size.y, size.x, size.y), info, style);
     }
 #endif
 }

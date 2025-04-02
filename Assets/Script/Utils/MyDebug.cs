@@ -34,8 +34,8 @@ public class MyDebug : Singleton<MyDebug>
 
     public static void Log(string message)
     {
-        // if (!Instance.isDebug)
-        //     return; 
+        if (!Instance.isDebug)
+             return;   
 
         Instance._logQueue.Enqueue(message);
         if (Instance._logQueue.Count > 10)

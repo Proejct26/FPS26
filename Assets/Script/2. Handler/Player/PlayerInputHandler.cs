@@ -122,10 +122,10 @@ public class PlayerInputHandler : MonoBehaviour
             return;
             
         CS_KEY_INPUT keyInput = new CS_KEY_INPUT();
-        keyInput.KeyA = MoveInput.x > 0.5f;
-        keyInput.KeyD = MoveInput.x < -0.5f;
+        keyInput.KeyA = MoveInput.x > -0.5f;
+        keyInput.KeyD = MoveInput.x < 0.5f;
         keyInput.KeyW = MoveInput.z > 0.5f;
-        keyInput.KeyS = MoveInput.z < -0.5f;
+        keyInput.KeyS = MoveInput.z < -0.5f; 
         
         // Euler 각도를 0~360도 범위로 정규화
         Vector3 eulerAngles = Managers.Player.transform.rotation.eulerAngles;

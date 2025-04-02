@@ -3,6 +3,7 @@ using Google.Protobuf;
 using ServerCore;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
@@ -210,6 +211,17 @@ class PacketHandler
     public static void SC_SendMessageAll(PacketSession session, IMessage packet)
     {
         SC_SEND_MESSAGE_ALL sendMessageAllPacket = packet as SC_SEND_MESSAGE_ALL;
+
+        // ChatMessageData chatData = new ChatMessageData()
+        // {
+        //     PlayerId = sendMessageAllPacket.PlayerId,
+        //     Message = sendMessageAllPacket.Message,
+
+        //     Nickname = sendMessageAllPacket.Nickname,
+        //     TeamId = sendMessageAllPacket.TeamId,
+        //     IsTeamChat = false;
+        // };
+
 
         // TODO: SC_SendMessageAll 패킷 처리 로직을 여기에 구현
         string unityString = sendMessageAllPacket.Message;

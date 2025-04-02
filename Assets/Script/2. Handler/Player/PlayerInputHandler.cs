@@ -138,8 +138,6 @@ public class PlayerInputHandler : MonoBehaviour
         keyInput.NormalX = transform.forward.x;
         keyInput.NormalY = transform.forward.y;
         keyInput.NormalZ = transform.forward.z; 
-
-         
         
         Managers.Network.Send(keyInput); 
     }

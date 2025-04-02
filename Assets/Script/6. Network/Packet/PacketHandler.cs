@@ -167,12 +167,19 @@ class PacketHandler
             if (keyInputPacket.KeyA) moveInput.x -= 1; 
             if (keyInputPacket.KeyD) moveInput.x += 1;
 
+            Vector3 lookDir = new Vector3(
+                keyInputPacket.NormalX,
+                keyInputPacket.NormalY,
+                keyInputPacket.NormalZ
+            );
+
             //결과 적용
             controller.SetNetworkInput(
                 moveInput,
                 keyInputPacket.RotateAxisX,
                 keyInputPacket.RotateAxisY,
-                keyInputPacket.Jump == 1 
+                keyInputPacket.Jump == 1,
+                lookDir
             );
         }
     }

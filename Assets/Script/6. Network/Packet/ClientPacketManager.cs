@@ -64,22 +64,20 @@ public class PacketManager : IManager
         _handler.Add((ushort)Game.PacketID.ScSendMessageAll, PacketHandler.SC_SendMessageAll);
 
         _onRecv.Add((ushort)Game.PacketID.ScSendMessageTeam, MakePacket<SC_SEND_MESSAGE_TEAM>);
-        _handler.Add((ushort)Game.PacketID.ScSendMessageTeam, PacketHandler.SC_SendMessageTeam);
-
+        _handler.Add((ushort)Game.PacketID.ScSendMessageTeam, PacketHandler.SC_SendMessageTeam); 
+ 
         _onRecv.Add((ushort)Game.PacketID.ScShotHit, MakePacket<SC_SHOT_HIT>);
         _handler.Add((ushort)Game.PacketID.ScShotHit, PacketHandler.SC_ShotHit);
-    }
+    } 
 
     public void OnRecvPacket(PacketSession session, ushort id, ArraySegment<byte> buffer)
     {
         Action<PacketSession, ArraySegment<byte>, ushort> action = null;
          if (_onRecv.TryGetValue(id, out action))
-            JobQueue.Push(() => 
-            {
                 action.Invoke(session, buffer, id);
-                Debug.Log($"{id}번 메시지가 실행됨");
-              //  MyDebug.Log($"패킷 수신 완료: {id}"); 
-            }); 
+  
+            
+        
     }
 
     void MakePacket<T>(PacketSession session, ArraySegment<byte> buffer, ushort id) where T : IMessage, new()
@@ -97,7 +95,8 @@ public class PacketManager : IManager
         {
             Action<PacketSession, IMessage> action = null;
              if (_handler.TryGetValue(id, out action))
-                    action.Invoke(session, pkt); 
+                JobQueue.Push(()=>action.Invoke(session, pkt));   
+
         }
     }
 

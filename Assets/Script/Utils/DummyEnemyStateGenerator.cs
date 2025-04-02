@@ -124,10 +124,10 @@ public class DummyRemotePlayersSimulator : MonoBehaviour
             SC_KEY_INPUT inputPacket = new SC_KEY_INPUT
             {
                 PlayerId = playerId,
-                KeyW = moveDir.z > 0 ? 1u : 0u,
-                KeyS = moveDir.z < 0 ? 1u : 0u,
-                KeyA = moveDir.x < 0 ? 1u : 0u,
-                KeyD = moveDir.x > 0 ? 1u : 0u,
+                KeyW = moveDir.z > 0,
+                KeyS = moveDir.z < 0,
+                KeyA = moveDir.x < 0,
+                KeyD = moveDir.x > 0,
                 RotateAxisX = (uint)dummy.pitch,
                 RotateAxisY = (uint)dummy.yaw,
                 Jump = Random.value < 0.01f ? 1u : 0u

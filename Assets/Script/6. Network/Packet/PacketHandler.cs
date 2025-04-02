@@ -142,10 +142,10 @@ class PacketHandler
         if (Managers.GameSceneManager.PlayerManager.TryGetPlayer(keyInputPacket.PlayerId, out var controller))
         {
             Vector3 moveInput = Vector3.zero;
-            if (keyInputPacket.KeyW == 1) moveInput.z += 1;
-            if (keyInputPacket.KeyS == 1) moveInput.z -= 1;
-            if (keyInputPacket.KeyA == 1) moveInput.x -= 1; 
-            if (keyInputPacket.KeyD == 1) moveInput.x += 1;
+            if (keyInputPacket.KeyW) moveInput.z += 1;
+            if (keyInputPacket.KeyS) moveInput.z -= 1;
+            if (keyInputPacket.KeyA) moveInput.x -= 1; 
+            if (keyInputPacket.KeyD) moveInput.x += 1;
 
             //결과 적용
             controller.SetNetworkInput(

@@ -28,62 +28,64 @@ namespace Game {
             "ZFRhcmdldElkGAEgASgNEg8KB25vcm1hbFgYAiABKAISDwoHbm9ybWFsWRgD",
             "IAEoAhIPCgdub3JtYWxaGAQgASgCEgwKBHBvc1gYBSABKAISDAoEcG9zWRgG",
             "IAEoAhIMCgRwb3NaGAcgASgCIiIKEENTX0NIQU5HRV9XRUFQT04SDgoGd2Vh",
-            "cG9uGAEgASgNIiAKDkNTX0lURU1fUElDS0VEEg4KBml0ZW1JZBgBIAEoDSJ+",
-            "CgxDU19LRVlfSU5QVVQSDAoEa2V5VxgBIAEoDRIMCgRrZXlBGAIgASgNEgwK",
-            "BGtleVMYAyABKA0SDAoEa2V5RBgEIAEoDRITCgtyb3RhdGVBeGlzWBgFIAEo",
-            "BxITCgtyb3RhdGVBeGlzWRgGIAEoBxIMCgRKdW1wGAcgASgNIkAKFENTX1BP",
-            "U19JTlRFUlBPTEFUSU9OEgwKBHBvc1gYASABKAISDAoEcG9zWRgCIAEoAhIM",
-            "CgRwb3NaGAMgASgCIjYKEkNTX1JFUVVFU1RfUkVTVEFSVBIQCghwbGF5ZXJJ",
-            "ZBgBIAEoDRIOCgZ3ZWFwb24YAiABKA0iNAoPQ1NfU0VORF9NRVNTQUdFEhAK",
-            "CHBsYXllcklkGAEgASgNEg8KB21lc3NhZ2UYAiABKAkiIAoQQ1NfU0VORF9O",
-            "SUNLTkFNRRIMCgRuYW1lGAEgASgJIisKC0NTX1NIT1RfSElUEhAKCHBsYXll",
-            "cklkGAEgASgNEgoKAmhwGAIgASgNIjYKB0tEQUluZm8SDAoEa2lsbBgBIAEo",
-            "DRINCgVkZWF0aBgCIAEoDRIOCgZhc3Npc3QYAyABKA0iOgoKUGxheWVySW5m",
-            "bxIQCghwbGF5ZXJJZBgBIAEoDRIaCgNrZGEYAiABKAsyDS5nYW1lLktEQUlu",
-            "Zm8ikgEKCVNDX0FUVEFDSxIQCghwbGF5ZXJJZBgBIAEoDRIWCg5oaXR0ZWRU",
-            "YXJnZXRJZBgCIAEoDRIPCgdub3JtYWxYGAMgASgCEg8KB25vcm1hbFkYBCAB",
-            "KAISDwoHbm9ybWFsWhgFIAEoAhIMCgRwb3NYGAYgASgCEgwKBHBvc1kYByAB",
-            "KAISDAoEcG9zWhgIIAEoAiI0ChBTQ19DSEFOR0VfV0VBUE9OEhAKCHBsYXll",
-            "cklkGAEgASgNEg4KBndlYXBvbhgCIAEoDSI1ChFTQ19DSEFSQUNURVJfRE9X",
-            "ThIQCghwbGF5ZXJJZBgBIAEoDRIOCgZ0ZWFtSUQYAiABKA0iQQoVU0NfQ0hB",
-            "UkFDVEVSX0tJTExfTE9HEigKDnBsYXllckluZm9MaXN0GAEgAygLMhAuZ2Ft",
-            "ZS5QbGF5ZXJJbmZvIlsKFlNDX0NSRUFURV9NWV9DSEFSQUNURVISEAoIcGxh",
-            "eWVySWQYASABKA0SEAoIcG9zSW5kZXgYAiABKA0SDQoFbWF4SFAYAyABKA0S",
-            "DgoGdGVhbUlEGAQgASgNIqsBChlTQ19DUkVBVEVfT1RIRVJfQ0hBUkFDVEVS",
+            "cG9uGAEgASgNIiAKDkNTX0lURU1fUElDS0VEEg4KBml0ZW1JZBgBIAEoDSKx",
+            "AQoMQ1NfS0VZX0lOUFVUEgwKBGtleVcYASABKAgSDAoEa2V5QRgCIAEoCBIM",
+            "CgRrZXlTGAMgASgIEgwKBGtleUQYBCABKAgSEwoLcm90YXRlQXhpc1gYBSAB",
+            "KAISEwoLcm90YXRlQXhpc1kYBiABKAISDAoESnVtcBgHIAEoDRIPCgdub3Jt",
+            "YWxYGAggASgCEg8KB25vcm1hbFkYCSABKAISDwoHbm9ybWFsWhgKIAEoAiJA",
+            "ChRDU19QT1NfSU5URVJQT0xBVElPThIMCgRwb3NYGAEgASgCEgwKBHBvc1kY",
+            "AiABKAISDAoEcG9zWhgDIAEoAiI2ChJDU19SRVFVRVNUX1JFU1RBUlQSEAoI",
+            "cGxheWVySWQYASABKA0SDgoGd2VhcG9uGAIgASgNIjQKD0NTX1NFTkRfTUVT",
+            "U0FHRRIQCghwbGF5ZXJJZBgBIAEoDRIPCgdtZXNzYWdlGAIgASgJIiAKEENT",
+            "X1NFTkRfTklDS05BTUUSDAoEbmFtZRgBIAEoCSIrCgtDU19TSE9UX0hJVBIQ",
+            "CghwbGF5ZXJJZBgBIAEoDRIKCgJocBgCIAEoDSI2CgdLREFJbmZvEgwKBGtp",
+            "bGwYASABKA0SDQoFZGVhdGgYAiABKA0SDgoGYXNzaXN0GAMgASgNIjoKClBs",
+            "YXllckluZm8SEAoIcGxheWVySWQYASABKA0SGgoDa2RhGAIgASgLMg0uZ2Ft",
+            "ZS5LREFJbmZvIpIBCglTQ19BVFRBQ0sSEAoIcGxheWVySWQYASABKA0SFgoO",
+            "aGl0dGVkVGFyZ2V0SWQYAiABKA0SDwoHbm9ybWFsWBgDIAEoAhIPCgdub3Jt",
+            "YWxZGAQgASgCEg8KB25vcm1hbFoYBSABKAISDAoEcG9zWBgGIAEoAhIMCgRw",
+            "b3NZGAcgASgCEgwKBHBvc1oYCCABKAIiNAoQU0NfQ0hBTkdFX1dFQVBPThIQ",
+            "CghwbGF5ZXJJZBgBIAEoDRIOCgZ3ZWFwb24YAiABKA0iNQoRU0NfQ0hBUkFD",
+            "VEVSX0RPV04SEAoIcGxheWVySWQYASABKA0SDgoGdGVhbUlEGAIgASgNIkEK",
+            "FVNDX0NIQVJBQ1RFUl9LSUxMX0xPRxIoCg5wbGF5ZXJJbmZvTGlzdBgBIAMo",
+            "CzIQLmdhbWUuUGxheWVySW5mbyJbChZTQ19DUkVBVEVfTVlfQ0hBUkFDVEVS",
             "EhAKCHBsYXllcklkGAEgASgNEhAKCHBvc0luZGV4GAIgASgNEg0KBW1heEhQ",
-            "GAMgASgNEg0KBWN1ckhQGAQgASgNEgwKBG5hbWUYBSABKAkSHgoHa2RhSW5m",
-            "bxgGIAEoCzINLmdhbWUuS0RBSW5mbxIOCgZ3ZWFwb24YByABKA0SDgoGdGVh",
-            "bUlEGAggASgNIjUKEVNDX0lURU1fUElDS19GQUlMEhAKCHBsYXllcklkGAEg",
-            "ASgNEg4KBml0ZW1JZBgCIAEoDSI4ChRTQ19JVEVNX1BJQ0tfU1VDQ0VTUxIQ",
-            "CghwbGF5ZXJJZBgBIAEoDRIOCgZpdGVtSWQYAiABKA0iSQoPU0NfSVRFTV9T",
-            "UEFXTkVEEg4KBml0ZW1JZBgBIAEoDRIQCghpdGVtVHlwZRgCIAEoDRIUCgxp",
-            "dGVtUG9zSW5kZXgYAyABKA0ikAEKDFNDX0tFWV9JTlBVVBIQCghwbGF5ZXJJ",
-            "ZBgBIAEoDRIMCgRrZXlXGAIgASgNEgwKBGtleUEYAyABKA0SDAoEa2V5UxgE",
-            "IAEoDRIMCgRrZXlEGAUgASgNEhMKC3JvdGF0ZUF4aXNYGAYgASgHEhMKC3Jv",
-            "dGF0ZUF4aXNZGAcgASgHEgwKBEp1bXAYCCABKA0iIAoMU0NfT05fQUNDRVBU",
-            "EhAKCHBsYXllcklkGAEgASgNIlIKFFNDX1BPU19JTlRFUlBPTEFUSU9OEhAK",
-            "CHBsYXllcklkGAEgASgNEgwKBHBvc1gYAiABKAISDAoEcG9zWRgDIAEoAhIM",
-            "CgRwb3NaGAQgASgCIjQKD1NDX1NFTkRfTUVTU0FHRRIQCghwbGF5ZXJJZBgB",
-            "IAEoDRIPCgdtZXNzYWdlGAIgASgJIisKC1NDX1NIT1RfSElUEhAKCHBsYXll",
-            "cklkGAEgASgNEgoKAmhwGAIgASgNKuUDCghQYWNrZXRJRBINCglDU19BdHRh",
-            "Y2sQABITCg9DU19DaGFuZ2VXZWFwb24QARIRCg1DU19JdGVtUGlja2VkEAIS",
-            "DwoLQ1NfS2V5SW5wdXQQAxIXChNDU19Qb3NJbnRlcnBvbGF0aW9uEAQSFQoR",
-            "Q1NfUmVxdWVzdFJlc3RhcnQQBRISCg5DU19TZW5kTWVzc2FnZRAGEhMKD0NT",
-            "X1NlbmROaWNrbmFtZRAHEg4KCkNTX1Nob3RIaXQQCBINCglTQ19BdHRhY2sQ",
-            "CRITCg9TQ19DaGFuZ2VXZWFwb24QChIUChBTQ19DaGFyYWN0ZXJEb3duEAsS",
-            "FwoTU0NfQ2hhcmFjdGVyS2lsbExvZxAMEhgKFFNDX0NyZWF0ZU15Q2hhcmFj",
-            "dGVyEA0SGwoXU0NfQ3JlYXRlT3RoZXJDaGFyYWN0ZXIQDhITCg9TQ19JdGVt",
-            "UGlja0ZhaWwQDxIWChJTQ19JdGVtUGlja1N1Y2Nlc3MQEBISCg5TQ19JdGVt",
-            "U3Bhd25lZBAREg8KC1NDX0tleUlucHV0EBISDwoLU0NfT25BY2NlcHQQExIX",
-            "ChNTQ19Qb3NJbnRlcnBvbGF0aW9uEBQSEgoOU0NfU2VuZE1lc3NhZ2UQFRIO",
-            "CgpTQ19TaG90SGl0EBZiBnByb3RvMw=="));
+            "GAMgASgNEg4KBnRlYW1JRBgEIAEoDSKrAQoZU0NfQ1JFQVRFX09USEVSX0NI",
+            "QVJBQ1RFUhIQCghwbGF5ZXJJZBgBIAEoDRIQCghwb3NJbmRleBgCIAEoDRIN",
+            "CgVtYXhIUBgDIAEoDRINCgVjdXJIUBgEIAEoDRIMCgRuYW1lGAUgASgJEh4K",
+            "B2tkYUluZm8YBiABKAsyDS5nYW1lLktEQUluZm8SDgoGd2VhcG9uGAcgASgN",
+            "Eg4KBnRlYW1JRBgIIAEoDSI1ChFTQ19JVEVNX1BJQ0tfRkFJTBIQCghwbGF5",
+            "ZXJJZBgBIAEoDRIOCgZpdGVtSWQYAiABKA0iOAoUU0NfSVRFTV9QSUNLX1NV",
+            "Q0NFU1MSEAoIcGxheWVySWQYASABKA0SDgoGaXRlbUlkGAIgASgNIkkKD1ND",
+            "X0lURU1fU1BBV05FRBIOCgZpdGVtSWQYASABKA0SEAoIaXRlbVR5cGUYAiAB",
+            "KA0SFAoMaXRlbVBvc0luZGV4GAMgASgNIsMBCgxTQ19LRVlfSU5QVVQSEAoI",
+            "cGxheWVySWQYASABKA0SDAoEa2V5VxgCIAEoCBIMCgRrZXlBGAMgASgIEgwK",
+            "BGtleVMYBCABKAgSDAoEa2V5RBgFIAEoCBITCgtyb3RhdGVBeGlzWBgGIAEo",
+            "AhITCgtyb3RhdGVBeGlzWRgHIAEoAhIMCgRKdW1wGAggASgNEg8KB25vcm1h",
+            "bFgYCSABKAISDwoHbm9ybWFsWRgKIAEoAhIPCgdub3JtYWxaGAsgASgCIiAK",
+            "DFNDX09OX0FDQ0VQVBIQCghwbGF5ZXJJZBgBIAEoDSJSChRTQ19QT1NfSU5U",
+            "RVJQT0xBVElPThIQCghwbGF5ZXJJZBgBIAEoDRIMCgRwb3NYGAIgASgCEgwK",
+            "BHBvc1kYAyABKAISDAoEcG9zWhgEIAEoAiI0Cg9TQ19TRU5EX01FU1NBR0US",
+            "EAoIcGxheWVySWQYASABKA0SDwoHbWVzc2FnZRgCIAEoCSIrCgtTQ19TSE9U",
+            "X0hJVBIQCghwbGF5ZXJJZBgBIAEoDRIKCgJocBgCIAEoDSrlAwoIUGFja2V0",
+            "SUQSDQoJQ1NfQXR0YWNrEAASEwoPQ1NfQ2hhbmdlV2VhcG9uEAESEQoNQ1Nf",
+            "SXRlbVBpY2tlZBACEg8KC0NTX0tleUlucHV0EAMSFwoTQ1NfUG9zSW50ZXJw",
+            "b2xhdGlvbhAEEhUKEUNTX1JlcXVlc3RSZXN0YXJ0EAUSEgoOQ1NfU2VuZE1l",
+            "c3NhZ2UQBhITCg9DU19TZW5kTmlja25hbWUQBxIOCgpDU19TaG90SGl0EAgS",
+            "DQoJU0NfQXR0YWNrEAkSEwoPU0NfQ2hhbmdlV2VhcG9uEAoSFAoQU0NfQ2hh",
+            "cmFjdGVyRG93bhALEhcKE1NDX0NoYXJhY3RlcktpbGxMb2cQDBIYChRTQ19D",
+            "cmVhdGVNeUNoYXJhY3RlchANEhsKF1NDX0NyZWF0ZU90aGVyQ2hhcmFjdGVy",
+            "EA4SEwoPU0NfSXRlbVBpY2tGYWlsEA8SFgoSU0NfSXRlbVBpY2tTdWNjZXNz",
+            "EBASEgoOU0NfSXRlbVNwYXduZWQQERIPCgtTQ19LZXlJbnB1dBASEg8KC1ND",
+            "X09uQWNjZXB0EBMSFwoTU0NfUG9zSW50ZXJwb2xhdGlvbhAUEhIKDlNDX1Nl",
+            "bmRNZXNzYWdlEBUSDgoKU0NfU2hvdEhpdBAWYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Game.PacketID), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.CS_ATTACK), global::Game.CS_ATTACK.Parser, new[]{ "HittedTargetId", "NormalX", "NormalY", "NormalZ", "PosX", "PosY", "PosZ" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.CS_CHANGE_WEAPON), global::Game.CS_CHANGE_WEAPON.Parser, new[]{ "Weapon" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.CS_ITEM_PICKED), global::Game.CS_ITEM_PICKED.Parser, new[]{ "ItemId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.CS_KEY_INPUT), global::Game.CS_KEY_INPUT.Parser, new[]{ "KeyW", "KeyA", "KeyS", "KeyD", "RotateAxisX", "RotateAxisY", "Jump" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.CS_KEY_INPUT), global::Game.CS_KEY_INPUT.Parser, new[]{ "KeyW", "KeyA", "KeyS", "KeyD", "RotateAxisX", "RotateAxisY", "Jump", "NormalX", "NormalY", "NormalZ" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.CS_POS_INTERPOLATION), global::Game.CS_POS_INTERPOLATION.Parser, new[]{ "PosX", "PosY", "PosZ" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.CS_REQUEST_RESTART), global::Game.CS_REQUEST_RESTART.Parser, new[]{ "PlayerId", "Weapon" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.CS_SEND_MESSAGE), global::Game.CS_SEND_MESSAGE.Parser, new[]{ "PlayerId", "Message" }, null, null, null, null),
@@ -100,7 +102,7 @@ namespace Game {
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_ITEM_PICK_FAIL), global::Game.SC_ITEM_PICK_FAIL.Parser, new[]{ "PlayerId", "ItemId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_ITEM_PICK_SUCCESS), global::Game.SC_ITEM_PICK_SUCCESS.Parser, new[]{ "PlayerId", "ItemId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_ITEM_SPAWNED), global::Game.SC_ITEM_SPAWNED.Parser, new[]{ "ItemId", "ItemType", "ItemPosIndex" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_KEY_INPUT), global::Game.SC_KEY_INPUT.Parser, new[]{ "PlayerId", "KeyW", "KeyA", "KeyS", "KeyD", "RotateAxisX", "RotateAxisY", "Jump" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_KEY_INPUT), global::Game.SC_KEY_INPUT.Parser, new[]{ "PlayerId", "KeyW", "KeyA", "KeyS", "KeyD", "RotateAxisX", "RotateAxisY", "Jump", "NormalX", "NormalY", "NormalZ" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_ON_ACCEPT), global::Game.SC_ON_ACCEPT.Parser, new[]{ "PlayerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_POS_INTERPOLATION), global::Game.SC_POS_INTERPOLATION.Parser, new[]{ "PlayerId", "PosX", "PosY", "PosZ" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Game.SC_SEND_MESSAGE), global::Game.SC_SEND_MESSAGE.Parser, new[]{ "PlayerId", "Message" }, null, null, null, null),
@@ -991,6 +993,9 @@ namespace Game {
       rotateAxisX_ = other.rotateAxisX_;
       rotateAxisY_ = other.rotateAxisY_;
       jump_ = other.jump_;
+      normalX_ = other.normalX_;
+      normalY_ = other.normalY_;
+      normalZ_ = other.normalZ_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1002,13 +1007,13 @@ namespace Game {
 
     /// <summary>Field number for the "keyW" field.</summary>
     public const int KeyWFieldNumber = 1;
-    private uint keyW_;
+    private bool keyW_;
     /// <summary>
     /// 키(WASD)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint KeyW {
+    public bool KeyW {
       get { return keyW_; }
       set {
         keyW_ = value;
@@ -1017,10 +1022,10 @@ namespace Game {
 
     /// <summary>Field number for the "keyA" field.</summary>
     public const int KeyAFieldNumber = 2;
-    private uint keyA_;
+    private bool keyA_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint KeyA {
+    public bool KeyA {
       get { return keyA_; }
       set {
         keyA_ = value;
@@ -1029,10 +1034,10 @@ namespace Game {
 
     /// <summary>Field number for the "keyS" field.</summary>
     public const int KeySFieldNumber = 3;
-    private uint keyS_;
+    private bool keyS_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint KeyS {
+    public bool KeyS {
       get { return keyS_; }
       set {
         keyS_ = value;
@@ -1041,10 +1046,10 @@ namespace Game {
 
     /// <summary>Field number for the "keyD" field.</summary>
     public const int KeyDFieldNumber = 4;
-    private uint keyD_;
+    private bool keyD_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint KeyD {
+    public bool KeyD {
       get { return keyD_; }
       set {
         keyD_ = value;
@@ -1053,13 +1058,13 @@ namespace Game {
 
     /// <summary>Field number for the "rotateAxisX" field.</summary>
     public const int RotateAxisXFieldNumber = 5;
-    private uint rotateAxisX_;
+    private float rotateAxisX_;
     /// <summary>
     /// 마우스 X축 회전값
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint RotateAxisX {
+    public float RotateAxisX {
       get { return rotateAxisX_; }
       set {
         rotateAxisX_ = value;
@@ -1068,13 +1073,13 @@ namespace Game {
 
     /// <summary>Field number for the "rotateAxisY" field.</summary>
     public const int RotateAxisYFieldNumber = 6;
-    private uint rotateAxisY_;
+    private float rotateAxisY_;
     /// <summary>
     /// 마우스 Y축 회전값
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint RotateAxisY {
+    public float RotateAxisY {
       get { return rotateAxisY_; }
       set {
         rotateAxisY_ = value;
@@ -1093,6 +1098,45 @@ namespace Game {
       get { return jump_; }
       set {
         jump_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "normalX" field.</summary>
+    public const int NormalXFieldNumber = 8;
+    private float normalX_;
+    /// <summary>
+    /// 플레이어의 노멀 벡터
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float NormalX {
+      get { return normalX_; }
+      set {
+        normalX_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "normalY" field.</summary>
+    public const int NormalYFieldNumber = 9;
+    private float normalY_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float NormalY {
+      get { return normalY_; }
+      set {
+        normalY_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "normalZ" field.</summary>
+    public const int NormalZFieldNumber = 10;
+    private float normalZ_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float NormalZ {
+      get { return normalZ_; }
+      set {
+        normalZ_ = value;
       }
     }
 
@@ -1115,9 +1159,12 @@ namespace Game {
       if (KeyA != other.KeyA) return false;
       if (KeyS != other.KeyS) return false;
       if (KeyD != other.KeyD) return false;
-      if (RotateAxisX != other.RotateAxisX) return false;
-      if (RotateAxisY != other.RotateAxisY) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RotateAxisX, other.RotateAxisX)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RotateAxisY, other.RotateAxisY)) return false;
       if (Jump != other.Jump) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NormalX, other.NormalX)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NormalY, other.NormalY)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NormalZ, other.NormalZ)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1125,13 +1172,16 @@ namespace Game {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (KeyW != 0) hash ^= KeyW.GetHashCode();
-      if (KeyA != 0) hash ^= KeyA.GetHashCode();
-      if (KeyS != 0) hash ^= KeyS.GetHashCode();
-      if (KeyD != 0) hash ^= KeyD.GetHashCode();
-      if (RotateAxisX != 0) hash ^= RotateAxisX.GetHashCode();
-      if (RotateAxisY != 0) hash ^= RotateAxisY.GetHashCode();
+      if (KeyW != false) hash ^= KeyW.GetHashCode();
+      if (KeyA != false) hash ^= KeyA.GetHashCode();
+      if (KeyS != false) hash ^= KeyS.GetHashCode();
+      if (KeyD != false) hash ^= KeyD.GetHashCode();
+      if (RotateAxisX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RotateAxisX);
+      if (RotateAxisY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RotateAxisY);
       if (Jump != 0) hash ^= Jump.GetHashCode();
+      if (NormalX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NormalX);
+      if (NormalY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NormalY);
+      if (NormalZ != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NormalZ);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1150,33 +1200,45 @@ namespace Game {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (KeyW != 0) {
+      if (KeyW != false) {
         output.WriteRawTag(8);
-        output.WriteUInt32(KeyW);
+        output.WriteBool(KeyW);
       }
-      if (KeyA != 0) {
+      if (KeyA != false) {
         output.WriteRawTag(16);
-        output.WriteUInt32(KeyA);
+        output.WriteBool(KeyA);
       }
-      if (KeyS != 0) {
+      if (KeyS != false) {
         output.WriteRawTag(24);
-        output.WriteUInt32(KeyS);
+        output.WriteBool(KeyS);
       }
-      if (KeyD != 0) {
+      if (KeyD != false) {
         output.WriteRawTag(32);
-        output.WriteUInt32(KeyD);
+        output.WriteBool(KeyD);
       }
-      if (RotateAxisX != 0) {
+      if (RotateAxisX != 0F) {
         output.WriteRawTag(45);
-        output.WriteFixed32(RotateAxisX);
+        output.WriteFloat(RotateAxisX);
       }
-      if (RotateAxisY != 0) {
+      if (RotateAxisY != 0F) {
         output.WriteRawTag(53);
-        output.WriteFixed32(RotateAxisY);
+        output.WriteFloat(RotateAxisY);
       }
       if (Jump != 0) {
         output.WriteRawTag(56);
         output.WriteUInt32(Jump);
+      }
+      if (NormalX != 0F) {
+        output.WriteRawTag(69);
+        output.WriteFloat(NormalX);
+      }
+      if (NormalY != 0F) {
+        output.WriteRawTag(77);
+        output.WriteFloat(NormalY);
+      }
+      if (NormalZ != 0F) {
+        output.WriteRawTag(85);
+        output.WriteFloat(NormalZ);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1188,33 +1250,45 @@ namespace Game {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (KeyW != 0) {
+      if (KeyW != false) {
         output.WriteRawTag(8);
-        output.WriteUInt32(KeyW);
+        output.WriteBool(KeyW);
       }
-      if (KeyA != 0) {
+      if (KeyA != false) {
         output.WriteRawTag(16);
-        output.WriteUInt32(KeyA);
+        output.WriteBool(KeyA);
       }
-      if (KeyS != 0) {
+      if (KeyS != false) {
         output.WriteRawTag(24);
-        output.WriteUInt32(KeyS);
+        output.WriteBool(KeyS);
       }
-      if (KeyD != 0) {
+      if (KeyD != false) {
         output.WriteRawTag(32);
-        output.WriteUInt32(KeyD);
+        output.WriteBool(KeyD);
       }
-      if (RotateAxisX != 0) {
+      if (RotateAxisX != 0F) {
         output.WriteRawTag(45);
-        output.WriteFixed32(RotateAxisX);
+        output.WriteFloat(RotateAxisX);
       }
-      if (RotateAxisY != 0) {
+      if (RotateAxisY != 0F) {
         output.WriteRawTag(53);
-        output.WriteFixed32(RotateAxisY);
+        output.WriteFloat(RotateAxisY);
       }
       if (Jump != 0) {
         output.WriteRawTag(56);
         output.WriteUInt32(Jump);
+      }
+      if (NormalX != 0F) {
+        output.WriteRawTag(69);
+        output.WriteFloat(NormalX);
+      }
+      if (NormalY != 0F) {
+        output.WriteRawTag(77);
+        output.WriteFloat(NormalY);
+      }
+      if (NormalZ != 0F) {
+        output.WriteRawTag(85);
+        output.WriteFloat(NormalZ);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -1226,26 +1300,35 @@ namespace Game {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (KeyW != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(KeyW);
+      if (KeyW != false) {
+        size += 1 + 1;
       }
-      if (KeyA != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(KeyA);
+      if (KeyA != false) {
+        size += 1 + 1;
       }
-      if (KeyS != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(KeyS);
+      if (KeyS != false) {
+        size += 1 + 1;
       }
-      if (KeyD != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(KeyD);
+      if (KeyD != false) {
+        size += 1 + 1;
       }
-      if (RotateAxisX != 0) {
+      if (RotateAxisX != 0F) {
         size += 1 + 4;
       }
-      if (RotateAxisY != 0) {
+      if (RotateAxisY != 0F) {
         size += 1 + 4;
       }
       if (Jump != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Jump);
+      }
+      if (NormalX != 0F) {
+        size += 1 + 4;
+      }
+      if (NormalY != 0F) {
+        size += 1 + 4;
+      }
+      if (NormalZ != 0F) {
+        size += 1 + 4;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1259,26 +1342,35 @@ namespace Game {
       if (other == null) {
         return;
       }
-      if (other.KeyW != 0) {
+      if (other.KeyW != false) {
         KeyW = other.KeyW;
       }
-      if (other.KeyA != 0) {
+      if (other.KeyA != false) {
         KeyA = other.KeyA;
       }
-      if (other.KeyS != 0) {
+      if (other.KeyS != false) {
         KeyS = other.KeyS;
       }
-      if (other.KeyD != 0) {
+      if (other.KeyD != false) {
         KeyD = other.KeyD;
       }
-      if (other.RotateAxisX != 0) {
+      if (other.RotateAxisX != 0F) {
         RotateAxisX = other.RotateAxisX;
       }
-      if (other.RotateAxisY != 0) {
+      if (other.RotateAxisY != 0F) {
         RotateAxisY = other.RotateAxisY;
       }
       if (other.Jump != 0) {
         Jump = other.Jump;
+      }
+      if (other.NormalX != 0F) {
+        NormalX = other.NormalX;
+      }
+      if (other.NormalY != 0F) {
+        NormalY = other.NormalY;
+      }
+      if (other.NormalZ != 0F) {
+        NormalZ = other.NormalZ;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1296,31 +1388,43 @@ namespace Game {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            KeyW = input.ReadUInt32();
+            KeyW = input.ReadBool();
             break;
           }
           case 16: {
-            KeyA = input.ReadUInt32();
+            KeyA = input.ReadBool();
             break;
           }
           case 24: {
-            KeyS = input.ReadUInt32();
+            KeyS = input.ReadBool();
             break;
           }
           case 32: {
-            KeyD = input.ReadUInt32();
+            KeyD = input.ReadBool();
             break;
           }
           case 45: {
-            RotateAxisX = input.ReadFixed32();
+            RotateAxisX = input.ReadFloat();
             break;
           }
           case 53: {
-            RotateAxisY = input.ReadFixed32();
+            RotateAxisY = input.ReadFloat();
             break;
           }
           case 56: {
             Jump = input.ReadUInt32();
+            break;
+          }
+          case 69: {
+            NormalX = input.ReadFloat();
+            break;
+          }
+          case 77: {
+            NormalY = input.ReadFloat();
+            break;
+          }
+          case 85: {
+            NormalZ = input.ReadFloat();
             break;
           }
         }
@@ -1339,31 +1443,43 @@ namespace Game {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            KeyW = input.ReadUInt32();
+            KeyW = input.ReadBool();
             break;
           }
           case 16: {
-            KeyA = input.ReadUInt32();
+            KeyA = input.ReadBool();
             break;
           }
           case 24: {
-            KeyS = input.ReadUInt32();
+            KeyS = input.ReadBool();
             break;
           }
           case 32: {
-            KeyD = input.ReadUInt32();
+            KeyD = input.ReadBool();
             break;
           }
           case 45: {
-            RotateAxisX = input.ReadFixed32();
+            RotateAxisX = input.ReadFloat();
             break;
           }
           case 53: {
-            RotateAxisY = input.ReadFixed32();
+            RotateAxisY = input.ReadFloat();
             break;
           }
           case 56: {
             Jump = input.ReadUInt32();
+            break;
+          }
+          case 69: {
+            NormalX = input.ReadFloat();
+            break;
+          }
+          case 77: {
+            NormalY = input.ReadFloat();
+            break;
+          }
+          case 85: {
+            NormalZ = input.ReadFloat();
             break;
           }
         }
@@ -5698,6 +5814,9 @@ namespace Game {
       rotateAxisX_ = other.rotateAxisX_;
       rotateAxisY_ = other.rotateAxisY_;
       jump_ = other.jump_;
+      normalX_ = other.normalX_;
+      normalY_ = other.normalY_;
+      normalZ_ = other.normalZ_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -5721,13 +5840,13 @@ namespace Game {
 
     /// <summary>Field number for the "keyW" field.</summary>
     public const int KeyWFieldNumber = 2;
-    private uint keyW_;
+    private bool keyW_;
     /// <summary>
     /// 키(WASD)
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint KeyW {
+    public bool KeyW {
       get { return keyW_; }
       set {
         keyW_ = value;
@@ -5736,10 +5855,10 @@ namespace Game {
 
     /// <summary>Field number for the "keyA" field.</summary>
     public const int KeyAFieldNumber = 3;
-    private uint keyA_;
+    private bool keyA_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint KeyA {
+    public bool KeyA {
       get { return keyA_; }
       set {
         keyA_ = value;
@@ -5748,10 +5867,10 @@ namespace Game {
 
     /// <summary>Field number for the "keyS" field.</summary>
     public const int KeySFieldNumber = 4;
-    private uint keyS_;
+    private bool keyS_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint KeyS {
+    public bool KeyS {
       get { return keyS_; }
       set {
         keyS_ = value;
@@ -5760,10 +5879,10 @@ namespace Game {
 
     /// <summary>Field number for the "keyD" field.</summary>
     public const int KeyDFieldNumber = 5;
-    private uint keyD_;
+    private bool keyD_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint KeyD {
+    public bool KeyD {
       get { return keyD_; }
       set {
         keyD_ = value;
@@ -5772,13 +5891,13 @@ namespace Game {
 
     /// <summary>Field number for the "rotateAxisX" field.</summary>
     public const int RotateAxisXFieldNumber = 6;
-    private uint rotateAxisX_;
+    private float rotateAxisX_;
     /// <summary>
     /// 마우스 X축 회전값
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint RotateAxisX {
+    public float RotateAxisX {
       get { return rotateAxisX_; }
       set {
         rotateAxisX_ = value;
@@ -5787,13 +5906,13 @@ namespace Game {
 
     /// <summary>Field number for the "rotateAxisY" field.</summary>
     public const int RotateAxisYFieldNumber = 7;
-    private uint rotateAxisY_;
+    private float rotateAxisY_;
     /// <summary>
     /// 마우스 Y축 회전값
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint RotateAxisY {
+    public float RotateAxisY {
       get { return rotateAxisY_; }
       set {
         rotateAxisY_ = value;
@@ -5812,6 +5931,45 @@ namespace Game {
       get { return jump_; }
       set {
         jump_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "normalX" field.</summary>
+    public const int NormalXFieldNumber = 9;
+    private float normalX_;
+    /// <summary>
+    /// 플레이어의 노멀 벡터
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float NormalX {
+      get { return normalX_; }
+      set {
+        normalX_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "normalY" field.</summary>
+    public const int NormalYFieldNumber = 10;
+    private float normalY_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float NormalY {
+      get { return normalY_; }
+      set {
+        normalY_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "normalZ" field.</summary>
+    public const int NormalZFieldNumber = 11;
+    private float normalZ_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float NormalZ {
+      get { return normalZ_; }
+      set {
+        normalZ_ = value;
       }
     }
 
@@ -5835,9 +5993,12 @@ namespace Game {
       if (KeyA != other.KeyA) return false;
       if (KeyS != other.KeyS) return false;
       if (KeyD != other.KeyD) return false;
-      if (RotateAxisX != other.RotateAxisX) return false;
-      if (RotateAxisY != other.RotateAxisY) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RotateAxisX, other.RotateAxisX)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RotateAxisY, other.RotateAxisY)) return false;
       if (Jump != other.Jump) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NormalX, other.NormalX)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NormalY, other.NormalY)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(NormalZ, other.NormalZ)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -5846,13 +6007,16 @@ namespace Game {
     public override int GetHashCode() {
       int hash = 1;
       if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
-      if (KeyW != 0) hash ^= KeyW.GetHashCode();
-      if (KeyA != 0) hash ^= KeyA.GetHashCode();
-      if (KeyS != 0) hash ^= KeyS.GetHashCode();
-      if (KeyD != 0) hash ^= KeyD.GetHashCode();
-      if (RotateAxisX != 0) hash ^= RotateAxisX.GetHashCode();
-      if (RotateAxisY != 0) hash ^= RotateAxisY.GetHashCode();
+      if (KeyW != false) hash ^= KeyW.GetHashCode();
+      if (KeyA != false) hash ^= KeyA.GetHashCode();
+      if (KeyS != false) hash ^= KeyS.GetHashCode();
+      if (KeyD != false) hash ^= KeyD.GetHashCode();
+      if (RotateAxisX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RotateAxisX);
+      if (RotateAxisY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RotateAxisY);
       if (Jump != 0) hash ^= Jump.GetHashCode();
+      if (NormalX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NormalX);
+      if (NormalY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NormalY);
+      if (NormalZ != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(NormalZ);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5875,33 +6039,45 @@ namespace Game {
         output.WriteRawTag(8);
         output.WriteUInt32(PlayerId);
       }
-      if (KeyW != 0) {
+      if (KeyW != false) {
         output.WriteRawTag(16);
-        output.WriteUInt32(KeyW);
+        output.WriteBool(KeyW);
       }
-      if (KeyA != 0) {
+      if (KeyA != false) {
         output.WriteRawTag(24);
-        output.WriteUInt32(KeyA);
+        output.WriteBool(KeyA);
       }
-      if (KeyS != 0) {
+      if (KeyS != false) {
         output.WriteRawTag(32);
-        output.WriteUInt32(KeyS);
+        output.WriteBool(KeyS);
       }
-      if (KeyD != 0) {
+      if (KeyD != false) {
         output.WriteRawTag(40);
-        output.WriteUInt32(KeyD);
+        output.WriteBool(KeyD);
       }
-      if (RotateAxisX != 0) {
+      if (RotateAxisX != 0F) {
         output.WriteRawTag(53);
-        output.WriteFixed32(RotateAxisX);
+        output.WriteFloat(RotateAxisX);
       }
-      if (RotateAxisY != 0) {
+      if (RotateAxisY != 0F) {
         output.WriteRawTag(61);
-        output.WriteFixed32(RotateAxisY);
+        output.WriteFloat(RotateAxisY);
       }
       if (Jump != 0) {
         output.WriteRawTag(64);
         output.WriteUInt32(Jump);
+      }
+      if (NormalX != 0F) {
+        output.WriteRawTag(77);
+        output.WriteFloat(NormalX);
+      }
+      if (NormalY != 0F) {
+        output.WriteRawTag(85);
+        output.WriteFloat(NormalY);
+      }
+      if (NormalZ != 0F) {
+        output.WriteRawTag(93);
+        output.WriteFloat(NormalZ);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -5917,33 +6093,45 @@ namespace Game {
         output.WriteRawTag(8);
         output.WriteUInt32(PlayerId);
       }
-      if (KeyW != 0) {
+      if (KeyW != false) {
         output.WriteRawTag(16);
-        output.WriteUInt32(KeyW);
+        output.WriteBool(KeyW);
       }
-      if (KeyA != 0) {
+      if (KeyA != false) {
         output.WriteRawTag(24);
-        output.WriteUInt32(KeyA);
+        output.WriteBool(KeyA);
       }
-      if (KeyS != 0) {
+      if (KeyS != false) {
         output.WriteRawTag(32);
-        output.WriteUInt32(KeyS);
+        output.WriteBool(KeyS);
       }
-      if (KeyD != 0) {
+      if (KeyD != false) {
         output.WriteRawTag(40);
-        output.WriteUInt32(KeyD);
+        output.WriteBool(KeyD);
       }
-      if (RotateAxisX != 0) {
+      if (RotateAxisX != 0F) {
         output.WriteRawTag(53);
-        output.WriteFixed32(RotateAxisX);
+        output.WriteFloat(RotateAxisX);
       }
-      if (RotateAxisY != 0) {
+      if (RotateAxisY != 0F) {
         output.WriteRawTag(61);
-        output.WriteFixed32(RotateAxisY);
+        output.WriteFloat(RotateAxisY);
       }
       if (Jump != 0) {
         output.WriteRawTag(64);
         output.WriteUInt32(Jump);
+      }
+      if (NormalX != 0F) {
+        output.WriteRawTag(77);
+        output.WriteFloat(NormalX);
+      }
+      if (NormalY != 0F) {
+        output.WriteRawTag(85);
+        output.WriteFloat(NormalY);
+      }
+      if (NormalZ != 0F) {
+        output.WriteRawTag(93);
+        output.WriteFloat(NormalZ);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -5958,26 +6146,35 @@ namespace Game {
       if (PlayerId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
       }
-      if (KeyW != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(KeyW);
+      if (KeyW != false) {
+        size += 1 + 1;
       }
-      if (KeyA != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(KeyA);
+      if (KeyA != false) {
+        size += 1 + 1;
       }
-      if (KeyS != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(KeyS);
+      if (KeyS != false) {
+        size += 1 + 1;
       }
-      if (KeyD != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(KeyD);
+      if (KeyD != false) {
+        size += 1 + 1;
       }
-      if (RotateAxisX != 0) {
+      if (RotateAxisX != 0F) {
         size += 1 + 4;
       }
-      if (RotateAxisY != 0) {
+      if (RotateAxisY != 0F) {
         size += 1 + 4;
       }
       if (Jump != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Jump);
+      }
+      if (NormalX != 0F) {
+        size += 1 + 4;
+      }
+      if (NormalY != 0F) {
+        size += 1 + 4;
+      }
+      if (NormalZ != 0F) {
+        size += 1 + 4;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5994,26 +6191,35 @@ namespace Game {
       if (other.PlayerId != 0) {
         PlayerId = other.PlayerId;
       }
-      if (other.KeyW != 0) {
+      if (other.KeyW != false) {
         KeyW = other.KeyW;
       }
-      if (other.KeyA != 0) {
+      if (other.KeyA != false) {
         KeyA = other.KeyA;
       }
-      if (other.KeyS != 0) {
+      if (other.KeyS != false) {
         KeyS = other.KeyS;
       }
-      if (other.KeyD != 0) {
+      if (other.KeyD != false) {
         KeyD = other.KeyD;
       }
-      if (other.RotateAxisX != 0) {
+      if (other.RotateAxisX != 0F) {
         RotateAxisX = other.RotateAxisX;
       }
-      if (other.RotateAxisY != 0) {
+      if (other.RotateAxisY != 0F) {
         RotateAxisY = other.RotateAxisY;
       }
       if (other.Jump != 0) {
         Jump = other.Jump;
+      }
+      if (other.NormalX != 0F) {
+        NormalX = other.NormalX;
+      }
+      if (other.NormalY != 0F) {
+        NormalY = other.NormalY;
+      }
+      if (other.NormalZ != 0F) {
+        NormalZ = other.NormalZ;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -6035,31 +6241,43 @@ namespace Game {
             break;
           }
           case 16: {
-            KeyW = input.ReadUInt32();
+            KeyW = input.ReadBool();
             break;
           }
           case 24: {
-            KeyA = input.ReadUInt32();
+            KeyA = input.ReadBool();
             break;
           }
           case 32: {
-            KeyS = input.ReadUInt32();
+            KeyS = input.ReadBool();
             break;
           }
           case 40: {
-            KeyD = input.ReadUInt32();
+            KeyD = input.ReadBool();
             break;
           }
           case 53: {
-            RotateAxisX = input.ReadFixed32();
+            RotateAxisX = input.ReadFloat();
             break;
           }
           case 61: {
-            RotateAxisY = input.ReadFixed32();
+            RotateAxisY = input.ReadFloat();
             break;
           }
           case 64: {
             Jump = input.ReadUInt32();
+            break;
+          }
+          case 77: {
+            NormalX = input.ReadFloat();
+            break;
+          }
+          case 85: {
+            NormalY = input.ReadFloat();
+            break;
+          }
+          case 93: {
+            NormalZ = input.ReadFloat();
             break;
           }
         }
@@ -6082,31 +6300,43 @@ namespace Game {
             break;
           }
           case 16: {
-            KeyW = input.ReadUInt32();
+            KeyW = input.ReadBool();
             break;
           }
           case 24: {
-            KeyA = input.ReadUInt32();
+            KeyA = input.ReadBool();
             break;
           }
           case 32: {
-            KeyS = input.ReadUInt32();
+            KeyS = input.ReadBool();
             break;
           }
           case 40: {
-            KeyD = input.ReadUInt32();
+            KeyD = input.ReadBool();
             break;
           }
           case 53: {
-            RotateAxisX = input.ReadFixed32();
+            RotateAxisX = input.ReadFloat();
             break;
           }
           case 61: {
-            RotateAxisY = input.ReadFixed32();
+            RotateAxisY = input.ReadFloat();
             break;
           }
           case 64: {
             Jump = input.ReadUInt32();
+            break;
+          }
+          case 77: {
+            NormalX = input.ReadFloat();
+            break;
+          }
+          case 85: {
+            NormalY = input.ReadFloat();
+            break;
+          }
+          case 93: {
+            NormalZ = input.ReadFloat();
             break;
           }
         }

@@ -151,17 +151,24 @@ public class GunController : WeaponBaseController
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100f))
             { 
-                bool hitPlayer = hit.collider.TryGetComponent(out RemotePlayerController controller);
+                bool hitPlayer = hit.collider.TryGetComponent(out PlayerCollider controller);
+ 
+                PlayerStateData playerStateData = null;
+                if (controller != null)
+                {
+                    playerStateData = controller.Parent.GetComponent<RemotePlayerController>().PlayerStateData; 
+                } 
+
                 // 히트 이펙트
                 CS_ATTACK attackPacket = new CS_ATTACK();
-                attackPacket.HittedTargetId = hitPlayer ? controller.PlayerStateData.networkId : 99999;
+                attackPacket.HittedTargetId = hitPlayer ? playerStateData.networkId : 99999;
                 attackPacket.PosX = hit.point.x;
                 attackPacket.PosY = hit.point.y;
                 attackPacket.PosZ = hit.point.z;
                 attackPacket.NormalX = hit.normal.x;
-                attackPacket.NormalY = hit.normal.y;
+                attackPacket.NormalY = hit.normal.y; 
                 attackPacket.NormalZ = hit.normal.z; 
-                 
+                  
                 Managers.Network.Send(attackPacket);   
 
                 // 충돌 체크 hit.collider.tag == "Head"
@@ -170,9 +177,10 @@ public class GunController : WeaponBaseController
  
                 if (controller != null)
                 {
+                    int damage = (int)(_weaponDataSO.damage * controller.GetDamage()); 
                     CS_SHOT_HIT shotHitPacket = new CS_SHOT_HIT();
-                    shotHitPacket.PlayerId = controller.PlayerStateData.networkId;
-                    shotHitPacket.Hp = (uint)(controller.PlayerStateData.curHp - _weaponDataSO.damage);  
+                    shotHitPacket.PlayerId = playerStateData.networkId;
+                    shotHitPacket.Hp = (uint)(Mathf.Max(0, playerStateData.curHp - damage));    
                     Managers.Network.Send(shotHitPacket);
                 }
             } 

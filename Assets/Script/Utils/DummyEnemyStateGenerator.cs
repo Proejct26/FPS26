@@ -141,7 +141,7 @@ public class DummyRemotePlayersSimulator : MonoBehaviour
     {
         float x = Random.Range(5f, 25f);
         float z = Random.Range(5f, 25f);
-        float y = 5f; // 바닥보다 약간 위 (중력과 충돌처리 가능하게)
+        //float y = 5f; // 바닥보다 약간 위 (중력과 충돌처리 가능하게)
 
         return new Vector3(x, 0.2f, z); // fallback
     }

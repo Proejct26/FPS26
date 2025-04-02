@@ -140,7 +140,7 @@ class PacketHandler
             Vector3 moveInput = Vector3.zero;
             if (keyInputPacket.KeyW == 1) moveInput.z += 1;
             if (keyInputPacket.KeyS == 1) moveInput.z -= 1;
-            if (keyInputPacket.KeyA == 1) moveInput.x -= 1;
+            if (keyInputPacket.KeyA == 1) moveInput.x -= 1; 
             if (keyInputPacket.KeyD == 1) moveInput.x += 1;
 
             //결과 적용
@@ -148,7 +148,7 @@ class PacketHandler
                 moveInput,
                 keyInputPacket.RotateAxisX,
                 keyInputPacket.RotateAxisY,
-                keyInputPacket.Jump == 1
+                keyInputPacket.Jump == 1 
             );
         }
     }
@@ -181,8 +181,8 @@ class PacketHandler
         string unityString = sendMessagePacket.Message;
         // TODO: SC_SendMessage 패킷 처리 로직을 여기에 구현
         Debug.Log($"{unityString}");
-    }
-
+    } 
+    
     // SC_SHOT_HIT 패킷을 처리하는 함수
     public static void SC_ShotHit(PacketSession session, IMessage packet)
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class RemotePlayerController : PlayerControllerBase
 {
     private PlayerStateData _networkData;   //서버로부터 받을 적의 데이터
-
+    private DummyGunController _dummyGunController; 
     private Vector3 _networkPosition;
     private Quaternion _networkRotation;
     private float _lerpSpeed = 10f;         //보간 정도
@@ -37,6 +37,7 @@ public class RemotePlayerController : PlayerControllerBase
     private Rigidbody _rb;
 
     public PlayerStateData PlayerStateData => _networkData;
+    public DummyGunController DummyGunController => _dummyGunController; 
 
     protected override void Awake()
     {

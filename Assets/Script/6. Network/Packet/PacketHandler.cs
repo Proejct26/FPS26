@@ -14,7 +14,11 @@ class PacketHandler
     {
         SC_ATTACK attackPacket = packet as SC_ATTACK;  
          
-
+        if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(attackPacket.PlayerId, out var controller))
+        {
+            if (controller.DummyGunController != null)
+                controller.DummyGunController.Fire(); 
+        }
         // WeaponBaseController.SpawnMuzzleFlash(new Vector3(attackPacket.PosX, attackPacket.PosY, attackPacket.PosZ), 
         //     new Vector3(attackPacket.NormalX, attackPacket.NormalY, attackPacket.NormalZ));
 

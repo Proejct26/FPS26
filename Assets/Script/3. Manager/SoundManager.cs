@@ -45,6 +45,16 @@ public class SoundManager : IManager
         _audioClips.Clear();
     }
 
+    public void Play3D(string path, Vector3 position, float volume = 1.0f)
+    {
+        AudioClip audioClip = GetOrAddAudioClip(path, Define.Sound.Effect);
+ 
+        if (audioClip == null)
+            return;
+
+        AudioSource.PlayClipAtPoint(audioClip, position, volume);
+    }
+
     public void Play(string path, float volume = 1.0f, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
     {
         AudioClip audioClip = GetOrAddAudioClip(path, type);

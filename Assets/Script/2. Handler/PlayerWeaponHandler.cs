@@ -72,6 +72,18 @@ public class PlayerWeaponHandler : MonoBehaviour
         BindInputAction(); 
     }
 
+    public void Clear()
+    {
+        foreach (WeaponBaseController weapon in _weapons)
+        {
+            if (weapon == null)
+                continue;
+            Managers.Pool.Release(weapon.gameObject); 
+        } 
+    }
+
+
+
     public void InitWeapons() 
     {
         foreach (WeaponBaseController weapon in _weapons){

@@ -180,7 +180,7 @@ public class GunController : WeaponBaseController
  
                 if (playerCollider != null)
                 {
-                    int damage = (int)(_weaponDataSO.damage * playerCollider.GetDamage()); 
+                    int damage = Mathf.Max(1, (int)(_weaponDataSO.damage * playerCollider.GetDamage())); 
                     CS_SHOT_HIT shotHitPacket = new CS_SHOT_HIT();
                     shotHitPacket.PlayerId = playerStateData.networkId;
                     shotHitPacket.Hp = (uint)(Mathf.Max(0, playerStatHandler.CurrentHealth - damage));     

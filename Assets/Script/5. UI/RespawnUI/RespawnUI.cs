@@ -1,3 +1,4 @@
+using Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -121,13 +122,17 @@ public class RespawnUI : UI_Popup
             return;
 
         _playerWeaponHandler.InitWeapons(); 
-        ClosePopupUI(); 
+        
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;   
 
-        Managers.Input.SetActive(true);
-        Debug.Log("Respawn");
+        CS_REQUEST_RESTART requestRestartPacket = new CS_REQUEST_RESTART();
+        requestRestartPacket.PlayerId = (uint)Managers.GameSceneManager.PlayerId;
+        requestRestartPacket.Weapon = 0;
+        Managers.Network.Send(requestRestartPacket); 
+
+        Debug.Log("Respawn"); 
     }
 
 }

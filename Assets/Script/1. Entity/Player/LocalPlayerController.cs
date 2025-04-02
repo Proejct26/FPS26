@@ -34,6 +34,7 @@ public class LocalPlayerController : PlayerControllerBase
         base.Awake();
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<PlayerInputHandler>();
+        _statHandler.OnDeath += OnDeath;
     }
 
     private void Start()
@@ -195,4 +196,19 @@ public class LocalPlayerController : PlayerControllerBase
         }
         // 거의 차이 없으면 무시
     }
+    
+    public void OnDeath()
+    {
+        GetComponentInChildren<PlayerWeaponHandler>().Clear(); 
+        Managers.UI.ShowPopupUI<RespawnUI>("RespawnUI"); 
+    }
+
+    public void OnRespawn()
+    {
+        GetComponentInChildren<PlayerWeaponHandler>().InitWeapons(); 
+
+        Managers.Input.SetActive(true); 
+    }
+
+
 }

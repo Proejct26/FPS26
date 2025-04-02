@@ -3,6 +3,7 @@ using Google.Protobuf;
 using ServerCore;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Windows;
@@ -44,6 +45,20 @@ class PacketHandler
     {
         SC_CHARACTER_DOWN characterDownPacket = packet as SC_CHARACTER_DOWN;
         MyDebug.Log($"[{characterDownPacket.PlayerId}] 플레이어가 죽었습니다.");  
+
+        if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(characterDownPacket.PlayerId, out var controller))
+        {
+            PlayerStatHandler playerStatHandler = controller.GetComponentInChildren<PlayerStatHandler>();
+            if (playerStatHandler != null)
+            {
+                playerStatHandler.HandleDeath();
+            }
+        }
+        
+        if (Managers.GameSceneManager.PlayerId == characterDownPacket.PlayerId)
+        {
+            Managers.Player.GetComponentInChildren<PlayerStatHandler>().HandleDeath(); 
+        }   
     }
 
 
@@ -217,7 +232,7 @@ class PacketHandler
             PlayerStatHandler playerStatHandler = controller.GetComponentInChildren<PlayerStatHandler>();
             if (playerStatHandler != null)
             {
-                playerStatHandler.SetHealth(shotHitPacket.Hp);   
+                playerStatHandler.SetHealth(shotHitPacket.Hp);    
             }
               
         }

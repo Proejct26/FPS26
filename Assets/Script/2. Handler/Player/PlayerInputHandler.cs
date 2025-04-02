@@ -83,9 +83,15 @@ public class PlayerInputHandler : MonoBehaviour
             }
             else
             {
-                _chatUI.SendMessage(); // 메시지 전송
+                _chatUI.SendMessage(); // 현재 모드로 전송
                 _isChatActive = false;
             }
+        }
+        
+        // 탭 키로 챗모드 전환
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            _chatUI.ToggleChatMode();
         }
         
         // 채팅 활성화 시 다른 입력 무시

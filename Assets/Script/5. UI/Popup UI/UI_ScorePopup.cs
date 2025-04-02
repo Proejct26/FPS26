@@ -21,13 +21,19 @@ public class UI_ScorePopup : UI_Popup
     
     [SerializeField] private PlayerSlot[] teamASlots = new PlayerSlot[5];   // 팀A (0 ~ 4)
     [SerializeField] private PlayerSlot[] teamBSlots = new PlayerSlot[5];   // 팀B (5 ~ 9)
-    [SerializeField] private Sprite[] iconSprites;                          // 설정 창에서 선택한 아이콘 idx와 매핑
-    
+    [SerializeField] private Sprite[] iconSprites;       // 설정 창에서 선택한 아이콘 idx와 매핑
+
+
+
+    void Start()
+    {
+        UpdateScoreboard(Managers.GameSceneManager.GameKdaData.GetTeamData(0), Managers.GameSceneManager.GameKdaData.GetTeamData(1));
+    } 
+
     public override void Init()
     {
         base.Init();
         InitializeSlots();
-        UpdateScoreboard(TestDataTeamA(), TestDataTeamB());
     }
     
     // 팀 슬롯 초기화
@@ -56,7 +62,7 @@ public class UI_ScorePopup : UI_Popup
         slot.assistantText.text = "";
     }
     
-    public void UpdateScoreboard(List<PlayerStateData> teamAPlayers, List<PlayerStateData> teamBPlayers)
+    public void UpdateScoreboard(List<KDAData> teamAPlayers, List<KDAData> teamBPlayers)
     {
         // 팀A 업데이트
         for (int i = 0; i < teamASlots.Length; i++)
@@ -85,21 +91,42 @@ public class UI_ScorePopup : UI_Popup
         }
     }
     
-    private void UpdateSlot(PlayerSlot slot, PlayerStateData playerData)
+    private void UpdateSlot(PlayerSlot slot, KDAData playerData)
     {
-        // 닉네임 (자신의 데이터면 DataManager에서 가져오고 아니면 ID 사용헤애 함)
-        slot.nameText.text = (playerData.id == Managers.Data.Nickname) ? Managers.Data.Nickname : playerData.id;
+        
+        // ID, 이름, 팀, 킬 데스 어시, 살아있는지
 
+
+
+        bool isRemotePlayer = Managers.GameSceneManager.PlayerManager.TryGetPlayer((uint)playerData.playerId, out var controller);
+        bool isAlive = false;
+        string name = "";
+
+        if (isRemotePlayer)
+        {
+            isAlive = controller.GetComponent<PlayerStatHandler>().CurrentHealth > 0;
+            name = controller.PlayerStateData.name;
+
+        }
+        else
+        {
+            isAlive = Managers.Player.GetComponent<PlayerStatHandler>().CurrentHealth > 0;
+            name = Managers.GameSceneManager.Nickname;
+        }
+
+        // 닉네임 (자신의 데이터면 DataManager에서 가져오고 아니면 ID 사용헤애 함)
+        slot.nameText.text = name == "" ? "User": name;
+        
         // 상태
-        slot.stateText.text = playerData.isAlive ? "Alive" : "Dead";
+        slot.stateText.text = isAlive ? "Alive" : "Dead";
 
         // KDA
-        slot.killText.text = playerData.kills.ToString();
-        slot.deadText.text = playerData.deaths.ToString();
-        slot.assistantText.text = playerData.assists.ToString();
+        slot.killText.text = playerData.kill.ToString();
+        slot.deadText.text = playerData.death.ToString();
+        slot.assistantText.text = playerData.assist.ToString();
 
-        // 아이콘
-        int iconIndex = (playerData.id == Managers.Data.Nickname) ? Managers.Data.SelectedIconIndex : 0;
+        // 아이콘 
+        int iconIndex = (playerData.playerId == Managers.GameSceneManager.PlayerId) ? Managers.Data.SelectedIconIndex : 0;
         if (iconIndex >= 0 && iconIndex < iconSprites.Length)
         {
             slot.iconImage.sprite = iconSprites[iconIndex];
@@ -112,21 +139,9 @@ public class UI_ScorePopup : UI_Popup
     }
     
     // 테스트용
-    private List<PlayerStateData> TestDataTeamA()
-    {
-        return new List<PlayerStateData>
-        {
-            new PlayerStateData { id = Managers.Data.Nickname, kills = 1, deaths = 2, assists = 3, isAlive = true },
-            new PlayerStateData { id = "Player2", kills = 0, deaths = 1, assists = 0, isAlive = false }
-        };
-    }
 
-    // 테스트용
-    private List<PlayerStateData> TestDataTeamB()
-    {
-        return new List<PlayerStateData>
-        {
-            new PlayerStateData { id = "Player3", kills = 3, deaths = 2, assists = 1, isAlive = true }
-        };
-    }
+
+
+
+
 }

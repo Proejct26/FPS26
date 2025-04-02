@@ -1,10 +1,46 @@
+using Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering;
 
+public struct KDAData
+{
+    public int playerId;
+    public int team;
+    public int kill;
+    public int death;
+    public int assist;
+}
+
+public class GameKdaData
+{
+    public List<KDAData> KDAInfoList {get; private set;} = new List<KDAData>();
+    
+    public event Action OnChangedKDAInfo;
+
+    public void AddKDAInfo(int playerId, int team, int kill, int death, int assist)
+    {
+        KDAInfoList.Add(new KDAData()
+        {
+            kill = kill,
+            death = death,
+            assist = assist,
+            playerId = playerId, 
+            team = team
+        });
+
+        OnChangedKDAInfo?.Invoke();
+    }
+
+    public List<KDAData> GetTeamData(int team)
+    {
+        return KDAInfoList.FindAll(data => data.team == team);
+    }
+}
 
 [Serializable]
 public class SpawnData
@@ -19,7 +55,6 @@ public class SpawnData
     [SerializeField] private Transform _blueTeamSpawnPointParent; 
 
 
-    
 
     public List<Transform> RedTeamSpawnPoints {get; private set;} = new List<Transform>();
     public List<Transform> BlueTeamSpawnPoints {get; private set;} = new List<Transform>();
@@ -52,9 +87,11 @@ public class GameSceneManager : MonoBehaviour
 {
     [SerializeField] private SpawnData _spawnData = new SpawnData();
     public PlayerManager PlayerManager {get; private set;} = new PlayerManager();
+    public GameKdaData GameKdaData {get; private set;} = new GameKdaData(); 
+
     public SpawnData SpawnData => _spawnData;
     public int PlayerId {get; private set;} = -1;
-
+    public string Nickname {get; private set;} = "";
 
         private int _redTeamScore = 0;
     private int _blueTeamScore = 0;

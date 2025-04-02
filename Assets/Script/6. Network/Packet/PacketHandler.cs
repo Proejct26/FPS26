@@ -45,7 +45,8 @@ class PacketHandler
     public static void SC_CharacterDown(PacketSession session, IMessage packet)
     {
         SC_CHARACTER_DOWN characterDownPacket = packet as SC_CHARACTER_DOWN;
-        MyDebug.Log($"[{characterDownPacket.PlayerId}] 플레이어가 죽었습니다.");  
+
+        MyDebug.Log($"[{characterDownPacket.PlayerId}] 플레이어가 죽었습니다.");   
 
         int teamId = (int)characterDownPacket.TeamID;
         if(teamId == 0)
@@ -76,6 +77,14 @@ class PacketHandler
         SC_CHARACTER_KILL_LOG characterKillLogPacket = packet as SC_CHARACTER_KILL_LOG;
 
 
+        foreach (var playerInfo in characterKillLogPacket.PlayerInfoList)
+        {
+            PlayerStateData playerStateData = Managers.GameSceneManager.PlayerManager.TryGetPlayer((uint)playerInfo.PlayerId, out var controller) ? controller.PlayerStateData : null;
+            if (playerStateData == null) 
+                continue;
+
+            Managers.GameSceneManager.GameKdaData.AddKDAInfo((int)playerInfo.PlayerId, (int)playerStateData.team, (int)playerInfo.Kda.Kill, (int)playerInfo.Kda.Death, (int)playerInfo.Kda.Assist);
+        }
     }
 
 
@@ -91,6 +100,7 @@ class PacketHandler
             $"TeamID : {createMyCharacterPacket.TeamID}"
         );
  
+        Managers.GameSceneManager.GameKdaData.AddKDAInfo((int)createMyCharacterPacket.PlayerId, (int)createMyCharacterPacket.TeamID, 0, 0, 0);
         // crateCharacterPacket 에 있는 정보 추출 후 사용  
         MyDebug.Log("플레이어 생성 완료!"); 
         Managers.GameSceneManager.SpawnLocalPlayer((int)createMyCharacterPacket.PosIndex, (int)createMyCharacterPacket.TeamID, (int)createMyCharacterPacket.PlayerId);
@@ -124,9 +134,9 @@ class PacketHandler
             // 이쪽 값들은 없습니다. 새로 작업해주셔야합니다.
             position = spawnTf.position,
             rotationX = spawnTf.eulerAngles.x,
-            rotationY = spawnTf.eulerAngles.y,  
+            rotationY = spawnTf.eulerAngles.y,   
         };
-
+        Managers.GameSceneManager.GameKdaData.AddKDAInfo((int)createOtherCharacterPacket.PlayerId, (int)createOtherCharacterPacket.TeamID, 0, 0, 0);
         //PlayerManager에 삽입하기
         Managers.GameSceneManager.PlayerManager.OnReceivePlayerState(stat);
         MyDebug.Log("리무트 플레이어 생성 완료!");  
@@ -273,6 +283,7 @@ class PacketHandler
     public static void SC_ShotHit(PacketSession session, IMessage packet)
     {
         SC_SHOT_HIT shotHitPacket = packet as SC_SHOT_HIT;
+
         MyDebug.Log($"SC_SHOT_HIT 패킷 수신: PlayerId={shotHitPacket.PlayerId}, Hp={shotHitPacket.Hp}"); 
         if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(shotHitPacket.PlayerId, out var controller))
         {

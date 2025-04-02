@@ -47,6 +47,14 @@ class PacketHandler
         SC_CHARACTER_DOWN characterDownPacket = packet as SC_CHARACTER_DOWN;
         MyDebug.Log($"[{characterDownPacket.PlayerId}] 플레이어가 죽었습니다.");  
 
+        int teamId = (int)characterDownPacket.TeamID;
+        if(teamId == 0)
+            Managers.GameSceneManager.RedTeamScore++;
+        
+        else
+            Managers.GameSceneManager.BlueTeamScore++; 
+        
+
         if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(characterDownPacket.PlayerId, out var controller))
         {
             PlayerStatHandler playerStatHandler = controller.GetComponentInChildren<PlayerStatHandler>();
@@ -66,8 +74,8 @@ class PacketHandler
     public static void SC_CharacterKillLog(PacketSession session, IMessage packet)
     {
         SC_CHARACTER_KILL_LOG characterKillLogPacket = packet as SC_CHARACTER_KILL_LOG;
- 
-        
+
+
     }
 
 

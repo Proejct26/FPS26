@@ -1855,7 +1855,7 @@ GameObject:
   - component: {fileID: 767134368768385266}
   m_Layer: 9
   m_Name: Player_Cowboy
-  m_TagString: Untagged
+  m_TagString: LocalPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

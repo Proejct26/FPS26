@@ -21,8 +21,8 @@ public class MiniMap : UI_Scene
     void Start()
     {
 
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        if (playerObject != null)
+        GameObject playerObject = Managers.Player;
+        if (playerObject != null) 
         {
             playerTransform = playerObject.transform;
         }

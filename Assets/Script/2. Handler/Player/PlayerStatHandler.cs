@@ -25,6 +25,7 @@ public class PlayerStatHandler : MonoBehaviour
     public float CurrentHealth { get; set; }
 
     public event Action OnDeath;
+    public event Action OnHealthChanged;
 
     public void Init(float maxHealth, float moveSpeed, float jumpPower, float attackPower, float defensePower)
     {
@@ -61,6 +62,7 @@ public class PlayerStatHandler : MonoBehaviour
     public void TakeDamage(float amount)
     {
         CurrentHealth -= amount;
+        OnHealthChanged?.Invoke();
         if (CurrentHealth <= 0f)
         {
             CurrentHealth = 0f;
@@ -74,6 +76,7 @@ public class PlayerStatHandler : MonoBehaviour
             return;
             
         CurrentHealth = amount;
+        OnHealthChanged?.Invoke();
         if (CurrentHealth <= 0f)
         {
             CurrentHealth = 0f;
@@ -88,6 +91,7 @@ public class PlayerStatHandler : MonoBehaviour
     public void Heal(float amount)
     {
         CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
+        OnHealthChanged?.Invoke();
     }
 
     /// <summary>

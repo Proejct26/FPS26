@@ -206,9 +206,11 @@ public class LocalPlayerController : PlayerControllerBase
     public void OnRespawn()
     {
         GetComponentInChildren<PlayerWeaponHandler>().InitWeapons(); 
+        PlayerStatHandler playerStatHandler = GetComponentInChildren<PlayerStatHandler>();
+        playerStatHandler.SetHealth(playerStatHandler.MaxHealth);
 
         Managers.Input.SetActive(true); 
     }
 
 
-}
+} 

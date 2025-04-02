@@ -32,13 +32,13 @@ public class MainUI : UI_Scene
 
         playerWeaponHandler.OnChangeMagazine += UpdateMagazine;
         playerWeaponHandler.OnChangeWeapon += UpdateWeaponIcon;
+        Managers.GameSceneManager.OnChangedTeamScore += UpdateTeamScore;
+        playerStatHandler.OnHealthChanged += UpdatePlayerData; 
+        UpdateTeamScore();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        UpdatePlayerData();
-    }
+
 
     void UpdatePlayerData()
     {
@@ -66,6 +66,12 @@ public class MainUI : UI_Scene
     private void UpdateWeaponIcon()
     {
         weaponIcon.sprite = playerWeaponHandler.CurrentWeapon.WeaponIcon; 
+    }
+
+    private void UpdateTeamScore()
+    {
+        redroundText.text = Managers.GameSceneManager.RedTeamScore.ToString();
+        blueroundText.text = Managers.GameSceneManager.BlueTeamScore.ToString(); 
     }
 }
  

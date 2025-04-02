@@ -18,8 +18,13 @@ public class SpawnData
     [SerializeField] private Transform _redTeamSpawnPointParent;
     [SerializeField] private Transform _blueTeamSpawnPointParent; 
 
+
+    
+
     public List<Transform> RedTeamSpawnPoints {get; private set;} = new List<Transform>();
     public List<Transform> BlueTeamSpawnPoints {get; private set;} = new List<Transform>();
+
+   
 
     public void Init()
     {
@@ -49,6 +54,39 @@ public class GameSceneManager : MonoBehaviour
     public PlayerManager PlayerManager {get; private set;} = new PlayerManager();
     public SpawnData SpawnData => _spawnData;
     public int PlayerId {get; private set;} = -1;
+
+
+        private int _redTeamScore = 0;
+    private int _blueTeamScore = 0;
+    public event Action OnChangedTeamScore;
+
+
+     public int RedTeamScore 
+    {
+        get
+        {
+            return _redTeamScore;
+        }
+        set
+        {
+            _redTeamScore = value;
+            OnChangedTeamScore?.Invoke();
+        }
+    } 
+
+    public int BlueTeamScore 
+    {
+        get
+        {
+            return _blueTeamScore; 
+        } 
+        set
+        {
+            _blueTeamScore = value;
+            OnChangedTeamScore?.Invoke();
+        }
+    } 
+
 
 
     public virtual void EnterScene()

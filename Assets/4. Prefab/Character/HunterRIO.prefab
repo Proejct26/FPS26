@@ -90,7 +90,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: {fileID: 651165251710250175}
   animator: {fileID: 1929427811065041478}
+  weaponHolder: {fileID: 0}
+  weaponFix: {fileID: 0}
   nameTag: {fileID: 7771811816728354339}
+  model: {fileID: 0}
+  bodyCollider: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &7771811816728354339
 MonoBehaviour:
   m_ObjectHideFlags: 0

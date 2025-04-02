@@ -190,10 +190,6 @@ public class RemotePlayerController : PlayerControllerBase
         EquipWeapon(data.weapon);
     }
 
-    public override PlayerStateData ToPlayerStateData()
-    {
-        return null; // 서버로 보낼 필요 없음
-    }
 
    
     public override bool IsJumpInput() => _isJumping;
@@ -268,5 +264,10 @@ public class RemotePlayerController : PlayerControllerBase
         equippedWeapon.transform.localPosition = Vector3.zero;
         equippedWeapon.transform.localRotation = Quaternion.Euler(0, 180f, 0);  
         _dummyGunController = equippedWeapon.GetComponent<DummyGunController>(); 
+    }
+
+    public override PlayerStateData ToPlayerStateData()
+    {
+        return _networkData;
     }
 }

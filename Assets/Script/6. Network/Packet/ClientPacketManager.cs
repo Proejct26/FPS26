@@ -60,8 +60,11 @@ public class PacketManager : IManager
         _onRecv.Add((ushort)Game.PacketID.ScPosInterpolation, MakePacket<SC_POS_INTERPOLATION>);
         _handler.Add((ushort)Game.PacketID.ScPosInterpolation, PacketHandler.SC_PosInterpolation);
 
-        _onRecv.Add((ushort)Game.PacketID.ScSendMessage, MakePacket<SC_SEND_MESSAGE>);
-        _handler.Add((ushort)Game.PacketID.ScSendMessage, PacketHandler.SC_SendMessage);
+        _onRecv.Add((ushort)Game.PacketID.ScSendMessageAll, MakePacket<SC_SEND_MESSAGE_ALL>);
+        _handler.Add((ushort)Game.PacketID.ScSendMessageAll, PacketHandler.SC_SendMessageAll);
+
+        _onRecv.Add((ushort)Game.PacketID.ScSendMessageTeam, MakePacket<SC_SEND_MESSAGE_TEAM>);
+        _handler.Add((ushort)Game.PacketID.ScSendMessageTeam, PacketHandler.SC_SendMessageTeam);
 
         _onRecv.Add((ushort)Game.PacketID.ScShotHit, MakePacket<SC_SHOT_HIT>);
         _handler.Add((ushort)Game.PacketID.ScShotHit, PacketHandler.SC_ShotHit);

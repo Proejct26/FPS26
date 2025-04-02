@@ -296,10 +296,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.14
-  m_Height: 0.8
+  m_Radius: 0.2
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 1.15, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &5719135447224316553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cd82e823cea3647b843ab6a736165a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderType: 1
+  colliderType: 0
 --- !u!1 &214343807810343979
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.13
   m_Height: 0.36
   m_Direction: 1
   m_Center: {x: 0, y: 0.11, z: 0}
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cd82e823cea3647b843ab6a736165a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderType: 2
+  colliderType: 0
 --- !u!1 &426233477568286415
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +599,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.13
   m_Height: 0.46
   m_Direction: 1
   m_Center: {x: 0, y: 0.21, z: 0}
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cd82e823cea3647b843ab6a736165a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderType: 4
+  colliderType: 0
 --- !u!1 &838657691420251511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cd82e823cea3647b843ab6a736165a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderType: 3
+  colliderType: 0
 --- !u!136 &1044800845320395864
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1069,7 +1069,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.1
   m_Height: 0.39
   m_Direction: 1
   m_Center: {x: 0, y: 0.18, z: 0}
@@ -1257,10 +1257,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.0808
-  m_Height: 0.28
+  m_Radius: 0.12
+  m_Height: 0.4
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.06, z: 0}
 --- !u!114 &6896278696195500177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1734,7 +1734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cd82e823cea3647b843ab6a736165a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderType: 3
+  colliderType: 0
 --- !u!136 &7484972277029229054
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1754,7 +1754,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.03
+  m_Radius: 0.1
   m_Height: 0.4
   m_Direction: 1
   m_Center: {x: 0, y: 0.2, z: 0}
@@ -1805,7 +1805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cd82e823cea3647b843ab6a736165a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderType: 4
+  colliderType: 0
 --- !u!136 &7188176378829209881
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1825,7 +1825,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.13
   m_Height: 0.45
   m_Direction: 1
   m_Center: {x: 0, y: 0.23, z: 0}
@@ -2009,7 +2009,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.13
   m_Height: 0.4
   m_Direction: 1
   m_Center: {x: 0, y: 0.12, z: 0}
@@ -2025,7 +2025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cd82e823cea3647b843ab6a736165a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderType: 2
+  colliderType: 0
 --- !u!1 &5660322768179669623
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,7 +2831,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.07
+  m_Radius: 0.13
   m_Height: 0.54
   m_Direction: 1
   m_Center: {x: 0, y: 0.27, z: 0}
@@ -2847,7 +2847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cd82e823cea3647b843ab6a736165a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderType: 5
+  colliderType: 0
 --- !u!1 &7897882136861969228
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,7 +3108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cd82e823cea3647b843ab6a736165a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderType: 5
+  colliderType: 0
 --- !u!136 &3205125078831026412
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3128,7 +3128,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.13
   m_Height: 0.46
   m_Direction: 1
   m_Center: {x: 0, y: 0.24, z: 0}

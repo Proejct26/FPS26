@@ -54,6 +54,7 @@ public class RemotePlayerController : PlayerControllerBase
         foreach (var collider in transform.GetComponentsInChildren<PlayerCollider>())
             collider.Parent = gameObject; 
          
+        GetComponentInChildren<PlayerStatHandler>().OnDeath += OnDeath; 
     }
 
     public void SetNetworkInput(Vector3 moveInput, float pitch, float yaw, bool isJumping)
@@ -109,6 +110,12 @@ public class RemotePlayerController : PlayerControllerBase
 
         // FSM 동작 (상태 전이 및 애니메이션 포함)
         StateMachine?.Update();
+    }
+
+    private void OnDeath()
+    {
+        Managers.GameSceneManager.PlayerManager.OnDeath(_networkData.networkId);
+        MyDebug.Log($"RemotePlayerController OnDeath : {_networkData.networkId}"); 
     }
 
     private void InterpolatePosition()

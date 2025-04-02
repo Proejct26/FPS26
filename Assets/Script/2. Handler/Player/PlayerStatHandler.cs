@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class PlayerStatHandler : MonoBehaviour
     public float DefensePower { get; set; }
     public float CurrentHealth { get; set; }
 
+    public event Action OnDeath;
 
     public void Init(float maxHealth, float moveSpeed, float jumpPower, float attackPower, float defensePower)
     {
@@ -68,11 +70,14 @@ public class PlayerStatHandler : MonoBehaviour
 
     public void SetHealth(float amount)
     {
+        if (CurrentHealth <= 0f)
+            return;
+            
         CurrentHealth = amount;
         if (CurrentHealth <= 0f)
         {
             CurrentHealth = 0f;
-            HandleDeath();
+            //HandleDeath();
         }
     }
 
@@ -88,9 +93,10 @@ public class PlayerStatHandler : MonoBehaviour
     /// <summary>
     /// 사망 시 처리
     /// </summary>
-    private void HandleDeath()
-    {
-        Debug.Log("Player died.");
+    public void HandleDeath()
+    { 
+       // MyDebug.Log($"PlayerStatHandler HandleDeath : {CurrentHealth}"); 
+        OnDeath?.Invoke(); 
     }
 
 

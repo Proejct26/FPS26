@@ -287,7 +287,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.1
   m_Height: 0.34
   m_Direction: 1
   m_Center: {x: 0, y: 0.09, z: 0}
@@ -494,7 +494,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.1
   m_Height: 0.36
   m_Direction: 1
   m_Center: {x: 0, y: 0.09, z: 0}
@@ -566,7 +566,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.13
   m_Height: 0.61
   m_Direction: 1
   m_Center: {x: 0, y: 0.31, z: 0}
@@ -878,7 +878,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.1
   m_Height: 0.37
   m_Direction: 1
   m_Center: {x: 0, y: 0.13, z: 0}
@@ -1478,10 +1478,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.2
   m_Height: 0.91
   m_Direction: 1
-  m_Center: {x: 0, y: 1.15, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &3921691290057798150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2683,10 +2683,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.0808
-  m_Height: 0.28
+  m_Radius: 0.15
+  m_Height: 0.4
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.03, z: 0}
 --- !u!114 &3601691140149466818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2755,7 +2755,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.07
+  m_Radius: 0.13
   m_Height: 0.52
   m_Direction: 1
   m_Center: {x: 0, y: 0.26, z: 0}
@@ -2858,7 +2858,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.13
   m_Height: 0.46
   m_Direction: 1
   m_Center: {x: 0, y: 0.28, z: 0}
@@ -3193,7 +3193,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.13
   m_Height: 0.67
   m_Direction: 1
   m_Center: {x: 0, y: 0.22, z: 0}
@@ -3284,7 +3284,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.1
   m_Height: 0.31
   m_Direction: 1
   m_Center: {x: 0, y: 0.17, z: 0}

@@ -78,9 +78,18 @@ public class GameSceneManager : MonoBehaviour
 
         return player;
     }  
- 
+  
     public GameObject SpawnLocalPlayer(int posIndex, int teamIdx, int playerId)
     {
+        // 이미 생성되어있다면 리스폰폰
+        if (PlayerId != -1) 
+        {
+            Managers.Player.GetComponent<LocalPlayerController>().OnRespawn();
+            Managers.UI.CloseAllPopupUI();
+           return Managers.Player; 
+        }
+
+
         PlayerId = playerId; 
         GameObject prefab = _spawnData._localPlayerPrefab;
         Transform spawnTf = _spawnData.GetSpawnPosition(teamIdx, posIndex);
@@ -93,4 +102,5 @@ public class GameSceneManager : MonoBehaviour
 
         return player;
     }
+
 }

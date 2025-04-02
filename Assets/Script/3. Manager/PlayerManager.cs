@@ -21,12 +21,13 @@ public class PlayerManager : IManager
         ClearAllRemotePlayers();  // 모든 원격 플레이어 비활성화 및 딕셔너리 제거
         Debug.Log("[PlayerManager] Clear 호출됨");
     }
-
+ 
     public void OnReceivePlayerState(PlayerStateData data)
     {
         if (remotePlayers.TryGetValue(data.networkId, out var controller)) //dict에 해당 id 값이 있는지 확인. 있으면 해당 컨트롤러에 받은 데이터 삽입
         {
             controller.ApplyNetworkState(data);
+            OnRespawn(data.networkId, data.position, Quaternion.Euler(data.rotationX, data.rotationY, 0)); 
         }
         else                                                        //데이터가 없으면 pool에서 remotePlayerPrefab을 꺼내온다.
         {
@@ -48,6 +49,29 @@ public class PlayerManager : IManager
             remotePlayers.Add(data.networkId, newController); 
         }
     }
+
+    public void OnDeath(uint networkId)
+    {
+        if (remotePlayers.TryGetValue(networkId, out var controller))
+        {
+            controller.nameTag?.gameObject.SetActive(false);
+            controller.gameObject.SetActive(false);  
+        }
+    }
+ 
+
+    public void OnRespawn(uint networkId, Vector3 position, Quaternion rotation)
+    {
+        if (remotePlayers.TryGetValue(networkId, out var controller))
+        {
+            controller.nameTag?.gameObject.SetActive(true);
+            controller.gameObject.SetActive(true);
+            controller.transform.position = position;
+            controller.transform.rotation = rotation;
+            controller.GetComponentInChildren<PlayerStatHandler>().SetHealth(controller.PlayerStateData.maxHp); 
+        }
+    }
+
 
     public void OnRemotePlayerDisconnected(uint networkId)     //플레이어 게임 종료 했을 경우
     {

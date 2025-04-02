@@ -20,7 +20,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 9130538387348980961, guid: 3bc98a9e09892db45b84ad86e0cb4c03,
     type: 3}
   weaponIcon: {fileID: 21300012, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
-  damage: 7
+  damage: 20
   attackDelay: 1
   ammoSettings:
     _bulletPrefab: {fileID: 3575611928538805115, guid: d78f4931f32952a4291e6eea6532444b,

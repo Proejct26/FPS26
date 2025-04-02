@@ -41,6 +41,10 @@ public class RemotePlayerController : PlayerControllerBase
         _rb.isKinematic = false;
         _rb.interpolation = RigidbodyInterpolation.Interpolate;
         _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        foreach (var collider in transform.GetComponentsInChildren<PlayerCollider>())
+            collider.Parent = gameObject; 
+         
     }
 
     public void SetNetworkInput(Vector3 moveInput, float pitch, float yaw, bool isJumping)

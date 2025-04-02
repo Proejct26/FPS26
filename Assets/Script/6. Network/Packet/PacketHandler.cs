@@ -181,8 +181,8 @@ class PacketHandler
         string unityString = sendMessagePacket.Message;
         // TODO: SC_SendMessage 패킷 처리 로직을 여기에 구현
         Debug.Log($"{unityString}");
-    }
-
+    } 
+    
     // SC_SHOT_HIT 패킷을 처리하는 함수
     public static void SC_ShotHit(PacketSession session, IMessage packet)
     {

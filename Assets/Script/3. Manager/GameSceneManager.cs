@@ -87,6 +87,8 @@ public class GameSceneManager : MonoBehaviour
         player.transform.position = spawnTf.position; 
         player.transform.rotation = spawnTf.rotation;
 
+        Managers.UI.ShowSceneUI<MainUI>("MainUI");  
+
         return player;
     }
 }

@@ -18,17 +18,18 @@ public class NetworkManager : IManager
 
     public void Init()
     {
-        // DNS (Domain Name System)
-        string host = Dns.GetHostName();
-        IPHostEntry ipHost = Dns.GetHostEntry(host);
-        IPAddress ipAddr = ipHost.AddressList[0];
-        //IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
-        IPEndPoint endPoint = new IPEndPoint(IPAddress.Loopback, 12201);
+        string serverIp = "13.125.73.110";
+        int port = 12201;
+
+        IPAddress ipAddr = IPAddress.Parse(serverIp);
+        IPEndPoint endPoint = new IPEndPoint(ipAddr, port);
 
         Connector connector = new Connector();
 
+        // _session은 미리 정의된 Session 클래스의 인스턴스를 반환하는 람다입니다.
+        // 예: MySession : Session 클래스 상속
         connector.Connect(endPoint,
-            () => { return _session; },
+            () => { return _session; },  // _session은 Session 타입이어야 함
             1);
     }
 

@@ -13,9 +13,16 @@ public class PlayerJumpState : IPlayerState
     /// </summary>
     public void Enter()
     {
+        // RemotePlayerController일 경우 공중 상태 설정
+        if (_controller is RemotePlayerController remote)
+        {
+            remote.SetAirborne(true);
+        }
+
         _controller.StartJump();
         _controller.animator.Play("jump forward");
     }
+
     /// <summary>
     /// 이동 및 중력 처리 후, 수직 속도 감소 시 낙하 상태로 전환
     /// </summary>
@@ -25,9 +32,16 @@ public class PlayerJumpState : IPlayerState
         _controller.ApplyGravity();
 
         if (_controller.GetVerticalVelocity() <= 0)
+        {
             _controller.StateMachine.ChangeState(new PlayerFallState(_controller));
-        
+        }
     }
 
-    public void Exit() { }
+    public void Exit()
+    {
+        if (_controller is RemotePlayerController remote)
+        {
+            remote.SetAirborne(false);
+        }
+    }
 }

@@ -1,6 +1,7 @@
 using Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 
 /// <summary>
@@ -10,7 +11,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     public Vector3 MoveInput { get; private set; } = Vector3.zero;      // 이동 방향 (Vector3)
-    public Vector3 LookInput { get; private set; } = Vector2.zero;     // 시선 방향 (Vector3)
+    public Vector2 LookInput { get; private set; } = Vector2.zero;     // 시선 방향 (Vector2)
 
     public float RotationX { get; private set; } = 0f;       // 마우스 X 회전 (pitch)
     public float RotationY { get; private set; } = 0f;       // 마우스 Y 회전 (yaw)
@@ -25,8 +26,6 @@ public class PlayerInputHandler : MonoBehaviour
     private UI_Chat _chatUI;
     private bool _isChatActive;
     
-    private float _prevRotationX = 0f; 
-    private float _prevRotationY = 0f; 
 
 
     private void Start()
@@ -36,78 +35,34 @@ public class PlayerInputHandler : MonoBehaviour
 
         Managers.Input.GetInput(EPlayerInput.Chat).started += InputChat;
 
-        Managers.Input.GetInput(EPlayerInput.Look).performed += InputLook;
- 
+        Managers.Input.GetInput(EPlayerInput.Look).performed += InputLook; 
 
         Managers.Input.GetInput(EPlayerInput.move).performed += InputMove;
         Managers.Input.GetInput(EPlayerInput.move).canceled += InputMove; 
 
         Managers.Input.GetInput(EPlayerInput.Jump).started += InputJump;
         Managers.Input.GetInput(EPlayerInput.Jump).canceled += InputJump; 
-
-    }
-    private void Update()
-    {
-        UpdateInput(); 
-    }
-
-
-    /// <summary>
-    /// 매 프레임 입력 갱신
-    /// </summary>
-    public void UpdateInput() 
-    {
-        // // WASD 이동 입력 (Vector2 → Vector3 변환)
-        // Vector2 input2D = Managers.Input.GetInput(EPlayerInput.move).ReadValue<Vector2>();
-        // MoveInput = new Vector3(input2D.x, 0f, input2D.y);
-
-        // // 마우스 회전 (Vector2 → rotation 값으로 직접 사용)
-        // Vector2 look = Managers.Input.GetInput(EPlayerInput.Look).ReadValue<Vector2>();
-        // RotationX = look.y;  // 상하 (Pitch)
-        // RotationY = look.x;  // 좌우 (Yaw)    
-
-        // // LookInput 벡터 방향 (기본적으로 정면 방향 기준 벡터. 카메라 forward 등에서 계산 가능)
-        // LookInput = new Vector2(RotationX, RotationY);
-
-        // IsJumping = Managers.Input.GetInput(EPlayerInput.Jump).IsPressed();
-        // IsFiring = Managers.Input.GetInput(EPlayerInput.Fire).IsPressed();
-        // IsScorePopup = Managers.Input.GetInput(EPlayerInput.Info).IsPressed();
-
-
-        
-        // 채팅
-        // if (_chatUI == null)
-        // {
-        //     _chatUI = Managers.UI.ShowSceneUI<UI_Chat>("ChatUI");
-        // }
-        
-        // // 엔터 키로 채팅 토글
-        // if (Managers.Input.GetInput(EPlayerInput.Chat).WasPressedThisFrame())
-        // {
-            
-        // }
-        
-
-
-
     }
 
     private void InputLook(InputAction.CallbackContext context)
     {
+
+        // 입력값을 안전하게 읽기
         LookInput = context.ReadValue<Vector2>();
         
-        // 현재 회전값을 5도 단위로 반올림
-        float currentRotationX = Mathf.Round(LookInput.x / 5f) * 5f;
-        float currentRotationY = Mathf.Round(LookInput.y / 5f) * 5f;
+        // 현재 회전값을 20도 단위로 반올림
+        float currentRotationX = Mathf.Round(LookInput.x / 20f) * 20f;
+        float currentRotationY = Mathf.Round(LookInput.y / 20f) * 20f; 
         
-        // 이전 회전값과 현재 회전값의 차이가 5도 이상일 때만 서버로 전송
-        if (Mathf.Abs(currentRotationX - _prevRotationX) >= 5f || 
-            Mathf.Abs(currentRotationY - _prevRotationY) >= 5f)
+        // 이전 회전값과 현재 회전값의 차이가 20도 이상일 때만 서버로 전송
+        if (Mathf.Abs(currentRotationX - RotationX) >= 20f || 
+            Mathf.Abs(currentRotationY - RotationY) >= 20f) 
         {
-            _prevRotationX = currentRotationX;
-            _prevRotationY = currentRotationY;
+            RotationX = currentRotationX; 
+            RotationY = currentRotationY;
             SendInput();
-        }
+            MyDebug.Log($"회전 입력: {currentRotationX}, {currentRotationY}");
+        }  
     }
 
     private void InputMove(InputAction.CallbackContext context)
@@ -121,27 +76,39 @@ public class PlayerInputHandler : MonoBehaviour
         {
             MoveInput = new Vector3(moveInput.x, 0f, moveInput.y);
         }
+        MyDebug.Log($"이동 입력: {MoveInput}");
         SendInput();
     }
 
     private void InputJump(InputAction.CallbackContext context)
     {
         IsJumping = context.phase != InputActionPhase.Canceled;
+        MyDebug.Log($"점프 입력: {IsJumping}");
         SendInput();
     }
- 
+  
     private void SendInput()   
     {
+        if (Managers.Player == null)
+            return;
+            
         CS_KEY_INPUT keyInput = new CS_KEY_INPUT();
         keyInput.KeyA = (uint)(MoveInput.x > 0.5f ? 1 : 0);
         keyInput.KeyD = (uint)(MoveInput.x < -0.5f ? 1 : 0); 
         keyInput.KeyW = (uint)(MoveInput.z > 0.5f ? 1 : 0);
         keyInput.KeyS = (uint)(MoveInput.z < -0.5f ? 1 : 0);
-        keyInput.RotateAxisX = (uint)LookInput.x;
-        keyInput.RotateAxisY = (uint)LookInput.y;
+        
+        // Euler 각도를 0~360도 범위로 정규화
+        Vector3 eulerAngles = Managers.Player.transform.rotation.eulerAngles;
+        float normalizedX = eulerAngles.x < 0 ? eulerAngles.x + 360f : eulerAngles.x;
+        float normalizedY = eulerAngles.y < 0 ? eulerAngles.y + 360f : eulerAngles.y;
+        
+        keyInput.RotateAxisX = (uint)normalizedX;
+        keyInput.RotateAxisY = (uint)normalizedY;
         keyInput.Jump = (uint)(IsJumping ? 1 : 0);
-
-        Managers.Network.Send(keyInput);
+        
+        MyDebug.Log($"키 입력: {keyInput.KeyA}, {keyInput.KeyD}, {keyInput.KeyW}, {keyInput.KeyS}, {keyInput.RotateAxisX}, {keyInput.RotateAxisY}, {keyInput.Jump}");
+        Managers.Network.Send(keyInput); 
     }
 
     private void InputChat(InputAction.CallbackContext context)

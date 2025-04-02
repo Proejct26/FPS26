@@ -124,6 +124,15 @@ public class MiniMap : UI_Scene
 
             Transform localPlayerIcon = enemyIcons[i].transform;//아이콘 위치 변수 지정
 
+            PlayerStateData playerStateData = localplayer.ToPlayerStateData();//팀 값 접근
+
+            
+            if (playerStateData.team == 0)//아군일때
+            {
+                enemyIcons[i].GetComponent<SpriteRenderer>().color = Color.blue;//아이콘을 파란색으로
+            }
+            
+
             localPlayerIcon.position = new Vector3(localplayer.transform.position.x, 35f, localplayer.transform.position.z);//위치 실시간 세팅
             localPlayerIcon.rotation = Quaternion.Euler(90, localplayer.transform.eulerAngles.y, 0);//플레이어들의 시야 각도 아이콘에 연동
         }

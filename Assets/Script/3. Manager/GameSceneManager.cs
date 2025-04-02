@@ -17,7 +17,6 @@ public class SpawnData
     [SerializeField] private Transform _redTeamSpawnPointParent;
     [SerializeField] private Transform _blueTeamSpawnPointParent; 
 
-
     public List<Transform> RedTeamSpawnPoints {get; private set;} = new List<Transform>();
     public List<Transform> BlueTeamSpawnPoints {get; private set;} = new List<Transform>();
 
@@ -47,6 +46,8 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField] private SpawnData _spawnData = new SpawnData();
     public PlayerManager PlayerManager {get; private set;} = new PlayerManager();
     public SpawnData SpawnData => _spawnData;
+    public int PlayerId {get; set;} = -1;
+
     public virtual void EnterScene()
     {  
         Managers.UI.ShowPopupUI<UI_StartPopup>("StartPopup");  
@@ -78,8 +79,9 @@ public class GameSceneManager : MonoBehaviour
         return player;
     }  
  
-    public GameObject SpawnLocalPlayer(int posIndex, int teamIdx)
+    public GameObject SpawnLocalPlayer(int posIndex, int teamIdx, int playerId)
     {
+        PlayerId = playerId; 
         GameObject prefab = _spawnData._localPlayerPrefab;
         Transform spawnTf = _spawnData.GetSpawnPosition(teamIdx, posIndex);
 

@@ -38,6 +38,7 @@ public class RemotePlayerController : PlayerControllerBase
 
     public PlayerStateData PlayerStateData => _networkData;
     public DummyGunController DummyGunController => _dummyGunController; 
+    //public PlayerStat
 
     protected override void Awake()
     {

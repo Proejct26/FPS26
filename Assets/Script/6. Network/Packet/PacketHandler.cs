@@ -69,9 +69,9 @@ class PacketHandler
  
         // crateCharacterPacket 에 있는 정보 추출 후 사용  
         MyDebug.Log("플레이어 생성 완료!"); 
-        Managers.GameSceneManager.SpawnLocalPlayer((int)createMyCharacterPacket.PosIndex, (int)createMyCharacterPacket.TeamID);
+        Managers.GameSceneManager.SpawnLocalPlayer((int)createMyCharacterPacket.PosIndex, (int)createMyCharacterPacket.TeamID, (int)createMyCharacterPacket.PlayerId);
     }
-
+ 
     // SC_CREATE_OTHER_CHARACTER 패킷을 처리하는 함수
     public static void SC_CreateOtherCharacter(PacketSession session, IMessage packet)
     {
@@ -214,12 +214,18 @@ class PacketHandler
         MyDebug.Log($"SC_SHOT_HIT 패킷 수신: PlayerId={shotHitPacket.PlayerId}, Hp={shotHitPacket.Hp}"); 
         if(Managers.GameSceneManager.PlayerManager.TryGetPlayer(shotHitPacket.PlayerId, out var controller))
         {
-            if (controller.TryGetComponent(out PlayerStatHandler playerStatHandler))
-                playerStatHandler.SetHealth(shotHitPacket.Hp);  
-             
+            PlayerStatHandler playerStatHandler = controller.GetComponentInChildren<PlayerStatHandler>();
+            if (playerStatHandler != null)
+            {
+                playerStatHandler.SetHealth(shotHitPacket.Hp);   
+            }
+              
         }
-   
-        // TODO: SC_ShotHit 패킷 처리 로직을 여기에 구현
+
+        if (Managers.GameSceneManager.PlayerId == shotHitPacket.PlayerId)
+        {
+            Managers.Player.GetComponentInChildren<PlayerStatHandler>().SetHealth(shotHitPacket.Hp); 
+        }
     }
 }
  

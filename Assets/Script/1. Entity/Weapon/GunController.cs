@@ -154,9 +154,12 @@ public class GunController : WeaponBaseController
                 bool hitPlayer = hit.collider.TryGetComponent(out PlayerCollider playerCollider);
  
                 PlayerStateData playerStateData = null;
+                PlayerStatHandler playerStatHandler = null;
+
                 if (playerCollider != null) 
                 {
                     playerStateData = playerCollider.Parent.GetComponent<RemotePlayerController>().PlayerStateData; 
+                    playerStatHandler = playerCollider.Parent.GetComponentInChildren<PlayerStatHandler>();
                 } 
 
                 // 히트 이펙트
@@ -170,9 +173,9 @@ public class GunController : WeaponBaseController
                 attackPacket.NormalZ = hit.normal.z; 
                   
                 Managers.Network.Send(attackPacket);   
-
+ 
                 // 충돌 체크 hit.collider.tag == "Head"
-                targets[i] = hit.collider.gameObject;
+                targets[i] = hit.collider.gameObject; 
 
  
                 if (playerCollider != null)
@@ -180,10 +183,10 @@ public class GunController : WeaponBaseController
                     int damage = (int)(_weaponDataSO.damage * playerCollider.GetDamage()); 
                     CS_SHOT_HIT shotHitPacket = new CS_SHOT_HIT();
                     shotHitPacket.PlayerId = playerStateData.networkId;
-                    shotHitPacket.Hp = (uint)(Mathf.Max(0, playerStateData.curHp - damage));    
+                    shotHitPacket.Hp = (uint)(Mathf.Max(0, playerStatHandler.CurrentHealth - damage));     
                     Managers.Network.Send(shotHitPacket);
 
-                    MyDebug.Log($"SC_SHOT_HIT 패킷 전송: PlayerId={playerStateData.networkId}, Hp={shotHitPacket.Hp}");
+                    MyDebug.Log($"SC_SHOT_HIT 패킷 전송: PlayerId={playerStateData.networkId}, Hp={shotHitPacket.Hp}, Damage={damage}"); 
                 }
             } 
             else 

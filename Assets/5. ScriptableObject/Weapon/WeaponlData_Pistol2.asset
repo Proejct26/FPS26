@@ -19,7 +19,7 @@ MonoBehaviour:
     type: 3}
   itemPrefab: {fileID: 4724544863606683765, guid: e84bd873782274240802a4616ce684fd,
     type: 3}
-  weaponIcon: {fileID: 21300016, guid: 5acb27b603af6d44ea6113c4b7b15385, type: 3}
+  weaponIcon: {fileID: 21300000, guid: 40cb9fb909ae0044e9c831e301ec7f33, type: 3}
   damage: 3
   attackDelay: 0.1
   ammoSettings:

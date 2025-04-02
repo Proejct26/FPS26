@@ -8,7 +8,7 @@ public class PlayerCameraHandler : MonoBehaviour
 {
     [SerializeField] private Camera _scopeCam;
     [SerializeField] private Transform cameraHolder; // 카메라 부모 (X축 회전만 담당)
-    [SerializeField] private float _sensitivity = 2f;
+    [SerializeField] private float _sensitivity = 5f;
 
     public float xRotation {get; set;} = 0f;
     public float yRotation {get; set;} = 0f;
@@ -18,6 +18,11 @@ public class PlayerCameraHandler : MonoBehaviour
     private void Awake()
     {
         InitCamera(); 
+    }
+
+    private void Start()
+    {
+        _sensitivity = Managers.Data.MouseSensitivity;
     }
 
     private void Update()

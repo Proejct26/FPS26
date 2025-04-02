@@ -66,9 +66,10 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     private void Start() 
     {
+        OnChangeWeapon += SyncWeaponData;
+
         InitWeapons();
-        BindInputAction();
-        OnChangeWeapon +=SyncWeaponData;
+        BindInputAction(); 
     }
 
     public void InitWeapons() 
@@ -120,7 +121,7 @@ public class PlayerWeaponHandler : MonoBehaviour
 
             _weapons[i].gameObject.SetActive(i == _selectedWeaponIndex);
         }
- 
+  
         OnChangeWeapon?.Invoke();
     }
     

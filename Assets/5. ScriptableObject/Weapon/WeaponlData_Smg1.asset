@@ -15,7 +15,7 @@ MonoBehaviour:
   key: 1201
   weaponName: "\uAE30\uAD00\uB2E8\uCD1DA"
   weaponType: 0
-  dropItemPrefab: {fileID: 2567875013113560307, guid: 1d0f08ad72e29634c9cda7485945079b,
+  dummyPrefab: {fileID: 2567875013113560307, guid: 512a20eefaeb5c542b1bb924791380f1,
     type: 3}
   itemPrefab: {fileID: 7927471080846231128, guid: 9e8da40208464fb4fb8c7120afa492be,
     type: 3}

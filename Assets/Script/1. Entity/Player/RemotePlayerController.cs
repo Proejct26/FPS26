@@ -18,6 +18,7 @@ public class RemotePlayerController : PlayerControllerBase
 
     [SerializeField] private Transform model;   // HunterRio, CowboyRio
     [SerializeField] private Transform bodyCollider;  // Rigidbody + CapsuleCollider
+    [SerializeField] private LayerMask groundLayer;
 
     private GameObject equippedWeapon;
 
@@ -52,31 +53,18 @@ public class RemotePlayerController : PlayerControllerBase
 
     public void SetNetworkPosition(Vector3 pos)
     {
-        _networkPosition = pos;
-    }
-
-    private void FixedUpdate()
-    {
-        if (_networkData == null) return;
-
-        // 회전 보간
-        Quaternion targetRotation = Quaternion.Euler(0f, _inputYaw, 0f);
-        _networkRotation = Quaternion.Slerp(_rb.rotation, targetRotation, Time.fixedDeltaTime * _lerpSpeed);
-        _rb.MoveRotation(_networkRotation);
-
-        // 위치 보간
-        Vector3 newPos = Vector3.Lerp(_rb.position, _networkPosition, Time.fixedDeltaTime * _lerpSpeed);
-        _rb.MovePosition(newPos);
-
-        if (_inputMove.sqrMagnitude > 0.01f)
+        Ray ray = new Ray(pos + Vector3.up * 1f, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hit, 10f, groundLayer))
         {
-            Vector3 forward = _networkRotation * Vector3.forward;
-            Vector3 right = _networkRotation * Vector3.right;
-
-            Vector3 moveDir = (right * _inputMove.x + forward * _inputMove.z).normalized;
-            _networkPosition += moveDir * Time.fixedDeltaTime;
-        }
+            _networkPosition = hit.point;
+        } 
+        else
+        {
+            _networkPosition = pos;
+        } 
+        transform.position = _networkPosition; 
     }
+
 
     protected override void Update()
     {
@@ -84,9 +72,9 @@ public class RemotePlayerController : PlayerControllerBase
 
         if(_networkData == null) return;
 
-        // 캐릭터 transform은 rigidbody 따라가기
-        transform.position = _rb.position;
-        transform.rotation = _rb.rotation;
+        // // 캐릭터 transform은 rigidbody 따라가기
+        // transform.position = _rb.position;
+        // transform.rotation = _rb.rotation;
 
 
         // 시야 회전

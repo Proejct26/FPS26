@@ -151,8 +151,10 @@ public class GunController : WeaponBaseController
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100f))
             { 
+                bool hitPlayer = hit.collider.TryGetComponent(out RemotePlayerController controller);
                 // 히트 이펙트
                 CS_ATTACK attackPacket = new CS_ATTACK();
+                attackPacket.HittedTargetId = hitPlayer ? controller.PlayerStateData.networkId : 99999;
                 attackPacket.PosX = hit.point.x;
                 attackPacket.PosY = hit.point.y;
                 attackPacket.PosZ = hit.point.z;
@@ -160,12 +162,13 @@ public class GunController : WeaponBaseController
                 attackPacket.NormalY = hit.normal.y;
                 attackPacket.NormalZ = hit.normal.z; 
                  
-                Managers.Network.Send(attackPacket); 
-                //WeaponBaseController.SpawnHitEffect(hit.point, hit.normal, attackPacket.BAttack);    
+                Managers.Network.Send(attackPacket);   
+
                 // 충돌 체크 hit.collider.tag == "Head"
                 targets[i] = hit.collider.gameObject;
 
-                if (hit.collider.TryGetComponent(out RemotePlayerController controller))
+ 
+                if (controller != null)
                 {
                     CS_SHOT_HIT shotHitPacket = new CS_SHOT_HIT();
                     shotHitPacket.PlayerId = controller.PlayerStateData.networkId;

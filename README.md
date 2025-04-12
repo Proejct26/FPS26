@@ -5,7 +5,17 @@
 Unity와 C++ 기반으로 제작된 실시간 멀티플레이 FPS 게임입니다.  
 플레이어는 원격 서버와의 통신을 통해 실시간 전투에 참여하며, 총기 반동, 스코프, 채팅, 미니맵 등 다양한 기능이 포함되어 있습니다.
 
+<br><br>
+
 ---
+
+## 📼 소개 영상
+[![소개 영상](https://github.com/user-attachments/assets/58f0d5c3-2d34-461e-8f24-2018caf8f646)](https://www.youtube.com/watch?v=v682QT8ADWI)
+
+<br><br>
+
+---
+
 
 ## 🎮 게임 기능 개요
 
